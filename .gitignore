@@ -1,0 +1,23 @@
+# Hugo generated files
+/public/
+/resources/_gen/
+/hugo_stats.json
+
+# Ignore themes except submodules
+/themes/*
+!.gitmodules
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+*.log
+
+# Backup files
+*.bak
+*.old
+*.orig
