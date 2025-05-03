@@ -3,9 +3,6 @@
 /resources/_gen/
 /hugo_stats.json
 
-# Ignore themes except submodules
-!.gitmodules
-
 # System files
 .DS_Store
 Thumbs.db
