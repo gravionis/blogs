@@ -4,7 +4,6 @@
 /hugo_stats.json
 
 # Ignore themes except submodules
-/themes/*
 !.gitmodules
 
 # System files
