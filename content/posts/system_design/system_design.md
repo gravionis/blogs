@@ -1,7 +1,7 @@
 +++
 date = '2025-05-03T12:44:47+10:00'
 draft = false
-title = 'System Design Interview'
+title = 'System Design Interview Concepts'
 +++
 
 ## Excerpt
@@ -11,16 +11,19 @@ Few Main concepts required for system design.
 1. [Excerpt](#excerpt)
 2. [Approach](#approach)
    - [Steps](#steps)
-3. [Caching](#caching)
-   - [Advantages of Caching](#advantages-of-caching)
-   - [Disadvantages of Caching](#disadvantages-of-caching)
-   - [Strategies](#strategies)
-   - [Measuring Cache Effectiveness](#measuring-cache-effectiveness)
-   - [Example Use Cases for Caching](#example-use-cases-for-caching)
-   - [References](#references)
+3. [Categories](#categories)
+   - [Networking and Communication](#networking-and-communication)
+   - [APIs and Integration](#apis-and-integration)
+   - [Databases and Storage](#databases-and-storage)
+   - [Scalability and Performance](#scalability-and-performance)
+   - [System Design Patterns and Architecture](#system-design-patterns-and-architecture)
+   - [Monitoring, Resiliency, and Security](#monitoring-resiliency-and-security)
+   - [Development and Deployment](#development-and-deployment)
+   - [Theoretical Concepts](#theoretical-concepts)
+   - [Data Processing](#data-processing)
+   - [Miscellaneous](#miscellaneous)
 
 ## Approach
-
 - Do not directly start designing; every problem is unique. Think of every problem as designing and building a bridge. You must understand:
   - **Whom or What you are building for**  
     - target users or audience and their count.  
@@ -33,7 +36,6 @@ Few Main concepts required for system design.
   - **How you build**.
 
 ### Steps:
-
 1. **Understand your use case**  
    - Clearly define the problem and its requirements.
 
@@ -55,6 +57,30 @@ Few Main concepts required for system design.
      - **Flexibility**
      (Always remind yourself - everything fails)
 
+# Networking and Communication
+## Client Server Architecture
+## IP Address
+## DNS
+## Proxy/Reverse Proxy
+## Latency
+## HTTP/HTTPS
+## WebSockets
+## Webhooks
+
+# APIs and Integration
+## APIs
+## REST API
+## GraphQL
+## API Gateway
+## Idempotency
+
+# Databases and Storage
+## Databases
+## SQL vs NoSQL
+## Database Indexing
+## Replication
+## Sharding
+## Vertical Partitioning
 ## Caching
 
 Caching is the process of storing frequently accessed data in a temporary storage layer to improve system performance and reduce latency. 
@@ -175,3 +201,45 @@ Caching is the process of storing frequently accessed data in a temporary storag
 
 - [Cache Strategies - Medium](https://medium.com/@mmoshikoo/cache-strategies-996e91c80303)
 
+## Denormalization
+## Blob Storage
+
+# Scalability and Performance
+## Vertical and Horizontal Scaling
+## Load Balancers
+## Rate Limiting
+## Content Delivery Optimization
+## Zero Downtime Deployment
+
+# System Design Patterns and Architecture
+## Event-Driven Architecture
+## Data Partitioning Strategies
+## Eventual Consistency
+## Leader Election
+## Circuit Breaker Pattern
+## Throttling and Backpressure
+## Service Discovery
+## Microservices
+## Message Queues
+
+# Monitoring, Resiliency, and Security
+## Monitoring and Observability
+## Data Compression
+## Authentication and Authorization
+## Data Backup and Recovery
+## Chaos Engineering
+
+# Development and Deployment
+## Concurrency Control
+## Immutable Infrastructure
+## Blue-Green Deployment
+
+# Theoretical Concepts
+## CAP Theorem
+## Search Systems
+
+# Data Processing
+## Data Streaming
+
+# Miscellaneous
+## Rate Shaping
