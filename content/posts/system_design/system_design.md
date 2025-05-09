@@ -4,12 +4,12 @@ draft = false
 title = 'System Design Interview Concepts'
 +++
 
-# System Design Interview Concepts
+## System Design Interview Concepts
 
-## Excerpt
+### Excerpt
 System design is a critical aspect of software engineering that involves creating scalable, reliable, and efficient systems. This document explores key concepts and strategies required for designing robust systems, including networking, databases, scalability, caching, and modern architectural patterns. It serves as a comprehensive guide for understanding the foundational and advanced principles of system design.
 
-## Approach
+### Approach
 - Do not directly start designing; every problem is unique. Think of every problem as designing and building a bridge. You must understand:
   - **Whom or What you are building for**  
     - target users or audience and their count.  
@@ -21,7 +21,7 @@ System design is a critical aspect of software engineering that involves creatin
   - **Where you are building** (the environment or constraints).
   - **How you build**.
 
-## Steps:
+### Steps:
 1. **Understand your use case**  
    - Clearly define the problem and its requirements.
 
