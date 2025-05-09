@@ -5,23 +5,7 @@ title = 'System Design Interview Concepts'
 +++
 
 ## Excerpt
-Few Main concepts required for system design.
-
-## Table of Contents
-1. [Excerpt](#excerpt)
-2. [Approach](#approach)
-   - [Steps](#steps)
-3. [Categories](#categories)
-   - [Networking and Communication](#networking-and-communication)
-   - [APIs and Integration](#apis-and-integration)
-   - [Databases and Storage](#databases-and-storage)
-   - [Scalability and Performance](#scalability-and-performance)
-   - [System Design Patterns and Architecture](#system-design-patterns-and-architecture)
-   - [Monitoring, Resiliency, and Security](#monitoring-resiliency-and-security)
-   - [Development and Deployment](#development-and-deployment)
-   - [Theoretical Concepts](#theoretical-concepts)
-   - [Data Processing](#data-processing)
-   - [Miscellaneous](#miscellaneous)
+System design is a critical aspect of software engineering that involves creating scalable, reliable, and efficient systems. This document explores key concepts and strategies required for designing robust systems, including networking, databases, scalability, caching, and modern architectural patterns. It serves as a comprehensive guide for understanding the foundational and advanced principles of system design.
 
 ## Approach
 - Do not directly start designing; every problem is unique. Think of every problem as designing and building a bridge. You must understand:
