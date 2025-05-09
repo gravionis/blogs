@@ -1,13 +1,10 @@
 +++
 date = '2025-05-03T12:44:47+10:00'
 draft = false
-title = 'Langchain & Langgraph'
+title = 'Prompt engineering & Gen AI Patterns'
 +++
 
-This post, we aim to deep dive (a bit) into LangChain and Langgraph: 
-* As essential tools for implementing Prompt Engineering strategies.
-* Exploration of design patterns in Generative AI to address repetitive problems efficiently
-* Focus on leveraging established patterns to avoid reinventing solutions in the context of AI workflows.
+In this post, we aim to deep dive the Patterns & Best Practises in the field of Prompt Engineering & GenAI; Strategies and Tools for Design and Implemention. Finally, focus on leveraging established patterns to avoid reinventing solutions in the context of AI workflows.
 
 ## Introduction
 
