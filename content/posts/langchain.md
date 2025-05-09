@@ -4,7 +4,6 @@ draft = false
 title = 'Langchain & Langgraph'
 +++
 
-## Excerpt
 This post, we aim to deep dive (a bit) into LangChain and Langgraph: 
 * As essential tools for implementing Prompt Engineering strategies.
 * Exploration of design patterns in Generative AI to address repetitive problems efficiently
