@@ -4,6 +4,8 @@ draft = false
 title = 'System Design Interview Concepts'
 +++
 
+# System Design Interview Concepts
+
 ## Excerpt
 System design is a critical aspect of software engineering that involves creating scalable, reliable, and efficient systems. This document explores key concepts and strategies required for designing robust systems, including networking, databases, scalability, caching, and modern architectural patterns. It serves as a comprehensive guide for understanding the foundational and advanced principles of system design.
 
@@ -19,7 +21,7 @@ System design is a critical aspect of software engineering that involves creatin
   - **Where you are building** (the environment or constraints).
   - **How you build**.
 
-### Steps:
+## Steps:
 1. **Understand your use case**  
    - Clearly define the problem and its requirements.
 
@@ -41,35 +43,35 @@ System design is a critical aspect of software engineering that involves creatin
      - **Flexibility**
      (Always remind yourself - everything fails)
 
-# Networking and Communication
-## Client Server Architecture
-## IP Address
-## DNS
-## Proxy/Reverse Proxy
-## Latency
-## HTTP/HTTPS
-## WebSockets
-## Webhooks
+## Networking and Communication
+### Client Server Architecture
+### IP Address
+### DNS
+### Proxy/Reverse Proxy
+### Latency
+### HTTP/HTTPS
+### WebSockets
+### Webhooks
 
-# APIs and Integration
-## APIs
-## REST API
-## GraphQL
-## API Gateway
-## Idempotency
+## APIs and Integration
+### APIs
+### REST API
+### GraphQL
+### API Gateway
+### Idempotency
 
-# Databases and Storage
-## Databases
-## SQL vs NoSQL
-## Database Indexing
-## Replication
-## Sharding
-## Vertical Partitioning
-## Caching
+## Databases and Storage
+### Databases
+### SQL vs NoSQL
+### Database Indexing
+### Replication
+### Sharding
+### Vertical Partitioning
+### Caching
 
 Caching is the process of storing frequently accessed data in a temporary storage layer to improve system performance and reduce latency. 
 
-### Advantages of Caching
+#### Advantages of Caching
 
 1. **Improved Performance**  
    - Reduces response time by serving data from faster storage layers (e.g., memory).  
@@ -86,7 +88,7 @@ Caching is the process of storing frequently accessed data in a temporary storag
 5. **Cost Efficiency**  
    - Reduces operational costs by optimizing resource utilization.  
 
-### Disadvantages of Caching
+#### Disadvantages of Caching
 
 1. **Data Staleness**  
    - Cached data may become outdated if not properly invalidated or refreshed.  
@@ -103,7 +105,7 @@ Caching is the process of storing frequently accessed data in a temporary storag
 5. **Consistency Challenges**  
    - Ensuring data consistency between the cache and the source of truth can be difficult.  
 
-### Strategies
+#### Strategies
 
 1. **Cache-Aside**  
    - The application checks the cache first. If the data is not found, it fetches from the database and updates the cache.  
@@ -121,7 +123,7 @@ Caching is the process of storing frequently accessed data in a temporary storag
    - The application interacts only with the cache. If the data is not in the cache, the cache fetches it from the database.  
    - Simplifies application logic but adds complexity to the caching layer.  
 
-### Measuring Cache Effectiveness
+#### Measuring Cache Effectiveness
 
 1. **Calculate the Cache Hit Rate**  
    - Measure the percentage of requests served from the cache versus the total requests.  
@@ -139,7 +141,7 @@ Caching is the process of storing frequently accessed data in a temporary storag
    - Set expiration times based on data usage patterns and freshness requirements.  
    - Avoid stale data while minimizing unnecessary cache misses.
 
-### Example Use Cases for Caching
+#### Example Use Cases for Caching
 
 1. **URL Shortener**  
    - Cache `ShortCode → URL` mappings.  
@@ -181,49 +183,49 @@ Caching is the process of storing frequently accessed data in a temporary storag
     - Cache user preferences and recent submissions.  
     - Use client-side and server-side caching.
 
-### References
+#### References
 
 - [Cache Strategies - Medium](https://medium.com/@mmoshikoo/cache-strategies-996e91c80303)
 
-## Denormalization
-## Blob Storage
+### Denormalization
+### Blob Storage
 
-# Scalability and Performance
-## Vertical and Horizontal Scaling
-## Load Balancers
-## Rate Limiting
-## Content Delivery Optimization
-## Zero Downtime Deployment
+## Scalability and Performance
+### Vertical and Horizontal Scaling
+### Load Balancers
+### Rate Limiting
+### Content Delivery Optimization
+### Zero Downtime Deployment
 
-# System Design Patterns and Architecture
-## Event-Driven Architecture
-## Data Partitioning Strategies
-## Eventual Consistency
-## Leader Election
-## Circuit Breaker Pattern
-## Throttling and Backpressure
-## Service Discovery
-## Microservices
-## Message Queues
+## System Design Patterns and Architecture
+### Event-Driven Architecture
+### Data Partitioning Strategies
+### Eventual Consistency
+### Leader Election
+### Circuit Breaker Pattern
+### Throttling and Backpressure
+### Service Discovery
+### Microservices
+### Message Queues
 
-# Monitoring, Resiliency, and Security
-## Monitoring and Observability
-## Data Compression
-## Authentication and Authorization
-## Data Backup and Recovery
-## Chaos Engineering
+## Monitoring, Resiliency, and Security
+### Monitoring and Observability
+### Data Compression
+### Authentication and Authorization
+### Data Backup and Recovery
+### Chaos Engineering
 
-# Development and Deployment
-## Concurrency Control
-## Immutable Infrastructure
-## Blue-Green Deployment
+## Development and Deployment
+### Concurrency Control
+### Immutable Infrastructure
+### Blue-Green Deployment
 
-# Theoretical Concepts
-## CAP Theorem
-## Search Systems
+## Theoretical Concepts
+### CAP Theorem
+### Search Systems
 
-# Data Processing
-## Data Streaming
+## Data Processing
+### Data Streaming
 
-# Miscellaneous
-## Rate Shaping
+## Miscellaneous
+### Rate Shaping
