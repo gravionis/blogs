@@ -1,5 +1,6 @@
 body {
-  color: #222;
+  background-color: white;
+  color: black;
   font-family: sans-serif;
   line-height: 1.5;
   margin: 1% 15%;
@@ -17,6 +18,10 @@ footer {
 }
 
 a {
-  color: #00e;
+  color: blue;
   text-decoration: none;
+}
+
+a:hover {
+  color: darkblue;
 }

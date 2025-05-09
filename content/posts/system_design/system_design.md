@@ -177,8 +177,16 @@ Horizontal scaling, or "scaling out," involves adding more machines to distribut
   - When the application is designed as a distributed system.
   - Easy in Cloud infrastructure - Pay per use or Pay as you go.
 
-#### The Role of Algorithms in Horizontal Scaling
-Horizontal scaling often requires efficient algorithms and data structures to ensure performance and scalability. The choice of algorithm can significantly impact the system's ability to scale.
+#### Combining Vertical and Horizontal Scaling
+In practice, systems often use a combination of vertical and horizontal scaling. For example:
+- Start with vertical scaling for simplicity and quick deployment.
+- Transition to horizontal scaling as the system grows and requires higher availability.
+
+By understanding the trade-offs and leveraging efficient algorithms, you can design systems that scale effectively to meet user demands.
+
+### Algorithmic Scaling
+
+Algorithmic scaling plays a crucial role in ensuring that systems can handle increased load efficiently. By leveraging efficient algorithms and data structures, you can optimize performance and scalability, often reducing the need for additional hardware or resources.
 
 **Big O Notation:**
 Big O notation is used to describe the efficiency of an algorithm in terms of time and space complexity. Common complexities include:
@@ -205,12 +213,7 @@ Big O notation is used to describe the efficiency of an algorithm in terms of ti
    - Use inverted indexes and binary search trees for efficient search operations.
    - Example: Full-text search in a document management system.
 
-#### Combining Vertical and Horizontal Scaling
-In practice, systems often use a combination of vertical and horizontal scaling. For example:
-- Start with vertical scaling for simplicity and quick deployment.
-- Transition to horizontal scaling as the system grows and requires higher availability.
-
-By understanding the trade-offs and leveraging efficient algorithms, you can design systems that scale effectively to meet user demands.
+By understanding and applying these algorithmic principles, you can design systems that scale effectively to meet user demands.
 
 ### Load Balancers
 ### Rate Limiting
