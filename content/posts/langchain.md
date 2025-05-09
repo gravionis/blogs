@@ -19,4 +19,3 @@ Large Language Models (LLMs) are powerful but limited by factors like training d
 Often, a single query requires context built from diverse data sources. Differences in reasoning (e.g., Gemini 2.5 Pro outperforming LLaMA 3.1), token limits, and features like function calling (e.g., supported in GPT-3.5) highlight model variability.
 
 Despite these differences, common LLM challenges can be addressed using established design patterns—structured approaches that promote consistency, scalability, and efficiency.
-
