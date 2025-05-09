@@ -1,7 +1,7 @@
 body {
   background-color: white;
   color: black;
-  font-family: sans-serif;
+  font-family: 'Ubuntu', sans-serif;
   line-height: 1.5;
   margin: 1% 15%;
   max-width: 90%;
@@ -24,4 +24,9 @@ a {
 
 a:hover {
   color: darkblue;
+}
+
+/* Ensure headers and other elements also use the Ubuntu font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Ubuntu', sans-serif;
 }
