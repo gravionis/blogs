@@ -2,6 +2,7 @@
 date = '2025-05-10T12:44:47+10:00'
 draft = false
 title = 'Prompt engineering & Gen AI Patterns'
+tags = ['AI', 'Prompt Engineering']
 +++
 
 In this post, we aim to deep dive the Patterns & Best Practises in the field of Prompt Engineering & GenAI; Strategies and Tools for Design and Implemention. Finally, focus on leveraging established patterns to avoid reinventing solutions in the context of AI workflows.
