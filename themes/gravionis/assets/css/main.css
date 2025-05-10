@@ -33,5 +33,8 @@ h1, h2, h3, h4, h5, h6 {
 
 img {
   border-radius: 50%;
-  border: 0px solid #000; /* Optional: Add a border for better visibility */
+  border: 1px solid transparent; /* Transparent border to show the gradient */
+  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
+  background-clip: border-box;
+  padding: 1px; /* Padding to create space for the gradient */
 }
