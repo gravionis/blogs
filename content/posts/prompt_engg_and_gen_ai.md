@@ -1,5 +1,5 @@
 +++
-date = '2025-05-03T12:44:47+10:00'
+date = '2025-05-10T12:44:47+10:00'
 draft = false
 title = 'Prompt engineering & Gen AI Patterns'
 +++
