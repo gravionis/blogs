@@ -26,15 +26,14 @@ a:hover {
   color: darkblue;
 }
 
-/* Ensure headers and other elements also use the Ubuntu font */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Ubuntu', sans-serif;
 }
 
 img {
   border-radius: 50%;
-  border: 1px solid transparent; /* Transparent border to show the gradient */
+  border: 1px solid transparent;
   background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
   background-clip: border-box;
-  padding: 1px; /* Padding to create space for the gradient */
+  padding: 1px;
 }
