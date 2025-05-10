@@ -35,5 +35,5 @@ img {
   border: 1px solid transparent;
   background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
   background-clip: border-box;
-  padding: 1px;
+  padding: 0px;
 }
