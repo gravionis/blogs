@@ -8,18 +8,8 @@ tags = ['Event Driven Architecture', 'Microservices', 'Interview']
 In this post, we explore Microservice Design Patterns, focusing on decomposition, communication, resilience, data consistency, observability, and security. Learn strategies to build scalable, efficient, and maintainable distributed systems aligned with modern software principles.
 
 ## Hexagonal Architecture
-
-Hexagonal architecture is a design pattern that addresses key challenges in software design. Here are its main points:
 ![hexagonal](../hexagonal.png)
-- **Encapsulation of Domain Logic**: Keeps the domain logic isolated and independent of external systems.
-- **Adapters and Ports**: 
-  - Adapters expose the domain while keeping it encapsulated.
-  - Ports abstract business logic from protocols, enabling loose coupling.
-- **Context Boundaries**: Ensures entities are centralized and context boundaries are well-defined.
-- **Domain-Driven Design (DDD)**: Aligns with DDD principles by focusing on the core domain and its logic.
-- **Flexibility and Scalability**: Promotes flexibility and scalability by decoupling components.
-- **Enables Patterns**: Supports patterns like transactional messaging (e.g., polling publishers).
-- **Maintainability**: Simplifies maintenance by separating concerns and reducing dependencies.
+
 ## Pattern Language
 ![](../pattern_language.png)
 
