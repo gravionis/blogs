@@ -35,9 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 img {
-  border-radius: 50%;
-  border: 1px solid transparent;
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-  background-clip: border-box;
-  padding: 0px;
+  max-width: 90%;
+  height: auto;
 }
+

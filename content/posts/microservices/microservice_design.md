@@ -10,7 +10,7 @@ In this post, we explore Microservice Design Patterns, focusing on decomposition
 ## Hexagonal Architecture
 
 Hexagonal architecture is a design pattern that addresses key challenges in software design. Here are its main points:
-![](./hexagonal.png)
+![hexagonal](../hexagonal.png)
 - **Encapsulation of Domain Logic**: Keeps the domain logic isolated and independent of external systems.
 - **Adapters and Ports**: 
   - Adapters expose the domain while keeping it encapsulated.
@@ -21,7 +21,7 @@ Hexagonal architecture is a design pattern that addresses key challenges in soft
 - **Enables Patterns**: Supports patterns like transactional messaging (e.g., polling publishers).
 - **Maintainability**: Simplifies maintenance by separating concerns and reducing dependencies.
 ## Pattern Language
-![](./pattern_language.png)
+![](../pattern_language.png)
 
 ## Architecture & Decomposition Patterns
 
