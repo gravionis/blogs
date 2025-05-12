@@ -50,6 +50,48 @@ System design is a critical aspect of software engineering that involves creatin
 ### GraphQL
 ### API Gateway
 ### Idempotency
+
+## REST and REST Maturity Model
+
+### What is REST?
+REST (Representational State Transfer) is an architectural style for designing networked applications. It relies on stateless communication and standard HTTP methods to enable interaction between clients and servers. RESTful APIs are widely used for their simplicity, scalability, and compatibility with web standards.
+
+Key principles of REST include:
+- **Statelessness**: Each request from a client to a server must contain all the information needed to understand and process the request.
+- **Client-Server Architecture**: Separation of concerns between the client and server, allowing them to evolve independently.
+- **Uniform Interface**: A consistent and standardized way of interacting with resources.
+- **Resource-Based**: Resources are identified using URIs (Uniform Resource Identifiers).
+- **Cacheability**: Responses must define whether they are cacheable to improve performance.
+- **Layered System**: The architecture can have multiple layers, such as load balancers and proxies, to improve scalability and security.
+
+### REST Maturity Model
+The REST Maturity Model, introduced by Leonard Richardson, defines levels of maturity for RESTful APIs. It helps evaluate how closely an API adheres to REST principles.
+
+#### Level 0: The Swamp of POX
+- APIs at this level use a single URI and rely on HTTP POST for all interactions.
+- They often resemble RPC (Remote Procedure Call) or SOAP (Simple Object Access Protocol).
+
+#### Level 1: Resources
+- Introduces the concept of resources, each identified by a unique URI.
+- HTTP methods are not yet fully utilized.
+
+#### Level 2: HTTP Verbs
+- Uses standard HTTP methods (GET, POST, PUT, DELETE, etc.) to perform operations on resources.
+- Improves clarity and aligns with REST principles.
+
+#### Level 3: Hypermedia Controls (HATEOAS)
+- Hypermedia as the Engine of Application State (HATEOAS) is implemented.
+- Clients can navigate the API dynamically using links provided in responses.
+- This level achieves full REST maturity by enabling discoverability and self-documentation.
+
+### Benefits of REST Maturity
+- **Scalability**: Higher levels of maturity improve scalability by leveraging HTTP standards.
+- **Interoperability**: Adherence to REST principles ensures compatibility across different platforms.
+- **Maintainability**: A well-designed RESTful API is easier to maintain and extend.
+- **Discoverability**: HATEOAS enables clients to discover available actions dynamically.
+
+By understanding and applying the REST Maturity Model, developers can design APIs that are robust, scalable, and aligned with modern web standards.
+
 ---
 ## Databases and Storage
 ### Databases
