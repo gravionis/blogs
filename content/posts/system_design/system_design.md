@@ -132,6 +132,46 @@ Caching is the process of storing frequently accessed data in a temporary storag
 
 - [Cache Strategies - Medium](https://medium.com/@mmoshikoo/cache-strategies-996e91c80303)
 
+### ACID vs BASE
+
+#### ACID Properties
+ACID stands for Atomicity, Consistency, Isolation, and Durability. These properties are essential for traditional relational databases to ensure reliable transactions:
+- **Atomicity**: Ensures that a transaction is all-or-nothing. If one part fails, the entire transaction is rolled back.
+- **Consistency**: Guarantees that a transaction brings the database from one valid state to another, maintaining all defined rules.
+- **Isolation**: Ensures that concurrent transactions do not interfere with each other.
+- **Durability**: Once a transaction is committed, it remains so, even in the event of a system failure.
+
+#### BASE Properties
+BASE stands for Basically Available, Soft state, and Eventually consistent. These properties are common in distributed systems and NoSQL databases:
+- **Basically Available**: The system guarantees availability, even in the presence of partial failures.
+- **Soft State**: The state of the system may change over time, even without input, due to eventual consistency.
+- **Eventually Consistent**: The system will become consistent over time, given that no new updates are made.
+
+
+| Feature                | ACID                                                                                     | BASE                                                                                     |
+|------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------|
+| **Definition**         | Ensures reliable transactions with strong consistency and integrity.                     | Focuses on availability and eventual consistency in distributed systems.                 |
+| **Consistency**        | Strong consistency; the database is always in a valid state after a transaction.         | Eventual consistency; the system becomes consistent over time.                          |
+| **Availability**       | May sacrifice availability for consistency.                                              | Prioritizes availability, even during partial failures.                                  |
+| **Data Integrity**     | High data integrity; suitable for critical applications like banking.                    | Lower data integrity; suitable for scalable systems like social media.                  |
+| **Transaction Model**  | Transactions are all-or-nothing (atomic).                                                | Transactions may be partial or eventual.                                                |
+| **Use Case**           | Ideal for OLTP systems requiring strict data accuracy.                                   | Ideal for distributed systems requiring high scalability and availability.              |
+| **Examples**           | Relational databases like MySQL, PostgreSQL.                                             | NoSQL databases like Cassandra, DynamoDB.                                               |
+
+### Normalization vs Denormalization
+
+Normalization is the process of organizing data to reduce redundancy and improve data integrity, while denormalization involves combining data to optimize read performance by reducing the number of joins.
+
+| Feature                | Normalization                                                                 | Denormalization                                                              |
+|------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| **Definition**         | Organizing data to reduce redundancy and improve data integrity.             | Combining data to reduce the number of joins and improve read performance.   |
+| **Data Redundancy**    | Minimal redundancy; data is stored in separate, related tables.               | Increased redundancy; data is duplicated across tables.                      |
+| **Performance**        | Optimized for write operations and data integrity.                            | Optimized for read operations and query performance.                         |
+| **Complexity**         | Higher complexity due to multiple tables and relationships.                   | Lower complexity for queries but higher complexity for updates.              |
+| **Use Case**           | Suitable for OLTP systems where data integrity and consistency are critical.  | Suitable for OLAP systems where fast read performance is required.           |
+| **Storage**            | Requires less storage due to reduced redundancy.                              | Requires more storage due to duplicated data.                                |
+| **Maintenance**        | Easier to maintain data integrity and consistency.                            | Harder to maintain consistency due to data duplication.                      |
+
 ### Denormalization
 ### Blob Storage
 ---
@@ -185,9 +225,23 @@ In practice, systems often use a combination of vertical and horizontal scaling.
 
 By understanding the trade-offs and leveraging efficient algorithms, you can design systems that scale effectively to meet user demands.
 
+### Vertical vs Horizontal Scaling
+
+Vertical scaling and horizontal scaling are two approaches to handle increased system load. Here's a comparison:
+
+| Feature                | Vertical Scaling                                                              | Horizontal Scaling                                                             |
+|------------------------|-------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| **Definition**         | Adding more resources (CPU, RAM, etc.) to a single machine.                  | Adding more machines to distribute the load.                                 |
+| **Scalability**        | Limited by the hardware capacity of a single machine.                        | Virtually unlimited by adding more machines.                                 |
+| **Fault Tolerance**    | Single point of failure; if the machine fails, the system goes down.         | Higher fault tolerance; failure of one machine does not affect the system.   |
+| **Complexity**         | Simpler to implement and manage.                                             | Requires distributed systems, load balancing, and data partitioning.         |
+| **Cost**               | High cost for high-end hardware.                                             | Cost-effective with commodity hardware.                                      |
+| **Use Case**           | Suitable for monolithic applications with predictable loads.                 | Suitable for distributed systems with unpredictable or massive growth.       |
+
 ### Algorithmic Scaling
 
 Algorithmic scaling plays a crucial role in ensuring that systems can handle increased load efficiently. By leveraging efficient algorithms and data structures, you can optimize performance and scalability, often reducing the need for additional hardware or resources.
+![](../algoscaling.png)
 
 **Big O Notation:**
 Big O notation is used to describe the efficiency of an algorithm in terms of time and space complexity. Common complexities include:
