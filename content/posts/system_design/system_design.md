@@ -293,24 +293,90 @@ Big O notation is used to describe the efficiency of an algorithm in terms of ti
 - **O(n log n):** Log-linear time. Example: Merge sort.
 - **O(n^2):** Quadratic time. Example: Nested loops.
 
-**Examples of Efficient Algorithms:**
-1. **Load Balancing:**
-   - Use consistent hashing (O(log n)) to distribute requests evenly across servers.
-   - Example: Distributing user sessions in a stateless web application.
+### Examples of Big O Notation in Java
 
-2. **Data Partitioning:**
-   - Use range-based or hash-based partitioning to divide data across nodes.
-   - Example: Sharding a database to handle large datasets.
+#### O(1) - Constant Time
+```java
+public int getFirstElement(int[] array) {
+    return array[0]; // Accessing the first element is constant time.
+}
+```
 
-3. **Caching:**
-   - Implement LRU (Least Recently Used) or LFU (Least Frequently Used) caching strategies to reduce database load.
-   - Example: Caching frequently accessed user profiles.
+#### O(log n) - Logarithmic Time
+```java
+public int binarySearch(int[] array, int target) {
+    int left = 0, right = array.length - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+        if (array[mid] == target) {
+            return mid; // Found the target.
+        } else if (array[mid] < target) {
+            left = mid + 1; // Search in the right half.
+        } else {
+            right = mid - 1; // Search in the left half.
+        }
+    }
+    return -1; // Target not found.
+}
+```
 
-4. **Search Systems:**
-   - Use inverted indexes and binary search trees for efficient search operations.
-   - Example: Full-text search in a document management system.
+#### O(n) - Linear Time
+```java
+public int findMax(int[] array) {
+    int max = array[0];
+    for (int num : array) {
+        if (num > max) {
+            max = num; // Update max if a larger number is found.
+        }
+    }
+    return max;
+}
+```
 
-By understanding and applying these algorithmic principles, you can design systems that scale effectively to meet user demands.
+#### O(n log n) - Log-Linear Time
+```java
+import java.util.Arrays;
+
+public void sortArray(int[] array) {
+    Arrays.sort(array); // Sorting an array using a comparison-based algorithm like Merge Sort.
+}
+```
+
+#### O(n^2) - Quadratic Time
+```java
+public void printAllPairs(int[] array) {
+    for (int i = 0; i < array.length; i++) {
+        for (int j = 0; j < array.length; j++) {
+            System.out.println(array[i] + ", " + array[j]); // Print all pairs.
+        }
+    }
+}
+```
+
+#### O(2^n) - Exponential Time
+```java
+public int fibonacci(int n) {
+    if (n <= 1) {
+        return n; // Base case.
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2); // Recursive calls.
+}
+```
+
+#### O(n!) - Factorial Time
+```java
+public void generatePermutations(String str, String perm) {
+    if (str.isEmpty()) {
+        System.out.println(perm); // Print a permutation.
+        return;
+    }
+    for (int i = 0; i < str.length(); i++) {
+        char ch = str.charAt(i);
+        String remaining = str.substring(0, i) + str.substring(i + 1);
+        generatePermutations(remaining, perm + ch); // Recursive call.
+    }
+}
+```
 
 ### Load Balancers
 ### Rate Limiting
