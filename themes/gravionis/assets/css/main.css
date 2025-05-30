@@ -39,3 +39,18 @@ img {
   height: auto;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+th, td {
+  border: 1px solid #222;
+  padding: 8px;
+  text-align: left;
+}
+
+thead {
+  background-color: #f0f0f0; /* Light gray shade */
+}
