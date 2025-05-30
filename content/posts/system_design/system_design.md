@@ -274,6 +274,7 @@ In practice, a system can **only guarantee two out of the three** at any given t
 | **Social Media Feeds**        | **AP** | Availability is prioritized; slight staleness is acceptable. |
 | **E-commerce Carts**          | **AP** or **CP** | Depends on whether consistency (inventory) or uptime is more important. |
 | **Real-time Messaging**       | **AP** | Users expect availability; some eventual consistency is acceptable. |
+![](../cap.png)
 
 > ⚠️ **Note**: CAP is a simplified model. In practice, systems also consider latency, throughput, durability, and more advanced consistency models like **Causal Consistency**, **Eventual Consistency**, and **Linearizability**.
 ### Consistency Models: Linearizability vs Causal Consistency
@@ -316,13 +317,6 @@ In practice, a system can **only guarantee two out of the three** at any given t
 - Not suitable for systems needing strong accuracy guarantees.
 
 ---
-
-#### 🧠 Comparison Summary
-
-| Feature              | Linearizability        | Causal Consistency         |
-|----------------------|------------------------|-----------------------------|
-| Global Order         | ✅ Yes                 | ❌ Only for causally linked ops |
-| P
 
 
 ### Blob Storage
