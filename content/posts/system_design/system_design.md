@@ -179,8 +179,22 @@ Caching is the process of storing frequently accessed data in a temporary storag
 #### ACID Properties
 ACID stands for Atomicity, Consistency, Isolation, and Durability. These properties are essential for traditional relational databases to ensure reliable transactions:
 - **Atomicity**: Ensures that a transaction is all-or-nothing. If one part fails, the entire transaction is rolled back.
-- **Consistency**: Guarantees that a transaction brings the database from one valid state to another, maintaining all defined rules.
-- **Isolation**: Ensures that concurrent transactions do not interfere with each other.
+- **Consistency**: Guarantees that a transaction brings the database from one valid state to another, maintaining all defined rules.Always preserve the data integrity.
+- **Isolation**: Ensures that concurrent transactions do not interfere with each other. Don't step on each other shoes. The various problems
+
+  | Isolation Level      | Dirty Reads | Non-Repeatable Reads | Phantom Reads | Description |
+  |----------------------|-------------|-----------------------|----------------|-------------|
+  | **Read Uncommitted** | ✅ Allowed  | ✅ Allowed            | ✅ Allowed     | Minimal isolation, allows all anomalies. |
+  | **Read Committed**   | ❌ Prevented| ✅ Allowed            | ✅ Allowed     | Only committed data is visible. Default in many databases. |
+  | **Repeatable Read**  | ❌ Prevented| ❌ Prevented          | ✅ Allowed     | Rows cannot change, but new rows may appear (phantoms). |
+  | **Serializable**     | ❌ Prevented| ❌ Prevented          | ❌ Prevented   | Full isolation, transactions execute as if sequentially. |
+
+  - **Dirty Read**: Transaction reads data written by another uncommitted transaction.Example: T1 reads a value updated by T2, but T2 hasn't committed. **Solution**: Use `Read Committed` or higher.
+  
+  - **Non-Repeatable Read**: A row is read twice and returns different data due to an update by another transaction. T1 reads a row, T2 updates and commits it, T1 reads again and gets different data. **Solution**: Use `Repeatable Read` or `Serializable`.
+
+  - **Phantom Read**: A query returns a different set of rows when re-executed because another transaction inserted/deleted matching rows.Example: T1 runs a query with a condition; T2 inserts a new matching row; T1 reruns and sees new row. **Solution**: Use `Serializable`, or databases supporting MVCC (like PostgreSQL or Oracle).
+  
 - **Durability**: Once a transaction is committed, it remains so, even in the event of a system failure.
 
 #### BASE Properties
