@@ -194,7 +194,7 @@ ACID stands for Atomicity, Consistency, Isolation, and Durability. These propert
   - **Non-Repeatable Read**: A row is read twice and returns different data due to an update by another transaction. T1 reads a row, T2 updates and commits it, T1 reads again and gets different data. **Solution**: Use `Repeatable Read` or `Serializable`.
 
   - **Phantom Read**: A query returns a different set of rows when re-executed because another transaction inserted/deleted matching rows.Example: T1 runs a query with a condition; T2 inserts a new matching row; T1 reruns and sees new row. **Solution**: Use `Serializable`, or databases supporting MVCC (like PostgreSQL or Oracle).
-  
+
 - **Durability**: Once a transaction is committed, it remains so, even in the event of a system failure.
 
 #### BASE Properties
@@ -228,7 +228,103 @@ Normalization is the process of organizing data to reduce redundancy and improve
 | **Storage**            | Requires less storage due to reduced redundancy.                              | Requires more storage due to duplicated data.                                |
 | **Maintenance**        | Easier to maintain data integrity and consistency.                            | Harder to maintain consistency due to data duplication.                      |
 
-### Denormalization
+### CAP Theorem
+### CAP Theorem (Design Perspective)
+
+The **CAP Theorem**—also known as **Brewer’s Theorem**—states that in any distributed data system, it is **impossible to simultaneously guarantee** all three of the following properties:
+
+- **C** — **Consistency**
+- **A** — **Availability**
+- **P** — **Partition Tolerance**
+
+In practice, a system can **only guarantee two out of the three** at any given time.
+
+---
+
+#### 🔺 The Three Properties
+
+- **Consistency (C)**  
+  Every read receives the most recent write or an error. Equivalent to strong consistency across nodes.
+
+- **Availability (A)**  
+  Every request (read or write) receives a non-error response, without the guarantee that it contains the most recent write. The system is responsive even under stress.
+
+- **Partition Tolerance (P)**  
+  The system continues to operate despite arbitrary partitioning (network failures/loss of connectivity between nodes). Must handle message loss or delay.
+
+---
+
+#### ⚙️ Design Trade-offs: Choosing Two
+
+| Type       | Properties Chosen | Trade-off |
+|------------|-------------------|-----------|
+| **CP**     | Consistency + Partition Tolerance | May reject requests during partition to preserve data integrity. |
+| **CA**     | Consistency + Availability | Not realistic in distributed systems since network partitions are unavoidable. |
+| **AP**     | Availability + Partition Tolerance | System may serve stale data or become eventually consistent. |
+
+> 💡 **Partition Tolerance is a must** in any real-world distributed system. So the real choice is between **Consistency** and **Availability**.
+
+---
+
+#### 🧱 Design Perspective: What to Choose?
+
+| Use Case | Recommended Trade-off | Reason |
+|----------|------------------------|--------|
+| **Banking/Financial Systems** | **CP** | Strong consistency is critical for correctness. |
+| **Social Media Feeds**        | **AP** | Availability is prioritized; slight staleness is acceptable. |
+| **E-commerce Carts**          | **AP** or **CP** | Depends on whether consistency (inventory) or uptime is more important. |
+| **Real-time Messaging**       | **AP** | Users expect availability; some eventual consistency is acceptable. |
+
+> ⚠️ **Note**: CAP is a simplified model. In practice, systems also consider latency, throughput, durability, and more advanced consistency models like **Causal Consistency**, **Eventual Consistency**, and **Linearizability**.
+### Consistency Models: Linearizability vs Causal Consistency
+
+#### 🔗 Linearizability (Strong Consistency)
+- Guarantees that all **operations appear to happen atomically and in a single, global order**.
+- Once a write completes, all subsequent reads must return that value or a newer one.
+- Operations appear **instantaneous** from the perspective of all clients.
+
+**Example**:
+- User A transfers $100 from Account X to Y.
+- User B queries Account X and sees the debited balance immediately.
+- No matter which server or region the users connect to, the order is preserved.
+
+✅ **Pros**:
+- Predictable and intuitive behavior.
+- Ideal for critical systems (e.g., banking, ledgers).
+
+❌ **Cons**:
+- Slower performance due to coordination overhead.
+- Difficult to scale globally.
+
+---
+
+#### 🔁 Causal Consistency (Weaker Consistency)
+- Guarantees that **causally related operations are seen in the same order by all nodes**.
+- Independent operations may be seen in different orders by different nodes.
+
+**Example**:
+- Alice posts: "I love this product!"
+- Bob replies: "Me too!"
+- Everyone should see Alice’s post **before** Bob’s reply — because the reply is causally dependent.
+
+✅ **Pros**:
+- Faster and more scalable.
+- Sufficient for collaborative apps, chat, social networks.
+
+❌ **Cons**:
+- Weaker guarantee: simultaneous updates may appear in different orders to different users.
+- Not suitable for systems needing strong accuracy guarantees.
+
+---
+
+#### 🧠 Comparison Summary
+
+| Feature              | Linearizability        | Causal Consistency         |
+|----------------------|------------------------|-----------------------------|
+| Global Order         | ✅ Yes                 | ❌ Only for causally linked ops |
+| P
+
+
 ### Blob Storage
 ---
 ## Scalability and Performance
@@ -421,7 +517,6 @@ public void generatePermutations(String str, String perm) {
 ### Blue-Green Deployment
 ---
 ## Theoretical Concepts
-### CAP Theorem
 ### Search Systems
 ---
 ## Data Processing
