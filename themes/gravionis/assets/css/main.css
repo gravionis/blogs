@@ -1,0 +1,41 @@
+body {
+background-color: white;
+color: black;
+  background-color: white;
+  color: black;
+  font-family: 'Ubuntu', sans-serif;
+  line-height: 1.5;
+  margin: 1% 15%;
+  max-width: 90%;
+}
+
+header {
+  border-bottom: 1px solid #222;
+  margin-bottom: 1rem;
+}
+
+footer {
+  background-color: #333; /* Dark footer */
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: darkblue;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Ubuntu', sans-serif;
+}
+
+img {
+  max-width: 90%;
+  height: auto;
+}
+

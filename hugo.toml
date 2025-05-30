@@ -1,7 +1,7 @@
-baseURL = 'https://kritrimabuddhi.github.io/blogs/'
+baseURL = 'https://gravionis.github.io/blogs/'
 languageCode = 'en-us'
-title = 'Kritrima Buddhi'
-theme = 'kritrimabuddhi'
+title = 'Gravionis'
+theme = 'gravionis'
 
 [menus]
   [[menus.main]]
