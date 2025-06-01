@@ -328,7 +328,56 @@ By understanding and applying the REST Maturity Model, developers can design API
 ---
 ## Databases and Storage
 ### Databases
-### SQL vs NoSQL
+### SQL vs NoSQL vs Object Store
+
+When designing a system, choosing the right data storage solution is crucial. The three main categories are **SQL databases**, **NoSQL databases**, and **Object Stores**. Each serves different use cases and has unique characteristics.
+
+#### SQL Databases (Relational Databases)
+
+- **Examples:** MySQL, PostgreSQL, Oracle, Microsoft SQL Server
+- **Data Model:** Structured, tabular data with predefined schemas (tables, rows, columns)
+- **Query Language:** SQL (Structured Query Language)
+- **Transactions:** Strong ACID guarantees (Atomicity, Consistency, Isolation, Durability)
+- **Use Cases:** Applications requiring complex queries, joins, and strong consistency (e.g., banking, ERP, CRM)
+- **Strengths:** Data integrity, complex querying, relationships, mature ecosystem
+- **Limitations:** Vertical scaling, rigid schema, less suited for unstructured or rapidly evolving data
+
+#### NoSQL Databases
+
+- **Examples:** MongoDB (Document), Cassandra (Wide-column), Redis (Key-Value), Neo4j (Graph)
+- **Data Model:** Flexible, can be document, key-value, column-family, or graph-based
+- **Schema:** Schema-less or dynamic schemas; can handle semi-structured or unstructured data
+- **Transactions:** Typically BASE properties (Basically Available, Soft state, Eventually consistent)
+- **Use Cases:** High scalability, large volumes of diverse data, real-time analytics, IoT, social networks
+- **Strengths:** Horizontal scaling, flexible data models, high write/read throughput
+- **Limitations:** Weaker consistency (eventual consistency), limited support for complex joins, less mature tooling
+
+#### Object Store
+
+- **Examples:** Amazon S3, Google Cloud Storage, Azure Blob Storage, MinIO
+- **Data Model:** Stores data as objects (blobs) with metadata and a unique identifier; no schema or tables
+- **Access:** Accessed via APIs (REST, SDKs); not a database—optimized for storing and retrieving large files
+- **Transactions:** No ACID/BASE guarantees; eventual consistency for some operations
+- **Use Cases:** Storing unstructured data (images, videos, backups, logs, large files), data lakes, static website hosting
+- **Strengths:** Virtually unlimited scalability, low cost for large data, durability, global access
+- **Limitations:** Not suitable for transactional data or complex queries; eventual consistency; slower for small, frequent reads/writes
+
+#### Comparison Table
+
+| Feature         | SQL (Relational)         | NoSQL                    | Object Store                |
+|-----------------|-------------------------|--------------------------|-----------------------------|
+| **Data Model**  | Tables (rows/columns)   | Flexible (JSON, KV, etc) | Objects (blobs + metadata)  |
+| **Schema**      | Fixed                   | Dynamic/Schema-less      | None                        |
+| **Query**       | SQL                     | Varies (NoSQL APIs)      | API (REST/S3)               |
+| **Transactions**| ACID                    | BASE (usually)           | None                        |
+| **Scaling**     | Vertical (mostly)       | Horizontal               | Horizontal                  |
+| **Best For**    | Structured, relational  | Semi/unstructured, scale | Unstructured, large files   |
+| **Examples**    | MySQL, PostgreSQL       | MongoDB, Cassandra       | S3, GCS, Azure Blob         |
+
+**Summary:**  
+- Use **SQL** for structured data and strong consistency.
+- Use **NoSQL** for flexible, scalable, high-throughput needs.
+- Use **Object Store** for unstructured, large-scale file storage—not as a database.
 ### Database Indexing
 ### Replication
 ### Sharding
