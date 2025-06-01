@@ -578,28 +578,14 @@ Normalization is the process of organizing data to reduce redundancy and improve
 
 The **CAP Theorem**—also known as **Brewer’s Theorem**—states that in any distributed data system, it is **impossible to simultaneously guarantee** all three of the following properties:
 
-- **C** — **Consistency**
-- **A** — **Availability**
-- **P** — **Partition Tolerance**
+- **C** — **Consistency** - Every read receives the most recent write or an error. Equivalent to strong consistency across nodes.
+- **A** — **Availability** - Every request (read or write) receives a non-error response, without the guarantee that it contains the most recent write. The system is responsive even under stress.
+- **P** — **Partition Tolerance** - The system continues to operate despite arbitrary partitioning (network failures/loss of connectivity between nodes). Must handle message loss or delay. In any real-world distributed system. So the real choice is between **Consistency** and **Availability**.
 
-In practice, a system can **only guarantee two out of the three** at any given time.
 
----
+In practice, a system can **only guarantee two out of the three** at any given time. However with some complimenting strategies you can close to achieve the best of all for a given usecase. Remember the strongly and eventually consistant modes in case of Dynamodb.
 
-#### 🔺 The Three Properties
-
-- **Consistency (C)**  
-  Every read receives the most recent write or an error. Equivalent to strong consistency across nodes.
-
-- **Availability (A)**  
-  Every request (read or write) receives a non-error response, without the guarantee that it contains the most recent write. The system is responsive even under stress.
-
-- **Partition Tolerance (P)**  
-  The system continues to operate despite arbitrary partitioning (network failures/loss of connectivity between nodes). Must handle message loss or delay.
-
----
-
-#### ⚙️ Design Trade-offs: Choosing Two
+#### Design Trade-offs: Choosing Two
 
 | Type       | Properties Chosen | Trade-off |
 |------------|-------------------|-----------|
@@ -607,11 +593,7 @@ In practice, a system can **only guarantee two out of the three** at any given t
 | **CA**     | Consistency + Availability | Not realistic in distributed systems since network partitions are unavoidable. |
 | **AP**     | Availability + Partition Tolerance | System may serve stale data or become eventually consistent. |
 
-> 💡 **Partition Tolerance is a must** in any real-world distributed system. So the real choice is between **Consistency** and **Availability**.
-
----
-
-#### 🧱 Design Perspective: What to Choose?
+#### Design Perspective: What to Choose?
 
 | Use Case | Recommended Trade-off | Reason |
 |----------|------------------------|--------|
@@ -623,9 +605,8 @@ In practice, a system can **only guarantee two out of the three** at any given t
 ![](../cap.png)
 
 > ⚠️ **Note**: CAP is a simplified model. In practice, systems also consider latency, throughput, durability, and more advanced consistency models like **Causal Consistency**, **Eventual Consistency**, and **Linearizability**.
-### Consistency Models: Linearizability vs Causal Consistency
 
-#### 🔗 Linearizability (Strong Consistency)
+#### Linearizability (Strong Consistency)
 - Guarantees that all **operations appear to happen atomically and in a single, global order**.
 - Once a write completes, all subsequent reads must return that value or a newer one.
 - Operations appear **instantaneous** from the perspective of all clients.
@@ -635,17 +616,15 @@ In practice, a system can **only guarantee two out of the three** at any given t
 - User B queries Account X and sees the debited balance immediately.
 - No matter which server or region the users connect to, the order is preserved.
 
-✅ **Pros**:
+**Pros**:
 - Predictable and intuitive behavior.
 - Ideal for critical systems (e.g., banking, ledgers).
 
-❌ **Cons**:
+**Cons**:
 - Slower performance due to coordination overhead.
 - Difficult to scale globally.
 
----
-
-#### 🔁 Causal Consistency (Weaker Consistency)
+#### Causal Consistency (Eventual Consistency)
 - Guarantees that **causally related operations are seen in the same order by all nodes**.
 - Independent operations may be seen in different orders by different nodes.
 
@@ -654,11 +633,11 @@ In practice, a system can **only guarantee two out of the three** at any given t
 - Bob replies: "Me too!"
 - Everyone should see Alice’s post **before** Bob’s reply — because the reply is causally dependent.
 
-✅ **Pros**:
+**Pros**:
 - Faster and more scalable.
 - Sufficient for collaborative apps, chat, social networks.
 
-❌ **Cons**:
+**Cons**:
 - Weaker guarantee: simultaneous updates may appear in different orders to different users.
 - Not suitable for systems needing strong accuracy guarantees.
 
