@@ -7,6 +7,71 @@ tags = ['Event Driven Architecture', 'Microservices', 'Interview']
 
 System design is a critical aspect of software engineering that involves creating scalable, reliable, and efficient systems. This document explores key concepts and strategies required for designing robust systems, including networking, databases, scalability, caching, and modern architectural patterns. It serves as a comprehensive guide for understanding the foundational and advanced principles of system design.
 
+## Table of Contents
+
+- [Approach](#approach)
+- [HTTPS Certificates in System Design](#https-certificates-in-system-design)
+- [Networking and Communication](#networking-and-communication)
+  - [Client Server Architecture](#client-server-architecture)
+  - [IP Address](#ip-address)
+  - [DNS](#dns)
+  - [Proxy/Reverse Proxy](#proxyreverse-proxy)
+  - [Latency](#latency)
+  - [HTTP/HTTPS and MASL (Mutual Authentication Security Layers)](#httphttps-and-masl-mutual-authentication-security-layers)
+- [APIs and Integration](#apis-and-integration)
+  - [APIs](#apis)
+  - [REST API](#rest-api)
+  - [GraphQL](#graphql)
+  - [API Gateway](#api-gateway)
+  - [Idempotency](#idempotency)
+  - [REST and REST Maturity Model](#rest-and-rest-maturity-model)
+- [Databases and Storage](#databases-and-storage)
+  - [Databases](#databases)
+  - [SQL vs NoSQL vs Object Store](#sql-vs-nosql-vs-object-store)
+  - [Database Indexing](#database-indexing)
+  - [Replication](#replication)
+  - [Sharding](#sharding)
+  - [Vertical Partitioning](#vertical-partitioning)
+  - [Caching](#caching)
+  - [ACID vs BASE](#acid-vs-base)
+  - [Normalization vs Denormalization](#normalization-vs-denormalization)
+  - [CAP Theorem](#cap-theorem)
+  - [Consistency Models: Linearizability vs Causal Consistency](#consistency-models-linearizability-vs-causal-consistency)
+  - [Blob Storage](#blob-storage)
+- [Scalability and Performance](#scalability-and-performance)
+  - [Vertical and Horizontal Scaling](#vertical-and-horizontal-scaling)
+  - [Algorithmic Scaling](#algorithmic-scaling)
+  - [Load Balancers](#load-balancers)
+  - [Rate Limiting](#rate-limiting)
+  - [Content Delivery Optimization](#content-delivery-optimization)
+  - [Zero Downtime Deployment](#zero-downtime-deployment)
+- [Common Design Patterns and Architecture](#common-design-patterns-and-architecture)
+  - [Event-Driven Architecture](#event-driven-architecture)
+  - [Data Partitioning Strategies](#data-partitioning-strategies)
+  - [Eventual Consistency](#eventual-consistency)
+  - [Leader Election](#leader-election)
+  - [Circuit Breaker Pattern](#circuit-breaker-pattern)
+  - [Throttling and Backpressure](#throttling-and-backpressure)
+  - [Service Discovery](#service-discovery)
+  - [Microservices](#microservices)
+  - [Message Queues](#message-queues)
+- [Monitoring, Resiliency, and Security](#monitoring-resiliency-and-security)
+  - [Monitoring and Observability](#monitoring-and-observability)
+  - [Data Compression](#data-compression)
+  - [Authentication and Authorization](#authentication-and-authorization)
+  - [Data Backup and Recovery](#data-backup-and-recovery)
+  - [Chaos Engineering](#chaos-engineering)
+- [Development and Deployment](#development-and-deployment)
+  - [Concurrency Control](#concurrency-control)
+  - [Immutable Infrastructure](#immutable-infrastructure)
+  - [Blue-Green Deployment](#blue-green-deployment)
+- [Theoretical Concepts](#theoretical-concepts)
+  - [Search Systems](#search-systems)
+- [Data Processing](#data-processing)
+  - [Data Streaming](#data-streaming)
+- [Miscellaneous](#miscellaneous)
+  - [Rate Shaping](#rate-shaping)
+
 ## Approach
 - Do not directly start designing; every problem is unique. Think of every problem as designing and building a bridge. You must understand:
   - **Whom or What you are building for**  
@@ -153,8 +218,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - Microservices communication  
 - IoT and mobile devices  
 
----
-
 ## 🔹 2. HTTPS Flow in a System
 
 1. **DNS Resolution** → Convert domain to IP  
@@ -180,7 +243,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
   - The server also requests and verifies the client’s certificate.  
   - Both parties prove their identity using **X.509 certificates**.
 
----
 
 ## 🧱 Where Mutual Authentication (mTLS) Fits in System Design
 
@@ -193,8 +255,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 | IoT Devices ↔ Cloud          | Authenticate individual devices securely          |
 | Enterprise internal apps     | Add trust within a private/internal network       |
 
----
-
 ## 📐 System Architecture with MASL (Mutual Authentication Security Layers)
 
 ### 🔹 Typical HTTPS vs Mutual Authentication
@@ -206,8 +266,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 | Encryption      | Yes (TLS)                    | Yes (TLS)                                |
 | Identity Trust  | Server only                  | Mutual (client + server)                 |
 | Example Protocol| TLS 1.3                      | TLS 1.3 with client cert verification    |
-
----
 
 ## 🛠️ System Components Involved in mTLS
 
@@ -227,8 +285,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - Automates and enforces mTLS across services.
 - Handles cert rotation and uses sidecar proxies (e.g., Envoy).
 
----
-
 ## 🔒 mTLS Security Layer Considerations
 
 | Aspect               | Design Implication                               |
@@ -239,7 +295,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 | Granularity            | Can enforce auth per device/service identity    |
 | Scalability            | Complex for large environments without automation|
 
----
 
 ## 🌐 Real-World Architecture with mTLS
 
@@ -251,8 +306,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - **TLS with client certs** on all internal communications.
 - **Certificates rotated** via automated system (e.g., `cert-manager + Kubernetes`).
 
----
-
 ## ✅ Best Practices for Using MASL/mTLS
 
 - ✅ Use **short-lived certificates** (automated rotation).
@@ -261,8 +314,6 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - ✅ Use a **dedicated internal CA**.
 - ✅ Use **service meshes** for scalable mTLS in microservices.
 - ✅ **Monitor and log** all authentication attempts.
-
----
 
 ## 🧠 Summary: MASL / Mutual Authentication in Secure System Design
 
@@ -273,19 +324,22 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - Widely supported by **API gateways**, **service meshes**, and **modern infrastructure platforms**.
 
 
-
 ### WebSockets
+---
 ### Webhooks
 ---
 ## APIs and Integration
 ### APIs
+---
 ### REST API
+---
 ### GraphQL
+---
 ### API Gateway
+---
 ### Idempotency
-
+---
 ## REST and REST Maturity Model
-
 ### What is REST?
 REST (Representational State Transfer) is an architectural style for designing networked applications. It relies on stateless communication and standard HTTP methods to enable interaction between clients and servers. RESTful APIs are widely used for their simplicity, scalability, and compatibility with web standards.
 
@@ -328,6 +382,7 @@ By understanding and applying the REST Maturity Model, developers can design API
 ---
 ## Databases and Storage
 ### Databases
+---
 ### SQL vs NoSQL vs Object Store
 
 When designing a system, choosing the right data storage solution is crucial. The three main categories are **SQL databases**, **NoSQL databases**, and **Object Stores**. Each serves different use cases and has unique characteristics.
@@ -378,10 +433,16 @@ When designing a system, choosing the right data storage solution is crucial. Th
 - Use **SQL** for structured data and strong consistency.
 - Use **NoSQL** for flexible, scalable, high-throughput needs.
 - Use **Object Store** for unstructured, large-scale file storage—not as a database.
+
+---
 ### Database Indexing
+---
 ### Replication
+---
 ### Sharding
+---
 ### Vertical Partitioning
+---
 ### Caching
 
 Caching is the process of storing frequently accessed data in a temporary storage layer to improve system performance and reduce latency. 
@@ -456,6 +517,7 @@ Caching is the process of storing frequently accessed data in a temporary storag
 
 - [Cache Strategies - Medium](https://medium.com/@mmoshikoo/cache-strategies-996e91c80303)
 
+---
 ### ACID vs BASE
 
 #### ACID Properties
@@ -496,6 +558,7 @@ BASE stands for Basically Available, Soft state, and Eventually consistent. Thes
 | **Use Case**           | Ideal for OLTP systems requiring strict data accuracy.                                   | Ideal for distributed systems requiring high scalability and availability.              |
 | **Examples**           | Relational databases like MySQL, PostgreSQL.                                             | NoSQL databases like Cassandra, DynamoDB.                                               |
 
+---
 ### Normalization vs Denormalization
 
 Normalization is the process of organizing data to reduce redundancy and improve data integrity, while denormalization involves combining data to optimize read performance by reducing the number of joins.
@@ -510,8 +573,8 @@ Normalization is the process of organizing data to reduce redundancy and improve
 | **Storage**            | Requires less storage due to reduced redundancy.                              | Requires more storage due to duplicated data.                                |
 | **Maintenance**        | Easier to maintain data integrity and consistency.                            | Harder to maintain consistency due to data duplication.                      |
 
+---
 ### CAP Theorem
-### CAP Theorem (Design Perspective)
 
 The **CAP Theorem**—also known as **Brewer’s Theorem**—states that in any distributed data system, it is **impossible to simultaneously guarantee** all three of the following properties:
 
@@ -600,7 +663,6 @@ In practice, a system can **only guarantee two out of the three** at any given t
 - Not suitable for systems needing strong accuracy guarantees.
 
 ---
-
 
 ### Blob Storage
 ---
