@@ -66,44 +66,7 @@ A single agent system typically consists of several core components that enable 
 
 Multi-agent systems involve multiple autonomous agents interacting within a shared environment to solve problems collaboratively or competitively. These agents can communicate, coordinate, and negotiate with each other to achieve individual or collective goals. In the context of agentic AI, multi-agent systems enable more complex, distributed, and scalable solutions—allowing for emergent behaviors and robust problem-solving capabilities that go beyond what a single agent can accomplish.
 
+### 
 
 ## Patterns
-[reference](https://microsoft.github.io/autogen/0.2/docs/Examples/)
-
-### 1. Single Agent Pattern
-- One AI agent interacts with a human user.
-- Simplest setup: user inputs, agent responds.
-- Use case: Chatbots, Q&A assistants.
-- Often stateless or with limited memory.
-
-### 2. Multi-Agent Collaboration Pattern
-- Multiple AI agents interact and collaborate toward a goal.
-- Agents can have different roles or expertise.
-- Communication can be sequential or parallel.
-- Use case: Task decomposition, multi-specialist dialogue.
-
-### 3. Chain-of-Thought / Reasoning Pattern
-- Agents use step-by-step reasoning or "thought" chains.
-- Supports complex problem-solving by breaking down into smaller steps.
-- Each step can be generated or verified by different agents.
-
-### 4. Human-in-the-Loop Pattern
-- Humans intervene or provide feedback during the AI conversation.
-- Helps guide or correct agent behavior.
-- Used for safety, accuracy, or complex decision making.
-
-### 5. Tool Use / Tool-Calling Pattern
-- AI agents interact with external APIs, databases, or tools.
-- Agents generate requests, interpret responses, and continue reasoning.
-- Enables agents to perform actions beyond pure text generation.
-
-### 6. Memory-Augmented Conversation
-- Agents have persistent memory or a knowledge base.
-- Supports long-term context and personalized interaction.
-- Memory can be updated dynamically during the conversation.
-
-### 7. Debate or Adversarial Pattern
-- Multiple agents argue different viewpoints.
-- Helps refine answers or explore multiple perspectives.
-- Useful for validation or complex reasoning tasks.
-
+* [microsoft autogen](https://microsoft.github.io/autogen/0.2/docs/Examples/)
