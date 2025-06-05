@@ -28,6 +28,17 @@ In this post, we explore Agentic AI—systems where agents activate results by t
 - **Local or Shared Model**: Whether the model runs on local infrastructure or is accessed via API/cloud.
 - **Model Cost**: Expenses for training, deployment, and ongoing usage (compute, storage, licensing, etc.).
 
+### Models
+
+- Open AI: gpt-4o-mini
+- Antropic: Claude-3-7-Sonnet
+- Google: Gemini-2.0-flash
+- DeepSeek AI: DeepSeek V3, DeepSeek R1
+- Groq: open source LLMs invluding Llama3.3
+- Ollama: Local open source LLMs including Llama3.2
+
+[Vellum Leaderboard](https://www.vellum.ai/llm-leaderboard)
+
 ---
 
 ## What is an Agent? Why Agentic AI?
@@ -111,4 +122,8 @@ Complex tasks are brokern down dynamically and combined
 
 ### Evaluator Optimiser
 LLM output is validated by another
+
+### Agentic AI Patterns
+
+### TBC
 
