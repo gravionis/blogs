@@ -353,6 +353,7 @@ Key principles of REST include:
 
 ### REST Maturity Model
 The REST Maturity Model, introduced by Leonard Richardson, defines levels of maturity for RESTful APIs. It helps evaluate how closely an API adheres to REST principles.
+
 ![](../REST.png)
 
 #### Level 0: The Swamp of POX
