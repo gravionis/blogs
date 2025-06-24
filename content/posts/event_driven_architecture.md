@@ -101,9 +101,9 @@ async def main():
 asyncio.run(main())
 ```
 
-Other Primitives:
-**asyncio.Event**	Signaling between tasks
-**asyncio.Lock**	Prevent race conditions
-**asyncio.Semaphore**	Limit concurrent access
-**asyncio.Condition**	Advanced coordination
+### Other Primitives:
+- **asyncio.Event**	Signaling between tasks
+- **asyncio.Lock**	Prevent race conditions
+- **asyncio.Semaphore**	Limit concurrent access
+- **asyncio.Condition**	Advanced coordination
 
