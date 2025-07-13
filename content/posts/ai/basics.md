@@ -1007,10 +1007,10 @@ A smaller fine tuned model can outperform a larger base model. This involves tak
     - here you have a set of inputs and outputs e.g. feed in who is the 35th president of the US? and output JFK.
     - So having these question answer pairs we can train the model how to answer questions.
     - One way of doing this is via prompt templates.
-      ```
-      Please answer the following questions
-      Q: {Question}
-      A: {Answer}
+      ```text
+        Please answer the following questions
+        Q: {Question}
+        A: {Answer}
       ```
     -  Through this process we could translate the training data set to a series of prompts and generate a training corpus and go back to the self supervised process.
 3. Reinforcement Learning -

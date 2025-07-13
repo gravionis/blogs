@@ -106,24 +106,4 @@ Multi-agent systems involve multiple autonomous agents interacting within a shar
 ## Patterns
 * [microsoft autogen](https://microsoft.github.io/autogen/0.2/docs/Examples/)
 
-### Workflow Design Patterns
-
-#### Prompt Chaining
-Decompose into fixed sub-tasks
-
-#### Routing
-Direct an input into a specialised sub-task ensuring seperation of concerns.
-
-#### Parallelization
-Breaking down tasks and running multiple subtasks concurrently.
-
-### Orchestrator Worker
-Complex tasks are brokern down dynamically and combined
-
-### Evaluator Optimiser
-LLM output is validated by another
-
-### Agentic AI Patterns
-
-### TBC
 
