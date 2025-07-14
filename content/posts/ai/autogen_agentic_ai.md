@@ -5,6 +5,7 @@ title = 'Autogen'
 tags = ['Agentic AI']
 +++
 
+## 🧠 Core Agent Classes
 
 | Class Name               | Description                                                                |
 | ------------------------ | -------------------------------------------------------------------------- |
@@ -15,6 +16,7 @@ tags = ['Agentic AI']
 | `GroupChat`              | Defines a chat session involving multiple agents.                          |
 | `CodeInterpreterAgent`   | Executes Python code snippets during the conversation.                     |
 
+## 🤖 Specialized Agents (LLM-backed)
 
 | Class Name             | Description                                                               |
 | ---------------------- | ------------------------------------------------------------------------- |
@@ -23,6 +25,7 @@ tags = ['Agentic AI']
 | `FunctionCallingAgent` | Supports OpenAI-style function-calling flows.                             |
 | `OpenAIWrapperAgent`   | Agent using direct OpenAI API with wrapper capabilities.                  |
 
+## 📁 Retrieval & RAG
 
 | Class Name               | Description                                                                                |
 | ------------------------ | ------------------------------------------------------------------------------------------ |
@@ -31,6 +34,7 @@ tags = ['Agentic AI']
 | `SimpleDocRetriever`     | Basic local document retriever for small datasets.                                         |
 | `LocalDocRetriever`      | More configurable retriever using local vector store (e.g. FAISS).                         |
 
+## ⚙️ Tooling & Execution
 
 | Class Name           | Description                                  |
 | -------------------- | -------------------------------------------- |
@@ -39,6 +43,7 @@ tags = ['Agentic AI']
 | `ToolAgent`          | Agent that wraps command-line or web tools.  |
 | `WebRetriever`       | Fetches web content for retrieval.           |
 
+## 🛠 Utility Components
 
 | Class Name / Concept | Description                                                  |
 | -------------------- | ------------------------------------------------------------ |
