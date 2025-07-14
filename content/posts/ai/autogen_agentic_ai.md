@@ -10,8 +10,8 @@ tags = ['Agentic AI']
 | Class Name               | Description                                                                |
 | ------------------------ | -------------------------------------------------------------------------- |
 | `UserProxyAgent`         | Represents a human (or simulated human); can start or steer conversations. |
+| └── `RetrieveUserProxyAgent` | Extends `UserProxyAgent`; adds document retrieval (RAG) support.           |
 | `AssistantAgent`         | Represents an LLM-powered assistant; responds to messages autonomously.    |
-| `RetrieveUserProxyAgent` | Extends `UserProxyAgent`; adds document retrieval (RAG) support.           |
 | `GroupChatManager`       | Manages coordination of multiple agents in a group chat.                   |
 | `GroupChat`              | Defines a chat session involving multiple agents.                          |
 | `CodeInterpreterAgent`   | Executes Python code snippets during the conversation.                     |
@@ -21,18 +21,18 @@ tags = ['Agentic AI']
 | Class Name             | Description                                                               |
 | ---------------------- | ------------------------------------------------------------------------- |
 | `ConversableAgent`     | Abstract base class for agents that can converse (e.g. `AssistantAgent`). |
-| `GPTAssistantAgent`    | A concrete implementation using OpenAI GPT LLMs.                          |
-| `FunctionCallingAgent` | Supports OpenAI-style function-calling flows.                             |
-| `OpenAIWrapperAgent`   | Agent using direct OpenAI API with wrapper capabilities.                  |
+| └── `GPTAssistantAgent`    | A concrete implementation using OpenAI GPT LLMs.                          |
+| └── `FunctionCallingAgent` | Supports OpenAI-style function-calling flows.                             |
+| └── `OpenAIWrapperAgent`   | Agent using direct OpenAI API with wrapper capabilities.                  |
 
 ## 📁 Retrieval & RAG
 
 | Class Name               | Description                                                                                |
 | ------------------------ | ------------------------------------------------------------------------------------------ |
 | `RetrieveUserProxyAgent` | User proxy with document retrieval.                                                        |
-| `AutoRetriever`          | Fetches documents from URLs, files, and APIs; used internally by `RetrieveUserProxyAgent`. |
-| `SimpleDocRetriever`     | Basic local document retriever for small datasets.                                         |
-| `LocalDocRetriever`      | More configurable retriever using local vector store (e.g. FAISS).                         |
+| └── `AutoRetriever`          | Fetches documents from URLs, files, and APIs; used internally by `RetrieveUserProxyAgent`. |
+| └── `SimpleDocRetriever`     | Basic local document retriever for small datasets.                                         |
+| └── `LocalDocRetriever`      | More configurable retriever using local vector store (e.g. FAISS).                         |
 
 ## ⚙️ Tooling & Execution
 
