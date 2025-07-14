@@ -1,8 +1,8 @@
 +++
 date = '2025-05-10T12:44:47+10:00'
 draft = false
-title = 'Agentic AI'
-tags = ['AI', 'Agentic AI']
+title = 'LLM Basics'
+tags = ['LLM', 'Agentic AI']
 +++
 
 In this post, we explore Agentic AI—systems where agents activate results by the guidance of intelligence. Rather than relying solely on static models or manual intervention, agentic AI leverages autonomous or semi-autonomous agents that can perceive, reason, and act within their environment to achieve specific goals. Here we deep dive into the patterns and best practices that underpin successful agentic AI workflows.
