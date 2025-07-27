@@ -5,7 +5,7 @@ title = 'Amazon’s Leadership Principles'
 tags = ['Interview', 'Amazon']
 +++
 
-Amazon’s 16 Leadership Principles define its culture and guide decisions. This document explains each principle and provides 5 behavioral interview questions per principle to help you understand and apply them in interviews or leadership roles.
+Amazon 16 Leadership Principles define its guide decisions. This document explains each principle and provides 5 behavioral interview questions per principle to help you understand and apply them in interviews or leadership roles.
 
 ## Amazon Leadership Principles
 
