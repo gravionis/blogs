@@ -6,7 +6,8 @@ image : "/img/posts/generative-ai-intro.jpeg"
 Description  : "Generative AI with NLP LLM: 
 "
 ---
-# Objective
+
+Natural Language Processing (NLP) is a foundational field in artificial intelligence that enables computers to understand, interpret, and generate human language. With the rapid evolution of large language models (LLMs) and generative AI, NLP has become central to applications such as chatbots, virtual assistants, sentiment analysis, and automated translation. This document provides a practical overview of NLP concepts, pipelines, and tools, including hands-on examples with libraries like NLTK and spaCy. It also explores the rise of LLMs, prompt engineering, and modern frameworks that are shaping the future of language-based AI systems.
 
 # 1. Introduction
 ---
@@ -150,7 +151,7 @@ Simplified sentence reduces the variety of words, making it easier for the model
 **Example 2**
 
 * after stemming Generate → Generat also Generation → Generat
-* Stemming can create non-dictionary forms (like "generat"). It's important to note that in stemming, the goal is to reduce words to their root form, which might not always be a valid dictionary word. The main purpose of stemming is to reduce data redundancy by grouping related words together. The primary aim is to reduce the variety of word forms to improve processing efficiency and analysis.
+* Stemming can create non-dictionary forms (like "generat"). It's important to note that in stemming, the goal is to reduce words to their root form, which might not always be a valid dictionary word. The main purpose of stemming is to reduce data redundancy by grouping related words together. The primary aim is to reduce the number of unique words that machine learning models need to process.
 
 **Uses:**
 - SEO
@@ -1031,7 +1032,7 @@ A smaller fine tuned model can outperform a larger base model. This involves tak
               - There are 3 different options:
                   1. retrain all the parameters: here we tweak all the parameters, the computation cost is very very very high.
                   2. transfer learning: here we freeze most of the parameters only fine tune the head. cheaper than full retaining all the parameters.
-                  3. Parameter Efficient Fine Tuning (PEFT): here we freeze all the weights or parameters instead of most. Instead we augment the model with additional parameters that are trainable. Advantage is we can fine tune the model with a relatively small set of model parameters as against the above approaches.
+                  3. Parameter Efficient Fine Tuning (PEFT): here we freeze all the weights or parameters. Instead we augment the model with additional parameters that are trainable. Advantage is we can fine tune the model with a relatively small set of model parameters as against the above approaches.
                   - One of the ways to do this is LoRA (Low Rank Adaptation). In short fine tune model by adding new trainable parameters.
                   ![](https://miro.medium.com/v2/resize:fit:640/format:webp/1*GmCISYhd-JLqHNEvAQU1tQ.png)
                   the first component here h(x) = Wox is what looks like a model without LoRA. Wo has weights that are all trainable. her Wo is a d by k (dxk) matrix with d*k trainable parameters. e.g. d=1000, k=1000 Wo is a 1,000,000 trainable parameters. But with LoRA the ΔWx, another weight matrix with the same shape as Wo. 
