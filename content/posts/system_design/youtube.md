@@ -133,15 +133,48 @@ Microservices architecture design
 - **Notifications**: Subscription updates, comment replies, trending content
 
 ### Non-Functional Requirements
-- **Scale**: 2B+ users, 500+ hours uploaded per minute, 1B+ hours watched daily
-- **Availability**: 99.9% uptime (CAP Theorem - prioritize Availability and Partition tolerance)
-- **Latency**: 
-  - Video start time: <2 seconds globally
-  - Search results: <300ms
-  - Upload processing: Variable based on video size
-- **Consistency**: Eventually consistent for social features, strong consistency for user auth
-- **Storage**: Exabyte-scale video storage with global distribution
-- **Bandwidth**: Petabyte-scale daily traffic
+#### User Scale
+- **Total registered users:** 2+ billion
+- **Daily active users (DAU):** 500+ million
+- **Monthly active users (MAU):** 1.5+ billion
+- **Concurrent users (peak):** 50+ million
+
+#### System Throughput
+- **Video uploads:** 500+ hours of content uploaded per minute
+- **Video consumption:** 1+ billion hours watched daily
+- **Search queries:** 1+ billion queries per day
+
+#### Availability & Reliability
+- **Uptime SLA:** 99.9% globally
+- **CAP Theorem priority:**
+  - Prioritize **Availability** and **Partition Tolerance**
+  - Accept **Eventual Consistency** where applicable
+
+#### Performance & Latency
+- **Video start time:** < 2 seconds globally
+- **Search results latency:** < 300 milliseconds
+- **Upload processing time:** Variable (based on video size and format)
+- **Page load time (95th percentile):** < 1 second
+
+#### Consistency & Data Integrity
+- **User authentication & billing:** Strong consistency
+- **Social features (likes, comments, views):** Eventually consistent
+- **Content metadata updates:** Eventually consistent
+
+#### Storage & Data Management
+- **Video storage:** Exabyte-scale, globally distributed
+- **Metadata storage:** Highly available, low-latency key-value store
+- **Backup & disaster recovery:** Geo-redundant with RPO < 1 hour
+
+#### Bandwidth & Traffic
+- **Daily data transfer:** Petabyte-scale
+- **Peak bandwidth usage:** 100+ Tbps globally
+- **CDN usage:** Aggressive caching and edge delivery for video content
+
+#### Security & Compliance
+- **Data encryption:** At rest and in transit
+- **Access control:** Role-based and region-aware
+- **Compliance:** GDPR, CCPA, and other regional regulations
 
 ### Scale Estimation
 - **Users**: 2.7B monthly active users
