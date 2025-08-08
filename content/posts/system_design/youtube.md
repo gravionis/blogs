@@ -5,7 +5,7 @@ title = 'Youtube System Design Interview'
 tags = ['Youtube', 'Interview']
 +++
 
-This document provides a comprehensive, step-by-step breakdown of how to architect a YouTube-scale system, covering requirements, high-level architecture, scaling strategies, microservices patterns, storage, processing pipelines, monitoring, security, and more. The goal is to demonstrate a practical, modern approach to building and scaling a global video platform.
+This document provides a comprehensive, step-by-step breakdown of how to architect a YouTube-scale system, covering requirements, high-level architecture, scaling strategies, microservices patterns, storage, processing pipelines, monitoring, security, and more. The goal is to demonstrate a practical, modern approach to building and scaling a global video platform, suitable for system design interviews.
 
 ## 1. Requirements Gathering
 
@@ -21,12 +21,12 @@ This document provides a comprehensive, step-by-step breakdown of how to archite
 
 ### Non-Functional Requirements
 - **Scale**: 2B+ users, 500+ hours uploaded per minute, 1B+ hours watched daily
-- **Availability**: 99.9% uptime (CAP Theorem - prioritize Availability and Partition tolerance)
+- **Availability**: 99.9% uptime (CAP Theorem – prioritize Availability and Partition Tolerance)
 - **Latency**: 
   - Video start time: <2 seconds globally
   - Search results: <300ms
   - Upload processing: Variable based on video size
-- **Consistency**: Eventually consistent for social features, strong consistency for user auth
+- **Consistency**: Eventual consistency for social features, strong consistency for user authentication
 - **Storage**: Exabyte-scale video storage with global distribution
 - **Bandwidth**: Petabyte-scale daily traffic
 
@@ -83,6 +83,14 @@ This document provides a comprehensive, step-by-step breakdown of how to archite
 - **Saga Pattern**: Manage distributed transactions (e.g., video upload workflow).
 - **CQRS**: Separate read/write models for scalability.
 - **Event Sourcing**: Persist state changes as events for auditability.
+- **Service Mesh**: Use a service mesh (e.g., Istio, Linkerd) for managing service-to-service communication, observability, and security.
+- **Externalized Configuration**: Store configuration outside the service for flexibility and easier deployments.
+- **Centralized Log Management**: Aggregate logs for all services to enable monitoring and troubleshooting.
+- **Health Check API**: Each service exposes a health check endpoint for orchestration and monitoring.
+- **Consumer-Driven Contracts**: Ensure service integrations are reliable and changes do not break consumers.
+- **Testing Strategies**: Include contract testing, component testing, and end-to-end testing for microservices.
+- **Distributed Tracing**: Implement tracing to follow requests across service boundaries for observability.
+- **Service Template/Boilerplate**: Use standardized templates to accelerate new service development and enforce best practices.
 
 ## 3. Scale Cube Application for 10x Growth
 
@@ -278,21 +286,21 @@ Video Upload → [Event Producer] → [Kafka Topics] → [Event Consumers] → P
 ## 14. Key Principles and Laws Applied
 
 ### Performance Laws
-- **Little's Law**: Queue length = arrival rate × response time
-- **Amdahl's Law**: Parallel processing limitations
-- **Universal Scalability Law**: Overhead of coordination in distributed systems
+- **Little's Law**: Average number of items in a queuing system equals the average arrival rate multiplied by the average time an item spends in the system.
+- **Amdahl's Law**: The speedup of a program from parallelization is limited by the sequential portion.
+- **Universal Scalability Law**: Models the impact of contention and coherency delays in distributed systems.
 
 ### Design Principles
-- **Single Responsibility**: Each service has one clear purpose
-- **Open/Closed**: Services open for extension, closed for modification
-- **Dependency Inversion**: Depend on abstractions, not concretions
-- **Fail Fast**: Immediate error detection and reporting
+- **Single Responsibility Principle**: Each service has one clear purpose.
+- **Open/Closed Principle**: Services should be open for extension, closed for modification.
+- **Dependency Inversion Principle**: Depend on abstractions, not concretions.
+- **Fail Fast**: Detect and report errors immediately.
 
 ### Reliability Patterns
-- **Bulkhead**: Isolate resources to prevent cascading failures
-- **Circuit Breaker**: Prevent calls to failing services
-- **Timeout**: Set maximum wait times for all operations
-- **Idempotency**: Safe to retry operations multiple times
+- **Bulkhead**: Isolate resources to prevent cascading failures.
+- **Circuit Breaker**: Prevent calls to failing services.
+- **Timeout**: Set maximum wait times for all operations.
+- **Idempotency**: Safe to retry operations multiple times.
 
 ### Additional Laws and Principles
 - **Murphy's Law**: "Anything that can go wrong will go wrong." Design for failure and recovery.
