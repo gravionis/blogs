@@ -84,10 +84,6 @@ This document provides a comprehensive, step-by-step breakdown of how to archite
 - **CQRS**: Separate read/write models for scalability.
 - **Event Sourcing**: Persist state changes as events for auditability.
 
-### References
-- Chris Richardson, "Microservices Patterns" (Manning)
-- https://microservices.io
-
 ## 3. Scale Cube Application for 10x Growth
 
 ### X-Axis Scaling (Horizontal Duplication)
