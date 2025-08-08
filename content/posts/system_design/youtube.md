@@ -4,6 +4,9 @@ draft = false
 title = 'Youtube System Design Interview'
 tags = ['Youtube', 'Interview']
 +++
+
+This document provides a comprehensive, step-by-step breakdown of how to architect a YouTube-scale system, covering requirements, high-level architecture, scaling strategies, microservices patterns, storage, processing pipelines, monitoring, security, and more. The goal is to demonstrate a practical, modern approach to building and scaling a global video platform.
+
 ## 1. Requirements Gathering
 
 ### Functional Requirements
