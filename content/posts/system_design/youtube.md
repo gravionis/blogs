@@ -7,6 +7,119 @@ tags = ['Youtube', 'Interview']
 
 This document provides a comprehensive, step-by-step breakdown of how to architect a YouTube-scale system, covering requirements, high-level architecture, scaling strategies, microservices patterns, storage, processing pipelines, monitoring, security, and more. The goal is to demonstrate a practical, modern approach to building and scaling a global video platform.
 
+## Technical & Business Requirements
+
+The **platform** must _enable_ **users** to _upload_, _manage_, and _stream_ **video content** at **scale**, _supporting_ a seamless **experience** across **devices** and **geographies**. **Users** should _be able to create_ personal or branded **channels**, _publish_ **videos** with **metadata** (**title**, **description**, **tags**), and _interact_ with **content** through **likes**, **comments**, and **shares**. The **system** must _support_ **user authentication**, personalized **recommendations**, and real-time **notifications** for **subscriptions** and **interactions**. **Search functionality** should _allow_ **users** to _discover_ **content** based on **relevance**, **popularity**, and **preferences**.
+
+From a **business perspective**, the **system** must _ensure_ high **availability**, **scalability**, and **performance** to _support_ billions of daily **interactions**. It should _enable_ **content moderation workflows** to _maintain_ **community standards** and _comply_ with legal **regulations**. **Analytics capabilities** must _provide_ **insights** into **user engagement**, **video performance**, and **platform health**. The **architecture** should _support_ modular **growth**, _allowing_ **teams** to independently _develop_ and _deploy_ **features** aligned with **business capabilities** such as **video management**, **user engagement**, and **content discovery**.
+# Nouns and Verbs from Video Platform Requirements
+
+## Nouns
+
+| Noun | Category | Description |
+|------|----------|-------------|
+| platform | System | The main video streaming system |
+| users | People | End users of the platform |
+| video content | Media | Videos uploaded to the platform |
+| scale | Concept | Large-scale operations |
+| experience | Concept | User interaction quality |
+| devices | Hardware | User devices (mobile, desktop, etc.) |
+| geographies | Location | Global regions |
+| channels | Feature | User/brand content channels |
+| videos | Media | Individual video files |
+| metadata | Data | Video information (title, description, tags) |
+| title | Data | Video title |
+| description | Data | Video description |
+| tags | Data | Video categorization tags |
+| content | Media | General platform content |
+| likes | Interaction | User approval actions |
+| comments | Interaction | User feedback/discussion |
+| shares | Interaction | Content sharing actions |
+| system | Infrastructure | Platform technical system |
+| user authentication | Security | Login/identity verification |
+| recommendations | Feature | Personalized content suggestions |
+| notifications | Feature | Real-time user alerts |
+| subscriptions | Feature | Channel following system |
+| interactions | Activity | User engagement activities |
+| search functionality | Feature | Content discovery tool |
+| relevance | Algorithm | Search ranking factor |
+| popularity | Algorithm | Content popularity metric |
+| preferences | User Data | User personal choices |
+| business perspective | Viewpoint | Commercial considerations |
+| availability | Performance | System uptime |
+| scalability | Performance | Growth handling capability |
+| performance | Quality | System speed/efficiency |
+| content moderation workflows | Process | Content review processes |
+| community standards | Policy | Platform usage rules |
+| regulations | Legal | Legal compliance requirements |
+| analytics capabilities | Feature | Data analysis tools |
+| insights | Data | Business intelligence |
+| user engagement | Metrics | User activity measurements |
+| video performance | Metrics | Video success metrics |
+| platform health | Metrics | System status indicators |
+| architecture | Infrastructure | System design structure |
+| growth | Business | Platform expansion |
+| teams | People | Development teams |
+| features | Functionality | Platform capabilities |
+| business capabilities | Concept | Core business functions |
+| video management | Capability | Video handling processes |
+| user engagement | Capability | User interaction systems |
+| content discovery | Capability | Content finding mechanisms |
+
+## Verbs
+
+| Verb | Type | Usage Context |
+|------|------|---------------|
+| enable | Transitive | Allow functionality |
+| upload | Transitive | Transfer video files |
+| manage | Transitive | Control/organize content |
+| stream | Transitive | Deliver video content |
+| supporting | Present Participle | Providing assistance |
+| create | Transitive | Make new channels |
+| publish | Transitive | Make videos available |
+| interact | Intransitive | Engage with content |
+| support | Transitive | Provide functionality |
+| allow | Transitive | Permit actions |
+| discover | Transitive | Find content |
+| ensure | Transitive | Guarantee outcomes |
+| enable | Transitive | Make possible |
+| maintain | Transitive | Keep standards |
+| comply | Intransitive | Follow regulations |
+| provide | Transitive | Supply insights |
+| support | Transitive | Enable growth |
+| allowing | Present Participle | Permitting teams |
+| develop | Transitive | Create features |
+| deploy | Transitive | Release features |
+
+Key DDD Concepts Identified:
+
+- Entities: Things with identity that change over time (Users, Videos, Channels, Comments)
+- Value Objects: Immutable descriptors (Metadata, Tags, Preferences)
+- Domain Events: Significant business occurrences (VideoUploaded, UserSubscribed)
+- Domain Services: Business logic that doesn't belong to entities (Search, Moderation)
+- Aggregates: Consistency boundaries (Video + Metadata, User + Channels)
+
+8 Bounded Contexts emerged naturally from the requirements:
+
+- User Management
+- Content Management
+- Engagement
+- Discovery
+- Notification
+- Analytics
+- Moderation
+- Content Delivery
+
+Ubiquitous Language: Defined key terms that should be used consistently across the development team and business stakeholders.
+This DDD analysis provides a much stronger foundation for:
+
+Microservices architecture design
+- Team organization
+- API boundaries
+- Database design
+- Business rule implementation
+
+
 ## 1. Requirements Gathering
 
 ### Functional Requirements
