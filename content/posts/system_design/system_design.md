@@ -5,9 +5,7 @@ title = 'System Design Interview Concepts'
 tags = ['Event Driven Architecture', 'Microservices', 'Interview']
 +++
 
-System design is a critical aspect of software engineering that involves creating scalable, reliable, and efficient systems. This document explores key concepts and strategies required for designing robust systems, including networking, databases, scalability, caching, and modern architectural patterns. It serves as a comprehensive guide for understanding the foundational and advanced principles of system design.
-
-## Table of Contents
+# Table of Contents
 
 - [Approach](#approach)
 - [HTTPS Certificates in System Design](#https-certificates-in-system-design)
@@ -18,6 +16,8 @@ System design is a critical aspect of software engineering that involves creatin
   - [Proxy/Reverse Proxy](#proxyreverse-proxy)
   - [Latency](#latency)
   - [HTTP/HTTPS and MASL (Mutual Authentication Security Layers)](#httphttps-and-masl-mutual-authentication-security-layers)
+  - [WebSockets](#websockets)
+  - [Webhooks](#webhooks)
 - [APIs and Integration](#apis-and-integration)
   - [APIs](#apis)
   - [REST API](#rest-api)
@@ -222,7 +222,7 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 
 1. **DNS Resolution** → Convert domain to IP  
 2. **TCP Handshake** → 3-way handshake  
-3. **TLS Handshake:**
+3. **TLS Handshake**:
     - `ClientHello`: Cipher suites, random number, etc.
     - `ServerHello`: Cert + key exchange info
     - Key exchange (e.g., ECDHE, RSA)
