@@ -563,6 +563,95 @@ BASE stands for Basically Available, Soft state, and Eventually consistent. Thes
 ---
 ### Normalization vs Denormalization
 
+#### Purpose of Normalization
+- Organize data to **reduce redundancy** and **improve integrity**.
+- Avoid:
+  - **Update anomalies**
+  - **Insertion anomalies**
+  - **Deletion anomalies**
+- Achieved by splitting data into well-structured tables and defining relationships.
+
+---
+
+#### 1. First Normal Form (1NF)
+**Rule:**
+- Each column contains **atomic values** (no repeating groups, no arrays).
+- Each row-column intersection holds **a single value**.
+- Each record must be **unique** (primary key present).
+
+**Example:**
+❌ `Hobbies: [Reading, Swimming]`  
+✅  
+| ID | Hobby    |
+|----|----------|
+| 1  | Reading  |
+| 1  | Swimming |
+
+---
+
+#### 2. Second Normal Form (2NF)
+**Prerequisite:** Must be in **1NF**  
+**Rule:**
+- No **partial dependency** — non-key attributes must depend on the **whole** primary key.
+- Applies only to tables with a **composite primary key**.
+
+**Example:**
+❌ `OrderID + ProductID → Quantity`, but `ProductName` depends only on `ProductID`.  
+✅ Move product details to a separate **Product** table.
+
+---
+
+#### 3. Third Normal Form (3NF)
+**Prerequisite:** Must be in **2NF**  
+**Rule:**
+- No **transitive dependency** — non-key attributes must depend **only** on the primary key.
+
+**Example:**
+❌ `StudentID → DepartmentID → DepartmentName`  
+✅ Store `DepartmentID → DepartmentName` in a separate table.
+
+---
+
+#### 4. Boyce–Codd Normal Form (BCNF)
+**Prerequisite:** Must be in **3NF**  
+**Rule:**
+- For **every functional dependency (X → Y)**, X must be a **superkey**.
+- Stricter than 3NF — resolves anomalies that 3NF may allow.
+
+---
+
+#### 5. Fourth Normal Form (4NF)
+**Prerequisite:** Must be in **BCNF**  
+**Rule:**
+- No **multi-valued dependencies** unless they are part of a candidate key.
+- Prevents storing unrelated multi-valued facts in the same table.
+
+**Example:**
+If a teacher teaches multiple subjects **and** speaks multiple languages:  
+- Store them in separate tables to avoid cross-product redundancy.
+
+---
+
+#### 6. Fifth Normal Form (5NF / Project-Join Normal Form)
+**Prerequisite:** Must be in **4NF**  
+**Rule:**
+- No **join dependency** — table should not be reconstructable from smaller tables in any **non-trivial** way.
+- Deals with complex relationships broken into **three or more** tables.
+
+---
+
+#### Quick Comparison Table
+
+| Form  | Removes…                 | Focus Area                     |
+|-------|--------------------------|---------------------------------|
+| 1NF   | Repeating groups, arrays | Atomic data                     |
+| 2NF   | Partial dependency       | Full key dependency             |
+| 3NF   | Transitive dependency    | Direct PK dependency            |
+| BCNF  | Any non-superkey FD      | Strict key dependency           |
+| 4NF   | Multi-valued dependency  | No unrelated multi-values       |
+| 5NF   | Join dependency          | Complex table reconstruction    |
+
+
 Normalization is the process of organizing data to reduce redundancy and improve data integrity, while denormalization involves combining data to optimize read performance by reducing the number of joins.
 
 | Feature                | Normalization                                                                 | Denormalization                                                              |
