@@ -5,6 +5,8 @@ title = 'Youtube System Design Interview'
 tags = ['Youtube', 'Interview']
 +++
 
+This document provides a comprehensive, step-by-step breakdown of how to architect a YouTube-scale system, covering requirements, high-level architecture, scaling strategies, microservices patterns, storage, processing pipelines, monitoring, security, and more. The goal is to demonstrate a practical, modern approach to building and scaling a global video platform, suitable for system design interviews.
+
 # Table of Contents
 
 - [Technical & Business Requirements](#technical--business-requirements)
@@ -33,7 +35,6 @@ tags = ['Youtube', 'Interview']
 - [Additional Considerations and Patterns](#21-additional-considerations-and-patterns)
 - [Conclusion](#conclusion)
 
-This document provides a comprehensive, step-by-step breakdown of how to architect a YouTube-scale system, covering requirements, high-level architecture, scaling strategies, microservices patterns, storage, processing pipelines, monitoring, security, and more. The goal is to demonstrate a practical, modern approach to building and scaling a global video platform, suitable for system design interviews.
 
 ## Technical & Business Requirements
 
