@@ -651,6 +651,17 @@ In practice, a system can **only guarantee two out of the three** at any given t
 ### Vertical and Horizontal Scaling
 
 Scaling is a critical aspect of system design that ensures a system can handle increased load or demand. There are two primary types of scaling: vertical scaling and horizontal scaling.
+Increase the power of a single machine.
+
+- **Methods:** Add CPU, RAM, faster storage, GPUs, etc.
+- **Pros:**
+  - Simple to implement
+  - Often no code change required
+- **Cons:**
+  - Hardware limits
+  - Expensive
+  - Single point of failure remains
+- **Example:** Upgrading a database server from 8 cores to 64 cores
 
 #### Vertical Scaling
 Vertical scaling, also known as "scaling up," involves adding more resources (e.g., CPU, RAM, or storage) to a single machine. This approach is straightforward and often requires minimal changes to the application.
@@ -722,6 +733,45 @@ Big O notation is used to describe the efficiency of an algorithm in terms of ti
 - **O(n):** Linear time. Example: Iterating through a list.
 - **O(n log n):** Log-linear time. Example: Merge sort.
 - **O(n^2):** Quadratic time. Example: Nested loops.
+
+## 2️⃣ Distributed Scaling — The Scale Cube
+(*You already know these, so just the headings for completeness*)
+
+- **X-axis:** Horizontal duplication
+- **Y-axis:** Functional decomposition
+- **Z-axis:** Data partitioning
+
+---
+
+## 3️⃣ Additional Scaling Techniques (Beyond the Cube)
+
+### 3.1 Scaling by Caching
+Reduce load by storing frequently accessed results.  
+**Examples:** CDN, Redis, in-memory caches
+
+### 3.2 Scaling by Asynchrony & Queues
+Smooth out load spikes by processing tasks asynchronously.  
+**Examples:** Message brokers, event-driven architecture
+
+### 3.3 Scaling by Algorithmic Efficiency
+Reduce the amount of work or make it faster.  
+**Examples:** Better data structures, batching, indexing
+
+### 3.4 Scaling by Concurrency Model
+Handle more work in parallel.  
+**Examples:** Async I/O, multi-threading, actor model
+
+### 3.5 Scaling Geographically
+Deploy systems in multiple regions for latency and failover benefits.  
+**Examples:** Multi-region deployments, edge computing
+
+---
+
+## Layered View
+
+1. **First Layer** → Vertical scaling (make one box stronger)
+2. **Second Layer** → Scale Cube (X, Y, Z axes for distribution)
+3. **Third Layer** → Optimizations (caching, async, efficiency, concurrency, geo-distribution)
 
 ### Examples of Big O Notation in Java
 
