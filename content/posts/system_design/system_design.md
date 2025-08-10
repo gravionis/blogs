@@ -38,11 +38,14 @@ System design is a critical aspect of software engineering that involves creatin
   - [ACID vs BASE](#acid-vs-base)
   - [Normalization vs Denormalization](#normalization-vs-denormalization)
   - [CAP Theorem](#cap-theorem)
-  - [Consistency Models: Linearizability vs Causal Consistency](#consistency-models-linearizability-vs-causal-consistency)
   - [Blob Storage](#blob-storage)
 - [Scalability and Performance](#scalability-and-performance)
   - [Vertical and Horizontal Scaling](#vertical-and-horizontal-scaling)
   - [Algorithmic Scaling](#algorithmic-scaling)
+  - [The Scale Cube](#2️⃣-distributed-scaling--the-scale-cube)
+  - [Additional Scaling Techniques](#3️⃣-additional-scaling-techniques-beyond-the-cube)
+  - [Layered View](#layered-view)
+  - [Examples of Big O Notation in Java](#examples-of-big-o-notation-in-java)
   - [Load Balancers](#load-balancers)
   - [Rate Limiting](#rate-limiting)
   - [Content Delivery Optimization](#content-delivery-optimization)
@@ -353,7 +356,7 @@ Here, G is a known base point on the elliptic curve.
 ### API Gateway
 ---
 ### Idempotency
----
+
 ## REST and REST Maturity Model
 ### What is REST?
 REST (Representational State Transfer) is an architectural style for designing networked applications. It relies on stateless communication and standard HTTP methods to enable interaction between clients and servers. RESTful APIs are widely used for their simplicity, scalability, and compatibility with web standards.
