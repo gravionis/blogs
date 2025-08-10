@@ -1,4 +1,4 @@
-<img width="450" height="333" alt="image" src="https://github.com/user-attachments/assets/405b628c-6deb-4ef9-b949-ec8d29832d12" />+++
++++
 date = '2025-05-03T12:44:47+10:00'
 draft = false
 title = 'System Design Interview Concepts'
