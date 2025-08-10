@@ -218,7 +218,6 @@ Microservices architecture design
 - **Two-Phase Commit (2PC)** — classic distributed commit protocol for atomic commits across multiple resources (heavy, blocking).
 - **Three-Phase Commit (3PC)** — non-blocking variant of 2PC with extra phase (rare in practice).
 - **XA / Distributed DB Transactions** — vendor support for distributed transactions (JTA/XA); useful when available but reduces scalability.
-- Optimistic Locking - is a concurrency control mechanism used in databases or systems where conflicts are rare. Ideal for systems with low contention, where locking resources pessimistically would be inefficient.
 - **TCC (Try-Confirm/Cancel)** — explicit Try / Confirm / Cancel steps for compensatable remote transactions.
 - **Saga (Choreography / Orchestration)** — long-running transactions using local ACID steps + compensations.
 - **Compensating Transactions** — undo actions when a multi-step workflow fails.
