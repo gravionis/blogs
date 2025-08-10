@@ -557,6 +557,83 @@ ACID stands for Atomicity, Consistency, Isolation, and Durability. These propert
   - **Phantom Read**: A query returns a different set of rows when re-executed because another transaction inserted/deleted matching rows.Example: T1 runs a query with a condition; T2 inserts a new matching row; T1 reruns and sees new row. **Solution**: Use `Serializable`, or databases supporting MVCC (like PostgreSQL or Oracle).
 
 - **Durability**: Once a transaction is committed, it remains so, even in the event of a system failure.
+### Distributed Transaction Protocols & Patterns
+
+#### 1. Two-Phase Commit (2PC)
+
+**Goal:**  
+Ensure all participants in a distributed transaction either all commit or all roll back.
+
+**Roles:**
+- **Coordinator** — orchestrates the commit.
+- **Participants (Resource Managers)** — e.g., databases, queues.
+
+**Phases:**
+1. **Prepare phase**  
+   - Coordinator → Participants: *"Can you commit?"*  
+   - Participants:  
+     - Validate transaction feasibility (constraints, locks).  
+     - If OK → reply **YES** (and lock resources so they can commit later).  
+     - If not OK → reply **NO**.
+2. **Commit/Abort phase**  
+   - If **all YES** → Coordinator sends **COMMIT** to all.  
+   - If **any NO** → Coordinator sends **ROLLBACK** to all.
+
+**Pros:**
+- Strong consistency.
+- Simple to reason about.
+
+**Cons:**
+- **Blocking** — If coordinator crashes after prepare but before commit, participants wait indefinitely.
+- Locks held across prepare → commit can hurt performance.
+
+---
+
+#### 2. Three-Phase Commit (3PC)
+
+**Goal:**  
+Reduce 2PC blocking by adding a pre-commit phase.
+
+**Phases:**
+1. **Can Commit**  
+   - Same as 2PC’s prepare phase — ask if ready.
+2. **Pre-Commit**  
+   - If all **YES**: Coordinator sends **PRE-COMMIT** to participants.  
+   - Participants acknowledge, enter a state where they can commit without coordinator.
+3. **Do Commit**  
+   - Coordinator sends **COMMIT**.  
+   - If coordinator fails, participants can still commit safely after a timeout (based on pre-commit state).
+
+**Pros:**
+- Less blocking than 2PC.
+- Participants can make progress after coordinator failure.
+
+**Cons:**
+- Requires synchronous clocks and reliable network assumptions (rare in real-world WAN).
+- More message overhead.
+
+---
+
+#### 3. XA Transactions
+
+**Goal:**  
+Provide a standard API for distributed transactions across multiple resource managers.
+
+**Key Points:**
+- Defined by **X/Open XA** spec.
+- Involves:
+  - **Application** — business logic.
+  - **Transaction Manager (TM)** — controls transaction boundaries.
+  - **Resource Managers (RM)** — e.g., databases, message brokers.
+
+**Flow:**
+1. Application starts transaction (via TM).
+2. Application interacts with multiple RMs.
+3. TM calls RMs using XA API to prepare/commit.
+4. Under the hood, TM uses **2PC** protocol (almost always).
+
+**Important:**  
+XA is **not** a commit algorithm — it’s a coordination API/spec. But in practice, **XA + 2PC** is the norm.
 
 #### BASE Properties
 BASE stands for Basically Available, Soft state, and Eventually consistent. These properties are common in distributed systems and NoSQL databases:
