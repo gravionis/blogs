@@ -1,4 +1,4 @@
-+++
+<img width="450" height="333" alt="image" src="https://github.com/user-attachments/assets/405b628c-6deb-4ef9-b949-ec8d29832d12" />+++
 date = '2025-05-03T12:44:47+10:00'
 draft = false
 title = 'System Design Interview Concepts'
@@ -221,6 +221,7 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - IoT and mobile devices  
 
 ## 🔹 Details of handshake 
+<img width="3000" height="3336" alt="image" src="https://github.com/user-attachments/assets/2e8bf550-4932-4c84-a2ca-b3034b57c1f8" />
 
 ### 1. Client Hello
 The client initiates the handshake by sending:
@@ -297,7 +298,6 @@ Here, G is a known base point on the elliptic curve.
 
 ## 🔐 What is Mutual Authentication (mTLS)?
 
-
 ### 📌 Common Use Cases
 
 | Use Case                      | Why Use mTLS?                                     |
@@ -306,6 +306,9 @@ Here, G is a known base point on the elliptic curve.
 | APIs for fintech / healthcare | Regulatory compliance (HIPAA, PCI-DSS)            |
 | IoT Devices ↔ Cloud          | Authenticate individual devices securely          |
 | Enterprise internal apps     | Add trust within a private/internal network       |
+
+## 🔹 Details of handshake 
+<img width="1452" height="2322" alt="image" src="https://github.com/user-attachments/assets/93556c5e-3e0b-42a2-90e0-aae7c0ad1da6" />
 
 ### 1. Client Hello
 - Client sends supported cipher suites and `client_random`.
