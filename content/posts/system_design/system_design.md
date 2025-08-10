@@ -7,7 +7,7 @@ tags = ['Event Driven Architecture', 'Microservices', 'Interview']
 
 System design is a critical aspect of software engineering that involves creating scalable, reliable, and efficient systems. This document explores key concepts and strategies required for designing robust systems, including networking, databases, scalability, caching, and modern architectural patterns. It serves as a comprehensive guide for understanding the foundational and advanced principles of system design.
 
-# Table of Contents
+## Table of Contents
 
 - [Approach](#approach)
 - [HTTPS Certificates in System Design](#https-certificates-in-system-design)

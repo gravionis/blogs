@@ -48,9 +48,8 @@ Natural Language Processing (NLP) is a foundational field in artificial intellig
 - Creativity
 
 ---
-# 2. Pipeline of NLP
+## 2. Pipeline of NLP
 ---
-## NLP Pipeline
 Step by step processing of text is known as NLP Pipeline:
 - Data collection (scrapy)
 - Text Cleaning 
