@@ -220,11 +220,7 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - Microservices communication  
 - IoT and mobile devices  
 
-## 🔹 2. Details of 3 way handshake 
-
-### 🔐 TLS Handshake – Detailed Breakdown
-
----
+## 🔹 Details of 3 way handshake 
 
 ### 1. Client Hello
 The client initiates the handshake by sending:
@@ -235,8 +231,6 @@ The client initiates the handshake by sending:
 - Adds **entropy** to the key derivation process.
 - Ensures each session is **unique**, even if the same algorithms are used.
 - Helps prevent **replay attacks** by making the handshake unpredictable.
-
----
 
 ### 2. Server Hello + Certificate
 The server responds with:
@@ -251,8 +245,6 @@ The server responds with:
   - Is it still valid (not expired)?
   - Does the domain match?
 
----
-
 ### 3. Key Exchange and Session Key Derivation
 Depending on the chosen cipher suite (e.g., ECDHE), the client and server:
 - Exchange **ephemeral public keys**.
@@ -263,6 +255,7 @@ Depending on the chosen cipher suite (e.g., ECDHE), the client and server:
   - `server_random`
   → to derive **symmetric session keys**.
 #### 🔐 How the Shared Secret Is Computed in ECDHE
+
 🔄 Key Generation
 **Client generates:**
 
@@ -282,8 +275,6 @@ Here, G is a known base point on the elliptic curve.
 #### 🔎 Why Ephemeral Keys (ECDHE)?
 - Provides **forward secrecy**: even if long-term keys are compromised, past sessions remain secure.
 - Ensures that each session has **unique encryption keys**.
-
----
 
 ### 4. Finished Messages
 - Both sides send encrypted "Finished" messages to confirm that the handshake was successful.
