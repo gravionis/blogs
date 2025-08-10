@@ -220,17 +220,71 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - Microservices communication  
 - IoT and mobile devices  
 
-## 🔹 2. HTTPS Flow in a System
+## 🔹 2. Details of 3 way handshake 
 
-1. **DNS Resolution** → Convert domain to IP  
-2. **TCP Handshake** → 3-way handshake  
-3. **TLS Handshake**:
-    - `ClientHello`: Cipher suites, random number, etc.
-    - `ServerHello`: Cert + key exchange info
-    - Key exchange (e.g., ECDHE, RSA)
-    - Session keys are generated
-4. **HTTP Request/Response** over secure channel  
-5. **Connection Termination**
+### 🔐 TLS Handshake – Detailed Breakdown
+
+---
+
+### 1. Client Hello
+The client initiates the handshake by sending:
+- A list of supported **cipher suites** (algorithms for encryption, key exchange, etc.).
+- A **`client_random`** value — a 32-byte random number.
+
+#### 🔎 Why `client_random`?
+- Adds **entropy** to the key derivation process.
+- Ensures each session is **unique**, even if the same algorithms are used.
+- Helps prevent **replay attacks** by making the handshake unpredictable.
+
+---
+
+### 2. Server Hello + Certificate
+The server responds with:
+- A selected **cipher suite** from the client's list.
+- Its own **`server_random`** value.
+- A **digital certificate** (usually X.509) containing its public key and identity.
+
+#### 🔎 Why the Certificate?
+- Allows the client to **authenticate** the server.
+- The client checks:
+  - Is the certificate signed by a trusted Certificate Authority (CA)?
+  - Is it still valid (not expired)?
+  - Does the domain match?
+
+---
+
+### 3. Key Exchange and Session Key Derivation
+Depending on the chosen cipher suite (e.g., ECDHE), the client and server:
+- Exchange **ephemeral public keys**.
+- Each side uses its private key and the other’s public key to compute a **shared secret**.
+- They use a **Key Derivation Function (KDF)** to combine:
+  - The shared secret
+  - `client_random`
+  - `server_random`
+  → to derive **symmetric session keys**.
+
+#### 🔎 Why Ephemeral Keys (ECDHE)?
+- Provides **forward secrecy**: even if long-term keys are compromised, past sessions remain secure.
+- Ensures that each session has **unique encryption keys**.
+
+---
+
+### 4. Finished Messages
+- Both sides send encrypted "Finished" messages to confirm that the handshake was successful.
+- From this point on, all communication is encrypted using the derived session keys.
+
+---
+
+### 🔐 Summary of Key Components
+
+| Component        | Purpose                                      |
+|------------------|----------------------------------------------|
+| `client_random`  | Adds entropy, uniqueness, and prevents replay attacks |
+| `server_random`  | Same as above, from the server side          |
+| Certificate      | Authenticates the server (and optionally the client) |
+| Ephemeral Keys   | Used to compute a shared secret securely     |
+| Session Keys     | Encrypt and authenticate all further communication |
+
 
 ---
 
