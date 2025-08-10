@@ -4,4 +4,17 @@
     {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
   </nav>
 </div>
-
+<!-- Add extra left margin to main content to shift blogs a bit more right of the menu -->
+<style>
+  body {
+    margin-left: 230px; /* Increased from 200px to 230px for more space */
+  }
+  @media (max-width: 600px) {
+    body {
+      margin-left: 0;
+    }
+    .sidebar-menu {
+      display: none;
+    }
+  }
+</style>
