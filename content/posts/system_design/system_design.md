@@ -220,7 +220,7 @@ In system design, **HTTPS certificates** are essential for securing communicatio
 - Microservices communication  
 - IoT and mobile devices  
 
-## 🔹 Details of 3 way handshake 
+## 🔹 Details of handshake 
 
 ### 1. Client Hello
 The client initiates the handshake by sending:
@@ -297,17 +297,6 @@ Here, G is a known base point on the elliptic curve.
 
 ## 🔐 What is Mutual Authentication (mTLS)?
 
-**Mutual TLS (mTLS)** is an extension of HTTPS/TLS where **both client and server authenticate each other**, not just the server.
-
-### 🔁 How It Works:
-- **Regular HTTPS:**  
-  - The client verifies the server’s certificate.  
-- **mTLS:**  
-  - The server also requests and verifies the client’s certificate.  
-  - Both parties prove their identity using **X.509 certificates**.
-
-
-## 🧱 Where Mutual Authentication (mTLS) Fits in System Design
 
 ### 📌 Common Use Cases
 
@@ -318,73 +307,33 @@ Here, G is a known base point on the elliptic curve.
 | IoT Devices ↔ Cloud          | Authenticate individual devices securely          |
 | Enterprise internal apps     | Add trust within a private/internal network       |
 
-## 📐 System Architecture with MASL (Mutual Authentication Security Layers)
+### 1. Client Hello
+- Client sends supported cipher suites and `client_random`.
 
-### 🔹 Typical HTTPS vs Mutual Authentication
+### 2. Server Hello + Certificate
+- Server responds with:
+  - Chosen cipher suite
+  - `server_random`
+  - Server certificate
 
-| Layer           | HTTPS                        | mTLS (Mutual Authentication)             |
-|-----------------|------------------------------|------------------------------------------|
-| Client Auth     | Not required                 | Required (client certificate)            |
-| Server Auth     | Required (TLS certificate)   | Required (TLS certificate)               |
-| Encryption      | Yes (TLS)                    | Yes (TLS)                                |
-| Identity Trust  | Server only                  | Mutual (client + server)                 |
-| Example Protocol| TLS 1.3                      | TLS 1.3 with client cert verification    |
+### 3. Server Requests Client Certificate
+- Server sends a `CertificateRequest` message.
 
-## 🛠️ System Components Involved in mTLS
+### 4. Client Sends Certificate
+- Client sends its certificate for authentication.
 
-### ✅ Certificate Authority (CA)
-- Issues and signs client and server certificates.
-- Can be **internal** (e.g., HashiCorp Vault) or **external** (e.g., DigiCert).
+### 5. Key Exchange
+- Both sides exchange ephemeral public keys (e.g., via ECDHE).
+- Each side computes the shared secret using its private key and the other’s public key.
 
-### ✅ API Gateway / Load Balancer
-- Enforces mTLS.
-- Validates client certificates before routing traffic.
+### 6. Certificate Verification
+- Server verifies the client’s certificate.
+- Client verifies the server’s certificate.
 
-### ✅ Clients (Apps/Devices)
-- Store and use client certificates securely.
-- Common formats: **PKCS#12 (.p12)** or **PEM**.
+### 7. Finished Messages
+- Both sides send encrypted "Finished" messages.
+- Secure communication begins using derived session keys.
 
-### ✅ Service Mesh (e.g., Istio, Linkerd)
-- Automates and enforces mTLS across services.
-- Handles cert rotation and uses sidecar proxies (e.g., Envoy).
-
-## 🔒 mTLS Security Layer Considerations
-
-| Aspect               | Design Implication                               |
-|----------------------|--------------------------------------------------|
-| Certificate Management | Must manage lifecycle, revocation, renewal      |
-| Trust Store            | Clients and servers must trust the same CA      |
-| Performance            | Slight overhead from cert negotiation           |
-| Granularity            | Can enforce auth per device/service identity    |
-| Scalability            | Complex for large environments without automation|
-
-
-## 🌐 Real-World Architecture with mTLS
-
-### Example: Internal API Architecture Using mTLS
-
-
-- All components validate each other.
-- The **API Gateway** acts as the policy enforcer.
-- **TLS with client certs** on all internal communications.
-- **Certificates rotated** via automated system (e.g., `cert-manager + Kubernetes`).
-
-## ✅ Best Practices for Using MASL/mTLS
-
-- ✅ Use **short-lived certificates** (automated rotation).
-- ✅ Separate **dev/test/staging** cert chains from **production**.
-- ✅ Enable **hostname** and **SAN validation**.
-- ✅ Use a **dedicated internal CA**.
-- ✅ Use **service meshes** for scalable mTLS in microservices.
-- ✅ **Monitor and log** all authentication attempts.
-
-## 🧠 Summary: MASL / Mutual Authentication in Secure System Design
-
-- **Mutual TLS (mTLS)** provides **strong mutual trust** between parties.
-- Essential for **zero-trust architectures**, **regulatory environments**, and **high-security microservices**.
-- MASL is a **layered security approach**, applying **authentication at the transport layer**, not just application logic.
-- mTLS increases complexity, so **certificate lifecycle management** is critical.
-- Widely supported by **API gateways**, **service meshes**, and **modern infrastructure platforms**.
 
 
 ### WebSockets
