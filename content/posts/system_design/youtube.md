@@ -212,6 +212,140 @@ Microservices architecture design
 - **Bandwidth**: 30PB+ daily egress traffic
 - **QPS**: 1M+ concurrent video streams
 
+#### Summarization  NFR Patterns — Full Reference
+
+##### 1. Transactions & Consistency
+- **Two-Phase Commit (2PC)** — classic distributed commit protocol for atomic commits across multiple resources (heavy, blocking).
+- **Three-Phase Commit (3PC)** — non-blocking variant of 2PC with extra phase (rare in practice).
+- **XA / Distributed DB Transactions** — vendor support for distributed transactions (JTA/XA); useful when available but reduces scalability.
+- **TCC (Try-Confirm/Cancel)** — explicit Try / Confirm / Cancel steps for compensatable remote transactions.
+- **Saga (Choreography / Orchestration)** — long-running transactions using local ACID steps + compensations.
+- **Compensating Transactions** — undo actions when a multi-step workflow fails.
+- **Transactional Outbox** — make DB write + outgoing message atomic by writing the message to an outbox table in the same transaction.
+- **Inbox / Idempotent Receiver** — persist processed message IDs to avoid double processing.
+- **Quorum Reads/Writes** — use majority quorums for consistency in distributed stores (Cassandra, Riak).
+- **Snapshot Isolation / MVCC** — reduce read/write conflicts using multi-versioning.
+
+##### 2. Scaling & Capacity Patterns
+- **Horizontal Scaling** — add more instances to increase capacity.
+- **Vertical Scaling** — increase instance resources (CPU, RAM).
+- **Sharding / Partitioning** — split data by key to distribute load.
+- **Read Replicas** — scale reads by replicating primary DB.
+- **CQRS (Command Query Responsibility Segregation)** — separate read/write models to scale each side independently.
+- **Event-Driven / Work Queues** — decouple producers/consumers to absorb bursts.
+- **Autoscaling (HPA / Cluster autoscaler)** — auto add/remove capacity based on metrics.
+- **Batching / Aggregation** — reduce per-message overhead by batching.
+- **Fan-out / Fan-in Patterns** — split work to many workers then aggregate results.
+- **Tiered Storage (Hot/Warm/Cold)** — store frequently accessed vs archive data differently.
+
+##### 3. Data Management & Storage
+- **Event Sourcing** — store state as a sequence of events; rebuild state by replay.
+- **Change Data Capture (CDC)** — capture DB changes for replication or messaging.
+- **Append-Only Logs** — simplify correctness and replication (Kafka style).
+- **Materialized Views** — precompute query results for fast reads.
+- **Polyglot Persistence** — choose the right DB type per use case.
+- **Snapshots & Checkpointing** — speed up rebuilds of event-sourced state.
+- **TTL / Retention Policies** — manage storage growth with time-based expiry.
+
+##### 4. Messaging & Integration Guarantees
+- **At-Least-Once Delivery** — messages may be delivered multiple times; require idempotency.
+- **At-Most-Once Delivery** — messages may be lost but never duplicated.
+- **Exactly-Once Semantics (EOS)** — typically approximated by idempotency + dedup + transactional outbox/CPS.
+- **Message Deduplication / Idempotency Keys** — detect and ignore duplicates.
+- **Message Ordering / Partitioning** — preserve order per key where required.
+- **Dead-Letter Queue (DLQ)** — isolate messages that repeatedly fail processing.
+- **Poison Message Handling** — quarantine or transform problematic messages.
+- **Message Batching / Compression** — improve throughput and reduce overhead.
+
+##### 5. Concurrency & Coordination
+- **Optimistic Concurrency Control (OCC)** — detect conflicts on commit (version checks).
+- **Pessimistic Locking** — acquire locks to prevent concurrent modifications.
+- **Distributed Locking (Redlock, ZK, etcd)** — coordinate access to shared resources across nodes.
+- **Leader Election** — elect a single coordinator for tasks (Raft/ZooKeeper).
+- **Consensus Algorithms (Raft, Paxos)** — ensure replicated state agreement.
+- **Lease / Time-bounded Locks** — avoid forever-held locks by using leases.
+
+##### 6. Availability & Resilience
+- **Retry with Backoff** — handle transient failures without overloading services.
+- **Circuit Breaker** — stop repeated calls to a failing service, fail fast.
+- **Bulkhead** — isolate resource pools to prevent cascading failures.
+- **Fail-Fast** — quickly reject requests when you know they’ll fail.
+- **Timeouts** — avoid resource exhaustion from long waits.
+- **Fallback / Graceful Degradation** — provide an alternative response when a dependency fails.
+- **Load Balancing** — distribute load across healthy instances.
+- **Health Checks** — detect and remove unhealthy instances from rotation.
+- **Service Mesh Resiliency** — centralize retries, timeouts, circuit breaking at network layer.
+- **Multi-Region Deployment** — survive entire region outages.
+- **Active-Active Deployment** — all regions handle traffic simultaneously for HA.
+- **Quorum / Majority Replication** — ensure availability while preserving consistency trade-offs.
+- **Active-Passive Failover** — standby instance takes over on primary failure.
+- **Connection Draining / Graceful Shutdown** — finish inflight requests before stopping an instance.
+- **Sticky Sessions vs Stateless Services** — prefer stateless for scale; sticky only when required.
+- **Fallback Data Sources** — degrade to cached or stale data on upstream failure.
+
+##### 7. Performance & Latency
+- **Edge Caching / CDN** — serve static or near-static content from the edge.
+- **Cache-Aside / Write-Through / Write-Behind** — cache strategies for read/write patterns.
+- **Prefetching / Read-Ahead** — reduce perceived latency by loading likely data.
+- **Pipelining & Connection Reuse** — reduce RTTs by reusing connections and pipelining requests.
+- **Compression / Encoding** — reduce payload sizes.
+- **Locality of Reference** — colocate compute and data to reduce latency.
+
+##### 8. Fault Tolerance & Disaster Recovery
+- **Backups & Point-in-Time Restore (PITR)** — recover from data loss.
+- **Cross-Region Replication** — replicate data to another region for DR.
+- **RPO / RTO Planning** — define acceptable data loss and recovery time.
+- **Warm / Cold Standby** — pre-provisioned or standby environments for failover.
+- **Chaos Engineering** — proactively test failure modes and recovery.
+- **Automatic Failover Orchestration** — scripted or automated failover to reduce MTTR.
+
+##### 9. Observability, Testing & SRE Practices
+- **SLO / SLI / SLA** — define and measure service objectives and limits.
+- **Distributed Tracing (correlation IDs)** — trace requests across services.
+- **Centralized Metrics & Logging** — aggregate telemetry for alerting and forensics.
+- **Synthetic Monitoring / Health Probes** — proactively detect regressions.
+- **Contract Testing (Consumer-Driven Contracts)** — ensure API compatibility.
+- **Chaos / Failure Injection** — validate resiliency in production-like environments.
+- **Runbooks & Playbooks** — documented operational responses for incidents.
+
+##### 10. Security & Compliance
+- **mTLS & Mutual Authentication** — secure service-to-service traffic.
+- **Secrets Management / Rotation** — rotate keys/secrets (Vault, cloud KMS).
+- **Encryption (At-rest / In-transit)** — protect data confidentiality.
+- **Audit Logging & Tamper-evidence** — record actions for forensics & compliance.
+- **Data Masking / Tokenization / Anonymization** — protect PII in non-prod or analytics.
+- **Least Privilege / RBAC / ABAC** — minimize access surfaces.
+- **Rate Limiting & Throttling** — prevent abuse and DoS attacks.
+
+##### 11. Deployability, Upgrade & Migration
+- **Schema Migration Strategies (expand-contract)** — change DB schema safely without downtime.
+- **Backward/Forward Compatible APIs** — design APIs to allow version-tolerant upgrades.
+- **Feature Flags / Toggling** — control rollout and rollback of features safely.
+- **Blue-Green / Canary / Rolling Releases** — reduce risk during deployment.
+- **Database Versioning & Migration Tools** — track and apply DB changes reliably.
+- **Forklift / Strangler Fig Pattern** — gradually replace legacy systems with new components.
+
+##### 12. Cost, Efficiency & Operational Economics
+- **Right-sizing** — match instance types to workload.
+- **Spot / Preemptible Instances** — cost savings for non-critical workloads.
+- **Serverless for Spiky Loads** — pay-per-use for unpredictable bursts.
+- **Capacity Reservation / Savings Plans** — lower cost for steady workloads.
+- **Tiered Storage & Archival** — move cold data to cheaper storage tiers.
+- **Chargeback / Cost Allocation** — attribute costs to teams or services.
+
+##### 13. Developer Productivity & Maintainability
+- **API First / Spec-Driven Development** — generate SDKs and tests from a spec (OpenAPI).
+- **Semantic Versioning & Deprecation Policy** — manage breaking changes predictably.
+- **Shared Libraries & Platform Services** — reduce duplication and improve consistency.
+- **Automated CI/CD Pipelines** — test and ship changes quickly and safely.
+- **Documentation as Code / Living Docs** — keep docs versioned and near code.
+
+##### 14. Governance & Policy
+- **Policy-as-Code / RBAC Automation** — enforce org policies automatically.
+- **Schema Registry / Compatibility Rules** — control event/contract evolution.
+- **SLO Governance & Error Budgets** — tie releases and risk to objective metrics.
+- **Service Catalog / Ownership Records** — know who owns what and how to contact them.
+
 ## 2. High-Level Architecture
 
 ```
