@@ -262,6 +262,22 @@ Depending on the chosen cipher suite (e.g., ECDHE), the client and server:
   - `client_random`
   - `server_random`
   → to derive **symmetric session keys**.
+#### 🔐 How the Shared Secret Is Computed in ECDHE
+🔄 Key Generation
+**Client generates:**
+
+- Private key: a
+- Public key: A = aG
+**Server generates:**
+
+- Private key: b
+- Public key: B = bG
+Here, G is a known base point on the elliptic curve.
+- **Client computes**:  
+  `S = a * B = a * (bG) = abG`
+- **Server computes**:  
+  `S = b * A = b * (aG) = abG`
+✅ Both arrive at the **same shared secret** `S = abG`.
 
 #### 🔎 Why Ephemeral Keys (ECDHE)?
 - Provides **forward secrecy**: even if long-term keys are compromised, past sessions remain secure.
