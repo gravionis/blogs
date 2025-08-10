@@ -212,7 +212,7 @@ Microservices architecture design
 - **Bandwidth**: 30PB+ daily egress traffic
 - **QPS**: 1M+ concurrent video streams
 
-#### Summarization  NFR Patterns — Full Reference
+#### Introduction to Patterns to achieve NFR 
 
 ##### 1. Transactions & Consistency
 - **Two-Phase Commit (2PC)** — classic distributed commit protocol for atomic commits across multiple resources (heavy, blocking).
