@@ -1,22 +1,33 @@
-<div style="position: fixed; top: 0; left: 0; height: 100vh; width: 200px; background: #fff; box-shadow: 2px 0 4px rgba(0,0,0,0.03); z-index: 201; display: flex; flex-direction: column; align-items: flex-start;">
-  <h1 style="margin: 1.5rem 0 0 1rem; font-size: 1.5rem;">{{ site.Title }}</h1>
-  <nav style="width: 100%; margin-top: 2rem;">
-    {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
-  </nav>
+<div style="position: fixed; top: 0; left: 0; width: 100vw; height: 64px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.03); z-index: 201; display: flex; flex-direction: row; align-items: center; padding: 0 2rem;">
+  <h1 style="margin: 0 2rem 0 0; font-size: 1.5rem;">{{ site.Title }}</h1>
+  <div style="flex: 1; display: flex; justify-content: center;">
+    <nav style="height: 100%; display: flex; align-items: center;">
+      {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
+    </nav>
+  </div>
 </div>
-<!-- Add extra left margin to main content to shift blogs a bit more right of the menu -->
+<!-- Add extra top margin to main content to shift blogs below the header -->
 <style>
   body {
-    margin-left: 230px; /* Increased from 200px to 230px for more space */
-    font-size: 0.95rem; /* Make the body font smaller */
+    margin-top: 64px; /* Header height */
+    margin-left: 2.5rem; /* Increased left margin for posts */
+    font-size: 0.95rem;
   }
   @media (max-width: 600px) {
     body {
-      margin-left: 0;
+      margin-top: 56px;
+      margin-left: 1rem; /* Slightly increased margin on mobile */
       font-size: 1rem;
     }
-    .sidebar-menu {
+    .top-menu {
       display: none;
     }
+  }
+  /* Glow effect for menu items on hover */
+  .menu-glow:hover {
+    box-shadow: 0 0 8px 2px #0078ff, 0 0 2px 1px #fff;
+    background: #f0f8ff;
+    color: #0078ff !important;
+    transition: box-shadow 0.2s, background 0.2s, color 0.2s;
   }
 </style>

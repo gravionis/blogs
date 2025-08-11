@@ -11,9 +11,11 @@ Renders a menu for the given menu ID.
 {{- $menuID := .menuID }}
 
 {{- with index site.Menus $menuID }}
-  <ul style="display: flex; flex-direction: column; gap: 1rem; list-style: none; margin: 0; padding: 0 1rem;">
-    {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
-  </ul>
+  <nav style="margin-top:0;">
+    <ul style="display: flex; flex-direction: row; gap: 1.5rem; list-style: none; margin: 0; padding: 0; justify-content: center;">
+      {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
+    </ul>
+  </nav>
 {{- end }}
 
 {{- define "_partials/inline/menu/walk.html" }}
@@ -38,12 +40,9 @@ Renders a menu for the given menu ID.
             {{- printf " %s=%q" $k $v | safeHTMLAttr }}
           {{- end }}
         {{- end -}}
-        style="text-decoration:none;color:#222;font-weight:500;padding:0.5rem 0;border-left:2px solid transparent;transition:border 0.2s;"
-        onmouseover="this.style.borderLeftColor='#0077ff'"
-        onmouseout="this.style.borderLeftColor='transparent'"
       >{{ $name }}</a>
       {{- with .Children }}
-        <ul style="padding-left: 1rem;">
+        <ul>
           {{- partial "inline/menu/walk.html" (dict "page" $page "menuEntries" .) }}
         </ul>
       {{- end }}
