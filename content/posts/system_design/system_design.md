@@ -1078,3 +1078,59 @@ public void generatePermutations(String str, String perm) {
 ---
 ## Miscellaneous
 ### Rate Shaping
+---
+## Laws
+### General Engineering & Design Principles
+* Murphy’s Law – “Anything that can go wrong will go wrong.” → Build for resilience and failure recovery.
+
+* Gall’s Law – Complex systems that work evolve from simple systems that work.
+
+* Occam’s Razor – Prefer the simplest solution that meets the requirements.
+
+* KISS Principle – “Keep It Simple, Stupid.” Avoid unnecessary complexity.
+
+* YAGNI – “You Aren’t Gonna Need It.” Don’t implement features until they are actually needed.
+
+* DRY Principle – “Don’t Repeat Yourself.” Centralize logic to avoid duplication.
+
+* Robustness Principle (Postel’s Law) – Be conservative in what you send, liberal in what you accept.
+
+### Time, Effort, and Estimation
+* Hofstadter’s Law – “It always takes longer than you expect, even when you take into account Hofstadter’s Law.”
+
+* Parkinson’s Law – “Work expands to fill the time available for its completion.”
+
+* Brooks’s Law – “Adding manpower to a late software project makes it later.” (From The Mythical Man-Month)
+
+* Ninety-Ninety Rule – The first 90% of the code accounts for the first 90% of the development time; the remaining 10% of the code accounts for the other 90% of the development time.
+
+* Pareto Principle (80/20 Rule) – 80% of the effects come from 20% of the causes; focus on the critical 20%.
+
+### People, Teams, and Communication
+* Conway’s Law – System design mirrors the communication structure of the organization.
+
+* Peter Principle – People rise to their level of incompetence.
+
+* Linus’s Law – “Given enough eyeballs, all bugs are shallow.” (Open-source development insight)
+
+* Law of Triviality (Parkinson’s Law of Triviality) – People spend disproportionate time on trivial issues (bike-shedding).
+
+### Code Quality & Maintainability
+* Law of Demeter – Talk only to your immediate collaborators; avoid unnecessary coupling.
+
+* Boyle’s Law of Code – Code will expand to fill all available complexity.
+
+* Hyrum’s Law – With enough users, all observable behaviors of your system will be relied upon, intentional or not.
+
+* LeBlanc’s Law – “Later equals never.” If you say you’ll fix it later, you probably won’t.
+
+* Zawinski’s Law – Every program attempts to expand until it can read mail; those that cannot are replaced by ones that can.
+
+### Reliability & Risk
+* Finagle’s Law – Anything that can go wrong, will—at the worst possible time.
+
+* Sod’s Law – Similar to Murphy’s Law, but with more emphasis on timing and bad luck.
+
+* Schneier’s Law – Anyone can create an encryption algorithm they themselves cannot break; that doesn’t mean it’s secure.
+
+
