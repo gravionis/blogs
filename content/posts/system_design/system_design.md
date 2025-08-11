@@ -11,6 +11,12 @@ System design is a critical aspect of software engineering that involves creatin
 
 - [Approach](#approach)
 - [HTTPS Certificates in System Design](#https-certificates-in-system-design)
+- [Key Points about HTTPS Certificates](#key-points-about-https-certificates)
+- [HTTPS Flow in System Design](#https-flow-in-system-design)
+- [HTTPS Certificate Components](#https-certificate-components)
+- [Use Cases in System Design](#use-cases-in-system-design)
+- [Design Considerations for HTTPS Certificates](#design-considerations-for-https-certificates)
+- [Key Takeaways for System Design](#key-takeaways-for-system-design)
 - [Networking and Communication](#networking-and-communication)
   - [Client Server Architecture](#client-server-architecture)
   - [IP Address](#ip-address)
@@ -18,6 +24,11 @@ System design is a critical aspect of software engineering that involves creatin
   - [Proxy/Reverse Proxy](#proxyreverse-proxy)
   - [Latency](#latency)
   - [HTTP/HTTPS and MASL (Mutual Authentication Security Layers)](#httphttps-and-masl-mutual-authentication-security-layers)
+    - [HTTP / HTTPS in System Design](#1-http--https-in-system-design)
+    - [Details of handshake](#details-of-handshake)
+    - [Summary of Key Components](#summary-of-key-components)
+    - [Mutual Authentication (mTLS)](#what-is-mutual-authentication-mtls)
+    - [Details of handshake (mTLS)](#details-of-handshake-1)
   - [WebSockets](#websockets)
   - [Webhooks](#webhooks)
 - [APIs and Integration](#apis-and-integration)
@@ -76,6 +87,12 @@ System design is a critical aspect of software engineering that involves creatin
   - [Data Streaming](#data-streaming)
 - [Miscellaneous](#miscellaneous)
   - [Rate Shaping](#rate-shaping)
+- [Laws](#laws)
+  - [General Engineering & Design Principles](#general-engineering--design-principles)
+  - [Time, Effort, and Estimation](#time-effort-and-estimation)
+  - [People, Teams, and Communication](#people-teams-and-communication)
+  - [Code Quality & Maintainability](#code-quality--maintainability)
+  - [Reliability & Risk](#reliability--risk)
 
 ## Approach
 - Do not directly start designing; every problem is unique. Think of every problem as designing and building a bridge. You must understand:
@@ -1132,5 +1149,3 @@ public void generatePermutations(String str, String perm) {
 * Sod’s Law – Similar to Murphy’s Law, but with more emphasis on timing and bad luck.
 
 * Schneier’s Law – Anyone can create an encryption algorithm they themselves cannot break; that doesn’t mean it’s secure.
-
-
