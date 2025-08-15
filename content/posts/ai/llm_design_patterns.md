@@ -16,7 +16,7 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
   - We have bigger better models but also better architectures and training methods.
   - We have restrictions using best available model due to cost, security, and other factors. Hence we have to compensate with design patterns.
 
-## Transformer Architecture:
+## Transformer Architecture: 
   - LLMs use the transformer neural network architecture.
   - Transformers handle data as sequences of tokens, capturing the meaning and context of words.
   - The architecture enables prediction of the next word in a sequence.
