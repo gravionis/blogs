@@ -96,7 +96,6 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
 | **Tool Calling**               | Enable model to trigger external tools for answers.                 | `If math needed, call calculator function.`                                  |
 | **Function Calling**           | Model outputs structured JSON to call specific function.            | `{ "function": "get_weather", "location": "Paris" }`                        |
 
-
 ## Chat Models
 - Chat models are specialized LLMs designed for conversational interactions.
 
@@ -122,7 +121,6 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
 - It enables fast similarity search and retrieval of relevant documents or data points using vector operations.
 - Popular vector stores: Pinecone, Weaviate, FAISS, Milvus, Qdrant.
 - Use cases: retrieval-augmented generation (RAG), semantic search, personalized recommendations, and knowledge management.
-
 
 ## Model Paramaters
 | Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
@@ -165,6 +163,45 @@ messages = [
 ]
 ```
 
+## Structured Output
+Structured output is when the model returns data in a **predefined, machine-readable format** like JSON or CSV, instead of free-form text.
+
+### Common Issues
+- Output format varies by model:
+  - Some prepend `assistant:` or add Markdown fences (```json```).
+  - Some omit required fields or slightly alter the structure.
+  - Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral.
+- Models may generate **extra explanations** or comments alongside the data.
+- Inconsistent **data types** (numbers as strings, null vs missing fields).
+- Missing **mandatory keys** in JSON or headers in CSV.
+- Some models **truncate long outputs**, breaking the structure.
+- Free-text injections may appear despite formatting instructions.
+
+### Solutions
+- Use **few-shot prompting** with examples to guide the structure.
+- **Use of Strong models**: Models such as OpenAI or use of CoPilot (GitHub Copilot utilizes a variety of AI models to provide coding assistance, adapting to different tasks and user needs.OpenAI, Claude, Gemini) Strong support via JSON mode or function calling.
+- **Other models**: Use parsers like **Pydantic** to validate and enforce the schema.
+
+### Common Structured Outputs in Our Projects
+- **JSON**: For APIs and downstream processing.  
+- **CSV**: For tabular data export and analysis.
+
+## Performance
+### Performance Tips for LLMs
+
+| Strategy                   | Description / Tips                                                                                       |
+|-----------------------------|---------------------------------------------------------------------------------------------------------|
+| **Streaming vs Batch**      | Stream for user-facing outputs (low latency). Batch multiple prompts with templates for high throughput. |
+| **Prompt Optimization**     | Keep prompts concise. Reuse templates and few-shot examples efficiently.                                |
+| **Token Management**        | Limit `max_tokens`. Use `stop` sequences to avoid unnecessary generation.                               |
+| **Parallelization**         | Run independent requests concurrently. Use async frameworks or thread pools.                             |
+| **Caching**                 | Cache repeated prompts/responses to reduce API calls and latency.                                       |
+| **Model Selection**         | Use smaller/faster models for simple tasks; larger models for complex reasoning or high-quality output. |
+| **Tooling Integration**     | Use RAG or vector databases to reduce redundant computation.                                           |
+| **Error Handling & Retry**  | Implement retries with exponential backoff. Validate outputs to reduce downstream errors.               |
+| **Function/Structured Output** | Use function calls or structured outputs to reduce parsing and token overhead.                        |
+| **Monitoring & Metrics**    | Track latency, token usage, and response quality to identify bottlenecks and optimize usage.           |
+
 ## Notes
 * Writing templates for prompts help reusable prompts.
-* streaming vs invoking a model, prefer streaming when a user output is involved.
+* streaming vs invoking v/s batch a model, prefer streaming when a user output is involved, use batch with templates wherever possible significantly improves performance.
