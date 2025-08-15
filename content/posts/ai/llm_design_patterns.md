@@ -202,6 +202,9 @@ Structured output is when the model returns data in a **predefined, machine-read
 | **Function/Structured Output** | Use function calls or structured outputs to reduce parsing and token overhead.                        |
 | **Monitoring & Metrics**    | Track latency, token usage, and response quality to identify bottlenecks and optimize usage.           |
 
+Some frameworks support, **Imperative or Declarative Composition** which helps in explicitly controlling the sequence and flow of operations with LLMs, tools, and data, rather than relying on declarative pipelines. It’s especially relevant when you need precise control over prompts, model calls, or conditional logic.
+
+
 ## Notes
 * Writing templates for prompts help reusable prompts.
 * streaming vs invoking v/s batch a model, prefer streaming when a user output is involved, use batch with templates wherever possible significantly improves performance.
