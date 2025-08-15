@@ -9,7 +9,7 @@ Description  : "Generative AI with NLP LLM:
 
 Natural Language Processing (NLP) is a foundational field in artificial intelligence that enables computers to understand, interpret, and generate human language. With the rapid evolution of large language models (LLMs) and generative AI, NLP has become central to applications such as chatbots, virtual assistants, sentiment analysis, and automated translation. This document provides a practical overview of NLP concepts, pipelines, and tools, including hands-on examples with libraries like NLTK and spaCy. It also explores the rise of LLMs, prompt engineering, and modern frameworks that are shaping the future of language-based AI systems.
 
-# 1. Introduction
+## 1. Introduction
 ---
 ## NLP Tasks
 - **Language Modelling** : Predict the next word based on the sequence of words that already occurs in a given language. Application: speech recognition, OCR Translation etc.

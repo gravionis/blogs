@@ -41,9 +41,7 @@ This document provides a comprehensive, step-by-step breakdown of how to archite
 The **platform** must _enable_ **users** to _upload_, _manage_, and _stream_ **video content** at **scale**, _supporting_ a seamless **experience** across **devices** and **geographies**. **Users** should _be able to create_ personal or branded **channels**, _publish_ **videos** with **metadata** (**title**, **description**, **tags**), and _interact_ with **content** through **likes**, **comments**, and **shares**. The **system** must _support_ **user authentication**, personalized **recommendations**, and real-time **notifications** for **subscriptions** and **interactions**. **Search functionality** should _allow_ **users** to _discover_ **content** based on **relevance**, **popularity**, and **preferences**.
 
 From a **business perspective**, the **system** must _ensure_ high **availability**, **scalability**, and **performance** to _support_ billions of daily **interactions**. It should _enable_ **content moderation workflows** to _maintain_ **community standards** and _comply_ with legal **regulations**. **Analytics capabilities** must _provide_ **insights** into **user engagement**, **video performance**, and **platform health**. The **architecture** should _support_ modular **growth**, _allowing_ **teams** to independently _develop_ and _deploy_ **features** aligned with **business capabilities** such as **video management**, **user engagement**, and **content discovery**.
-# Nouns and Verbs from Video Platform Requirements
-
-## Nouns
+## Nouns and Verbs from Video Platform Requirements
 
 | Noun | Category | Description |
 |------|----------|-------------|
