@@ -74,24 +74,28 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
 ## Prompt Engineering and Patterns
 - Prompt engineering is the practice of designing and refining prompts to optimize LLM outputs.
 - Prompt engineers experiment with wording, structure, and context to achieve desired results.
-- Common patterns include:
-  - Zero-shot: Ask the model to perform a task without examples.
-  - Few-shot: Provide examples to guide the model's response.
-  - Chain-of-thought: Encourage step-by-step reasoning for complex tasks.
-  - Role assignment: Specify the model's persona or expertise (e.g., "Act as a legal advisor").
-  - Structured Output: Request specific formats, styles, or limitations.
-  - Iterative refinement: Adjust prompts based on model feedback to improve accuracy and relevance.
-  - Context injection: Add relevant background information or previous conversation.
-  - Self-consistency: Ask the model to generate multiple solutions and select the best.
-  - ReAct (Reason + Act): Combine reasoning steps with actions or tool use.
-  - Retrieval Augmented Generation: Incorporate external knowledge or documents into the prompt.
-  - Multi-turn: Structure prompts for ongoing dialogue or multi-step tasks.
-  - Instruction tuning: Use prompts aligned with how the model was trained for better results.
-  - Reflection or Deliberation: Ask the model to reflect or critique its own answer before finalizing.
-  - Template-based: Use reusable prompt templates for consistency across tasks.
-  - Tool calling: Enable the model to invoke external tools or APIs (e.g., calculators, search engines) for enhanced capabilities.
-  - Function calling: Structure prompts so the model can call specific functions or code snippets to solve tasks.
-  - Dynamic prompt composition: Build prompts programmatically based on user input or context for flexible interactions.
+- Common patterns:
+| **Type**                       | **Definition**                                                       | **Example**                                                                 |
+|--------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------|
+| **Single-String Prompting**    | One large text prompt, typically for completion models.             | `Translate to French: "How are you?"`                                      |
+| **Chat-Based Prompting**       | Structured messages with roles (`system`, `user`, `assistant`).     | System: "You are helpful." User: "Translate 'How are you?' to French."     |
+| **Zero-Shot**                  | No examples provided; just the instruction.                         | `Summarize this text in one sentence: ...`                                  |
+| **Few-Shot**                   | Include a few examples to guide the output.                         | `Q: Capital of France? A: Paris. Q: Capital of Germany? A:`                |
+| **Chain-of-Thought (CoT)**     | Ask model to reason step-by-step before answering.                  | `Explain step by step: If you have 3 apples and eat 1, how many are left?` |
+| **Self-Consistency**           | Model generates multiple solutions, picks most consistent.          | Used in reasoning-heavy tasks.                                              |
+| **Role-Based / Persona**       | Assign a role or persona for better context.                        | `Act as an expert Python tutor. Explain decorators.`                        |
+| **Instruction-Based**          | Direct task-oriented commands without dialogue.                     | `Extract all email addresses from the text.`                                |
+| **Structured Output**          | Request output in JSON, table, or specific format.                  | `Return the answer in JSON with keys: name, age.`                           |
+| **ReAct (Reason + Act)**       | Model reasons, then calls tools or APIs.                            | `Thought: I need weather info. Action: call weather API.`                   |
+| **Retrieval-Augmented (RAG)**  | Combine prompt with retrieved external knowledge.                   | `[Context] Answer based on above.`                                          |
+| **Multimodal Prompting**       | Combines text + images (or other modalities).                       | `Describe the scene in this image.`                                         |
+| **Prompt Chaining**            | Splits a task into multiple linked prompts.                         | Step 1: Summarize → Step 2: Extract entities → Step 3: Generate questions. |
+| **Instruction Tuning Alignment**| Prompts aligned to model training objectives for better accuracy.   | `Follow these steps exactly as shown in instructions.`                      |
+| **Reflection / Deliberation**  | Ask model to review or critique its own response.                   | `Check your previous answer and improve it.`                                |
+| **Dynamic Prompt Composition** | Build prompts programmatically for personalization.                 | Insert user name, context dynamically from a database.                      |
+| **Tool Calling**               | Enable model to trigger external tools for answers.                 | `If math needed, call calculator function.`                                  |
+| **Function Calling**           | Model outputs structured JSON to call specific function.            | `{ "function": "get_weather", "location": "Paris" }`                        |
+
 
 ## Chat Models
 - Chat models are specialized LLMs designed for conversational interactions.
@@ -148,4 +152,19 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
 | **tool**    | Output from an external tool or function call                | `{"result": "42"}` (after a calculator function call)                  |
 | **function**| (Older term for tool) Shows result from a function           | Same as tool                                                           |
 | **critic**  | Used for self-evaluation or reinforcement learning loops     | "Check if the previous answer followed all constraints."               |
+| **developer** (optional) | Provides additional instructions (multi-role systems) | "Add unit tests for the function above."                               |
 
+apart from the system, user and assistant roles which are the default roles in some frameworks most frameworks support custom roles.
+```python
+from langchain.schema import ChatMessage
+
+messages = [
+    ChatMessage(role="system", content="You are an expert AI."),
+    ChatMessage(role="developer", content="Always include type hints in Python code."),
+    ChatMessage(role="user", content="Write a function to add two numbers.")
+]
+```
+
+## Notes
+* Writing templates for prompts help reusable prompts.
+* streaming vs invoking a model, prefer streaming when a user output is involved.
