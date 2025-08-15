@@ -118,3 +118,34 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
 - It enables fast similarity search and retrieval of relevant documents or data points using vector operations.
 - Popular vector stores: Pinecone, Weaviate, FAISS, Milvus, Qdrant.
 - Use cases: retrieval-augmented generation (RAG), semantic search, personalized recommendations, and knowledge management.
+
+
+## Model Paramaters
+| Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
+|----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|
+| **temperature**      | Controls randomness. Lower = deterministic, higher = creative/unpredictable.                  | `0.0` – `2.0`       | `0.0` = deterministic, `1.0` = balanced, `>1.2` = very random.        |
+| **top_p**            | Nucleus sampling. Chooses tokens from smallest set whose cumulative probability ≥ p.           | `0.1` – `1.0`       | Lower = more focused, 1.0 = no restriction.                           |
+| **top_k**            | Limits sampling to the top K tokens by probability.                                           | `1` – `100`         | Low values reduce creativity, high values allow more variation.       |
+| **max_tokens**       | Maximum tokens to generate in the response.                                                   | Depends on model    | Controls output length.                                               |
+| **min_tokens**       | Minimum tokens to generate before stopping.                                                   | Depends on model    | Ensures longer answers if needed.                                     |
+| **presence_penalty** | Penalizes tokens already present in the text (encourages new topics).                          | `-2.0` – `2.0`      | Higher = more diversity.                                              |
+| **frequency_penalty**| Penalizes frequent tokens to reduce repetition.                                               | `-2.0` – `2.0`      | Higher = less repetition.                                             |
+| **stop**             | List of stop sequences where generation should halt.                                          | Strings / tokens    | Useful for structured responses.                                      |
+| **seed**             | Fixes randomness for reproducibility.                                                         | Integer             | Same seed = same output (with sampling).                              |
+| **do_sample**        | Enables probabilistic sampling instead of greedy decoding.                                    | `true` / `false`    | Needed for temperature/top_p/top_k to take effect.                    |
+| **num_beams**        | Number of beams for beam search decoding.                                                     | `1` – `10+`         | Higher = more accurate, slower, less creative.                        |
+| **length_penalty**   | Adjusts likelihood for longer sequences in beam search.                                       | `>0`                | Higher = longer outputs favored.                                      |
+| **early_stopping**   | Stops beam search when best candidates are found.                                             | `true` / `false`    | Speeds up generation, may miss better completions.                    |
+| **logit_bias**       | Adjusts probability of specific tokens (positive = more likely, negative = less likely).       | Dict of token IDs   | Useful for forcing or avoiding words.                                 |
+| **echo**             | Return the prompt along with the completion.                                                  | `true` / `false`    | For debugging or prompt reconstruction.                                |
+
+## Roles
+| Role        | Purpose                                                       | Example                                                                 |
+|-------------|--------------------------------------------------------------|------------------------------------------------------------------------|
+| **system**  | Sets high-level instructions, behavior, or persona for model | "You are an expert software engineer. Respond concisely with examples." |
+| **user**    | Represents the end-user’s input or question                  | "Write a Python function to reverse a string."                         |
+| **assistant**| Represents the model’s own response                         | "Here is the Python code:\n```python\ndef reverse_string(s): return s[::-1]\n```" |
+| **tool**    | Output from an external tool or function call                | `{"result": "42"}` (after a calculator function call)                  |
+| **function**| (Older term for tool) Shows result from a function           | Same as tool                                                           |
+| **critic**  | Used for self-evaluation or reinforcement learning loops     | "Check if the previous answer followed all constraints."               |
+
