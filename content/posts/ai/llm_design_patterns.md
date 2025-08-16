@@ -596,3 +596,40 @@ for r in results:
     4. Is it sunny, rainy, or cloudy in Sydney currently?
     5. What is the humidity and wind speed in Sydney today?
 
+## RAG-Fusion
+
+RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the multi-query retrieval strategy. It enhances the retrieval process by introducing a **final reranking step** using the **Reciprocal Rank Fusion (RRF)** algorithm.
+
+### Key Steps
+
+1. **Query Expansion:** Generate multiple related queries from the user's initial query.
+2. **Parallel Retrieval:** Execute each query independently against the data source (vector store, RDBMS, or search engine).
+3. **Reciprocal Rank Fusion (RRF):**  
+   - Each retrieved document has a rank for each query.  
+   - RRF combines these ranks into a single, unified ranking.  
+   - Formula:  
+     \[
+     \text{RRF Score} = \sum_{i} \frac{1}{k + \text{rank}_i}
+     \]  
+     where \(k\) is a constant (commonly 60) to reduce the effect of lower-ranked documents.  
+   - The most relevant documents across all queries rise to the top.
+4. **Context Aggregation:** Use the top-ranked documents as context for the LLM.
+5. **Final Output:** LLM generates a more accurate and comprehensive answer using aggregated, reranked context.
+
+### Benefits
+
+- Improves retrieval quality by prioritizing documents relevant to multiple query perspectives.
+- Handles queries with different scoring scales or distributions effectively.
+- Reduces noise from less relevant results while promoting consensus across queries.
+
+### Use Cases
+
+1. **Legal or Compliance like ACMA or TCP or Security documenations:**  
+   - Searching across multiple regulations, rules, and previous incidents.  
+   - RRF helps surface the most relevant documents that are supported across different search formulations.
+
+2. **Enterprise Search:**  
+   - Documents across Telstra for example Flexcab.
+
+RAG-Fusion is particularly powerful when the information space is large and diverse, and a single query is insufficient to capture all relevant context.
+
