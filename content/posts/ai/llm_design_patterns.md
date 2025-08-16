@@ -207,6 +207,7 @@ Structured output is when the model returns data in a **predefined, machine-read
 
 
 ## RAG (Retrieval-Augmented Generation)
+
   - Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
 
 - **Key Issues:**  
@@ -225,11 +226,11 @@ Structured output is when the model returns data in a **predefined, machine-read
   - An embedding model is an algorithm that converts a piece of text into a numerical representation of its meaning.  
   - The output is a long list of floating-point numbers, usually between 100 and 2,000 dimensions.  
   - These are called **dense embeddings**, where most dimensions have non-zero values, unlike sparse embeddings.  
-  - Each number is a floating-point value representing a **semantic dimension** of the text.  
+  - Each number is a floating-point value representing a **semantic dimension** of the text.
+  - You can “travel” the “meaning” space by using the elementary math operations of addition and subtraction: for instance, the operation king – man + woman = queen. If you take the meaning (or semantic embedding) of king, subtract the meaning of man, presumably you arrive at the more abstract meaning of monarch, at which point, if you add the meaning of woman, you’ve arrived close to the meaning (or embedding) of the word queen. 
 
 - **Semantic Embeddings:**  
   - Capture the meaning of text in such a way that similar texts have similar embeddings.  
-  - Useful for tasks like semantic search, clustering, recommendation, and question answering.  
 
 - **Example:**  
   - Texts: `"Apple is a fruit"` vs `"Orange is a fruit"`  
@@ -243,7 +244,8 @@ Structured output is when the model returns data in a **predefined, machine-read
 ### Vector Stores and Embeddings: Problems Solved & Techniques
 
 - **Problems They Solve:**  
-  - **Semantic Search:** Find documents or text that are meaningfully similar to a query.  
+  - **Semantic Search:** Find documents or text that are meaningfully similar to a query.
+  - **Classification:** Assigning a new document to a previously identified group or label (for instance, a topic)
   - **Question Answering:** Retrieve relevant context for LLMs to answer questions accurately.  
   - **Recommendation Systems:** Suggest items based on similarity of embeddings.  
   - **Clustering & Topic Analysis:** Group similar content or detect topics.  
