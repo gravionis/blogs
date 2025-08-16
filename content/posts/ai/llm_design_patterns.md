@@ -207,8 +207,11 @@ Structured output is when the model returns data in a **predefined, machine-read
 
 
 ## RAG (Retrieval-Augmented Generation)
-
-  - Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
+- **3 stages**
+  - Indexing This stage involves preprocessing the external data source and storing embeddings that represent the data in a vector store where they can be easily retrieved.
+  - Retrieval This stage involves retrieving the relevant embeddings and data stored in the vector store based on a user’s query.
+  - Generation This stage involves synthesizing the original prompt with the retrieved relevant documents as one final prompt sent to the model for a prediction. 
+- Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
 
 - **Key Issues:**  
   - Large context data can overwhelm the model.  
@@ -347,7 +350,7 @@ Structured output is when the model returns data in a **predefined, machine-read
   - **PgVector:** Integrated with PostgreSQL, making it easy to get security approval since it runs in RDS within a VPC.  
   - **FAISS:** In-memory vector store providing high-performance similarity search.  
 
-# Using pgvector with Embedding Models
+## Using pgvector with Embedding Models
 
 ## 1. Flexibility
 - pgvector is a **PostgreSQL extension** that stores and searches vector data efficiently.  
@@ -461,7 +464,6 @@ retriever = MultiVectorRetriever(
   - Efficient handling of **multi-granular retrieval**.  
   - Supports queries spanning **single facts to overarching ideas**.
  
-    
 ```python
 # 2. Split documents into chunks
 docs = [Document(page_content=doc) for doc in all_documents]  # all_documents is your text list
