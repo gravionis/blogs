@@ -328,13 +328,13 @@ Structured output is when the model returns data in a **predefined, machine-read
 ### Using PgVector with Embedding Models
 
 * 1. Flexibility
-  - pgvector is a **PostgreSQL extension** that stores and searches vector data efficiently.  
+  - PgVector is a **PostgreSQL extension** that stores and searches vector data efficiently.  
   - You can store embeddings from any model: OpenAI (`text-embedding-3`), HuggingFace, custom embeddings, etc.  
   - Queries like cosine similarity, Euclidean distance, or inner product can be applied regardless of the embedding source.
 
 * 2. Why Embedding Model Choice Matters
   - **Semantic quality:** Better embeddings produce more accurate similarity search results.  
-  - **Dimensionality:** pgvector supports different vector sizes, but you must define a fixed dimension when creating the column. All vectors in that column must have the same size.  
+  - **Dimensionality:** PgVector supports different vector sizes, but you must define a fixed dimension when creating the column. All vectors in that column must have the same size.  
   - **Use case alignment:**  
     - `text-embedding-3-small` → lightweight, lower cost, suitable for smaller semantic search.  
     - `text-embedding-3-large` → higher dimensional, better for nuanced semantic similarity.  
