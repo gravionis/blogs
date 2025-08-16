@@ -390,3 +390,75 @@ new_embedding = embeddings.embed_query("Some unusual text.")
 nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ```
 
+## Vector DB Issues  
+- **Document Change Tracking**: Use a SQL record manager or similar system to track document updates.  
+- **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle — separate write (doc updates) and read (retrieval) models for consistency.  
+- **Approach**: Maintain unique IDs across vector store and doc store for sync.  
+
+## Indexing Optimization  
+- **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
+- 
+- **Approach 1**: Use **MultiVector Retrieval** —  
+    - Store summaries or embeddings in **vector store**.  
+    - Store original content (tables, full text) in **doc store** (RDBMS, NoSQL, object store, or in-memory).  
+    - Link via **ID references**.  
+    
+```python
+# Helper function to fetch docs from MySQL
+def fetch_docs_from_mysql(ids):
+    placeholders = ','.join(['%s'] * len(ids))
+    query = f"SELECT id, content, metadata FROM documents WHERE id IN ({placeholders})"
+    mysql_cursor.execute(query, tuple(ids))
+    rows = mysql_cursor.fetchall()
+    return [Document(page_content=row['content'], metadata=row['metadata']) for row in rows]
+
+# 3. Create MultiVectorRetriever
+retriever = MultiVectorRetriever(
+    vectorstore=pgvector_store,
+    docstore=fetch_docs_from_mysql,
+    id_key="id"
+)
+```
+
+or 
+```python
+docstore = InMemoryDocstore()
+
+# 2. Add documents to InMemoryDocstore
+doc_ids = ["doc1", "doc2"]
+chunks = [
+    Document(page_content="First document about LangChain.", metadata={"category": "AI"}),
+    Document(page_content="Second document about Vector Stores.", metadata={"category": "Database"})
+]
+docstore.mset(list(zip(doc_ids, chunks)))
+
+# 3. Create MultiVectorRetriever
+retriever = MultiVectorRetriever(
+    vectorstore=pgvector_store,  # Same as before
+    docstore=docstore,           # InMemoryDocstore instance
+    id_key="id"                  # ID used in vector store entries
+)
+```
+
+- **Approach 1**: Use *Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) ** —  
+- **Problem:**  
+  - RAG systems must handle:
+    - **Lower-level questions:** referencing specific facts in a single document.  
+    - **Higher-level questions:** synthesizing ideas across multiple documents.  
+  - Standard k-nearest neighbors (k-NN) retrieval on document chunks struggles to cover both types effectively.  
+
+- **Solution: RAPTOR Approach**
+  - **Step 1:** Create **document summaries** capturing higher-level concepts.  
+  - **Step 2:** **Embed and cluster** the documents based on semantic similarity.  
+  - **Step 3:** **Summarize each cluster**, producing higher-level abstractions.  
+  - **Step 4:** Repeat the process **recursively**, forming a **tree of summaries** with increasing abstraction.  
+
+- **Indexing:**  
+  - Index **both the summaries and the original documents** together.  
+  - Ensures coverage for **questions ranging from low-level facts to high-level concepts**.  
+
+- **Benefit:**  
+  - Efficient handling of **multi-granular retrieval**.  
+  - Supports queries spanning **single facts to overarching ideas**.
+ 
+    
