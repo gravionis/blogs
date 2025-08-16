@@ -202,9 +202,62 @@ Structured output is when the model returns data in a **predefined, machine-read
 | **Function/Structured Output** | Use function calls or structured outputs to reduce parsing and token overhead.                        |
 | **Monitoring & Metrics**    | Track latency, token usage, and response quality to identify bottlenecks and optimize usage.           |
 
-Some frameworks support, **Imperative or Declarative Composition** which helps in explicitly controlling the sequence and flow of operations with LLMs, tools, and data, rather than relying on declarative pipelines. It’s especially relevant when you need precise control over prompts, model calls, or conditional logic.
-
-
-## Notes
 * Writing templates for prompts help reusable prompts.
-* streaming vs invoking v/s batch a model, prefer streaming when a user output is involved, use batch with templates wherever possible significantly improves performance.
+* Some frameworks support, **Imperative or Declarative Composition** which helps in explicitly controlling the sequence and flow of operations with LLMs, tools, and data, rather than relying on declarative pipelines. It’s especially relevant when you need precise control over prompts, model calls, or conditional logic.
+
+
+## RAG (Retrieval-Augmented Generation)
+  - Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
+
+- **Key Issues:**  
+  - Large context data can overwhelm the model.  
+  - Must split data into appropriately sized documents.  
+  - Too much context requires the model to filter irrelevant info → risk of hallucination.
+
+- **Common Approaches:**  
+  - Indexing documents for fast retrieval.  
+  - Retrieval of top-k relevant documents before generation.  
+  - Hybrid methods combining multiple retrieval strategies.
+    
+## Embeddings
+
+- **What it is:**  
+  - An embedding model is an algorithm that converts a piece of text into a numerical representation of its meaning.  
+  - The output is a long list of floating-point numbers, usually between 100 and 2,000 dimensions.  
+  - These are called **dense embeddings**, where most dimensions have non-zero values, unlike sparse embeddings.  
+  - Each number is a floating-point value representing a **semantic dimension** of the text.  
+
+- **Semantic Embeddings:**  
+  - Capture the meaning of text in such a way that similar texts have similar embeddings.  
+  - Useful for tasks like semantic search, clustering, recommendation, and question answering.  
+
+- **Example:**  
+  - Texts: `"Apple is a fruit"` vs `"Orange is a fruit"`  
+  - Their embeddings will be vectors of floating-point numbers.  
+  - The **cosine similarity** between these vectors will be high because their meanings are similar.  
+
+- **Key Notes:**  
+  - Each floating-point number represents a semantic aspect of the text.  
+  - The vector as a whole encodes the overall meaning of the input text.
+ 
+### Vector Stores and Embeddings: Problems Solved & Techniques
+
+- **Problems They Solve:**  
+  - **Semantic Search:** Find documents or text that are meaningfully similar to a query.  
+  - **Question Answering:** Retrieve relevant context for LLMs to answer questions accurately.  
+  - **Recommendation Systems:** Suggest items based on similarity of embeddings.  
+  - **Clustering & Topic Analysis:** Group similar content or detect topics.  
+  - **Anomaly Detection:** Identify outliers by distance from typical embeddings.  
+
+- **Techniques / Similarity Measures:**  
+  - **Cosine Similarity:** Measures angle between vectors; commonly used for semantic similarity.  
+  - **Euclidean Distance:** Measures straight-line distance in embedding space; good for spatial closeness.  
+  - **Dot Product / Inner Product:** Measures magnitude-aligned similarity; often used in dense retrieval.  
+  - **Approximate Nearest Neighbors (ANN):** Efficient search in large vector stores for top-k similar vectors.  
+
+- **Workflow Example:**  
+  1. Convert documents into embeddings.  
+  2. Store embeddings in a vector store (e.g., FAISS, Pinecone, Weaviate).  
+  3. Query with embedding of input text.  
+  4. Retrieve top-k nearest embeddings using cosine similarity or ANN.  
+  5. Use retrieved content for search, LLM context, or recommendations.  
