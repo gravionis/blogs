@@ -440,7 +440,7 @@ retriever = MultiVectorRetriever(
 )
 ```
 
-- **Approach 1**: Use *Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) ** —  
+- **Approach 2**: Use *Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) ** —  
 - **Problem:**  
   - RAG systems must handle:
     - **Lower-level questions:** referencing specific facts in a single document.  
@@ -455,10 +455,47 @@ retriever = MultiVectorRetriever(
 
 - **Indexing:**  
   - Index **both the summaries and the original documents** together.  
-  - Ensures coverage for **questions ranging from low-level facts to high-level concepts**.  
+  - Ensures coverage for **questions ranging from low-level facts to high-level concepts**.
 
 - **Benefit:**  
   - Efficient handling of **multi-granular retrieval**.  
   - Supports queries spanning **single facts to overarching ideas**.
  
     
+```python
+# 2. Split documents into chunks
+docs = [Document(page_content=doc) for doc in all_documents]  # all_documents is your text list
+splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+chunks = []
+for doc in docs:
+    chunks.extend(splitter.split_text(doc.page_content))
+
+# 3. Generate summaries for each chunk
+chunk_summaries = []
+for chunk in chunks:
+    summary = llm(f"Summarize the following text concisely:\n{chunk}")
+    chunk_summaries.append(Document(page_content=summary))
+
+# 4. Cluster summaries
+num_clusters = 5
+summary_embeddings = [embeddings.embed_query(s.page_content) for s in chunk_summaries]
+kmeans = KMeans(n_clusters=num_clusters, random_state=0).fit(summary_embeddings)
+
+# 5. Summarize each cluster (recursive abstraction)
+cluster_summaries = []
+for cluster_idx in range(num_clusters):
+    cluster_docs = [chunk_summaries[i].page_content for i in range(len(chunk_summaries)) 
+                    if kmeans.labels_[i] == cluster_idx]
+    cluster_text = "\n".join(cluster_docs)
+    cluster_summary = llm(f"Summarize the following cluster text:\n{cluster_text}")
+    cluster_summaries.append(Document(page_content=cluster_summary))
+
+# 6. Index both original chunks and cluster summaries in vector store
+vectorstore.add_documents(chunks + cluster_summaries)
+
+# 7. Query example
+query = "Explain high-level ideas from the documents."
+results = vectorstore.similarity_search(query, k=3)
+for r in results:
+    print(r.page_content)
+```
