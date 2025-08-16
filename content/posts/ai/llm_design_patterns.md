@@ -227,7 +227,7 @@ Structured output is when the model returns data in a **predefined, machine-read
   - The output is a long list of floating-point numbers, usually between 100 and 2,000 dimensions.  
   - These are called **dense embeddings**, where most dimensions have non-zero values, unlike sparse embeddings.  
   - Each number is a floating-point value representing a **semantic dimension** of the text.
-  - You can “travel” the “meaning” space by using the elementary math operations of addition and subtraction: for instance, the operation king – man + woman = queen. If you take the meaning (or semantic embedding) of king, subtract the meaning of man, presumably you arrive at the more abstract meaning of monarch, at which point, if you add the meaning of woman, you’ve arrived close to the meaning (or embedding) of the word queen. 
+  - **traveling the meaning** in space by using the elementary math operations of addition and subtraction: for instance, the operation king – man + woman = queen. If you take the meaning (or semantic embedding) of king, subtract the meaning of man, presumably you arrive at the more abstract meaning of monarch, at which point, if you add the meaning of woman, you’ve arrived close to the meaning (or embedding) of the word queen. 
 
 - **Semantic Embeddings:**  
   - Capture the meaning of text in such a way that similar texts have similar embeddings.  
@@ -263,3 +263,81 @@ Structured output is when the model returns data in a **predefined, machine-read
   3. Query with embedding of input text.  
   4. Retrieve top-k nearest embeddings using cosine similarity or ANN.  
   5. Use retrieved content for search, LLM context, or recommendations.  
+## Strategies for Loading Documents into Chat Model Prompts
+
+### 1. Template-Driven Solution Walkthroughs and Designs
+- Many solution designs and documentation have structured templates and formats.  
+- These templates often provide the **context needed for the LLM**.  
+- Knowledge can be provided as plain text, PDF, or **Markdown** format.  
+- Markdown is particularly useful because it can be easily converted to Confluence or other documentation tools using converters like `pandoc`.  
+
+### 2. Representing Information
+- Representing information in **tables** is effective.  
+- Each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
+
+---
+
+## Strategies for Splitting Text into Meaningful Chunks
+
+### 1. Chunking with Overlap
+- Split large text into chunks with a **character or token overlap** between chunks.  
+- **Advantages:**  
+  - Maintains context between chunks.  
+  - Reduces risk of losing important information at chunk boundaries.  
+- **Disadvantages:**  
+  - Increases the total number of chunks → more embeddings and storage.  
+  - Can introduce redundancy in retrieval.  
+
+### 2. Language or Format-Aware Chunking
+- Split based on the type of content:  
+  - **Markdown or structured text:** split by headings, sections, or paragraphs.  
+  - **Code (Python, etc.):** split by functions, classes, or logical blocks.  
+- Ensures each chunk is **semantically coherent**.  
+
+### 3. Maintaining References
+- Keep a **reference to the original document** after splitting.  
+- Useful for workflows like **Reflexion**, where you might need to trace information back to the source.  
+- Helps the LLM provide **accurate citations or context**.  
+
+
+## Embedding Models vs Chat Models
+
+| Aspect | Embedding Models | Chat Models |
+|--------|----------------|------------|
+| **Purpose** | Convert text into **dense numerical vectors** representing semantic meaning. | Generate **natural language responses** given a prompt or conversation context. |
+| **Input / Output** | Input: text or document; Output: high-dimensional vector (list of floats). | Input: text or conversation; Output: text (string). |
+| **Use Cases** | Semantic search, similarity, clustering, recommendation, retrieval for RAG. | Chatbots, summarization, question answering, text completion. |
+| **Training Objective** | Learn to encode semantic relationships in vector space. | Learn to predict next token in sequence and generate coherent text. |
+| **Example Models** | OpenAI `text-embedding-3-small`, `text-embedding-3-large` | OpenAI `gpt-4`, `gpt-3.5-turbo` |
+| **Interaction** | Usually **stateless** and fast; no conversation history required. | Stateful (can use conversation history) for context and coherence. |
+
+**Key Point:**  
+- Chat models may internally use embeddings (e.g., for context or RAG workflows), but they are **not the same as dedicated embedding models**.  
+- Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
+
+## Vector Stores
+- Embeddings can be stored in a **vector store** for efficient retrieval.  
+- In our context, the simplest options were **PgVector** and **FAISS**:  
+  - **PgVector:** Integrated with PostgreSQL, making it easy to get security approval since it runs in RDS within a VPC.  
+  - **FAISS:** In-memory vector store providing high-performance similarity search.  
+
+# Using pgvector with Embedding Models
+
+## 1. Flexibility
+- pgvector is a **PostgreSQL extension** that stores and searches vector data efficiently.  
+- You can store embeddings from any model: OpenAI (`text-embedding-3`), HuggingFace, custom embeddings, etc.  
+- Queries like cosine similarity, Euclidean distance, or inner product can be applied regardless of the embedding source.
+
+## 2. Why Embedding Model Choice Matters
+- **Semantic quality:** Better embeddings produce more accurate similarity search results.  
+- **Dimensionality:** pgvector supports different vector sizes, but you must define a fixed dimension when creating the column. All vectors in that column must have the same size.  
+- **Use case alignment:**  
+  - `text-embedding-3-small` → lightweight, lower cost, suitable for smaller semantic search.  
+  - `text-embedding-3-large` → higher dimensional, better for nuanced semantic similarity.  
+- **Consistency:** If you mix embeddings from different models in the same column, similarity calculations may be meaningless.  
+
+## 3. Best Practices
+- Pick a **single embedding model per vector column**.  
+- Match vector dimension with the model output.  
+- Use an embedding model appropriate for your application (search, clustering, recommendation).  
+
