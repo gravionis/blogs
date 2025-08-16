@@ -518,3 +518,26 @@ for r in results:
 
 - **Key takeaway:**  
   - ColBERT is an embedding model designed to implement this **token-level scoring mechanism**, optimizing document retrieval for downstream applications.
+
+
+```python
+from ragatouille import RAGPretrainedModel
+# Load the ColBERT-based RAG model
+RAG = RAGPretrainedModel.from_pretrained("colbert-ir/colbertv2.0")
+
+# Example usage: encode documents or queries
+docs = ["LangChain helps build applications with LLMs efficiently."]
+query = "How to use LangChain for LLM apps?"
+
+# Encode the documents (token-level embeddings)
+doc_embeddings = RAG.encode_documents(docs)
+
+# Encode the query
+query_embedding = RAG.encode_query(query)
+
+# Retrieve top-k relevant documents
+results = RAG.retrieve(query_embedding, k=3)
+for r in results:
+    print(r)
+```
+
