@@ -207,11 +207,12 @@ Structured output is when the model returns data in a **predefined, machine-read
 
 
 ## RAG (Retrieval-Augmented Generation)
-- **3 stages**
-  - Indexing This stage involves preprocessing the external data source and storing embeddings that represent the data in a vector store where they can be easily retrieved.
-  - Retrieval This stage involves retrieving the relevant embeddings and data stored in the vector store based on a user’s query.
-  - Generation This stage involves synthesizing the original prompt with the retrieved relevant documents as one final prompt sent to the model for a prediction. 
 - Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
+  
+- **3 stages**
+  - **Indexing:** involves preprocessing the external data source and storing embeddings of data in a vector store.
+  - **Retrieval:** involves retrieving the relevant embeddings and data stored in the vector store based on a user’s query.
+  - **Generation:** Augmenting the original prompt with the relevant retrieved documents as one final prompt sent to the model for a prediction. 
 
 - **Key Issues:**  
   - Large context data can overwhelm the model.  
@@ -542,4 +543,56 @@ results = RAG.retrieve(query_embedding, k=3)
 for r in results:
     print(r)
 ```
+
+---
+
+# Effective Strategies Using RAG
+
+- Part of our data can be stored in a **vector store** for operations like semantic search.  
+- Depending on the data type, it may be more efficient to store data in **RDBMS** or **NoSQL** or **Object Store**.  
+
+### Query Transformation
+- Incoming inputs can be **varied and uncontrolled**, e.g.:  
+  1. Event-driven data  
+  2. Future integration with other systems  
+  3. User interface inputs  
+- **Solution:** Transform queries into a format the system can reliably answer.  
+- Benefits:  
+  - Ensures consistent processing across diverse inputs.  
+  - Helps address security concerns and prevents misuse.  
+
+### Step-Back Prompting
+- Ask the model to **analyze or reflect** before giving a final answer.  
+- Helps identify assumptions, gaps, or errors in reasoning.  
+- Reduces mistakes in **multi-step reasoning**.
+
+### Subquestion Prompting
+- Breaks a **complex question into smaller subquestions**.  
+- Answer each subquestion individually and aggregate results.  
+- Improves accuracy for **multi-part queries** and reduces hallucination.
+
+### Rewritten Prompting
+- Reformulates a query to **clarify intent or simplify language**.  
+- Ensures the LLM focuses on the intended question.  
+- Reduces misinterpretation and improves output quality.
+  
+---
+
+## Multi-Query Retrieval
+
+- **Problem:** A single user query may not capture the full scope of information needed for a comprehensive answer.  
+
+- **Solution:** Multi-query retrieval strategy:
+  1. **Query Expansion:** Use an LLM to generate multiple related queries from the user’s initial query.  
+  2. **Parallel Retrieval:** Execute each generated query against the data source (vector store, RDBMS, etc.).  
+  3. **Context Aggregation:** Combine retrieved results as prompt context for the LLM.  
+  4. **Final Output:** The LLM generates a more complete and accurate answer using the aggregated context.  
+
+- **Benefit:** Improves coverage and accuracy by capturing **all relevant information** across the dataset.
+- **Example**: What is the weather in Sydney?”, give me 5 possible queries:
+    1. What is the current temperature in Sydney?
+    2. Are there any weather warnings or alerts in Sydney right now?
+    3. What is the forecast for Sydney for the next few hours?
+    4. Is it sunny, rainy, or cloudy in Sydney currently?
+    5. What is the humidity and wind speed in Sydney today?
 
