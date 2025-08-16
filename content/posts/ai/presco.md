@@ -6,7 +6,7 @@ tags = ['LLM', 'Design Patterns']
 +++
 
 # Introduction
-AI WG 3 usecases. if haven't already will go through.
+AI WG 3 usecases are in progress. sharing the learnings as strategies or design patterns here. if haven't already will go through.
 * security arch approvals
 * cost
 * availablility of an appropriate model 
