@@ -526,7 +526,7 @@ for r in results:
 
 ---
 
-# Effective Strategies Using RAG
+## Effective Strategies Using RAG
 
 - Part of our data can be stored in a **vector store** for operations like semantic search.  
 - Depending on the data type, it may be more efficient to store data in **RDBMS** or **NoSQL** or **Object Store**.  
@@ -683,7 +683,7 @@ def prompt_router(query):
 - Logical routing: Enterprise databases, departmental knowledge bases, FAQs.  
 - Semantic routing: RAG systems, multi-domain knowledge search, chatbots, recommendation engines.  
 
-# Query Construction
+## Query Construction
 
 Query construction is the process of **transforming a user's natural language query into a structured query** that can be executed against various data sources. This is essential for retrieval systems, vector stores, and relational databases.
 
