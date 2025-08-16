@@ -499,3 +499,22 @@ results = vectorstore.similarity_search(query, k=3)
 for r in results:
     print(r.page_content)
 ```
+
+## ColBERT: Optimizing Embeddings
+
+- **Problem with standard embeddings:**  
+  - Fixed-length embeddings compress entire text into a single vector.  
+  - Useful for retrieval, but embedding irrelevant/redundant content can cause **hallucination** in LLM outputs.  
+
+- **ColBERT Approach:**  
+  1. **Contextual token embeddings:** Generate embeddings for **each token** in the document and query instead of a single vector.  
+  2. **Token-level similarity scoring:** Calculate similarity between **each query token** and **all document tokens**.  
+  3. **Aggregate scores:** For each query token, take the **maximum similarity** to any document token; sum these to get a **document-level score**.  
+
+- **Benefits:**  
+  - Provides **granular, token-level retrieval**.  
+  - Reduces irrelevant content impact.  
+  - Improves accuracy of retrieved context for LLMs.  
+
+- **Key takeaway:**  
+  - ColBERT is an embedding model designed to implement this **token-level scoring mechanism**, optimizing document retrieval for downstream applications.
