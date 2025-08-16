@@ -749,17 +749,15 @@ Relational databases require SQL queries, which are not naturally compatible wit
 Provide the LLM with table definitions using `CREATE TABLE` statements, including:
 - Column names and types
 - Sample rows (typically 2-3 examples)
-
 This helps the LLM generate syntactically and semantically correct SQL queries.
+
 #### Few-Shot Examples
 
 Include question-to-SQL examples in the prompt to guide query generation.
 
 **Example:**
-```
-Q: Total salary of HR employees
-SQL: SELECT SUM(salary) FROM employees WHERE department='HR';
-```
+* Q: Total salary of HR employees
+* SQL: SELECT SUM(salary) FROM employees WHERE department='HR';
 
 #### Error Handling
 When SQL execution fails, the LLM can:
