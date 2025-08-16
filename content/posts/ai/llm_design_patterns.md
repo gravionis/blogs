@@ -43,6 +43,14 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
     - Encoder-decoder (T5, BART): Good for translation, summarization, and more complex tasks.
   - Many LLMs are specialized for tasks like code generation, multimodal input (text + images), or domain-specific knowledge.
 
+| Model | Underlying Type | Notes / Focus |
+|-------|----------------|---------------|
+| ChatGPT (OpenAI) | GPT (Decoder-only) | Text generation, conversation, code completion. Latest versions (GPT-4) are multimodal capable. |
+| OpenAI GPT models (GPT-3, GPT-4, GPT-4 Turbo) | GPT (Decoder-only) | General-purpose text generation, reasoning, and chat. |
+| Gemini (DeepMind) | GPT-style / Decoder-first | Focused on chat, multimodal input (text + images), code generation. |
+| Mistral | GPT-style / Decoder-only | High-performance text generation; some models are mixture-of-experts for efficiency. |
+| LLaMA (Meta) | GPT-style / Decoder-only | Text generation, research-focused; open-weight versions for experimentation and instruction fine-tuning. |
+
 ## Some applicable Laws
 - Chinchilla's Law: optimal model performance when training tokens ≈ 20× model parameters.
     - Example: 70B parameters → ~1.4T tokens needed.
