@@ -341,3 +341,50 @@ Structured output is when the model returns data in a **predefined, machine-read
 - Match vector dimension with the model output.  
 - Use an embedding model appropriate for your application (search, clustering, recommendation).  
 
+## Vector Stores
+- Embeddings can be stored in a **vector store** for efficient retrieval.  
+- In our context, the simplest options were **PgVector** and **FAISS**:  
+  - **PgVector:** Integrated with PostgreSQL, making it easy to get security approval since it runs in RDS within a VPC.  
+  - **FAISS:** In-memory vector store providing high-performance similarity search.  
+
+# Using pgvector with Embedding Models
+
+## 1. Flexibility
+- pgvector is a **PostgreSQL extension** that stores and searches vector data efficiently.  
+- You can store embeddings from any model: OpenAI (`text-embedding-3`), HuggingFace, custom embeddings, etc.  
+- Queries like cosine similarity, Euclidean distance, or inner product can be applied regardless of the embedding source.
+
+## 2. Why Embedding Model Choice Matters
+- **Semantic quality:** Better embeddings produce more accurate similarity search results.  
+- **Dimensionality:** pgvector supports different vector sizes, but you must define a fixed dimension when creating the column. All vectors in that column must have the same size.  
+- **Use case alignment:**  
+  - `text-embedding-3-small` → lightweight, lower cost, suitable for smaller semantic search.  
+  - `text-embedding-3-large` → higher dimensional, better for nuanced semantic similarity.  
+- **Consistency:** If you mix embeddings from different models in the same column, similarity calculations may be meaningless.  
+
+## 3. Best Practices
+- Pick a **single embedding model per vector column**.  
+- Match vector dimension with the model output.  
+- Use an embedding model appropriate for your application (search, clustering, recommendation).  
+
+```python
+# 1. Semantic Search
+query = "Find documents about long documents."
+results = pgvector_store.similarity_search(query, k=3)
+
+# 2. Question Answering
+answer = qa.run("What does the document talk about?")
+
+# 3. Classification
+nearest_docs = pgvector_store.similarity_search("New text to classify", k=1)
+predicted_label = nearest_docs[0].metadata.get("label")
+
+# 4. Recommendation
+recommendations = pgvector_store.similarity_search("Guide on API design", k=5)
+
+# 5. Clustering
+all_embeddings = pgvector_store.get_embeddings()  # then apply KMeans externally
+
+# 6. Anomaly Detection
+new_embedding = embeddings.embed_query("Some unusual text.")
+nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
