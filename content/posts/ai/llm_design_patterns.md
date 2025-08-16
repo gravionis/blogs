@@ -607,11 +607,11 @@ RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the m
 3. **Reciprocal Rank Fusion (RRF):**  
    - Each retrieved document has a rank for each query.  
    - RRF combines these ranks into a single, unified ranking.  
-   - Formula:  
-     \[
-     \text{RRF Score} = \sum_{i} \frac{1}{k + \text{rank}_i}
-     \]  
-     where \(k\) is a constant (commonly 60) to reduce the effect of lower-ranked documents.  
+   - Formula:
+   - ```math
+     RRF Score = \sum_{i} \frac{1}{k + \text{rank}_i}
+     ```
+     where \(k\) is a constant (commonly 60) to reduce the effect of lower-ranked documents. a big contant so that the rank doesn't domainate and have advantage.
    - The most relevant documents across all queries rise to the top.
 4. **Context Aggregation:** Use the top-ranked documents as context for the LLM.
 5. **Final Output:** LLM generates a more accurate and comprehensive answer using aggregated, reranked context.
