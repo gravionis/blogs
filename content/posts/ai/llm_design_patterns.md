@@ -607,9 +607,7 @@ RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the m
 3. **Reciprocal Rank Fusion (RRF):**  
    - Each retrieved document has a rank for each query.  
    - RRF combines these ranks into a single, unified ranking.  
-   - Formula: ```math RRF Score = \sum_{i} \frac{1}{k + \text{rank}_i}```
-   - 
-     where \(k\) is a constant (commonly 60) to reduce the effect of lower-ranked documents. a big contant so that the rank doesn't domainate and have advantage.
+   - Formula: ```math  RRF Score = \sum_{i} \frac{1}{k + \text{rank}_i}``` where \(k\) is a constant (commonly 60) to reduce the effect of lower-ranked documents. a big contant so that the rank doesn't domainate and have advantage.
    - The most relevant documents across all queries rise to the top.
 4. **Context Aggregation:** Use the top-ranked documents as context for the LLM.
 5. **Final Output:** LLM generates a more accurate and comprehensive answer using aggregated, reranked context.
@@ -650,6 +648,131 @@ HyDE effectively **bridges the gap between natural language queries and document
 
 ---
 
+## Query Routing
+
+Query routing is a strategy used in retrieval or search systems to **direct a user query to the most relevant subset of data or service**. The goal is to improve retrieval efficiency, relevance, and response time. There are two main strategies: **logical routing** and **semantic routing**.
+
+---
+
+### 1. Logical Routing
+Logical routing directs queries based on **predefined rules, categories, or metadata** associated with the documents or data sources.
+- Documents are classified or tagged into **logical partitions** (e.g., departments, product lines, regions).  
+- Queries are routed to the partition(s) that match certain **keywords, tags, or rules**.  
+
+**Example:**  
+```python
+class RouteQuery(BaseModel):
+    """Route a user query to the most relevant datasource."""
+    datasource: Literal["python_docs", "js_docs"] = Field(
+        ...,
+        description="Choose the most relevant datasource based on keywords."
+    )
+```
+---
+
+### 2. Semantic Routing
+Semantic routing directs queries based on **meaning or intent**, often using embeddings, LLMs, or vector similarity, rather than strict keywords or rules.
+
+**How it works:**  
+- Queries are converted into **semantic representations** (embeddings).  
+- Documents or partitions are also represented in the same embedding space.  
+- The system routes the query to the **most semantically relevant subset**.  
+
+**Example:**  
+```python
+physics_template = """You are a very smart physics professor. You are great at     answering questions about physics in a concise and easy-to-understand manner.     When you don't know the answer to a question, you admit that you don't know. Here is a question: {query}"""
+math_template = """You are a very good mathematician. You are great at answering     math questions. You are so good because you are able to break down hard     problems into their component parts, answer the component parts, and then     put them together to answer the broader question. Here is a question: {query}"""
+
+# Embed prompts
+embeddings = OpenAIEmbeddings()
+prompt_templates = [physics_template, math_template]
+prompt_embeddings = embeddings.embed_documents(prompt_templates)
+
+# Route question to prompt
 
 
+@chain
+def prompt_router(query):
+    query_embedding = embeddings.embed_query(query)
+    similarity = cosine_similarity([query_embedding], prompt_embeddings)[0]
+    most_similar = prompt_templates[similarity.argmax()]
+    print("Using MATH" if most_similar == math_template else "Using PHYSICS")
+    return PromptTemplate.from_template(most_similar)
+```
+**Use Cases:**  
+- Logical routing: Enterprise databases, departmental knowledge bases, FAQs.  
+- Semantic routing: RAG systems, multi-domain knowledge search, chatbots, recommendation engines.  
+
+# Query Construction
+
+Query construction is the process of **transforming a user's natural language query into a structured query** that can be executed against various data sources. This is essential for retrieval systems, vector stores, and relational databases.
+
+---
+
+## 1. Text-to-Metadata Conversion
+
+Vector stores often support **metadata-based filtering**, allowing more precise searches. During the embedding process:
+
+- **Attach metadata**: Each vector can be associated with key-value pairs (e.g., document type, author, date)
+- **Filter on query**: When performing a search, you can specify metadata filters to narrow down results
+
+1. **Embed documents and attach metadata:**
+   ```python
+   {
+       "text": "Annual financial report 2024",
+       "embedding": [...],
+       "metadata": {"year": 2024, "type": "report"}
+   }
+   ```
+
+2. **Construct a query with metadata filters:**
+   ```python
+   query_embedding = embed("Financial summary 2024")
+   results = vector_store.search(
+       query_embedding,
+       filter={"year": 2024, "type": "report"}
+   )
+   ```
+
+### Self-Querying Approach
+An LLM can translate a natural language query into metadata filters automatically.
+
+**Example:** "Show event by event name and event publisher" → `{"event_name": "payment event", "event_publisher": "payment system"}`
+
+---
+
+## 2. Text-to-SQL
+Relational databases require SQL queries, which are not naturally compatible with human language. Text-to-SQL allows LLMs to translate user queries into SQL queries.
+
+### Strategies for Effective Translation
+#### Database Description (Grounding SQL)
+Provide the LLM with table definitions using `CREATE TABLE` statements, including:
+- Column names and types
+- Sample rows (typically 2-3 examples)
+
+This helps the LLM generate syntactically and semantically correct SQL queries.
+#### Few-Shot Examples
+
+Include question-to-SQL examples in the prompt to guide query generation.
+
+**Example:**
+```
+Q: Total salary of HR employees
+SQL: SELECT SUM(salary) FROM employees WHERE department='HR';
+```
+
+#### Error Handling
+When SQL execution fails, the LLM can:
+- Regenerate the query based on error messages
+- Repair the existing query with corrections
+- Improve robustness when working with dynamic or unfamiliar schemas
+
+## Summary
+| Query Construction Type | Description | Key Techniques |
+|------------------------|-------------|----------------|
+| **Text-to-Metadata** | Attach metadata to vectors and filter during search | Metadata key-value pairs, LLM-assisted filter extraction |
+| **Text-to-SQL** | Translate natural language to SQL queries | Database description, few-shot examples, error recovery |
+
+These strategies enable LLMs and retrieval systems to effectively interact with both unstructured and structured data, ensuring more accurate and relevant results.
+---
 
