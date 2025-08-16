@@ -388,3 +388,5 @@ all_embeddings = pgvector_store.get_embeddings()  # then apply KMeans externally
 # 6. Anomaly Detection
 new_embedding = embeddings.embed_query("Some unusual text.")
 nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
+```
+
