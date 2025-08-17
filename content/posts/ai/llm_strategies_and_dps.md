@@ -67,6 +67,24 @@ Before we proceed setting the stage.
 | Gemini                                                                                                       | Google DeepMind | Multimodal (text, image, audio), reasoning  | Multimodal assistants, content analysis           |
 | Anthropic (Claude), Amazon (Titan), Meta (Llama),<br/>Mistral, AI21 Labs (Jurassic), Cohere (Command) | Amazon Bedrock | Wide model selection, enterprise integration, scalable APIs | Chatbots, search, summarization, enterprise AI    |
 
+
+## Model Paramaters
+| Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
+|----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|
+| **temperature**      | Controls randomness. Lower = deterministic, higher = creative/unpredictable.                  | `0.0` – `2.0`       | `0.0` = deterministic, `1.0` = balanced, `>1.2` = very random.        |
+| **top_p**            | Nucleus sampling. keep adding tokens from smallest set until the cumulative probability ≥ p.           | `0.1` – `1.0`       | Lower = more focused, 1.0 = no restriction.                           |
+| **top_k**            | Limits token selection to the k most probable tokens at each step.                                           | `1` – `100`         | Low values reduce creativity, high values allow more variation.       |
+| **max_tokens**       | Maximum tokens to generate in the response.                                                   | Depends on model    | Controls output length.                                               |
+| **min_tokens**       | Minimum tokens to generate before stopping.                                                   | Depends on model    | Ensures longer answers if needed.                                     |
+| **presence_penalty** | Penalizes tokens already present in the text (encourages new topics).                          | `-2.0` – `2.0`      | Higher = more diversity.                                              |
+| **frequency_penalty**| Penalizes frequent tokens to reduce repetition.                                               | `-2.0` – `2.0`      | Higher = less repetition.                                             |
+| **stop**             | List of stop sequences where generation should halt.                                          | Strings / tokens    | Useful for structured responses.                                      |
+| **seed**             | Fixes randomness for reproducibility.                                                         | Integer             | Same seed = same output (with sampling).                              |
+| **length_penalty**   | Adjusts likelihood for longer sequences in beam search.                                       | `>0`                | Higher = longer outputs favored.                                      |
+| **early_stopping**   | Stops beam search when best candidates are found.                                             | `true` / `false`    | Speeds up generation, may miss better completions.                    |
+| **logit_bias**       | dictionary to control probability of certain token ids   | Useful for forcing or avoiding words.                                 |
+| **echo**             | Return the prompt along with the completion.                                                  | `true` / `false`    | For debugging or prompt reconstruction.                                |
+
 ## Popular LLM Tools and Frameworks
 
 | Tool/Framework         | Language   | Focus/Strengths                  | Integration      | Use Case Examples              |
@@ -183,24 +201,6 @@ Structured output model returns data in a **specific or predefined, machine-read
   - **traveling the meaning** in space by using the elementary math operations of addition and subtraction: for instance, the operation king – man + woman = queen. take the meaning (or semantic embedding) of king, subtract the meaning of man, I guess you reach something like a ruler, add woman, would've arrived close to word queen. 
   
 - Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
-
-## Model Paramaters
-| Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
-|----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|
-| **temperature**      | Controls randomness. Lower = deterministic, higher = creative/unpredictable.                  | `0.0` – `2.0`       | `0.0` = deterministic, `1.0` = balanced, `>1.2` = very random.        |
-| **top_p**            | Nucleus sampling. keep adding tokens from smallest set until the cumulative probability ≥ p.           | `0.1` – `1.0`       | Lower = more focused, 1.0 = no restriction.                           |
-| **top_k**            | Limits token selection to the k most probable tokens at each step.                                           | `1` – `100`         | Low values reduce creativity, high values allow more variation.       |
-| **max_tokens**       | Maximum tokens to generate in the response.                                                   | Depends on model    | Controls output length.                                               |
-| **min_tokens**       | Minimum tokens to generate before stopping.                                                   | Depends on model    | Ensures longer answers if needed.                                     |
-| **presence_penalty** | Penalizes tokens already present in the text (encourages new topics).                          | `-2.0` – `2.0`      | Higher = more diversity.                                              |
-| **frequency_penalty**| Penalizes frequent tokens to reduce repetition.                                               | `-2.0` – `2.0`      | Higher = less repetition.                                             |
-| **stop**             | List of stop sequences where generation should halt.                                          | Strings / tokens    | Useful for structured responses.                                      |
-| **seed**             | Fixes randomness for reproducibility.                                                         | Integer             | Same seed = same output (with sampling).                              |
-| **length_penalty**   | Adjusts likelihood for longer sequences in beam search.                                       | `>0`                | Higher = longer outputs favored.                                      |
-| **early_stopping**   | Stops beam search when best candidates are found.                                             | `true` / `false`    | Speeds up generation, may miss better completions.                    |
-| **logit_bias**       | dictionary to control probability of certain token ids   | Useful for forcing or avoiding words.                                 |
-| **echo**             | Return the prompt along with the completion.                                                  | `true` / `false`    | For debugging or prompt reconstruction.                                |
-
 
 ## RAG (Retrieval-Augmented Generation)
 - Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
