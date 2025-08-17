@@ -443,32 +443,38 @@ retriever = MultiVectorRetriever(
   - Always validate or post-process LLM-generated math answers with external logic or tools.
 
 ### Strategies for Security Compliance
-- Hybrid model approach to classify data into secure data before using it on a public model.
-- rewrite-retrieve-read and multi query retrieval to compensate for queries with ill intentions
-
+- **hybrid model approach**: classify and filter sensitive or secure data before sending to public or third-party models.
+- **rewrite-retrieve-read** and **multi-query retrieval** patterns to detect and mitigate queries with ill intent or attempts to extract confidential information.
+- **map and mask** pattern - left side is secure data right side is public data.
+- **rewrite-match-return** 
+  - Prefer on-prem or private models for highly confidential workloads.
+  - Implement prompt sanitization and validation to prevent prompt injection attacks.
+  - access controls and audit logging data & queries.
+  - Regularly review and update security policies.
 
 ### Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) —  
-<img width="1810" height="1356" alt="image" src="https://github.com/user-attachments/assets/781bebc6-19d2-4814-af83-0983f081b6ba" />
-
 - **Problem:**  
   - RAG systems must handle:
     - **Lower-level questions:** referencing specific facts in a single document.  
     - **Higher-level questions:** synthesizing ideas across multiple documents.  
-  - Standard k-nearest neighbors (k-NN) retrieval on document chunks struggles to cover both types effectively.  
+  - Simple k-NN retrieval on chunks struggles to cover both aspects.  
 
 - **Solution: RAPTOR Approach**
-  - **Step 1:** Create **document summaries** capturing higher-level concepts.  
-  - **Step 2:** **Embed and cluster** the documents based on semantic similarity.  
-  - **Step 3:** **Summarize each cluster**, producing higher-level abstractions.  
-  - **Step 4:** Repeat the process **recursively**, forming a **tree of summaries** with increasing abstraction.  
+  - First split document into **Chunks**.  
+  - **document summaries** capturing higher-level concepts.  
+  - **Embed and cluster** the documents based on semantic similarity.  
+  - **Summarize each cluster**, producing higher-level abstractions.  
+  - Repeat **recursively**, forming a **tree of summaries** with increasing abstraction.  
 
 - **Indexing:**  
   - Index **both the summaries and the original documents** together.  
-  - Ensures coverage for **questions ranging from low-level facts to high-level concepts**.
+  - Covers for **questions ranging from low-level to high-level concepts**.
 
 - **Benefit:**  
   - Efficient handling of **multi-granular retrieval**.  
   - Supports queries spanning **single facts to overarching ideas**.
+
+<img width="1810" height="1356" alt="image" src="https://github.com/user-attachments/assets/781bebc6-19d2-4814-af83-0983f081b6ba" />
  
 ```python
 # 2. Split documents into chunks
