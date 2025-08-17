@@ -83,12 +83,11 @@ Before we proceed setting the stage.
     - Unified Intelligence System: integrates multiple reasoning and perception modules for more general intelligence.
     - Mixture-of-Experts: routes inputs to specialized sub-models for improved efficiency and accuracy.
     - Multimodal Integration: processes and understands text, images, and other data types together.
-- Sometimes we have bigger models but often we have restrictions using best available model due reasons mentioned before. Hence we have to compensate with design patterns. we will be going to few models available to atleast the Fintech and how do we get past some of the common issues.
 
 ### Transformer Architecture: 
   - LLMs use the transformer neural network architecture.
   - Transformers understand relationships between words, regardless of their position in the text.
-  - The architecture enables prediction of the next word in a sequence. that is to say they should not expected to perform for accurate mathematical computation; lot of our AI usecases some have some math involved.
+  - The architecture enables us to **predict the next word** in a sequence - that is to say they should **not be expected** to perform for **accurate mathematical computation**; lot of our AI usecases some have some math involved.
 
 ### Tokens:
   - A token is a chunk of text, it could be entire word or part.
@@ -126,8 +125,8 @@ Before we proceed setting the stage.
 | Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
 |----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|
 | **temperature**      | Controls randomness. Lower = deterministic, higher = creative/unpredictable.                  | `0.0` – `2.0`       | `0.0` = deterministic, `1.0` = balanced, `>1.2` = very random.        |
-| **top_p**            | Nucleus sampling. keep adding tokens from smallest set until the cumulative probability ≥ p.           | `0.1` – `1.0`       | Lower = more focused, 1.0 = no restriction.                           |
-| **top_k**            | Limits token selection to the k most probable tokens at each step.   | `1` – `100`         | Low values reduce creativity, high values allow more variation.       |
+| **top_p**            | Nucleus sampling. keep the cumulative probability to p.           | `0.1` – `1.0`       | Lower = more focused, 1.0 = no restriction.                           |
+| **top_k**            | token selection is from the k most probable tokens.   | `1` – `100`         | Low values reduce creativity, high values allow more variation.       |
 | **max_tokens**       | Maximum tokens to generate in the response.                                                   | Depends on model    | Controls output length.                                               |
 | **min_tokens**       | Minimum tokens to generate before stopping.                                                   | Depends on model    | Ensures longer answers if needed.                                     |
 | **presence_penalty** | Penalizes tokens already present in the text (encourages new topics).                          | `-2.0` – `2.0`      | Higher = more diversity.                                              |
@@ -185,17 +184,15 @@ If `k = 3`:
 ### Prompt
 - A prompt is the input text or set of instruction given to an LLM to guide its response. 
 - Considerations for prompts Common Issues:
-  - **Clarity**: Avoiding ambiguity to get accurate results. Cannot use our own DSLs. 
-  - **Context**: Provide relevant background or examples.
-  - **Length**: Too short may lack detail; too long may confuse or dilute intent.
-  - **Structure**: Use formatting, lists, or step-by-step instructions for better outputs.
-  - **Constraints**: Specify requirements, style, or limitations as needed.
-  - **Iteration**: Refine prompts based on model responses to improve outcomes.
+  - **Clarity**: We have ambiguity or we use our own DSLs. 
+  - **Context**: Prompts lack enough relevant background or examples.
+  - **Length**: Too short - lack detail; too long - confuse or dilute intent.
+  - **Structure**: Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral.
+  - **Iteration**: you may have to refine prompts based on responses to improve outcomes.
   - **Inconsistent results**: Due to different models and also different model parameters.
-  - Output format varies by model:
+  - **Structured Output** format varies by model:
     - Some prepend `assistant:` or add Markdown fences (```json```).
     - Some omit required fields or slightly alter the structure.
-    - Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral.
   - Models may generate **extra explanations** or comments alongside the data.
   - Inconsistent **data types** (numbers as strings, null vs missing fields).
   - Missing **mandatory keys** in JSON or headers in CSV.
