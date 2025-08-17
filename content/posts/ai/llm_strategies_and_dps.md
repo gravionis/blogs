@@ -555,16 +555,12 @@ for r in results:
 ```
 <img width="1400" height="578" alt="image" src="https://github.com/user-attachments/assets/cc1d9783-9da8-4220-a1c4-e7b48beb5e16" />
 
-## Effective Strategies Using RAG
-
-- Part of our data can be stored in a **vector store** for operations like semantic search.  
-- Depending on the data type, it may be more efficient to store data in **RDBMS** or **NoSQL** or **Object Store**.  
-
+## Control over Prompting Strategies
 ### Query Transformation
-- Incoming inputs can be **varied and uncontrolled**, e.g.:  
-  1. Event-driven data  
-  2. Future integration with other systems  
-  3. User interface inputs  
+- Incoming inputs can be **varied and uncontrolled**, sources may be:  
+  1. Event-driven data (which may contain secure data)
+  2. Future integration with new systems (which may be outside VPC)
+  3. User inputs  
 - **Solution:** Transform queries into a format the system can reliably answer.  
 - Benefits:  
   - Ensures consistent processing across diverse inputs.  
@@ -580,11 +576,22 @@ for r in results:
 - Answer each subquestion individually and aggregate results.  
 - Improves accuracy for **multi-part queries** and reduces hallucination.
 
+## Patterns
 ### Rewritten Prompting aka Rewrite-Retrieve-Read 
+- We have seen before 2 patterns
+  - **map and mask** pattern - left side is secure data right side is public data.
+  - **rewrite-match-return** 
 - Reformulates a query to **clarify intent or simplify language**.  
 - Ensures the LLM focuses on the intended question.  
 - Reduces misinterpretation and improves output quality.
-  
+
+## Effective Strategies Using RAG
+- Depending on the data type and usecase , it may be more efficient to spread data across
+  - **vector store** for operations like semantic search.
+  - **RDBMS** for structured data with relationships.
+  - **NoSQL** for unstructured or semi-structured data.
+  - **Object Store**. for large files or blobs.
+
 ### Multi-Query Retrieval
 <img width="1676" height="596" alt="image" src="https://github.com/user-attachments/assets/595030dc-1a2b-4fa4-8a82-4ec58822a72d" />
 
