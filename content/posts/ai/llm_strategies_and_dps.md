@@ -265,10 +265,14 @@ Structured output model returns data in a **specific or predefined, machine-read
 | **templating** | use of frameworks that support templating - easier to perform batch operations                       |
 
 ### Embeddings
-- Embeddings represent text as a long array of floating-point numbers called **dimensions**.  
-- aka. **dense vector** representations of text (words, sentences, or documents).
-- they capture semantic meaning
-- usecases - **semantic search, recommendation systems, document classification, clustering, and information retrieval**.
+- Embeddings represent text (words, sentences, or documents) as an **array of floating-point** numbers called **dimensions**, aka. **dense vector** .
+- they capture semantic meaning of text
+- usecases
+    - **semantic search
+    - recommendation systems
+    - document classification
+    - clustering
+    - information retrieval**.
 - Common models for embeddings: **OpenAI Embeddings, Cohere, Sentence Transformers, BERT.**
   - These are called **dense embeddings**, where dimensions have non-zero values.  
   - Each floating-point value represents a **semantic dimension** of the text.
