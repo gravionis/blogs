@@ -315,67 +315,7 @@ Structured output model returns data in a **specific or predefined, machine-read
   - **Recommendation Systems:** Suggest items based on similarity of embeddings.  
   - **Clustering & Topic Analysis:** Group similar content or detect topics.  
   - **Anomaly Detection:** Identify outliers by distance from typical embeddings.
-
-## Strategis for Loading Documents into Chat Model Prompts 
-
-### 1. Current Knowledge Base
-- Many solution designs and documentation have structured templates and formats.  
-- These templates often provide the **context needed for the LLM**.  
-- Knowledge can be provided as plain text, PDF, or **Markdown** format.  
-- Markdown is particularly useful because it can be easily converted to Confluence or other documentation tools using converters like `pandoc`.  
-
-### 2. Representing Information
-- Representing information in **tables** is effective.  
-- Each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
-
-## Strategies for Splitting Text into Meaningful Chunks
-
-### 1. Chunking with Overlap
-- Split large text into chunks with a **character or token overlap** between chunks.  
-- **Advantages:**  
-  - Maintains context between chunks.  
-  - Reduces risk of losing important information at chunk boundaries.  
-- **Disadvantages:**  
-  - Increases the total number of chunks → more embeddings and storage.  
-  - Can introduce redundancy in retrieval.  
-
-### 2. Language or Format-Aware Chunking
-- Split based on the type of content:  
-  - **Markdown or structured text:** split by headings, sections, or paragraphs.  
-  - **Code (Python, etc.):** split by functions, classes, or logical blocks.  
-- Ensures each chunk is **semantically coherent**.  
-
-### 3. Maintaining References
-- Keep a **reference to the original document** after splitting.  
-- Useful for workflows like **Reflexion**, where you might need to trace information back to the source.  
-- Helps the LLM provide **accurate citations or context**.  
-
-### 4. Using PgVector with Embedding Models
-
-* 1. Flexibility
-  - PgVector is a **PostgreSQL extension** that stores and searches vector data efficiently.  
-  - You can store embeddings from any model: OpenAI (`text-embedding-3`), HuggingFace, custom embeddings, etc.  
-  - Queries like cosine similarity, Euclidean distance, or inner product can be applied regardless of the embedding source.
-
-* 2. Why Embedding Model Choice Matters
-  - **Semantic quality:** Better embeddings produce more accurate similarity search results.  
-  - **Dimensionality:** PgVector supports different vector sizes, but you must define a fixed dimension when creating the column. All vectors in that column must have the same size.  
-  - **Use case alignment:**  
-    - `text-embedding-3-small` → lightweight, lower cost, suitable for smaller semantic search.  
-    - `text-embedding-3-large` → higher dimensional, better for nuanced semantic similarity.  
-  - **Consistency:** If you mix embeddings from different models in the same column, similarity calculations may be meaningless.  
-
-* 3. Best Practices
-  - Pick a **single embedding model per vector column**.  
-  - Match vector dimension with the model output.  
-  - Use an embedding model appropriate for your application (search, clustering, recommendation).  
-
-* Vector Stores
-  - Embeddings can be stored in a **vector store** for efficient retrieval.  
-  - In our context, the simplest options were **PgVector** and **FAISS**:  
-    - **PgVector:** Integrated with PostgreSQL, making it easy to get security approval since it runs in RDS within a VPC.  
-    - **FAISS:** In-memory vector store providing high-performance similarity search.  
-
+  
 ```python
 # 1. Semantic Search
 query = "Find documents about long documents."
@@ -399,6 +339,42 @@ new_embedding = embeddings.embed_query("Some unusual text.")
 nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ```
 
+## Strategis for Loading Documents into Chat Model Prompts 
+
+### 1. Current Knowledge Base
+- Use of structured templates and formats for knowledge base - serve as **context needed for the LLM**.
+- follow best practices of prompt engineering check results in Copilot after generation.
+- Knowledge can be provided as plain text, PDF, or **Markdown** format.  
+- Markdown format easily converted to and from Confluence tools like `pandoc`.  
+
+### 2. Representing Information based on Retrieval strategy
+- Representing information in **tables** is effective.  
+- Each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
+- tables might sometimes be stored in RDBMS better than vector store.
+- Use of object store or nosql where applicable.
+ 
+## Strategies for Splitting Text into Meaningful Chunks
+
+### 1. Chunking with Overlap
+- Split large text into chunks with a **character or token overlap** between chunks.  
+- **Advantages:**  
+  - Maintains context between chunks.  
+  - Reduces risk of losing important information at chunk boundaries.  
+- **Disadvantages:**  
+  - Increases the total number of chunks → more embeddings and storage.  
+  - Can introduce redundancy in retrieval.  
+
+### 2. Language or Format-Aware Chunking
+- Split based on the type of content:  
+  - **Markdown or structured text:** split by headings, sections, or paragraphs.  
+  - **Code (Python, etc.):** split by functions, classes, or logical blocks.  
+- Ensures each chunk is **semantically coherent**.  
+
+### 3. Maintaining References
+- Keep a **reference to the original document** after splitting.  
+- Useful for workflows like **Reflexion**, where you might need to trace information back to the source.  
+- Helps the LLM provide **accurate citations or context**.  
+
 ### Vector DB Issues  
 - **Document Change Tracking**: Use a SQL record manager library or similar strategies to track document updates.
   - Versioning with Metadata: Each document update creates a new version; store version_id in metadata.
@@ -407,8 +383,6 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
   ```python
   vectorstore.similarity_search(query, filter={"is_active": True})
   ```
-- **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle — separate write (doc updates) and read (retrieval) models for consistency.  
-- **Approach**: Maintain unique IDs across vector store and doc store for sync.  
 
 ## Patterns
 
@@ -416,8 +390,11 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ## MultiVector Retrieval  
 <img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
 
-- Store summaries or embeddings in **vector store**.  
-- Store original content (tables, full text) in **doc store** (RDBMS, NoSQL, object store, or in-memory).  
+- **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle separate write (doc updates) and read (retrieval) models for consistency.
+- seperate out the **vector store** and **doc store**.
+- **Approach**: Maintain unique IDs across vector store and doc store for sync.  
+- **vector store** - Store summaries or embeddings  
+- **doc store** - Store original content (tables, full text) in RDBMS, NoSQL, object store, or in-memory docstore.  
 - Link via **ID references**.  
     
 ```python
@@ -468,7 +445,6 @@ retriever = MultiVectorRetriever(
 
 ### Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) —  
 <img width="1810" height="1356" alt="image" src="https://github.com/user-attachments/assets/781bebc6-19d2-4814-af83-0983f081b6ba" />
-
 
 - **Problem:**  
   - RAG systems must handle:
