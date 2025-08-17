@@ -434,9 +434,13 @@ retriever = MultiVectorRetriever(
 )
 ```
 ### Strategies for Mathematical operations
-- expose function or tools that can take over mathematical operations
-- use function or tool invocation to achieve the same effect.
-- if possible convert the mathematical problem into a classification problem and then use the function or tool invocation to get the desired effect.
+- GPT models excel at predicting the next word and reasoning, but are not reliable for accurate mathematical calculations.
+- Strategies to handle mathematical operations:
+  - Use external tools or function calling (e.g., calculator APIs, Python code execution) for math tasks.
+  - Integrate tool-calling patterns so the LLM delegates math problems to a dedicated computation engine.
+  - Convert math queries into structured requests that trigger tool or function invocation.
+  - For classification-type math (e.g., "is this a credit or debit"), use the LLM to route the query to the appropriate tool.
+  - Always validate or post-process LLM-generated math answers with external logic or tools.
 
 ### Strategies for Security Compliance
 - Hybrid model approach to classify data into secure data before using it on a public model.
