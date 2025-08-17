@@ -336,24 +336,26 @@ all_embeddings = pgvector_store.get_embeddings()  # then apply KMeans externally
 new_embedding = embeddings.embed_query("Some unusual text.")
 nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ```
-
+---
 ## Some Strategis: 
 
 ### 1. Information in Confluence/knowledge bases:
 - Start using Standard and Structured templates for documentation - serve as **context needed for the LLM**.
 - follow best practices of **prompt engineering** check results in Copilot after generation.
 - Knowledge can be provided as plain text, PDF, or **Markdown** format.  
-- Markdown format easily converted to and from Confluence tools like `pandoc`.  
+- Markdown format easily converted to and from Confluence tools like `pandoc`.
+
+---
 
 ### 2. Representing Information based on Retrieval strategy
 - Sometimes representing information in **table** form is effective.  
 - Each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
 - tables might sometimes be stored in RDBMS better than vector store.
 - Use of object store or nosql where applicable.
- 
-## Strategies for Splitting Text into Meaningful Chunks
 
-### 1. Chunking with Overlap
+---
+
+### 3. Chunking with Overlap (Strategy for Splitting Text into Meaningful Chunks)
 - create an **overlap** between chunks or documents.  
 - **Advantages:**  
   - Maintains context between chunks.  
@@ -362,38 +364,64 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
   - **Increases the total number of chunks** → more embeddings and storage.  
   - Can introduce **redundancy in retrieval**.  
 
-### 2. Language or Format-Aware Chunking
+### 2. Language or Format-Aware Chunking (Strategy for Splitting Text into Meaningful Chunks)
 - Split based on the type of content:  
   - **Markdown or structured text:** split by headings, sections, or paragraphs.  
   - **Code (Python, etc.):** split by functions, classes, or logical blocks.  
 - Ensures each chunk is **semantically coherent or consistent**.  
 
-### 3. Maintaining References
+---
+
+### 3. Maintaining References (Strategy for Splitting Text into Meaningful Chunks)
 - Retain a **reference to the original document** after splitting.  
 - Useful for workflows like **Reflexion**, where you might need to trace information back to the source.  
-- Useful when you need to provide provide **accurate citations or references**.  
+- Useful when you need to provide provide **accurate citations or references**.
 
-### Vector DB Issues  
-- **Document Change Tracking** - part of the document or chunk may vary or be updated:
-  - libraries such as **SQLRecordManager** or similar strategies to track document updates.
-  - **Versioning with Metadata**: Each document update creates a new version; store version_id in metadata.
-  - **Hash-Based Updates**: Compute hash for each chunk; update only changed chunks.
-  - **Soft Deletes (Active Flag)**: Mark old chunks as is_active=False and insert new ones.
-  ```python
-  vectorstore.similarity_search(query, filter={"is_active": True})
-  ```
+---
 
+### 4. Strategies for Mathematical operations
+- GPT models excel at predicting the next word and reasoning, but are not reliable for accurate mathematical calculations.
+- Strategies to handle mathematical operations:
+  - Use external tools or function calling (e.g., calculator APIs, Python code execution) for math tasks.
+  - Integrate tool-calling patterns so the LLM delegates math problems to a dedicated computation engine.
+  - Convert math queries into structured requests that trigger tool or function invocation.
+  - For classification-type math (e.g., "is this a credit or debit"), use the LLM to route the query to the appropriate tool.
+  - Always validate or post-process LLM-generated math answers with external logic or tools.
+
+---
+
+### 5. Strategies for Security Compliance
+- **hybrid model approach**: classify and filter sensitive or secure data before sending to public or third-party models.
+- **rewrite-retrieve-read** and **multi-query retrieval** patterns to detect and mitigate queries with ill intent or attempts to extract confidential information.
+- **map and mask** pattern - left side is secure data right side is public data.
+- **rewrite-match-return** 
+  - Prefer on-prem or private models for highly confidential workloads.
+  - Implement prompt sanitization and validation to prevent prompt injection attacks.
+  - access controls and audit logging data & queries.
+  - Regularly review and update security policies.
+
+---
+
+### 6. Strategy for Vector DB - Document Change Tracking** 
+- part of the document or chunk may vary or be updated:
+- libraries such as **SQLRecordManager** or similar strategies to track document updates.
+- **Versioning with Metadata**: Each document update creates a new version; store version_id in metadata.
+- **Hash-Based Updates**: Compute hash for each chunk; update only changed chunks.
+- **Soft Deletes (Active Flag)**: Mark old chunks as is_active=False and insert new ones.
+```python
+vectorstore.similarity_search(query, filter={"is_active": True})
+```
+---
 ## Some Design Patterns:
 
-## MultiVector Retrieval  
+### MultiVector Retrieval  
 - **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
 - **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle separate write (doc updates) and read (retrieval) models for consistency.
 - seperate out the **vector store** and **doc store**.
-- **Approach**: Maintain unique IDs across vector store and doc store for sync.  
-- **vector store** - Store summaries or embeddings  
-- **doc store** - Store original content (tables, full text) in RDBMS, NoSQL, object store, or in-memory docstore.  
+- **Approach**: Maintain unique IDs across vector store and doc store.   
+    - **vector store**: Store summaries or embeddings  
+    - **doc store**" Store original content (tables, full text) in RDBMS, NoSQL, object store, or in-memory docstore.  
 - Link via **ID references**.  
-<img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
     
 ```python
 # Helper function to fetch docs from MySQL
@@ -431,24 +459,9 @@ retriever = MultiVectorRetriever(
     id_key="id"                  # ID used in vector store entries
 )
 ```
-### Strategies for Mathematical operations
-- GPT models excel at predicting the next word and reasoning, but are not reliable for accurate mathematical calculations.
-- Strategies to handle mathematical operations:
-  - Use external tools or function calling (e.g., calculator APIs, Python code execution) for math tasks.
-  - Integrate tool-calling patterns so the LLM delegates math problems to a dedicated computation engine.
-  - Convert math queries into structured requests that trigger tool or function invocation.
-  - For classification-type math (e.g., "is this a credit or debit"), use the LLM to route the query to the appropriate tool.
-  - Always validate or post-process LLM-generated math answers with external logic or tools.
+<img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
 
-### Strategies for Security Compliance
-- **hybrid model approach**: classify and filter sensitive or secure data before sending to public or third-party models.
-- **rewrite-retrieve-read** and **multi-query retrieval** patterns to detect and mitigate queries with ill intent or attempts to extract confidential information.
-- **map and mask** pattern - left side is secure data right side is public data.
-- **rewrite-match-return** 
-  - Prefer on-prem or private models for highly confidential workloads.
-  - Implement prompt sanitization and validation to prevent prompt injection attacks.
-  - access controls and audit logging data & queries.
-  - Regularly review and update security policies.
+---
 
 ### Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) —  
 - **Problem:**  
