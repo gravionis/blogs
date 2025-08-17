@@ -62,7 +62,7 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
     6. [MCP (Model Context Protocol / Model Composition Pattern)](#mcp-model-context-protocol--model-composition-pattern)
 
 ## Introduction
-Instruction were to keep it basic &  AI WG experiences 3 usecases are in progress. we will be sharing some basics wrt to the learnings as strategies or design patterns here. if haven't already will go through.
+Instruction were to keep it basic &  AI WG experiences 3 usecases are in progress; we will be sharing  strategies or design patterns. If haven't already will go through chances are that you will.
 * security arch approvals
 * cost
 * availablility of an appropriate model 
