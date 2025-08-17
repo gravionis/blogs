@@ -265,7 +265,7 @@ Structured output model returns data in a **specific or predefined, machine-read
 | **templating** | use of frameworks that support templating - easier to perform batch operations                       |
 
 ### Embeddings
-- converts text into a long array of floating-point numbers called dimensions.  
+- Embeddings represent text as a long array of floating-point numbers called **dimensions**.  
 - aka. **dense vector** representations of text (words, sentences, or documents).
 - they capture semantic meaning
 - usecases - **semantic search, recommendation systems, document classification, clustering, and information retrieval**.
