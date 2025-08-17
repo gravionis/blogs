@@ -302,7 +302,7 @@ Structured output model returns data in a **specific or predefined, machine-read
 
 ### Vector Store
 - A vector store is a database for storing and searching embeddings.
-- good for vector operations such as similarity search, retrieval of relevant documents
+- good for vector operations such as:
   - **Semantic Search:** Find documents or text that are meaningfully similar to a query.
   - **Classification:** Assigning a new document to a previously identified group or label (for instance, a topic)
   - **Question Answering:** Retrieve relevant context for LLMs to answer questions accurately.  
@@ -339,14 +339,14 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 
 ## Strategis for Loading Documents into Chat Model Prompts 
 
-### 1. Current Knowledge Base
-- Use of structured templates and formats for knowledge base - serve as **context needed for the LLM**.
-- follow best practices of prompt engineering check results in Copilot after generation.
+### 1. Information in Confluence/knowledge bases:
+- Start using Standard and Structured templates for documentation - serve as **context needed for the LLM**.
+- follow best practices of **prompt engineering** check results in Copilot after generation.
 - Knowledge can be provided as plain text, PDF, or **Markdown** format.  
 - Markdown format easily converted to and from Confluence tools like `pandoc`.  
 
 ### 2. Representing Information based on Retrieval strategy
-- Representing information in **tables** is effective.  
+- Sometimes representing information in **table** form is effective.  
 - Each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
 - tables might sometimes be stored in RDBMS better than vector store.
 - Use of object store or nosql where applicable.
