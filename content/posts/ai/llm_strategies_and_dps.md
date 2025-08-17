@@ -270,13 +270,13 @@ Structured output model returns data in a **specific or predefined, machine-read
 - Each floating-point value represents a **semantic dimension** of the text.
 - **traveling the meaning** in space possible using the elementary math operations of addition and subtraction: **king** – **man** = **monarch** + **woman** = would arrived close to word **queen**. 
 - Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
-- usecases
-    - **semantic search
+- **usecases**
+    - semantic search
     - recommendation systems
     - document classification
     - clustering
-    - information retrieval**.
-- Common models for embeddings:
+    - information retrieval.
+- **Common models for embeddings**:
     - OpenAI Embeddings
     - Cohere
     - Sentence Transformers
