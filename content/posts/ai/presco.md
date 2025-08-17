@@ -544,7 +544,7 @@ for r in results:
     5. What is the humidity and wind speed in Sydney today?
 
 ### RAG-Fusion
-<img width="367" height="137" alt="image" src="https://github.com/user-attachments/assets/b17adcdd-049c-4b7f-8efb-68f129fbcdec" />
+<img width="1284" height="481" alt="image" src="https://github.com/user-attachments/assets/9597f42d-7e23-40f5-985e-cabef52035b3" />
 
 RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the multi-query retrieval strategy. It enhances the retrieval process by introducing a **final reranking step** using the **Reciprocal Rank Fusion (RRF)** algorithm.
 
