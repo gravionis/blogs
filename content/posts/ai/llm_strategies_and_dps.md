@@ -62,7 +62,7 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
     6. [MCP (Model Context Protocol / Model Composition Pattern)](#mcp-model-context-protocol--model-composition-pattern)
 
 ## Introduction
-Instruction were to keep it basic &  AI WG experiences 3 usecases are in progress; we will be sharing  strategies or design patterns. If haven't already will go through chances are that you will.
+Instruction were to keep it basic & experiences of AI WG, we have 3 usecases are in progress; we will be sharing strategies or design patterns. If haven't already will go through chances are that you will.
 * security arch approvals
 * cost
 * availablility of an appropriate model 
@@ -76,7 +76,7 @@ Before we proceed setting the stage.
 ## Concepts 
 ### LLMs
 - GPT-3: 175B Parameters, ~350B tokens. GPT-4:is 6x bigger. GPT-5 was supposed to be 20x bigger but is counter intuitive 300B Parameters.
-- Chinchilla's Law: model performance optimal when training tokens ≈ 20 × model parameters.
+- Chinchilla's Law: model performance optimal when number of training tokens ≈ 20 × model parameters.
     - Example: 70B parameters → ~1.4T tokens needed.
     - hundreds of billions/trillions of parameters requires enormous data more than available high-quality text.
   - GPT-5 leverages on many architectural innovations like:
@@ -87,7 +87,7 @@ Before we proceed setting the stage.
 ### Transformer Architecture: 
   - LLMs use the transformer neural network architecture.
   - Transformers understand relationships between words, regardless of their position in the text.
-  - The architecture enables us to **predict the next word** in a sequence - that is to say they should **not be expected** to perform for **accurate mathematical computation**; lot of our AI usecases some have some math involved.
+  - The architecture enables us to **predict the next word** in a sequence - they should **not be expected** to perform **accurate mathematical computation**; lot of our AI usecases some have some math oprations involved.
 
 ### Tokens:
   - A token is a chunk of text, it could be entire word or part.
@@ -99,7 +99,7 @@ Before we proceed setting the stage.
   - Two main techniques:
     - Predict next word (causal language modeling): Used by models like GPT; generates text by predicting the next token in a sequence.
     - Predict masked word: Used by models like BERT; predicts masked tokens within a sentence for better understanding of context.
-  - GPT models: Focus on text generation, conversation, and completion tasks.
+  - **GPT models - : Focus on text generation, conversation, and completion tasks.**
   - BERT models: Focus on understanding, classification, and extracting information from text.
   - Other flavours:
     - Encoder-only (BERT): Good for understanding and classification.
