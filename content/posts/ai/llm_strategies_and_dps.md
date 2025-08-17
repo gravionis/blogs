@@ -283,7 +283,7 @@ Structured output model returns data in a **specific or predefined, machine-read
     - BERT
 
 ### RAG (Retrieval-Augmented Generation)
-- Models have limited knowledge in the context of a specific business use case; augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
+- Models have limited knowledge in the context of a specific business use case. RAG helps LLMs answer questions beyond their training data.
   
 - **3 stages**
   - **Indexing:** Create embeddings of data and Store it in vector store.
