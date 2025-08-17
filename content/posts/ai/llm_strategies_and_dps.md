@@ -86,6 +86,7 @@ Before we proceed setting the stage.
 | **echo**             | Return the prompt along with the completion.                                                  | `true` / `false`    | For debugging or prompt reconstruction.                                |
 
 ### top p
+
 | Token | Probability |
 |-------|------------|
 | the   | 0.4        |
@@ -101,6 +102,7 @@ If `p = 0.8`:
 - Next token is sampled **only** from this set.
 
 ### top k 
+
 Suppose the token probabilities are:
 
 | Token | Probability |
