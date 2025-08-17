@@ -184,10 +184,10 @@ If `k = 3`:
   - **Clarity**: We have ambiguity or we use our own DSLs. 
   - **Context**: Prompts lack enough relevant background or examples.
   - **Length**: Too short - lack detail; too long - confuse or dilute intent.
-  - **Structure**: Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral.
   - **Iteration**: you may have to refine prompts based on responses to improve outcomes.
   - **Inconsistent results**: Due to different models and also different model parameters.
   - **Structured Output** format varies by model:
+    - Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral. 
     - Some prepend `assistant:` or add Markdown fences (```json```).
     - Some omit required fields or slightly alter the structure.
   - Models may generate **extra explanations** or comments alongside the data.
