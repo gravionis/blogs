@@ -81,7 +81,7 @@ Quite a number of topics to cover. Instruction were to keep it basic & experienc
 * cost
 * availablility of an appropriate model 
 * model support for context size
-* amount of data in the knowledge base.
+* amount of data in the confluence or knowledge base.
 * format of the data (e.g table, plantuml xmls)
 * challenges with the quality of context data.
 * Speed of models
@@ -113,7 +113,6 @@ Before we proceed setting the stage.
   - A token is a chunk of text, it could be entire word or part.
   - Roughly, one token is about 4 characters or for calculation sake 75% of  words in English language.
   - why important? - for us to estimate monthly cost: (tokens used per month) × (API cost per token).
-  - If transaction rate is T tokens/sec, that's about (T × 0.75) words/sec. (include ss)
 
 ---
 
@@ -167,7 +166,6 @@ Before we proceed setting the stage.
 | a     | 0.3        |
 | an    | 0.1        |
 | dog   | 0.05       |
-| ...   | ...        |
 
 If `p = 0.8`:
 - Cumulative probabilities:
@@ -185,7 +183,6 @@ Suppose the token probabilities are:
 | a     | 0.3        |
 | an    | 0.1        |
 | dog   | 0.05       |
-| ...   | ...        |
 
 If `k = 3`:
 
@@ -216,7 +213,7 @@ If `k = 3`:
   - **Inconsistent results**: Due to different models and also different model parameters.
   - **Structured Output** format varies by model:
     - Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral. 
-    - Some prepend `assistant:` or add Markdown fences (```json```).
+    - Some prepend **`assistant:`** or add **Markdown fences (```json```)**.
     - Some omit required fields or slightly alter the structure.
   - Models may generate **extra explanations** or comments alongside the data.
   - Inconsistent **data types** (numbers as strings, null vs missing fields).
@@ -225,7 +222,7 @@ If `k = 3`:
   - Free-text injections may appear despite formatting instructions.
 
 #### Solutions
-- Use **prompt engeinnering techniques** with examples to guide the structure.
+- Use **prompt enginnering techniques** with examples to guide the structure.
 - **Use of Strong models**: Models such as OpenAI or use of CoPilot Strong support via JSON mode or function calling.
 
 ---
