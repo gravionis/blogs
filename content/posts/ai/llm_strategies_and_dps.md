@@ -106,11 +106,11 @@ Before we proceed setting the stage.
 
 
 ### Chat Models
-- Chat models are specialized LLMs designed for conversational interactions.
+- LLMs specialized in **conversational interactions**.
 
 | Model                                                                                                        | Provider       | Strengths                                   | Typical Use Cases                                 |
 |--------------------------------------------------------------------------------------------------------------|----------------|---------------------------------------------|---------------------------------------------------|
-| Copilot                                                                                        |  Copilot utilizes Mixture-of-Experts - uses variety of AI models to provide coding assistance, adapting to different tasks and user needs. OpenAI and Microsoft's property models and tools      | Text generation, conversation, code, summarization | Chatbots, assistants, writing, code, content      |
+| Copilot                                                                                        |  Copilot utilizes Mixture-of-Experts -  under the hood uses - OpenAI,  Microsoft's property models and other models & tools      | Text generation, conversation, code, summarization | Chatbots, assistants, writing, code, content      |
 | LLaMA                                                                                                        | Meta           | Open-source, efficient, adaptable           | Research, custom training, open-source apps       |
 | Claude                                                                                                       | Anthropic      | Safety-focused, reliable, conversational    | Support, safe chatbots, document analysis         |
 | Mistral                                                                                                      | Mistral AI     | Kind of something from all aspects - Efficient, open weights, strong benchmarks  | Research, production NLP, open-source projects    |
