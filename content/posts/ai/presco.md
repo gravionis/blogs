@@ -388,6 +388,8 @@ retriever = MultiVectorRetriever(
 ```
 
 ### Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) —  
+<img width="2274" height="1330" alt="image" src="https://github.com/user-attachments/assets/0aefd58f-99a9-47dd-9510-91326c91b4a1" />
+
 - **Problem:**  
   - RAG systems must handle:
     - **Lower-level questions:** referencing specific facts in a single document.  
@@ -447,6 +449,7 @@ for r in results:
 ```
 
 ### ColBERT: Optimizing Embeddings
+<img width="1400" height="578" alt="image" src="https://github.com/user-attachments/assets/cc1d9783-9da8-4220-a1c4-e7b48beb5e16" />
 
 - **Problem with standard embeddings:**  
   - Fixed-length embeddings compress entire text into a single vector.  
@@ -520,6 +523,7 @@ for r in results:
 - Reduces misinterpretation and improves output quality.
   
 ### Multi-Query Retrieval
+<img width="1676" height="596" alt="image" src="https://github.com/user-attachments/assets/595030dc-1a2b-4fa4-8a82-4ec58822a72d" />
 
 - **Problem:** A single user query may not capture the full scope of information needed for a comprehensive answer.  
 
@@ -538,6 +542,7 @@ for r in results:
     5. What is the humidity and wind speed in Sydney today?
 
 ### RAG-Fusion
+<img width="367" height="137" alt="image" src="https://github.com/user-attachments/assets/b17adcdd-049c-4b7f-8efb-68f129fbcdec" />
 
 RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the multi-query retrieval strategy. It enhances the retrieval process by introducing a **final reranking step** using the **Reciprocal Rank Fusion (RRF)** algorithm.
 
@@ -570,6 +575,7 @@ RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the m
 
 RAG-Fusion is particularly powerful when the information space is large and diverse, and a single query is insufficient to capture all relevant context.
 ## Hypothetical Document Embeddings (HyDE)
+<img width="460" height="300" alt="image" src="https://github.com/user-attachments/assets/564420f8-9bd2-4f97-9e68-0e0dbcfb02f4" />
 
 **HyDE** is a retrieval strategy that leverages LLMs to improve vector-based search by creating a **hypothetical document** from the user’s query. The idea is that the LLM can expand, paraphrase, or contextualize the query into a richer representation that is more semantically similar to relevant documents in the dataset.
 HyDE effectively **bridges the gap between natural language queries and document embeddings**, improving the relevance of retrieved documents in retrieval-augmented generation (RAG) systems.
@@ -630,8 +636,6 @@ prompt_templates = [physics_template, math_template]
 prompt_embeddings = embeddings.embed_documents(prompt_templates)
 
 # Route question to prompt
-
-
 @chain
 def prompt_router(query):
     query_embedding = embeddings.embed_query(query)
