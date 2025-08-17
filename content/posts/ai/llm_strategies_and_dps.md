@@ -1,7 +1,7 @@
 +++
 date = '2025-05-20T12:44:47+10:00'
 draft = false
-title = 'presco'
+title = 'LLM Strategies and Design Patterns'
 tags = ['LLM', 'Design Patterns']
 +++
 
