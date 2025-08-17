@@ -514,26 +514,24 @@ for r in results:
     print(r.page_content)
 ```
 
-### ColBERT: Optimizing Embeddings
-<img width="1400" height="578" alt="image" src="https://github.com/user-attachments/assets/cc1d9783-9da8-4220-a1c4-e7b48beb5e16" />
+### ColBERT (Contextual Late Interactions BERT): Optimizing Embeddings
 
 - **Problem with standard embeddings:**  
-  - Fixed-length embeddings compress entire text into a single vector.  
-  - Useful for retrieval, but embedding irrelevant/redundant content can cause **hallucination** in LLM outputs.  
+  - They **compress** the whole text into one **fixed-length vector**.  
+  - Any **Irrelevant or redundant content** in that vector can lead to **wrong** or **hallucinated answers**.  
 
 - **ColBERT Approach:**  
-  1. **Contextual token embeddings:** Generate embeddings for **each token** in the document and query instead of a single vector.  
-  2. **Token-level similarity scoring:** Calculate similarity between **each query token** and **all document tokens**.  
-  3. **Aggregate scores:** For each query token, take the **maximum similarity** to any document token; sum these to get a **document-level score**.  
+  1. **Token-level embeddings:** Instead of one vector per document, ColBERT creates an embedding for each token.  
+  2. **Compare at token level:** For every query token, compute similarity with all document tokens.  
+  3. **Aggregate smartly:** For each query token, take its **best match** in the document. **Sum these matches** for the **final document score**.  
 
 - **Benefits:**  
-  - Provides **granular, token-level retrieval**.  
+  - Gives **fine-grained control** by scoring tokens, **not whole documents**.  
   - Reduces irrelevant content impact.  
   - Improves accuracy of retrieved context for LLMs.  
 
 - **Key takeaway:**  
-  - ColBERT is an embedding model designed to implement this **token-level scoring mechanism**, optimizing document retrieval for downstream applications.
-
+  - ColBERT uses **late interaction**: **compare tokens after encoding, not before**. This makes **retrieval both accurate and efficient**.
 
 ```python
 from ragatouille import RAGPretrainedModel
@@ -555,6 +553,7 @@ results = RAG.retrieve(query_embedding, k=3)
 for r in results:
     print(r)
 ```
+<img width="1400" height="578" alt="image" src="https://github.com/user-attachments/assets/cc1d9783-9da8-4220-a1c4-e7b48beb5e16" />
 
 ## Effective Strategies Using RAG
 
