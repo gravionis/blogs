@@ -344,7 +344,7 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 - **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle — separate write (doc updates) and read (retrieval) models for consistency.  
 - **Approach**: Maintain unique IDs across vector store and doc store for sync.  
 
-## Indexing Optimization Patterns
+## Design Patterns
 **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
 ### MultiVector Retrieval  
 <img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
