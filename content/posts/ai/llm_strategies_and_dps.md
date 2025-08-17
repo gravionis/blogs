@@ -257,8 +257,8 @@ If `k = 3`:
 ### Roles
 | Role        | Purpose                                                       | Example                                                                 |
 |-------------|--------------------------------------------------------------|------------------------------------------------------------------------|
-| **system**  | Sets high-level instructions, behavior, or persona for model | "You are an expert software engineer. Respond concisely with examples." |
-| **user**    | Represents the end-user’s input or question                  | "Write a Python function to reverse a string."                         |
+| **system**  | Sets high-level instructions, behavior, or persona for model | "You are a software engineer in Charging Space. " |
+| **user**    | Represents the end-user’s input or question                  | "Write a spring boot function to apply adjustment on the balance." |
 | **assistant**| Represents the model’s own response                         | "Here is the Python code:\n```python\ndef reverse_string(s): return s[::-1]\n```" |
 | **tool**    | Output from an external tool or function call                | `{"result": "42"}` (after a calculator function call)                  |
 | **function**| (Older term for tool) Shows result from a function           | Same as tool                                                           |
@@ -285,13 +285,13 @@ Structured output model returns data in a **specific or predefined, machine-read
 | Strategy                   | Description / Tips                                                                                       |
 |-----------------------------|---------------------------------------------------------------------------------------------------------|
 | **Streaming vs Batch**      | Stream for user-facing outputs (low latency). Batch multiple prompts with templates for high throughput. |
-| **Token Management**        | Limit `max_tokens`. Use `stop` sequences to avoid unnecessary generation.                               |
-| **Parallelization**         | Run independent requests concurrently. Use async frameworks or thread pools.                             |
+| **Token Management**        | use things like **`max_tokens`**, **`stop`** tokens to avoid unnecessary generation.                     |
+| **Parallelization**         | Run independent requests concurrently. few libraries support **async frameworks** or **thread pools.**                             |
 | **Prompt Caching**                 | Cache repeated prompts/responses to reduce API calls and latency.                                       |
 | **Model Selection**         | Use smaller/faster models for simple tasks; larger models for complex reasoning or high-quality output. |
-| **Tooling Integration**     | Use RAG or vector databases to reduce redundant computation.                                           |
-| **Function/Structured Output** | Use function calls or structured outputs to reduce parsing and token overhead.                        |
-| **Imperative or Declarative Composition** | helps in controlling the sequence and flow of operations with LLMs, tools, and data        |
+| **Tooling Integration**     | Give it access to tools or RAG or vector databases                                            |
+| **Function call & Structured Output** | to reduce parsing and token overhead.                        |
+| support for **Imperative or Declarative Composition** | helps in controlling the sequence and flow of operations with LLMs, tools, and data        |
 | **templating** | use of frameworks that support templating - easier to perform batch operations                       |
 
 ---
@@ -301,7 +301,7 @@ Structured output model returns data in a **specific or predefined, machine-read
 - they capture semantic meaning of text
 - Each floating-point value represents a **semantic dimension** of the text.
 - **traveling the meaning** in space possible using the elementary math operations of addition and subtraction: **king** – **man** = **monarch** + **woman** = would arrived close to word **queen**. 
-- Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
+- how is it different from Chat models? Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
 - **usecases**
     - semantic search
     - recommendation systems
@@ -327,7 +327,7 @@ Structured output model returns data in a **specific or predefined, machine-read
       - **Euclidean Distance:** Measures straight-line distance in embedding space; good for spatial closeness.  
       - **Dot Product / Inner Product:** Measures magnitude of similarity; 
       - **Approximate Nearest Neighbors (KNN):** Efficient search in large vector stores for top-k similar vectors.  
-  - **Generation:** Augmenting the original prompt with the relevant retrieved documents. 
+  - **Generation:** Augmenting that with original prompt. 
 
 - **Some issues you may face with RAG:**  
   - Sometimes the context data is large.  
@@ -374,7 +374,7 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ```
 
 ---
-## Some Strategis: 
+## Some Strategis for Fintech usecases: 
 
 ### 1. Information in Confluence/knowledge bases:
 - Start using Standard and Structured templates for documentation - serve as **context needed for the LLM**.
