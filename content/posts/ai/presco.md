@@ -348,6 +348,7 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
 ### MultiVector Retrieval  
 <img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
+
 - Store summaries or embeddings in **vector store**.  
 - Store original content (tables, full text) in **doc store** (RDBMS, NoSQL, object store, or in-memory).  
 - Link via **ID references**.  
