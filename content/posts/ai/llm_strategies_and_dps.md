@@ -72,6 +72,8 @@ Instruction were to keep it basic & experiences of AI WG, we have 3 usecases are
 * challenges with the quality of context data.
 * Speed of models
 
+---
+
 Before we proceed setting the stage.
 ## Concepts 
 ### LLMs
@@ -83,6 +85,8 @@ Before we proceed setting the stage.
     - Unified Intelligence System: integrates multiple reasoning and perception modules for more general intelligence.
     - Mixture-of-Experts: routes inputs to specialized sub-models for improved efficiency and accuracy.
     - Multimodal Integration: processes and understands text, images, and other data types together.
+
+---
 
 ### Transformer Architecture: 
   - LLMs use the transformer neural network architecture.
