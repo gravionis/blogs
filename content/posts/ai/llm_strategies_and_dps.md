@@ -782,3 +782,41 @@ When SQL execution fails, the LLM can:
 | **Text-to-SQL** | Translate natural language to SQL queries | Database description, few-shot examples, error recovery |
 
 These strategies enable LLMs and retrieval systems to effectively interact with both unstructured and structured data, ensuring more accurate and relevant results.
+
+## Additional Prompt & Agent Patterns
+
+### Chatbot with Memory
+- Most LLM models are stateless; they do not remember previous interactions unless history is provided in the prompt.
+- **Actions to control history:**
+  - **Trimming:** Remove older messages to fit within context window.
+  - **Filtering:** Exclude irrelevant or redundant exchanges.
+  - **Merging consecutive messages:** Combine similar or repeated messages for brevity.
+  - **Summarization:** Use LLMs to summarize long histories into concise context.
+- **Memory Patterns:** 
+  - Windowed memory (last N messages)
+  - Summarized memory (summary of all prior conversation)
+  - Hybrid (recent messages + summary)
+
+### ReAct (Reason + Act)
+- Combines reasoning steps with tool or function calls.
+- Model alternates between generating thoughts and taking actions (API calls, tool invocation).
+- Useful for multi-step tasks, retrieval, and automation.
+
+### Reflexion
+- Model reviews its own outputs, critiques, and iteratively improves answers.
+- Can be used for self-correction, debugging, or refining reasoning.
+
+### Human-in-the-Loop
+- Allows human intervention in agent workflows:
+  - **Resume:** Continue from a paused state.
+  - **Restart:** Begin a new workflow or correct errors.
+  - **Edit State:** Modify intermediate results or context.
+  - **Fork:** Branch the workflow for alternative solutions or exploration.
+
+### Other Patterns
+- **Tool Calling:** Enable LLMs to invoke external tools for specialized tasks (math, search, code execution).
+- **Function Calling:** Structured output triggers backend functions or APIs.
+- **Agent Orchestration:** Coordinate multiple agents (LLMs, tools, humans) for complex workflows.
+- **Meta-Prompting:** Use one LLM to generate or optimize prompts for another model.
+- **Multi-Agent Collaboration:** Multiple agents work together, each with specialized roles or skills.
+- **Stateful Agents:** Persist agent state across sessions for long-running tasks.
