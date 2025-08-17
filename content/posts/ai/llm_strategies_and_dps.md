@@ -801,10 +801,12 @@ These strategies enable LLMs and retrieval systems to effectively interact with 
 - Combines reasoning steps with tool or function calls.
 - Model alternates between generating thoughts and taking actions (API calls, tool invocation).
 - Useful for multi-step tasks, retrieval, and automation.
+<img width="1400" height="686" alt="image" src="https://github.com/user-attachments/assets/67a2124c-9270-440b-b222-5b70ab293266" />
 
 ### Reflexion
 - Model reviews its own outputs, critiques, and iteratively improves answers.
 - Can be used for self-correction, debugging, or refining reasoning.
+<img width="2000" height="1322" alt="image" src="https://github.com/user-attachments/assets/e607b1f1-8b79-4ee6-99b2-596eea8d8693" />
 
 ### Human-in-the-Loop
 - Allows human intervention in agent workflows:
