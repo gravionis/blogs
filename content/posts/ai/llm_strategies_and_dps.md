@@ -214,11 +214,11 @@ If `k = 3`:
 | **Chat-Based Prompting**       | Structured messages with roles (`system`, `user`, `assistant`).     | System: "You are helpful." User: "Translate 'How are you?' to French."     |
 | **Zero-Shot**                  | No examples provided; just the instruction.                         | `Summarize this text in one sentence: ...`                                  |
 | **Few-Shot**                   | Include a few examples to guide the output.                         | `Q: Capital of France? A: Paris. Q: Capital of Germany? A:`                |
-| **Chain-of-Thought (CoT)**     | Ask model to reason step-by-step before answering.                  | `Explain step by step: If you have 3 apples and eat 1, how many are left?` |
+| **Chain-of-Thought (CoT)**     | Ask model to reason step-by-step before answering.                  | `Explain step by step: Why the calculated Balance amount is $200` |
 | **Self-Consistency**           | Model generates multiple solutions, picks most consistent.          |  reasoning-heavy tasks. Why is the balance showing at $200 instead of $100? Generate multiple reasoning paths                                              |
-| **Role-Based / Persona**       | Assign a role or persona for better context.                        | `Act as an expert Python tutor. Explain decorators.`                        |
+| **Role-Based / Persona**       | Assign a role or persona for better context.                        | `Act as an Charging Business Analyst. Explain Adjustment.`                        |
 | **Instruction-Based**          | Direct task-oriented commands without dialogue.                     | `Extract all email addresses from the text.`                                |
-| **Structured Output**          | Request output in JSON, table, or specific format.                  | `Return the answer in JSON with keys: name, age.`                           |
+| **Structured Output**          | Request output in JSON, table, or specific format.                  | `Return the answer in JSON with keys: event_name, event_publisher.`                           |
 | **ReAct (Reason + Act)**       | Model reasons, then calls tools or APIs.                            | `Thought: I need weather info. Action: call weather API.`                   |
 | **Retrieval-Augmented (RAG)**  | Combine prompt with retrieved external knowledge.                   | `[Context] Answer based on above.`                                          |
 | **Multimodal Prompting**       | Combines text + images (or other modalities).                       | `Describe the scene in this image.`                                         |
