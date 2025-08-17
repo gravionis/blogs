@@ -85,7 +85,7 @@ Before we proceed setting the stage.
 | **logit_bias**       | dictionary to control probability of certain token ids   | Useful for forcing or avoiding words.                                 |
 | **echo**             | Return the prompt along with the completion.                                                  | `true` / `false`    | For debugging or prompt reconstruction.                                |
 
-### top p
+### Top p
 
 | Token | Probability |
 |-------|------------|
@@ -101,7 +101,7 @@ If `p = 0.8`:
 - Nucleus = `{"the", "a", "an"}`
 - Next token is sampled **only** from this set.
 
-### top k 
+### Top k 
 
 Suppose the token probabilities are:
 
