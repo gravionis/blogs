@@ -93,11 +93,15 @@ Before we proceed setting the stage.
   - Transformers understand relationships between words, regardless of their position in the text.
   - The architecture enables us to **predict the next word** in a sequence - they should **not be expected** to perform **accurate mathematical computation**; lot of our AI usecases some have some math oprations involved.
 
+---
+
 ### Tokens:
   - A token is a chunk of text, it could be entire word or part.
   - Roughly, one token is about 4 characters or for calculation sake 75% of  words in English language.
   - why important? - for us to estimate monthly cost: (tokens used per month) × (API cost per token).
   - If transaction rate is T tokens/sec, that's about (T × 0.75) words/sec. (include ss)
+
+---
 
 ### LLM Model Variants and Techniques:
   - Two main techniques:
@@ -108,6 +112,7 @@ Before we proceed setting the stage.
   - T5, BART - Encoder & decoder : Good for translation, summarization, and more complex tasks.
   - Many LLMs are specialized for tasks like code generation, multimodal input (text + images), or domain-specific knowledge.
 
+---
 
 ### Chat Models
 - LLMs specialized in **conversational interactions**.
@@ -121,6 +126,7 @@ Before we proceed setting the stage.
 | Gemini                                                                                                       | Google DeepMind | Multimodal (text, image, audio), reasoning  | Multimodal assistants, content analysis           |
 | Anthropic (Claude), Amazon (Titan), Meta (Llama),<br/>Mistral, AI21 Labs (Jurassic), Cohere (Command) | Amazon Bedrock | Wide model selection, enterprise integration, scalable APIs | Chatbots, search, summarization, enterprise AI    |
 
+---
 
 ### Model Paramaters
 | Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
@@ -172,6 +178,8 @@ If `k = 3`:
 - Top 3 tokens = `{"the", "a", "an"}`
 - Next token is sampled **only** from this set.
 
+---
+
 ### Popular LLM Tools and Frameworks
 
 | Tool/Framework         | Language   | Focus/Strengths                  | Integration      | Use Case Examples              |
@@ -181,6 +189,8 @@ If `k = 3`:
 | Spring AI             | Java       | Enterprise, abstraction          | Spring ecosystem | Business apps, backend        |
 | HF Transformers       | Python     | Model training, deployment       | Model hub, APIs  | NLP tasks, research, prod     |
 | Agentic AI (AutoGPT, CrewAI, N8N) | Python/JS | Autonomous agents, automation | Various          | Task automation, multi-agent  |
+
+---
 
 ### Prompt
 - A prompt is the input text or set of instruction given to an LLM to guide its response. 
@@ -203,6 +213,8 @@ If `k = 3`:
 #### Solutions
 - Use **prompt engeinnering techniques** with examples to guide the structure.
 - **Use of Strong models**: Models such as OpenAI or use of CoPilot Strong support via JSON mode or function calling.
+
+---
 
 ### Prompt Engineering and Patterns
 - Prompt engineering is the practice of designing and refining prompts to optimize LLM outputs.
@@ -229,6 +241,8 @@ If `k = 3`:
 | **Tool Calling**               | Enable model to trigger external tools for answers.                 | `If math needed, call calculator function.`                                  |
 | **Function Calling**           | Model outputs structured JSON to call specific function.            | `{ "function": "get_weather", "location": "Paris" }`                        |
 
+---
+
 ### Roles
 | Role        | Purpose                                                       | Example                                                                 |
 |-------------|--------------------------------------------------------------|------------------------------------------------------------------------|
@@ -250,6 +264,7 @@ messages = [
     ChatMessage(role="user", content="Write a function to add two numbers.")
 ]
 ```
+---
 
 ### Structured Output
 Structured output model returns data in a **specific or predefined, machine-readable format** like JSON or CSV, instead of free-form text.
@@ -267,6 +282,8 @@ Structured output model returns data in a **specific or predefined, machine-read
 | **Function/Structured Output** | Use function calls or structured outputs to reduce parsing and token overhead.                        |
 | **Imperative or Declarative Composition** | helps in controlling the sequence and flow of operations with LLMs, tools, and data        |
 | **templating** | use of frameworks that support templating - easier to perform batch operations                       |
+
+---
 
 ### Embeddings
 - Embeddings represent text (words, sentences, or documents) as an **array of floating-point** numbers called **dimensions**, aka. **dense vector** .
@@ -286,6 +303,8 @@ Structured output model returns data in a **specific or predefined, machine-read
     - Sentence Transformers
     - BERT
 
+---
+
 ### RAG (Retrieval-Augmented Generation)
 - Models have limited knowledge in the context of a specific business use case. RAG helps LLMs answer questions beyond their training data.
   
@@ -303,6 +322,8 @@ Structured output model returns data in a **specific or predefined, machine-read
   - Sometimes the context data is large.  
   - sometimes data will be split across multiple documents or chunks.  
   - sometimes context data has irrelevant contents - requires the model to filter irrelevant info → risk of hallucination.
+
+---
 
 ### Vector Store
 - A vector store is a database for storing and searching embeddings.
@@ -340,6 +361,7 @@ all_embeddings = pgvector_store.get_embeddings()  # then apply KMeans externally
 new_embedding = embeddings.embed_query("Some unusual text.")
 nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ```
+
 ---
 ## Some Strategis: 
 
@@ -467,27 +489,23 @@ retriever = MultiVectorRetriever(
 
 ---
 
-### Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) —  
+### Recursive Abstractive Processing for Tree-Organized Retrieval —  
 - **Problem:**  
   - RAG systems must handle:
     - **Lower-level questions:** referencing specific facts in a single document.  
     - **Higher-level questions:** synthesizing ideas across multiple documents.  
   - Simple k-NN retrieval on chunks struggles to cover both aspects.  
 
-- **Solution: RAPTOR Approach**
+- **Solution is to follow the RAPTOR Approach**
   - First split document into **Chunks**.  
   - **document summaries** capturing higher-level concepts.  
-  - **Embed and cluster** the documents based on semantic similarity.  
-  - **Summarize each cluster**, producing higher-level abstractions.  
+  - based on semantic similarity of documents (Embeddings) **cluster** together.  
+  - **Summarize each cluster** to produce **higher-level abstractions**.  
   - Repeat **recursively**, forming a **tree of summaries** with increasing abstraction.  
 
 - **Indexing:**  
   - Index **both the summaries and the original documents** together.  
   - Covers for **questions ranging from low-level to high-level concepts**.
-
-- **Benefit:**  
-  - Efficient handling of **multi-granular retrieval**.  
-  - Supports queries spanning **single facts to overarching ideas**.
 
 <img width="1810" height="1356" alt="image" src="https://github.com/user-attachments/assets/781bebc6-19d2-4814-af83-0983f081b6ba" />
  
@@ -529,24 +547,25 @@ for r in results:
     print(r.page_content)
 ```
 
-### ColBERT (Contextual Late Interactions BERT): Optimizing Embeddings
+---
+
+### ColBERT (Contextually Late Interactions using BERT): Optimizing Embeddings
 
 - **Problem with standard embeddings:**  
   - They **compress** the whole text into one **fixed-length vector**.  
   - Any **Irrelevant or redundant content** in that vector can lead to **wrong** or **hallucinated answers**.  
 
-- **ColBERT Approach:**  
+**ColBERT Approach:**
+- uses **late interaction**, Late interaction means each token in **query** and **document** is **encoded independently first**, and **only after encoding**, their similarities are computed (using **MaxSim**).
   1. **Token-level embeddings:** Instead of one vector per document, ColBERT creates an embedding for each token.  
-  2. **Compare at token level:** For every query token, compute similarity with all document tokens.  
-  3. **Aggregate smartly:** For each query token, take its **best match** in the document. **Sum these matches** for the **final document score**.  
+  2. **Compare at token level:** For every token in **query**, it compute similarity with all tokens in the **document**.  
+  3. **Aggregate smartly:** **Sum these matches** = **final document score** = **best match**.  
 
-- **Benefits:**  
-  - Gives **fine-grained control** by scoring tokens, **not whole documents**.  
-  - Reduces irrelevant content impact.  
+- **Advantages:**  
+  - **Reduces irrelevant** contents.  
   - Improves accuracy of retrieved context for LLMs.  
 
 - **Key takeaway:**  
-  - ColBERT uses **late interaction**: **compare tokens after encoding, not before**. This makes **retrieval both accurate and efficient**.
 
 ```python
 from ragatouille import RAGPretrainedModel
