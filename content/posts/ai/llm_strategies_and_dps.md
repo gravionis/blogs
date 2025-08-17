@@ -267,18 +267,20 @@ Structured output model returns data in a **specific or predefined, machine-read
 ### Embeddings
 - Embeddings represent text (words, sentences, or documents) as an **array of floating-point** numbers called **dimensions**, aka. **dense vector** .
 - they capture semantic meaning of text
+- Each floating-point value represents a **semantic dimension** of the text.
+- **traveling the meaning** in space possible using the elementary math operations of addition and subtraction: **king** – **man** = **monarch** + **woman** = would arrived close to word **queen**. 
+- Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
 - usecases
     - **semantic search
     - recommendation systems
     - document classification
     - clustering
     - information retrieval**.
-- Common models for embeddings: **OpenAI Embeddings, Cohere, Sentence Transformers, BERT.**
-  - These are called **dense embeddings**, where dimensions have non-zero values.  
-  - Each floating-point value represents a **semantic dimension** of the text.
-  - **traveling the meaning** in space possible using the elementary math operations of addition and subtraction: **king** – **man** = **monarch** + **woman** = would arrived close to word **queen**. 
-- Difference with Chat models
-    - Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
+- Common models for embeddings:
+    - OpenAI Embeddings
+    - Cohere
+    - Sentence Transformers
+    - BERT
 
 ### RAG (Retrieval-Augmented Generation)
 - Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
