@@ -391,7 +391,8 @@ retriever = MultiVectorRetriever(
 ```
 
 ### Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) —  
-<img width="2274" height="1330" alt="image" src="https://github.com/user-attachments/assets/0aefd58f-99a9-47dd-9510-91326c91b4a1" />
+<img width="1810" height="1356" alt="image" src="https://github.com/user-attachments/assets/781bebc6-19d2-4814-af83-0983f081b6ba" />
+
 
 - **Problem:**  
   - RAG systems must handle:
