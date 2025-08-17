@@ -7,6 +7,56 @@ tags = ['LLM', 'Design Patterns']
 
 LLM design patterns are reusable strategies for building robust, efficient, and scalable AI applications. They help developers structure retrieval, reading, rewriting, memory, agent, and orchestration workflows for large language models. These patterns improve performance, maintainability accuracy, cost and security.
 
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Concepts](#concepts)
+    1. [LLMs](#llms)
+    2. [Transformer Architecture](#transformer-architecture)
+    3. [Tokens](#tokens)
+    4. [LLM Model Variants and Techniques](#llm-model-variants-and-techniques)
+    5. [Chat Models](#chat-models)
+    6. [Model Parameters](#model-paramaters)
+    7. [Popular LLM Tools and Frameworks](#popular-llm-tools-and-frameworks)
+    8. [Prompt](#prompt)
+    9. [Prompt Engineering and Patterns](#prompt-engineering-and-patterns)
+    10. [Roles](#roles)
+    11. [Structured Output](#structured-output)
+    12. [Common Issues](#common-issues)
+    13. [Output & Performance](#output--performance)
+    14. [Embeddings](#embeddings)
+    15. [RAG (Retrieval-Augmented Generation)](#rag-retrieval-augmented-generation)
+    16. [Vector Store](#vector-store)
+    17. [Vector Stores and Embeddings: Problems Solved & Techniques](#vector-stores-and-embeddings-problems-solved--techniques)
+3. [Strategies for Loading Documents into Chat Model Prompts](#strategies-for-loading-documents-into-chat-model-prompts)
+    1. [Current Knowledge Base](#1-current-knowledge-base)
+    2. [Representing Information](#2-representing-information)
+4. [Strategies for Splitting Text into Meaningful Chunks](#strategies-for-splitting-text-into-meaningful-chunks)
+    1. [Chunking with Overlap](#1-chunking-with-overlap)
+    2. [Language or Format-Aware Chunking](#2-language-or-format-aware-chunking)
+    3. [Maintaining References](#3-maintaining-references)
+    4. [Using PgVector with Embedding Models](#using-pgvector-with-embedding-models)
+    5. [Vector DB Issues](#vector-db-issues)
+5. [Vector Stores](#vector-stores)
+6. [Patterns](#patterns)
+    1. [MultiVector Retrieval](#multivector-retrieval)
+    2. [Strategies for Mathematical Operations](#strategies-for-mathematical-operations)
+    3. [Strategies for Security Compliance](#strategies-for-security-compliance)
+    4. [Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR)](#recursive-abstractive-processing-for-tree-organized-retrieval-raptor)
+    5. [ColBERT: Optimizing Embeddings](#colbert-optimizing-embeddings)
+    6. [Effective Strategies Using RAG](#effective-strategies-using-rag)
+    7. [Query Transformation](#query-transformation)
+    8. [Step-Back Prompting](#step-back-prompting)
+    9. [Subquestion Prompting](#subquestion-prompting)
+    10. [Rewritten Prompting aka Rewrite-Retrieve-Read](#rewritten-prompting-aka-rewrite-retrieve-read)
+    11. [Multi-Query Retrieval](#multi-query-retrieval)
+    12. [RAG-Fusion](#rag-fusion)
+    13. [Hypothetical Document Embeddings (HyDE)](#hypothetical-document-embeddings-hyde)
+    14. [Query Routing](#query-routing)
+    15. [Query Construction](#query-construction)
+        - [Text-to-Metadata Conversion](#1-text-to-metadata-conversion)
+        - [Text-to-SQL](#2-text-to-sql)
+        - [Summary](#summary)
+        
 ## Introduction
 Instruction were 2, 1. keep it basic 2. AI WG experinces -  3 usecases are in progress. we will be sharing some basics wrt to the learnings as strategies or design patterns here. if haven't already will go through.
 * security arch approvals
@@ -19,8 +69,8 @@ Instruction were 2, 1. keep it basic 2. AI WG experinces -  3 usecases are in pr
 * Speed of models
 
 Before we proceed setting the stage.
-
-## LLMs
+## Concepts 
+### LLMs
 - GPT-3: 175B Parameters, ~350B tokens. GPT-4:is 6x bigger. GPT-5 was supposed to be 20x bigger but is counter intuitive 300B Parameters.
 - Chinchilla's Law: model performance optimal when training tokens ≈ 20 × model parameters.
     - Example: 70B parameters → ~1.4T tokens needed.
@@ -31,18 +81,18 @@ Before we proceed setting the stage.
     - Multimodal Integration: processes and understands text, images, and other data types together.
 - Sometimes we have bigger models but often we have restrictions using best available model due reasons mentioned before. Hence we have to compensate with design patterns. we will be going to few models available to atleast the Fintech and how do we get past some of the common issues.
 
-## Transformer Architecture: 
+### Transformer Architecture: 
   - LLMs use the transformer neural network architecture.
   - Transformers understand relationships between words, regardless of their position in the text.
   - The architecture enables prediction of the next word in a sequence. that is to say they should not expected to perform for accurate mathematical computation; lot of our AI usecases some have some math involved.
 
-## Tokens:
+### Tokens:
   - A token is a chunk of text, it could be entire word or part.
   - Roughly, one token is about 4 characters or for calculation sake 75% of  words in English language.
   - why important? - for us to estimate monthly cost: (tokens used per month) × (API cost per token).
   - If transaction rate is T tokens/sec, that's about (T × 0.75) words/sec. (include ss)
 
-## LLM Model Variants and Techniques:
+### LLM Model Variants and Techniques:
   - Two main techniques:
     - Predict next word (causal language modeling): Used by models like GPT; generates text by predicting the next token in a sequence.
     - Predict masked word: Used by models like BERT; predicts masked tokens within a sentence for better understanding of context.
@@ -55,7 +105,7 @@ Before we proceed setting the stage.
   - Many LLMs are specialized for tasks like code generation, multimodal input (text + images), or domain-specific knowledge.
 
 
-## Chat Models
+### Chat Models
 - Chat models are specialized LLMs designed for conversational interactions.
 
 | Model                                                                                                        | Provider       | Strengths                                   | Typical Use Cases                                 |
@@ -68,7 +118,7 @@ Before we proceed setting the stage.
 | Anthropic (Claude), Amazon (Titan), Meta (Llama),<br/>Mistral, AI21 Labs (Jurassic), Cohere (Command) | Amazon Bedrock | Wide model selection, enterprise integration, scalable APIs | Chatbots, search, summarization, enterprise AI    |
 
 
-## Model Paramaters
+### Model Paramaters
 | Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
 |----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|
 | **temperature**      | Controls randomness. Lower = deterministic, higher = creative/unpredictable.                  | `0.0` – `2.0`       | `0.0` = deterministic, `1.0` = balanced, `>1.2` = very random.        |
@@ -85,7 +135,7 @@ Before we proceed setting the stage.
 | **logit_bias**       | dictionary to control probability of certain token ids   | Useful for forcing or avoiding words.                                 |
 | **echo**             | Return the prompt along with the completion.                                                  | `true` / `false`    | For debugging or prompt reconstruction.                                |
 
-### Top p
+#### Top p
 
 | Token | Probability |
 |-------|------------|
@@ -101,7 +151,7 @@ If `p = 0.8`:
 - Nucleus = `{"the", "a", "an"}`
 - Next token is sampled **only** from this set.
 
-### Top k 
+#### Top k 
 
 Suppose the token probabilities are:
 
@@ -118,7 +168,7 @@ If `k = 3`:
 - Top 3 tokens = `{"the", "a", "an"}`
 - Next token is sampled **only** from this set.
 
-## Popular LLM Tools and Frameworks
+### Popular LLM Tools and Frameworks
 
 | Tool/Framework         | Language   | Focus/Strengths                  | Integration      | Use Case Examples              |
 |-----------------------|------------|----------------------------------|------------------|-------------------------------|
@@ -128,7 +178,7 @@ If `k = 3`:
 | HF Transformers       | Python     | Model training, deployment       | Model hub, APIs  | NLP tasks, research, prod     |
 | Agentic AI (AutoGPT, CrewAI, N8N) | Python/JS | Autonomous agents, automation | Various          | Task automation, multi-agent  |
 
-## Prompt
+### Prompt
 - A prompt is the input text or set of instruction given to an LLM to guide its response. 
 - Considerations for prompts:
   - **Clarity**: Avoiding ambiguity to get accurate results. Cannot use our own DSLs. 
@@ -139,7 +189,7 @@ If `k = 3`:
   - **Iteration**: Refine prompts based on model responses to improve outcomes.
   - **Inconsistent results**: Due to different models and also different model parameters.
 
-## Prompt Engineering and Patterns
+### Prompt Engineering and Patterns
 - Prompt engineering is the practice of designing and refining prompts to optimize LLM outputs.
 - Prompt engineers experiment with wording, structure, and context to achieve desired results.
 - Common patterns:
@@ -165,7 +215,7 @@ If `k = 3`:
 | **Tool Calling**               | Enable model to trigger external tools for answers.                 | `If math needed, call calculator function.`                                  |
 | **Function Calling**           | Model outputs structured JSON to call specific function.            | `{ "function": "get_weather", "location": "Paris" }`                        |
 
-## Roles
+### Roles
 | Role        | Purpose                                                       | Example                                                                 |
 |-------------|--------------------------------------------------------------|------------------------------------------------------------------------|
 | **system**  | Sets high-level instructions, behavior, or persona for model | "You are an expert software engineer. Respond concisely with examples." |
@@ -187,7 +237,7 @@ messages = [
 ]
 ```
 
-## Structured Output
+### Structured Output
 Structured output model returns data in a **specific or predefined, machine-readable format** like JSON or CSV, instead of free-form text.
 
 ### Common Issues
@@ -201,11 +251,11 @@ Structured output model returns data in a **specific or predefined, machine-read
 - Some models **truncate long outputs**, breaking the structure.
 - Free-text injections may appear despite formatting instructions.
 
-### Solutions
+#### Solutions
 - Use **prompt engeinnering techniques** with examples to guide the structure.
 - **Use of Strong models**: Models such as OpenAI or use of CoPilot Strong support via JSON mode or function calling.
 
-## Output & performance
+### Output & performance
 
 | Strategy                   | Description / Tips                                                                                       |
 |-----------------------------|---------------------------------------------------------------------------------------------------------|
@@ -222,7 +272,7 @@ Structured output model returns data in a **specific or predefined, machine-read
 * Some frameworks support, **Imperative or Declarative Composition** which helps in controlling the sequence and flow of operations with LLMs, tools, and data. precise control over prompts, model calls, or conditional logic.
 
 
-## Embeddings
+### Embeddings
 - Embeddings are dense vector representations of text (words, sentences, or documents) generated by LLMs.
 - advantage is they capture semantic meaning, allowing for usecases - **semantic search, recommendation systems, document classification, clustering, and information retrieval**.
 - Common models for embeddings: **OpenAI Embeddings, Cohere, Sentence Transformers, BERT.**
@@ -235,7 +285,7 @@ Structured output model returns data in a **specific or predefined, machine-read
   
 - Embedding models produce vectors for **semantic understanding**, while chat models produce **human-readable text**.
 
-## RAG (Retrieval-Augmented Generation)
+### RAG (Retrieval-Augmented Generation)
 - Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
   
 - **3 stages**
@@ -259,7 +309,7 @@ Structured output model returns data in a **specific or predefined, machine-read
   - Hybrid methods combining multiple retrieval strategies.
 
 
-## Vector Store
+### Vector Store
 - A vector store is a database for storing and searching embeddings.
 - good for similarity search and retrieval of relevant documents or data points based on vector operations.
 - Popular vector stores: Pinecone, FAISS, PgVector.
@@ -275,11 +325,9 @@ Structured output model returns data in a **specific or predefined, machine-read
   - **Clustering & Topic Analysis:** Group similar content or detect topics.  
   - **Anomaly Detection:** Identify outliers by distance from typical embeddings.
 
+## Strategis for Loading Documents into Chat Model Prompts 
 
-
-## Strategies for Loading Documents into Chat Model Prompts
-
-### 1. Template-Driven Solution Walkthroughs and Designs
+### 1. Current Knowledge Base
 - Many solution designs and documentation have structured templates and formats.  
 - These templates often provide the **context needed for the LLM**.  
 - Knowledge can be provided as plain text, PDF, or **Markdown** format.  
@@ -311,13 +359,7 @@ Structured output model returns data in a **specific or predefined, machine-read
 - Useful for workflows like **Reflexion**, where you might need to trace information back to the source.  
 - Helps the LLM provide **accurate citations or context**.  
 
-## Vector Stores
-- Embeddings can be stored in a **vector store** for efficient retrieval.  
-- In our context, the simplest options were **PgVector** and **FAISS**:  
-  - **PgVector:** Integrated with PostgreSQL, making it easy to get security approval since it runs in RDS within a VPC.  
-  - **FAISS:** In-memory vector store providing high-performance similarity search.  
-
-### Using PgVector with Embedding Models
+### 4. Using PgVector with Embedding Models
 
 * 1. Flexibility
   - PgVector is a **PostgreSQL extension** that stores and searches vector data efficiently.  
@@ -366,7 +408,7 @@ new_embedding = embeddings.embed_query("Some unusual text.")
 nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ```
 
-## Vector DB Issues  
+### Vector DB Issues  
 - **Document Change Tracking**: Use a SQL record manager library or similar strategies to track document updates.
   - Versioning with Metadata: Each document update creates a new version; store version_id in metadata.
   -   Hash-Based Updates: Compute hash for each chunk; update only changed chunks.
@@ -377,9 +419,10 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 - **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle — separate write (doc updates) and read (retrieval) models for consistency.  
 - **Approach**: Maintain unique IDs across vector store and doc store for sync.  
 
-## Design Patterns
+## Patterns
+
 **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
-### MultiVector Retrieval  
+## MultiVector Retrieval  
 <img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
 
 - Store summaries or embeddings in **vector store**.  
@@ -422,12 +465,12 @@ retriever = MultiVectorRetriever(
     id_key="id"                  # ID used in vector store entries
 )
 ```
-### Math invovlemnt
+### Strategies for Mathematical operations
 - expose function or tools that can take over mathematical operations
 - use function or tool invocation to achieve the same effect.
 - if possible convert the mathematical problem into a classification problem and then use the function or tool invocation to get the desired effect.
 
-### Security
+### Strategies for Security Compliance
 - Hybrid model approach to classify data into secure data before using it on a public model.
 - rewrite-retrieve-read and multi query retrieval to compensate for queries with ill intentions
 
@@ -536,8 +579,6 @@ for r in results:
     print(r)
 ```
 
----
-
 ## Effective Strategies Using RAG
 
 - Part of our data can be stored in a **vector store** for operations like semantic search.  
@@ -639,13 +680,8 @@ HyDE effectively **bridges the gap between natural language queries and document
 - **Better Retrieval Accuracy:** Hypothetical documents are often closer to relevant documents in embedding space than terse user queries.
 - **Works with Sparse Queries:** Short or ambiguous queries benefit from the additional context generated by the LLM.
 
----
-
 ## Query Routing
-
 Query routing is a strategy used in retrieval or search systems to **direct a user query to the most relevant subset of data or service**. The goal is to improve retrieval efficiency, relevance, and response time. There are two main strategies: **logical routing** and **semantic routing**.
-
----
 
 ### 1. Logical Routing
 Logical routing directs queries based on **predefined rules, categories, or metadata** associated with the documents or data sources.
@@ -763,4 +799,3 @@ When SQL execution fails, the LLM can:
 | **Text-to-SQL** | Translate natural language to SQL queries | Database description, few-shot examples, error recovery |
 
 These strategies enable LLMs and retrieval systems to effectively interact with both unstructured and structured data, ensuring more accurate and relevant results.
-
