@@ -4,6 +4,7 @@ draft = false
 title = 'presco'
 tags = ['LLM', 'Design Patterns']
 +++
+LLM design patterns are reusable strategies for building robust, efficient, and scalable AI applications. They help developers structure retrieval, reading, rewriting, memory, agent, and orchestration workflows for large language models. These patterns improve performance, maintainability accuracy, cost and security.
 
 ## Introduction
 Instruction were 2, 1. keep it basic 2. AI WG experinces -  3 usecases are in progress. we will be sharing some basics wrt to the learnings as strategies or design patterns here. if haven't already will go through.
