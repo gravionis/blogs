@@ -385,16 +385,15 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 
 ## Some Design Patterns:
 
-**Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
 ## MultiVector Retrieval  
-<img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
-
+- **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
 - **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle separate write (doc updates) and read (retrieval) models for consistency.
 - seperate out the **vector store** and **doc store**.
 - **Approach**: Maintain unique IDs across vector store and doc store for sync.  
 - **vector store** - Store summaries or embeddings  
 - **doc store** - Store original content (tables, full text) in RDBMS, NoSQL, object store, or in-memory docstore.  
 - Link via **ID references**.  
+<img width="1200" height="611" alt="image" src="https://github.com/user-attachments/assets/830dff2f-637f-4987-9825-44a56cacb205" />
     
 ```python
 # Helper function to fetch docs from MySQL
