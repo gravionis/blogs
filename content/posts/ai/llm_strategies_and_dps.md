@@ -73,22 +73,7 @@ Before we proceed setting the stage.
 |----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|
 | **temperature**      | Controls randomness. Lower = deterministic, higher = creative/unpredictable.                  | `0.0` – `2.0`       | `0.0` = deterministic, `1.0` = balanced, `>1.2` = very random.        |
 | **top_p**            | Nucleus sampling. keep adding tokens from smallest set until the cumulative probability ≥ p.           | `0.1` – `1.0`       | Lower = more focused, 1.0 = no restriction.                           |
-| **top_k**            | Limits token selection to the k most probable tokens at each step. Suppose the token probabilities are:
-
-| Token | Probability |
-|-------|------------|
-| the   | 0.4        |
-| a     | 0.3        |
-| an    | 0.1        |
-| dog   | 0.05       |
-| ...   | ...        |
-
-If `p = 0.8`:
-
-- Cumulative probabilities:
-  - `"the" (0.4) + "a" (0.3) + "an" (0.1) = 0.8`
-- Nucleus = `{"the", "a", "an"}`
-- Next token is sampled **only** from this set.                                          | `1` – `100`         | Low values reduce creativity, high values allow more variation.       |
+| **top_k**            | Limits token selection to the k most probable tokens at each step.   | `1` – `100`         | Low values reduce creativity, high values allow more variation.       |
 | **max_tokens**       | Maximum tokens to generate in the response.                                                   | Depends on model    | Controls output length.                                               |
 | **min_tokens**       | Minimum tokens to generate before stopping.                                                   | Depends on model    | Ensures longer answers if needed.                                     |
 | **presence_penalty** | Penalizes tokens already present in the text (encourages new topics).                          | `-2.0` – `2.0`      | Higher = more diversity.                                              |
@@ -99,6 +84,37 @@ If `p = 0.8`:
 | **early_stopping**   | Stops beam search when best candidates are found.                                             | `true` / `false`    | Speeds up generation, may miss better completions.                    |
 | **logit_bias**       | dictionary to control probability of certain token ids   | Useful for forcing or avoiding words.                                 |
 | **echo**             | Return the prompt along with the completion.                                                  | `true` / `false`    | For debugging or prompt reconstruction.                                |
+
+### top p
+| Token | Probability |
+|-------|------------|
+| the   | 0.4        |
+| a     | 0.3        |
+| an    | 0.1        |
+| dog   | 0.05       |
+| ...   | ...        |
+
+If `p = 0.8`:
+- Cumulative probabilities:
+  - `"the" (0.4) + "a" (0.3) + "an" (0.1) = 0.8`
+- Nucleus = `{"the", "a", "an"}`
+- Next token is sampled **only** from this set.
+
+### top k 
+Suppose the token probabilities are:
+
+| Token | Probability |
+|-------|------------|
+| the   | 0.4        |
+| a     | 0.3        |
+| an    | 0.1        |
+| dog   | 0.05       |
+| ...   | ...        |
+
+If `k = 3`:
+
+- Top 3 tokens = `{"the", "a", "an"}`
+- Next token is sampled **only** from this set.
 
 ## Popular LLM Tools and Frameworks
 
