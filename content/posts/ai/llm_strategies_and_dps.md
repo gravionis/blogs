@@ -337,7 +337,7 @@ new_embedding = embeddings.embed_query("Some unusual text.")
 nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ```
 
-## Strategis for Loading Documents into Chat Model Prompts 
+## Some Strategis: 
 
 ### 1. Information in Confluence/knowledge bases:
 - Start using Standard and Structured templates for documentation - serve as **context needed for the LLM**.
@@ -354,35 +354,36 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ## Strategies for Splitting Text into Meaningful Chunks
 
 ### 1. Chunking with Overlap
-- Split large text into chunks with a **character or token overlap** between chunks.  
+- create an **overlap** between chunks or documents.  
 - **Advantages:**  
   - Maintains context between chunks.  
-  - Reduces risk of losing important information at chunk boundaries.  
+  - Reduces risk of losing important information at **chunk boundaries**.  
 - **Disadvantages:**  
-  - Increases the total number of chunks → more embeddings and storage.  
-  - Can introduce redundancy in retrieval.  
+  - **Increases the total number of chunks** → more embeddings and storage.  
+  - Can introduce **redundancy in retrieval**.  
 
 ### 2. Language or Format-Aware Chunking
 - Split based on the type of content:  
   - **Markdown or structured text:** split by headings, sections, or paragraphs.  
   - **Code (Python, etc.):** split by functions, classes, or logical blocks.  
-- Ensures each chunk is **semantically coherent**.  
+- Ensures each chunk is **semantically coherent or consistent**.  
 
 ### 3. Maintaining References
-- Keep a **reference to the original document** after splitting.  
+- Retain a **reference to the original document** after splitting.  
 - Useful for workflows like **Reflexion**, where you might need to trace information back to the source.  
-- Helps the LLM provide **accurate citations or context**.  
+- Useful when you need to provide provide **accurate citations or references**.  
 
 ### Vector DB Issues  
-- **Document Change Tracking**: Use a SQL record manager library or similar strategies to track document updates.
-  - Versioning with Metadata: Each document update creates a new version; store version_id in metadata.
-  -   Hash-Based Updates: Compute hash for each chunk; update only changed chunks.
-  - Soft Deletes (Active Flag): Mark old chunks as is_active=False and insert new ones.
+- **Document Change Tracking** - part of the document or chunk may vary or be updated:
+  - libraries such as **SQLRecordManager** or similar strategies to track document updates.
+  - **Versioning with Metadata**: Each document update creates a new version; store version_id in metadata.
+  - **Hash-Based Updates**: Compute hash for each chunk; update only changed chunks.
+  - **Soft Deletes (Active Flag)**: Mark old chunks as is_active=False and insert new ones.
   ```python
   vectorstore.similarity_search(query, filter={"is_active": True})
   ```
 
-## Patterns
+## Some Design Patterns:
 
 **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
 ## MultiVector Retrieval  
