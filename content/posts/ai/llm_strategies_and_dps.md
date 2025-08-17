@@ -283,12 +283,12 @@ Structured output model returns data in a **specific or predefined, machine-read
     - BERT
 
 ### RAG (Retrieval-Augmented Generation)
-- Models have limited knowledge in the context of a specific business use case or problem, augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
+- Models have limited knowledge in the context of a specific business use case; augmenting it with Business related knowledge base is essential. RAG Combines retrieval of relevant documents with LLM generation. Helps LLMs answer questions using external knowledge beyond their training data.
   
 - **3 stages**
-  - **Indexing:** create and storing embeddings of data in a vector store.
+  - **Indexing:** Create embeddings of data and Store it in vector store.
   - **Retrieval:** retrieving the relevant embeddings and data from vector store
-    - **Techniques / Similarity Measures:**  
+    - Techniques include:  
       - **Cosine Similarity:** Measures angle between vectors; commonly used for semantic similarity.  
       - **Euclidean Distance:** Measures straight-line distance in embedding space; good for spatial closeness.  
       - **Dot Product / Inner Product:** Measures magnitude of similarity; 
