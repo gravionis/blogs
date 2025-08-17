@@ -389,6 +389,15 @@ retriever = MultiVectorRetriever(
     id_key="id"                  # ID used in vector store entries
 )
 ```
+### Math invovlemnt
+- expose function or tools that can take over mathematical operations
+- use function or tool invocation to achieve the same effect.
+- if possible convert the mathematical problem into a classification problem and then use the function or tool invocation to get the desired effect.
+
+### Security
+- Hybrid model approach to classify data into secure data before using it on a public model.
+- rewrite-retrieve-read and multi query retrieval to compensate for queries with ill intentions
+
 
 ### Recursive Abstractive Processing for Tree-Organized Retrieval (RAPTOR) —  
 <img width="1810" height="1356" alt="image" src="https://github.com/user-attachments/assets/781bebc6-19d2-4814-af83-0983f081b6ba" />
