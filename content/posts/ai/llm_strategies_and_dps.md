@@ -180,7 +180,7 @@ If `k = 3`:
 
 ### Prompt
 - A prompt is the input text or set of instruction given to an LLM to guide its response. 
-- Considerations for prompts:
+- Considerations for prompts Common Issues:
   - **Clarity**: Avoiding ambiguity to get accurate results. Cannot use our own DSLs. 
   - **Context**: Provide relevant background or examples.
   - **Length**: Too short may lack detail; too long may confuse or dilute intent.
@@ -188,6 +188,19 @@ If `k = 3`:
   - **Constraints**: Specify requirements, style, or limitations as needed.
   - **Iteration**: Refine prompts based on model responses to improve outcomes.
   - **Inconsistent results**: Due to different models and also different model parameters.
+  - Output format varies by model:
+    - Some prepend `assistant:` or add Markdown fences (```json```).
+    - Some omit required fields or slightly alter the structure.
+    - Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral.
+  - Models may generate **extra explanations** or comments alongside the data.
+  - Inconsistent **data types** (numbers as strings, null vs missing fields).
+  - Missing **mandatory keys** in JSON or headers in CSV.
+  - Some models **truncate long outputs**, breaking the structure.
+  - Free-text injections may appear despite formatting instructions.
+
+#### Solutions
+- Use **prompt engeinnering techniques** with examples to guide the structure.
+- **Use of Strong models**: Models such as OpenAI or use of CoPilot Strong support via JSON mode or function calling.
 
 ### Prompt Engineering and Patterns
 - Prompt engineering is the practice of designing and refining prompts to optimize LLM outputs.
@@ -240,27 +253,11 @@ messages = [
 ### Structured Output
 Structured output model returns data in a **specific or predefined, machine-readable format** like JSON or CSV, instead of free-form text.
 
-### Common Issues
-- Output format varies by model:
-  - Some prepend `assistant:` or add Markdown fences (```json```).
-  - Some omit required fields or slightly alter the structure.
-  - Nested structures may be inconsistent or flattened unexpectedly. This was particularly the case with Mistral.
-- Models may generate **extra explanations** or comments alongside the data.
-- Inconsistent **data types** (numbers as strings, null vs missing fields).
-- Missing **mandatory keys** in JSON or headers in CSV.
-- Some models **truncate long outputs**, breaking the structure.
-- Free-text injections may appear despite formatting instructions.
-
-#### Solutions
-- Use **prompt engeinnering techniques** with examples to guide the structure.
-- **Use of Strong models**: Models such as OpenAI or use of CoPilot Strong support via JSON mode or function calling.
-
 ### Output & performance
 
 | Strategy                   | Description / Tips                                                                                       |
 |-----------------------------|---------------------------------------------------------------------------------------------------------|
 | **Streaming vs Batch**      | Stream for user-facing outputs (low latency). Batch multiple prompts with templates for high throughput. |
-| **Prompt Optimization**     | Keep prompts concise. Reuse templates and few-shot examples efficiently.                                |
 | **Token Management**        | Limit `max_tokens`. Use `stop` sequences to avoid unnecessary generation.                               |
 | **Parallelization**         | Run independent requests concurrently. Use async frameworks or thread pools.                             |
 | **Prompt Caching**                 | Cache repeated prompts/responses to reduce API calls and latency.                                       |
@@ -298,16 +295,10 @@ Structured output model returns data in a **specific or predefined, machine-read
       - **Approximate Nearest Neighbors (KNN):** Efficient search in large vector stores for top-k similar vectors.  
   - **Generation:** Augmenting the original prompt with the relevant retrieved documents. 
 
-- **Key Issues you may face:**  
-  - Large context data cause the model to give incorrect results.  
-  - will have to split data into appropriately sized documents which will cause incorrect results.  
+- **Some issues you may face with RAG:**  
+  - Large context data cause incorrect results.  
+  - data will be split across multiple documents will cause incorrect results.  
   - Too much context requires the model to filter irrelevant info → risk of hallucination.
-
-- **Common Approaches:**  
-  - Indexing documents for fast retrieval.  
-  - Retrieval of top-k relevant documents before generation.  
-  - Hybrid methods combining multiple retrieval strategies.
-
 
 ### Vector Store
 - A vector store is a database for storing and searching embeddings.
