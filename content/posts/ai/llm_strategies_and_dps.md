@@ -828,9 +828,11 @@ These strategies enable LLMs and retrieval systems to effectively interact with 
 - **Stateful Agents:** Persist agent state across sessions for long-running tasks.
 
 ### MCP (Model Context Protocol / Model Composition Pattern)
-- **Definition:** MCP is a design pattern and protocol for composing multiple models (LLMs, embedding models, retrieval models, etc.) to solve complex tasks that a single model cannot handle efficiently.
+- **Definition:** MCP is an open standard and framework designed to standardize how AI systems, especially LLMs, interact with external tools, systems, and data sources.
+- **Purpose:** Enables AI agents to go beyond pre-trained knowledge by integrating new information and connecting to external services.
 - **How it works:** 
-  - Each model in the composition is responsible for a specific sub-task (e.g., retrieval, reasoning, summarization, tool invocation).
+  - Acts as a standardized protocol for AI applications to access and utilize external tools and data, similar to an API.
+  - Each model or agent in the composition is responsible for a specific sub-task (e.g., retrieval, reasoning, summarization, tool invocation).
   - The output of one model can be used as input/context for another, forming a pipeline or graph of model interactions.
   - MCP also standardizes the way context (history, retrieved data, intermediate results) is passed between models and agents.
 - **Benefits:** 
@@ -838,9 +840,11 @@ These strategies enable LLMs and retrieval systems to effectively interact with 
   - Improves modularity, scalability, and maintainability of AI systems.
   - Enables fallback, ensemble, or voting strategies for robustness.
   - Facilitates agentic workflows and multi-agent orchestration.
+  - Provides a unified interface for integrating external tools and data sources.
 - **Use Cases:** 
   - RAG systems (retrieval + generation)
   - Multi-modal workflows (text, image, code)
   - Agentic AI (combining LLMs with specialized agents/tools)
   - Enterprise orchestration (combining public and private models for compliance)
   - Standardizing context passing in complex LLM pipelines
+  - Connecting LLMs to external APIs, databases, and business logic
