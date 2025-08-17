@@ -302,20 +302,18 @@ Structured output model returns data in a **specific or predefined, machine-read
 
 ### Vector Store
 - A vector store is a database for storing and searching embeddings.
-- good for similarity search and retrieval of relevant documents or data points based on vector operations.
-- Popular vector stores: Pinecone, FAISS, PgVector.
-- Use cases: retrieval-augmented generation (RAG), semantic search and knowledge management.
-
-### Vector Stores and Embeddings: Problems Solved & Techniques
-
-- **Problems They Solve:**  
+- good for vector operations such as similarity search, retrieval of relevant documents
   - **Semantic Search:** Find documents or text that are meaningfully similar to a query.
   - **Classification:** Assigning a new document to a previously identified group or label (for instance, a topic)
   - **Question Answering:** Retrieve relevant context for LLMs to answer questions accurately.  
   - **Recommendation Systems:** Suggest items based on similarity of embeddings.  
   - **Clustering & Topic Analysis:** Group similar content or detect topics.  
   - **Anomaly Detection:** Identify outliers by distance from typical embeddings.
-  
+- Popular vector stores:
+    - Pinecone
+    - FAISS
+    - PgVector
+ 
 ```python
 # 1. Semantic Search
 query = "Find documents about long documents."
