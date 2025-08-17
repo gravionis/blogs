@@ -589,8 +589,11 @@ for r in results:
 ```
 <img width="1400" height="578" alt="image" src="https://github.com/user-attachments/assets/cc1d9783-9da8-4220-a1c4-e7b48beb5e16" />
 
-## Control over Prompting Strategies
-### Query Transformation
+---
+
+## 3 strategies to get Control over Prompting:
+
+### 1. Query Transformation
 - Incoming inputs can be **varied and uncontrolled**, sources may be:  
   1. Event-driven data (which may contain secure data)
   2. Future integration with new systems (which may be outside VPC)
@@ -600,17 +603,18 @@ for r in results:
   - Ensures consistent processing across diverse inputs.  
   - Helps address security concerns and prevents misuse.  
 
-### Step-Back Prompting
+### 2. Step-Back Prompting
 - Ask the model to **analyze or reflect** before giving a final answer.  
 - Helps identify assumptions, gaps, or errors in reasoning.  
 - Reduces mistakes in **multi-step reasoning**.
 
-### Subquestion Prompting
+### 3. Subquestion Prompting
 - Breaks a **complex question into smaller subquestions**.  
 - Answer each subquestion individually and aggregate results.  
 - Improves accuracy for **multi-part queries** and reduces hallucination.
 
 ## Patterns
+
 ### Rewritten Prompting aka Rewrite-Retrieve-Read 
 - We have seen before 2 patterns
   - **map and mask** pattern - left side is secure data right side is public data.
@@ -619,12 +623,16 @@ for r in results:
 - Ensures the LLM focuses on the intended question.  
 - Reduces misinterpretation and improves output quality.
 
+---
+
 ## Effective Strategies Using RAG
 - Depending on the data type and usecase , it may be more efficient to spread data across
   - **vector store** for operations like semantic search.
   - **RDBMS** for structured data with relationships.
   - **NoSQL** for unstructured or semi-structured data.
   - **Object Store**. for large files or blobs.
+
+---
 
 ### Multi-Query Retrieval
 <img width="1676" height="596" alt="image" src="https://github.com/user-attachments/assets/595030dc-1a2b-4fa4-8a82-4ec58822a72d" />
@@ -645,15 +653,16 @@ for r in results:
     4. Is it sunny, rainy, or cloudy in Sydney currently?
     5. What is the humidity and wind speed in Sydney today?
 
+---
+
 ### RAG-Fusion
-<img width="1284" height="481" alt="image" src="https://github.com/user-attachments/assets/9597f42d-7e23-40f5-985e-cabef52035b3" />
+Sometimes **information space is large** and **spread out** or **diverse**, and a single query is **insufficient** to capture all relevant context.
+RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an **extension** of the **multi-query retrieval strategy**. It enhances the retrieval process by introducing a **final reranking step** using the **Reciprocal Rank Fusion (RRF)** algorithm.
 
-RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the multi-query retrieval strategy. It enhances the retrieval process by introducing a **final reranking step** using the **Reciprocal Rank Fusion (RRF)** algorithm.
-
-### Key Steps
+### Steps
 
 1. **Query Expansion:** Generate multiple related queries from the user's initial query.
-2. **Parallel Retrieval:** Execute each query independently against the data source (vector store, RDBMS, or search engine).
+2. **Parallel Retrieval:** of each query independently against the data source (**vector store**, **RDBMS**, **search engine** etc).
 3. **Reciprocal Rank Fusion (RRF):**  
    - Each retrieved document has a rank for each query.  
    - RRF combines these ranks into a single, unified ranking.  
@@ -676,8 +685,46 @@ RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an extension of the m
 
 2. **Enterprise Search:**  
    - Documents across Telstra for example Flexcab.
+```python
+embeddings_model = OpenAIEmbeddings()
 
-RAG-Fusion is particularly powerful when the information space is large and diverse, and a single query is insufficient to capture all relevant context.
+db = PGVector.from_documents(
+    documents, embeddings_model, connection=connection)
+
+# return the top 5 results ranked by similarity score (most relevant first).
+retriever = db.as_retriever(search_kwargs={"k": 5})
+
+prompt_rag_fusion = ChatPromptTemplate.from_template(
+    """You are a helpful assistant that generates multiple search queries based on a single input query. \n Generate multiple search queries related to: {question} \n Output (4 queries):""")
+
+query_gen = prompt_rag_fusion | llm | parse_queries_output
+generated_queries = query_gen.invoke(query)
+
+def reciprocal_rank_fusion(results: list[list], k=60):
+    """reciprocal rank fusion on multiple lists of ranked documents and an optional parameter k used in the RRF formula"""
+    # Initialize a dictionary to hold fused scores for each document
+    # Documents will be keyed by their contents to ensure uniqueness
+    fused_scores = {}
+    documents = {}
+    for docs in results:
+        # Iterate through each document in the list, with its rank (position in the list)
+        for rank, doc in enumerate(docs):
+            doc_str = doc.page_content
+            if doc_str not in fused_scores:
+                fused_scores[doc_str] = 0
+                documents[doc_str] = doc
+            fused_scores[doc_str] += 1 / (rank + k)
+    # sort the documents based on their fused scores in descending order to get the final reranked results
+    reranked_doc_strs = sorted(
+        fused_scores, key=lambda d: fused_scores[d], reverse=True)
+    return [documents[doc_str] for doc_str in reranked_doc_strs]
+
+retrieval_chain = query_gen | retriever.batch | reciprocal_rank_fusion
+```
+<img width="1284" height="481" alt="image" src="https://github.com/user-attachments/assets/9597f42d-7e23-40f5-985e-cabef52035b3" />
+
+---
+
 ## Hypothetical Document Embeddings (HyDE)
 <img width="460" height="300" alt="image" src="https://github.com/user-attachments/assets/564420f8-9bd2-4f97-9e68-0e0dbcfb02f4" />
 
