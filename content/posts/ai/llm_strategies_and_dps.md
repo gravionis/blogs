@@ -99,12 +99,9 @@ Before we proceed setting the stage.
   - Two main techniques:
     - Predict next word (causal language modeling): Used by models like GPT; generates text by predicting the next token in a sequence.
     - Predict masked word: Used by models like BERT; predicts masked tokens within a sentence for better understanding of context.
-  - **GPT models - : Focus on text generation, conversation, and completion tasks.**
-  - BERT models: Focus on understanding, classification, and extracting information from text.
-  - Other flavours:
-    - Encoder-only (BERT): Good for understanding and classification.
-    - Decoder-only (GPT): Good for generation and completion.
-    - Encoder-decoder (T5, BART): Good for translation, summarization, and more complex tasks.
+  - **GPT models - Decoder Focused : Focus on text generation, conversation, and completion tasks.**
+  - BERT models - Encoder Focused: Focus on understanding, classification, and extracting information from text.
+  - T5, BART - Encoder & decoder : Good for translation, summarization, and more complex tasks.
   - Many LLMs are specialized for tasks like code generation, multimodal input (text + images), or domain-specific knowledge.
 
 
