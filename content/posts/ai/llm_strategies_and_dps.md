@@ -296,9 +296,9 @@ Structured output model returns data in a **specific or predefined, machine-read
   - **Generation:** Augmenting the original prompt with the relevant retrieved documents. 
 
 - **Some issues you may face with RAG:**  
-  - Large context data cause incorrect results.  
-  - data will be split across multiple documents will cause incorrect results.  
-  - Too much context requires the model to filter irrelevant info → risk of hallucination.
+  - Sometimes the context data is large.  
+  - sometimes data will be split across multiple documents or chunks.  
+  - sometimes context data has irrelevant contents - requires the model to filter irrelevant info → risk of hallucination.
 
 ### Vector Store
 - A vector store is a database for storing and searching embeddings.
