@@ -59,7 +59,7 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
     3. [Reflexion](#reflexion)
     4. [Human-in-the-Loop](#human-in-the-loop)
     5. [Other Patterns](#other-patterns)
-    6. [MCP (Model Composition Pattern)](#mcp-model-composition-pattern)
+    6. [MCP (Model Context Protocol / Model Composition Pattern)](#mcp-model-context-protocol--model-composition-pattern)
 
 ## Introduction
 Instruction were to keep it basic &  AI WG experiences 3 usecases are in progress. we will be sharing some basics wrt to the learnings as strategies or design patterns here. if haven't already will go through.
@@ -827,3 +827,20 @@ These strategies enable LLMs and retrieval systems to effectively interact with 
 - **Multi-Agent Collaboration:** Multiple agents work together, each with specialized roles or skills.
 - **Stateful Agents:** Persist agent state across sessions for long-running tasks.
 
+### MCP (Model Context Protocol / Model Composition Pattern)
+- **Definition:** MCP is a design pattern and protocol for composing multiple models (LLMs, embedding models, retrieval models, etc.) to solve complex tasks that a single model cannot handle efficiently.
+- **How it works:** 
+  - Each model in the composition is responsible for a specific sub-task (e.g., retrieval, reasoning, summarization, tool invocation).
+  - The output of one model can be used as input/context for another, forming a pipeline or graph of model interactions.
+  - MCP also standardizes the way context (history, retrieved data, intermediate results) is passed between models and agents.
+- **Benefits:** 
+  - Leverages strengths of different models (e.g., one for semantic search, another for generation).
+  - Improves modularity, scalability, and maintainability of AI systems.
+  - Enables fallback, ensemble, or voting strategies for robustness.
+  - Facilitates agentic workflows and multi-agent orchestration.
+- **Use Cases:** 
+  - RAG systems (retrieval + generation)
+  - Multi-modal workflows (text, image, code)
+  - Agentic AI (combining LLMs with specialized agents/tools)
+  - Enterprise orchestration (combining public and private models for compliance)
+  - Standardizing context passing in complex LLM pipelines
