@@ -630,8 +630,6 @@ for r in results:
 ---
 
 ### 6. Multi-Query Retrieval
-<img width="1676" height="596" alt="image" src="https://github.com/user-attachments/assets/595030dc-1a2b-4fa4-8a82-4ec58822a72d" />
-
 - **Problem:** A single user query may not capture the full scope of information needed for a comprehensive answer.  
 
 - **Solution:** Multi-query retrieval strategy:
@@ -647,6 +645,8 @@ for r in results:
     3. What is the forecast for Sydney for the next few hours?
     4. Is it sunny, rainy, or cloudy in Sydney currently?
     5. What is the humidity and wind speed in Sydney today?
+       
+<img width="1676" height="596" alt="image" src="https://github.com/user-attachments/assets/595030dc-1a2b-4fa4-8a82-4ec58822a72d" />
 
 ---
 
