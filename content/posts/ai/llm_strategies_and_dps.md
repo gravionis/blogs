@@ -73,6 +73,7 @@ We chose this because we have 2 buzz words AI and design patterns. Instruction w
 Before we proceed setting the stage.
 ## Concepts 
 ### LLMs
+LLM an AI model trained on massive amounts of text. It is kind of able to understand, generate, and reason with natural language.
 - GPT-3: 175B Parameters, ~350B tokens. GPT-4:is 6x bigger. GPT-5 was supposed to be 20x bigger but is counter intuitive 300B Parameters.
 - Chinchilla's Law: model performance optimal when number of training tokens ≈ 20 × model parameters.
     - Example: 70B parameters → ~1.4T tokens needed.
