@@ -367,8 +367,8 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 ---
 
 ### 2. Representing Information based on Retrieval strategy
-- Sometimes representing information in **table** form is effective.
-- Use RDBMS, Object Store or NoSQL where applicable.
+- Sometimes representing information in **table** form is effective. Most of time **Markdown** is okay.
+- Sometimes it more effective to use an RDBMS, Object Store or NoSQL where applicable.
 - In Table - each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
 
 ---
@@ -381,6 +381,8 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 - **Disadvantages:**  
   - **Increases the total number of chunks** → more embeddings and storage.  
   - Can introduce **redundancy in retrieval**.  
+
+---
 
 ### 4. Language or Format-Aware Chunking (Strategy for Splitting Text into Meaningful Chunks)
 - Split based on the type of content:  
@@ -420,8 +422,8 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 
 ---
 
-### 8. Strategy for Vector DB - Document Change Tracking** 
-- part of the document or chunk may vary or be updated:
+### 8. Strategy for Vector DB - Document Change Tracking
+How to handle part of the document or chunk getting updated:
 - libraries such as **SQLRecordManager** or similar strategies to track document updates.
 - **Versioning with Metadata**: Each document update creates a new version; store version_id in metadata.
 - **Hash-Based Updates**: Compute hash for each chunk; update only changed chunks.
