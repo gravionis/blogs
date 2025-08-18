@@ -58,7 +58,7 @@ LLM design patterns are reusable strategies for building robust, efficient, and 
   - [17. Other Patterns](#17-other-patterns)
 
 ## Introduction
-Quite a number of topics to cover we chose this because we have 2 buzz words AI and design patterns. Instruction were to keep it basic & experiences of AI WG, we have 3 usecases are in progress; we will be sharing strategies or design patterns. If haven't already will go through chances are that you will.
+We chose this because we have 2 buzz words AI and design patterns. Instruction were to keep it basic & experiences of AI WG, we have 3 usecases are in progress; we will be sharing strategies or design patterns. If haven't already will go through chances are that you will.
 * security arch approvals
 * cost
 * availablility of an appropriate model 
