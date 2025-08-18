@@ -380,22 +380,21 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 - Start using Standard and Structured templates for documentation - serve as **context needed for the LLM**.
 - follow best practices of **prompt engineering** check results in Copilot after generation.
 - Knowledge can be provided as plain text, PDF, or **Markdown** format.  
-- Markdown format easily converted to and from Confluence tools like `pandoc`.
+- Markdown format easily converted to and from Confluence tools like **`pandoc`**.
 
 ---
 
 ### 2. Representing Information based on Retrieval strategy
-- Sometimes representing information in **table** form is effective.  
-- Each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
-- tables might sometimes be stored in RDBMS better than vector store.
-- Use of object store or nosql where applicable.
+- Sometimes representing information in **table** form is effective.
+- Use RDBMS, Object Store or NoSQL where applicable.
+- In Table - each cell corresponds to a **row and column**, making structured retrieval easier for the model.  
 
 ---
 
 ### 3. Chunking with Overlap (Strategy for Splitting Text into Meaningful Chunks)
 - create an **overlap** between chunks or documents.  
 - **Advantages:**  
-  - Maintains context between chunks.  
+  - It maintains context between chunks.  
   - Reduces risk of losing important information at **chunk boundaries**.  
 - **Disadvantages:**  
   - **Increases the total number of chunks** → more embeddings and storage.  
