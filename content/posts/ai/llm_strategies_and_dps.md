@@ -400,7 +400,7 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
   - **Increases the total number of chunks** → more embeddings and storage.  
   - Can introduce **redundancy in retrieval**.  
 
-### 2. Language or Format-Aware Chunking (Strategy for Splitting Text into Meaningful Chunks)
+### 4. Language or Format-Aware Chunking (Strategy for Splitting Text into Meaningful Chunks)
 - Split based on the type of content:  
   - **Markdown or structured text:** split by headings, sections, or paragraphs.  
   - **Code (Python, etc.):** split by functions, classes, or logical blocks.  
@@ -408,14 +408,14 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 
 ---
 
-### 3. Maintaining References (Strategy for Splitting Text into Meaningful Chunks)
+### 5. Maintaining References (Strategy for Splitting Text into Meaningful Chunks)
 - Retain a **reference to the original document** after splitting.  
 - Useful for workflows like **Reflexion**, where you might need to trace information back to the source.  
 - Useful when you need to provide provide **accurate citations or references**.
 
 ---
 
-### 4. Strategies for Mathematical operations
+### 6. Strategies for Mathematical operations
 - GPT models excel at predicting the next word and reasoning, but are not reliable for accurate mathematical calculations.
 - Strategies to handle mathematical operations:
   - Use external tools or function calling (e.g., calculator APIs, Python code execution) for math tasks.
@@ -426,7 +426,7 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 
 ---
 
-### 5. Strategies for Security Compliance
+### 7. Strategies for Security Compliance
 - **hybrid model approach**: classify and filter sensitive or secure data before sending to public or third-party models.
 - **rewrite-retrieve-read** and **multi-query retrieval** patterns to detect and mitigate queries with ill intent or attempts to extract confidential information.
 - **map and mask** pattern - left side is secure data right side is public data.
@@ -438,7 +438,7 @@ nearest = pgvector_store.similarity_search_by_vector(new_embedding, k=1)
 
 ---
 
-### 6. Strategy for Vector DB - Document Change Tracking** 
+### 8. Strategy for Vector DB - Document Change Tracking** 
 - part of the document or chunk may vary or be updated:
 - libraries such as **SQLRecordManager** or similar strategies to track document updates.
 - **Versioning with Metadata**: Each document update creates a new version; store version_id in metadata.
@@ -450,7 +450,7 @@ vectorstore.similarity_search(query, filter={"is_active": True})
 ---
 ## Some Design Patterns:
 
-### MultiVector Retrieval  
+### 1. MultiVector Retrieval  
 - **Problem**: Mixed-content documents (text + tables) can lose structure if split only by text.
 - **Design Pattern**: Follows *CQRS (Command Query Responsibility Segregation)* principle separate write (doc updates) and read (retrieval) models for consistency.
 - seperate out the **vector store** and **doc store**.
@@ -499,7 +499,7 @@ retriever = MultiVectorRetriever(
 
 ---
 
-### Recursive Abstractive Processing for Tree-Organized Retrieval —  
+### 2. Recursive Abstractive Processing for Tree-Organized Retrieval —  
 - **Problem:**  
   - RAG systems must handle:
     - **Lower-level questions:** referencing specific facts in a single document.  
@@ -559,7 +559,7 @@ for r in results:
 
 ---
 
-### ColBERT (Contextually Late Interactions using BERT): Optimizing Embeddings
+### 3. ColBERT (Contextually Late Interactions using BERT): Optimizing Embeddings
 
 - **Problem with standard embeddings:**  
   - They **compress** the whole text into one **fixed-length vector**.  
@@ -601,9 +601,9 @@ for r in results:
 
 ---
 
-## 3 strategies to get Control over Prompting:
+### 4. strategies to get Control over Prompting:
 
-### 1. Query Transformation
+1. Query Transformation
 - Incoming inputs can be **varied and uncontrolled**, sources may be:  
   1. Event-driven data (which may contain secure data)
   2. Future integration with new systems (which may be outside VPC)
@@ -613,19 +613,19 @@ for r in results:
   - Ensures consistent processing across diverse inputs.  
   - Helps address security concerns and prevents misuse.  
 
-### 2. Step-Back Prompting
+2. Step-Back Prompting
 - Ask the model to **analyze or reflect** before giving a final answer.  
 - Helps identify assumptions, gaps, or errors in reasoning.  
 - Reduces mistakes in **multi-step reasoning**.
 
-### 3. Subquestion Prompting
+3. Subquestion Prompting
 - Breaks a **complex question into smaller subquestions**.  
 - Answer each subquestion individually and aggregate results.  
 - Improves accuracy for **multi-part queries** and reduces hallucination.
 
-## Patterns
+## Patterns for Controlling Prompt 
 
-### Rewritten Prompting aka Rewrite-Retrieve-Read 
+### 5.Rewritten Prompting aka Rewrite-Retrieve-Read 
 - We have seen before 2 patterns
   - **map and mask** pattern - left side is secure data right side is public data.
   - **rewrite-match-return** 
@@ -644,7 +644,7 @@ for r in results:
 
 ---
 
-### Multi-Query Retrieval
+### 6. Multi-Query Retrieval
 <img width="1676" height="596" alt="image" src="https://github.com/user-attachments/assets/595030dc-1a2b-4fa4-8a82-4ec58822a72d" />
 
 - **Problem:** A single user query may not capture the full scope of information needed for a comprehensive answer.  
@@ -665,7 +665,7 @@ for r in results:
 
 ---
 
-### RAG-Fusion
+### 7. RAG-Fusion
 Sometimes **information space is large** and **spread out** or **diverse**, and a single query is **insufficient** to capture all relevant context.
 RAG-Fusion (Retrieval-Augmented Generation with Fusion) is an **extension** of the **multi-query retrieval strategy**. It enhances the retrieval process by introducing a **final reranking step** using the **Reciprocal Rank Fusion (RRF)** algorithm.
 
@@ -735,7 +735,7 @@ retrieval_chain = query_gen | retriever.batch | reciprocal_rank_fusion
 
 ---
 
-### Hypothetical Document Embeddings (HyDE)
+### 8. Hypothetical Document Embeddings (HyDE)
 **HyDE** is a retrieval strategy that leverages LLMs to improve vector-based search by creating a **hypothetical document** from the user’s query. The idea is that the LLM can expand, paraphrase, or contextualize the query into a richer representation that is more semantically similar to relevant documents in the dataset.
 HyDE effectively **bridges the gap between natural language queries and document embeddings**, improving the relevance of retrieved documents in retrieval-augmented generation (RAG) systems.
 
@@ -756,7 +756,7 @@ HyDE effectively **bridges the gap between natural language queries and document
 ## Query Routing
 Query routing is a strategy used in retrieval or search systems to **direct a user query to the most relevant subset of data or service**. The goal is to improve retrieval efficiency, relevance, and response time. There are two main strategies: **logical routing** and **semantic routing**.
 
-### 1. Logical Routing
+### 9. Logical Routing
 Logical routing directs queries based on **predefined rules, categories, or metadata** associated with the documents or data sources.
 - Documents are classified or tagged into **logical partitions** (e.g., departments, product lines, regions).  
 - Queries are routed to the partition(s) that match certain **keywords, tags, or rules**.  
@@ -773,7 +773,7 @@ class RouteQuery(BaseModel):
 
 ---
 
-### 2. Semantic Routing
+### 10. Semantic Routing
 Semantic routing directs queries based on **meaning or intent**, often using embeddings, LLMs, or vector similarity, rather than strict keywords or rules.
 
 **How it works:**  
@@ -806,12 +806,12 @@ def prompt_router(query):
 
 ---
 
-### Query Construction
+## Query Construction
  **user's natural language query** into **a structured query** that can be executed against various data sources. This is essential for retrieval systems, vector stores, and relational databases.
 
 ---
 
-### 1. Text-to-Metadata Conversion
+### 11. Text-to-Metadata Conversion
 
 Vector stores often support **metadata-based filtering**, allowing more precise searches. During the embedding process:
 
@@ -838,14 +838,14 @@ Vector stores often support **metadata-based filtering**, allowing more precise 
 
 ---
 
-### Self-Querying Approach
+## Self-Querying Approach
 An LLM can translate a natural language query into metadata filters automatically.
 
 **Example:** "Show event by event name and event publisher" → `{"event_name": "payment event", "event_publisher": "payment system"}`
 
 ---
 
-### 2. Text-to-SQL
+### 12. Text-to-SQL
 Relational databases require SQL queries, which are not naturally compatible with human language. Text-to-SQL allows LLMs to translate user queries into SQL queries.
 * Strategies for Effective Translation
 * Provide the LLM with table definitions using `CREATE TABLE` statements, including:
@@ -861,7 +861,7 @@ Relational databases require SQL queries, which are not naturally compatible wit
 
 ---
 
-### 3. Additional Prompt & Agent Patterns
+### 13. Additional Prompt & Agent Patterns
 #### Chatbot with Memory
 - Most LLM models are stateless; they do not remember previous interactions unless history is provided in the prompt.
 - **Actions to control history:**
@@ -874,25 +874,25 @@ Relational databases require SQL queries, which are not naturally compatible wit
   - Summarized memory (summary of all prior conversation)
   - Hybrid (recent messages + summary)
 
-#### ReAct (Reason + Act)
+#### 14. ReAct (Reason + Act)
 - Combines reasoning steps with tool or function calls.
 - Model alternates between generating thoughts and taking actions (API calls, tool invocation).
 - Useful for multi-step tasks, retrieval, and automation.
 <img width="1400" height="686" alt="image" src="https://github.com/user-attachments/assets/67a2124c-9270-440b-b222-5b70ab293266" />
 
-#### Reflexion
+#### 15. Reflexion
 - Model reviews its own outputs, critiques, and iteratively improves answers.
 - Can be used for self-correction, debugging, or refining reasoning.
 <img width="2000" height="1322" alt="image" src="https://github.com/user-attachments/assets/e607b1f1-8b79-4ee6-99b2-596eea8d8693" />
 
-#### Human-in-the-Loop
+#### 16. Human-in-the-Loop
 - Allows human intervention in agent workflows:
   - **Resume:** Continue from a paused state.
   - **Restart:** Begin a new workflow or correct errors.
   - **Edit State:** Modify intermediate results or context.
   - **Fork:** Branch the workflow for alternative solutions or exploration.
 
-### Other Patterns
+### 17. Other Patterns
 - **Agent Orchestration:** Coordinate multiple agents (LLMs, tools, humans) for complex workflows.
 - **Meta-Prompting:** Use one LLM to generate or optimize prompts for another model.
 - **Multi-Agent Collaboration:** Multiple agents work together, each with specialized roles or skills.
