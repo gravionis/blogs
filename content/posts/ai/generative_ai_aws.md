@@ -11,6 +11,11 @@ AWS provides a complete ecosystem for generative AI, including infrastructure, f
 
 ## **AWS Services and Features**
 
+<img width="1471" height="1347" alt="image" src="https://github.com/user-attachments/assets/3a9f1ef6-f05d-4ebc-98e7-40b697a96952" />
+
+source: https://aws.amazon.com/blogs/machine-learning/architect-a-mature-generative-ai-foundation-on-aws/
+
+
 | **Category**                | **Service / Feature**                       | **Description** |
 |-----------------------------|--------------------------------------------|-----------------|
 | **Foundation & Deployment** | **Amazon Bedrock** | Fully managed platform providing access to multiple foundation models (Anthropic Claude, Cohere, Stability AI, etc.), enabling customization, RAG, guardrails, and agent creation. |
