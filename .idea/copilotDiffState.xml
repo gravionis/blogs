@@ -48,6 +48,15 @@
             </PendingDiffInfo>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/themes/gravionis/layouts/section.html">
+          <value>
+            <PendingDiffInfo>
+              <option name="filePath" value="$PROJECT_DIR$/themes/gravionis/layouts/section.html" />
+              <option name="originalContent" value="{{ define &quot;main&quot; }}&#10;  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;&#10;  {{ .Content }}&#10;  &lt;style&gt;&#10;    .post-card {&#10;      border: 1px solid #ccc;&#10;      padding: 15px;&#10;      margin: 10px 0;&#10;      border-radius: 12px;&#10;      box-shadow: 0 2px 8px 2px #0078ff22, 0 0 8px 2px #fff2;&#10;      transition: box-shadow 0.3s, border-color 0.3s;&#10;      background: #fff;&#10;    }&#10;    .post-card:hover {&#10;      box-shadow: 0 0 24px 6px #0078ff88, 0 0 12px 4px #fff;&#10;      border-color: #0078ff;&#10;      background: #f0f8ff;&#10;    }&#10;    .post-card h2 a {&#10;      text-decoration: none;&#10;      color: #0078ff;&#10;      transition: color 0.2s;&#10;    }&#10;    .post-card:hover h2 a {&#10;      color: #0050bb;&#10;    }&#10;  &lt;/style&gt;&#10;  {{ range .Pages }}&#10;    &lt;div class=&quot;post-card&quot;&gt;&#10;      &lt;h2&gt;&lt;a href=&quot;{{ .RelPermalink }}&quot;&gt;{{ .LinkTitle }}&lt;/a&gt;&lt;/h2&gt;&#10;      {{ .Summary | truncate 250 }}&#10;    &lt;/div&gt;&#10;  {{ end }}&#10;{{ end }}&#10;" />
+              <option name="updatedContent" value="{{ define &quot;main&quot; }}&#10;  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;&#10;  {{ .Content }}&#10;  &lt;style&gt;&#10;    .post-card-link {&#10;      text-decoration: none;&#10;      color: inherit;&#10;      display: block;&#10;    }&#10;    .post-card {&#10;      border: 1px solid #ccc;&#10;      padding: 15px;&#10;      margin: 10px 0;&#10;      border-radius: 12px;&#10;      box-shadow: 0 2px 8px 2px #0078ff22, 0 0 8px 2px #fff2;&#10;      transition: box-shadow 0.3s, border-color 0.3s;&#10;      background: #fff;&#10;      cursor: pointer;&#10;    }&#10;    .post-card:hover {&#10;      box-shadow: 0 0 24px 6px #0078ff88, 0 0 12px 4px #fff;&#10;      border-color: #0078ff;&#10;      background: #f0f8ff;&#10;    }&#10;    .post-card h2 a {&#10;      text-decoration: none;&#10;      color: #0078ff;&#10;      transition: color 0.2s;&#10;    }&#10;    .post-card:hover h2 a {&#10;      color: #0050bb;&#10;    }&#10;  &lt;/style&gt;&#10;  {{ range .Pages }}&#10;    &lt;a class=&quot;post-card-link&quot; href=&quot;{{ .RelPermalink }}&quot;&gt;&#10;      &lt;div class=&quot;post-card&quot;&gt;&#10;        &lt;h2&gt;{{ .LinkTitle }}&lt;/h2&gt;&#10;        {{ .Summary | truncate 250 }}&#10;      &lt;/div&gt;&#10;    &lt;/a&gt;&#10;  {{ end }}&#10;{{ end }}" />
+            </PendingDiffInfo>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

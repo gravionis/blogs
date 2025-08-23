@@ -1,7 +1,7 @@
 +++
 date = '2025-05-30T12:44:47+10:00'
 draft = false
-title = 'AWS'
+title = 'AWS Interview Preparation: System Design'
 tags = ['Cloud', 'AWS']
 +++
 
