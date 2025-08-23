@@ -1,5 +1,5 @@
 +++
-date = '2025-05-20T12:44:47+10:00'
+date = '2025-05-10T12:44:47+10:00'
 draft = false
 title = 'Generative AI Strategies and Design Patterns'
 tags = ['LLM', 'AI', 'Design Patterns']

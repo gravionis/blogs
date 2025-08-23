@@ -1,8 +1,8 @@
 +++
-date = '2024-05-03T12:44:47+10:00'
+date = '2022-05-03T12:44:47+10:00'
 draft = false
-title = 'Python Async IO'
-tags = ['Python', 'AsyncIO']
+title = 'Python 🐍'
+tags = ['Python']
 +++
 
 Python’s asyncio is a concurrency framework built on the concept of single-threaded cooperative multitasking. Unlike traditional multithreading or multiprocessing, which rely on the operating system to preemptively switch tasks, asyncio schedules coroutines—special functions defined with async def—that explicitly yield control back to the event loop when they encounter an await statement.
@@ -13,7 +13,8 @@ Because everything happens in a single thread, asyncio avoids issues like race c
 
 Asyncio shines in applications like web servers, chat systems, and crawlers, where many tasks spend time waiting on I/O. By letting tasks cooperate instead of competing for CPU time, asyncio achieves high throughput and scalability with minimal resource usage.
 
-### Core Concepts
+## Async IO
+### Basic Concepts
 async def and await
 
 ```python
