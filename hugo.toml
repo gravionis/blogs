@@ -1,6 +1,6 @@
 baseURL = 'https://gravionis.github.io/blogs/'
 languageCode = 'en-us'
-title = 'Gravionis'
+title = 'GRAVIONIS'
 theme = 'gravionis'
 
 [menus]

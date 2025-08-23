@@ -1,31 +1,36 @@
-<div id="main-header" style="position: fixed; top: 0; left: 0; width: 100vw; height: 64px; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.03); z-index: 201; display: flex; flex-direction: row; align-items: center; padding: 0 2rem;">
-  <h1 style="margin: 0 2rem 0 0; font-size: 1.5rem;">{{ site.Title }}</h1>
+<div id="main-header" class="site-bar" style="position: fixed; top: 0; left: 0; width: 100%; height: 64px; z-index: 201; display: flex; flex-direction: row; align-items: center; padding: 0 2rem;">
+  <h1 style="margin: 0 2rem 0 0; font-size: 1.5rem; color: #fff;">{{ site.Title }}</h1>
   <nav style="height: 100%; display: flex; align-items: center; margin-left: auto; margin-right: 8vw;">
     {{ partial "menu.html" (dict "menuID" "main" "page" .) }}
   </nav>
 </div>
-<!-- Add extra top margin to main content to shift blogs below the header -->
 <style>
+  .site-bar {
+    background: #222;
+    color: #fff;
+    box-shadow: 0 2px 8px 2px #0078ff, 0 0 8px 2px #222;
+    transition: box-shadow 0.3s;
+  }
+  .site-bar a, .site-bar h1 {
+    color: #fff !important;
+  }
+  .site-bar:hover {
+    box-shadow: 0 0 24px 6px #0078ff, 0 0 12px 4px #222;
+    transition: box-shadow 0.3s;
+  }
   body {
-    margin-top: 64px; /* Header height */
-    margin-left: 5vw; /* Move content further to the right */
+    margin-top: 64px;
+    margin-left: 5vw;
     margin-right: 0;
     width: 100%;
     font-size: 0.95rem;
     background: #f0f0f0;
-  }
-  #main-header {
-    box-shadow: 0 2px 8px 2px #0078ff, 0 0 8px 2px #fff;
-    transition: box-shadow 0.3s;
-  }
-  #main-header:hover {
-    box-shadow: 0 0 24px 6px #0078ff, 0 0 12px 4px #fff;
-    transition: box-shadow 0.3s;
+    overflow-x: hidden;
   }
   @media (max-width: 600px) {
     body {
       margin-top: 56px;
-      margin-left: 1rem; /* Slightly increased margin on mobile */
+      margin-left: 1rem;
       margin-right: 0;
       width: 100%;
       font-size: 1rem;
@@ -35,11 +40,9 @@
       display: none;
     }
   }
-  /* Glow effect for menu items on hover */
   .menu-glow:hover {
-    box-shadow: 0 0 8px 2px #0078ff, 0 0 2px 1px #fff;
-    background: #f0f8ff;
-    color: #0078ff !important;
+    box-shadow: 0 0 8px 2px #007700, 0 0 2px 1px #222;
+    color: #007700 !important;
     transition: box-shadow 0.2s, background 0.2s, color 0.2s;
   }
 </style>
