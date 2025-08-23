@@ -88,7 +88,7 @@ Setting the stage for tokenization:
 ```python
 import nltk
 nltk.download('punkt')
-text="In a world where technological advancements continue to redefine the boundaries of what is possible, the rapid integration of artificial intelligence, machine learning, and data-driven decision-making processes across industries ranging from healthcare, finance, and entertainment to education, agriculture, and manufacturing has opened up a plethora of opportunities for businesses, governments, and individuals to not only optimize their operations but also drive innovation in ways that were previously unimaginable, thus creating an ecosystem where collaboration between humans and machines can lead to transformative solutions that address complex global challenges such as climate change, poverty, and public health crises, while also ensuring that ethical considerations, regulatory frameworks, and the need for transparency remain at the forefront of this new era of technological evolution."
+text="In a world where technological advancements continue to redefine the boundaries of what is possible, the rapid.."
 ml_tokens = nltk.word_tokenize(text)
 list(nltk.bigrams(ml_tokens)) # or trigrams
 ```
@@ -129,7 +129,7 @@ for token in tokens:
 from nltk.corpus import stopwords
 nltk.download('stopwords')
 stop_words = stopwords.words('english')
-text="In a world where technological advancements continue to redefine the boundaries of what is possible, the rapid integration of artificial intelligence, machine learning, and data-driven decision-making processes across industries ranging from healthcare, finance, and entertainment to education, agriculture, and manufacturing has opened up a plethora of opportunities for businesses, governments, and individuals to not only optimize their operations but also drive innovation in ways that were previously unimaginable, thus creating an ecosystem where collaboration between humans and machines can lead to transformative solutions that address complex global challenges such as climate change, poverty, and public health crises, while also ensuring that ethical considerations, regulatory frameworks, and the need for transparency remain at the forefront of this new era of technological evolution."
+text="In a world where technological advancements continue to redefine the boundaries of what is possible, the rapid .."
 ml_tokens=nltk.word_tokenize(text)
 filtered_data = [w for w in ml_tokens if not w in stop_words]
 filtered_data
@@ -259,7 +259,8 @@ print(a2, a2.definition())
 a3=lesk(word_tokenize('I like to eat jam with bread'), 'jam')
 print(a3, a3.definition())
 #Output
-# Synset('jamming.n.01') deliberate radiation or reflection of electromagnetic energy for the purpose of disrupting enemy use of electronic devices or systems
+# Synset('jamming.n.01') deliberate radiation or reflection of electromagnetic energy for the 
+# purpose of disrupting enemy use of electronic devices or systems
 # Synset('jam.v.05') get stuck and immobilized
 # Synset('jam.v.06') crowd or pack to capacity --> Somehow this isn't coming correct
 ```
@@ -323,10 +324,12 @@ for token in doc:
 
 ```python
 text="Mission impossible is one of the best movies I have watched. I love it."
-print("{:10}|{:15}|{:15}|{:10}|{:10}|{:10}|{:10}|{:10}".format("text", "lemmatization", "partofspeech", "TAG", "DEP", "SHAPE", "ALPHA", "STOP"))
+print("{:10}|{:15}|{:15}|{:10}|{:10}|{:10}|{:10}|{:10}"
+      .format("text", "lemmatization", "partofspeech", "TAG", "DEP", "SHAPE", "ALPHA", "STOP"))
 doc = nlp(text)
 for token in doc:
-  print("{:10}|{:15}|{:15}|{:10}|{:10}|{:10}|{:10}|{:10}".format(token.text, token.lemma_, token.pos_, token.tag_, token.dep_,token.shape_, token.is_alpha, token.is_stop))
+  print("{:10}|{:15}|{:15}|{:10}|{:10}|{:10}|{:10}|{:10}"
+        .format(token.text, token.lemma_, token.pos_, token.tag_, token.dep_,token.shape_, token.is_alpha, token.is_stop))
 
 # text      |lemmatization  |partofspeech   |TAG       |DEP       |SHAPE     |ALPHA     |STOP      
 # Mission   |mission        |NOUN           |NN        |nsubj     |Xxxxx     |         1|         0
@@ -801,7 +804,7 @@ sentences = ["I am not having a great day"]
 model_outputs = classifier(sentences)
 print(model_outputs[0])
 # Output
-# [{'label': 'disappointment', 'score': 0.4666951894760132}, {'label': 'sadness', 'score': 0.39849498867988586}, {'label': 'annoyance', 'score': 0.06806593388319016}, {'label': 'neutral', 'score': 0.05703023821115494}, {'label': 'disapproval', 'score': 0.044239308685064316}, {'label': 'nervousness', 'score': 0.014850745908915997}, {'label': 'realization', 'score': 0.014059904962778091}, {'label': 'approval', 'score': 0.0112674655392766}, {'label': 'joy', 'score': 0.006303396541625261}, {'label': 'remorse', 'score': 0.006221492309123278}, {'label': 'caring', 'score': 0.006029403302818537}, {'label': 'embarrassment', 'score': 0.0052654859609901905}, {'label': 'anger', 'score': 0.004981426056474447}, {'label': 'disgust', 'score': 0.004259029403328896}, {'label': 'grief', 'score': 0.0040021371096372604}, {'label': 'confusion', 'score': 0.003382918192073703}, {'label': 'relief', 'score': 0.0031405005138367414}, {'label': 'desire', 'score': 0.00282747158780694}, {'label': 'admiration', 'score': 0.002815794898197055}, {'label': 'fear', 'score': 0.002707520266994834}, {'label': 'optimism', 'score': 0.0026164911687374115}, {'label': 'love', 'score': 0.0024883910082280636}, {'label': 'excitement', 'score': 0.0024494787212461233}, {'label': 'curiosity', 'score': 0.0023743617348372936}, {'label': 'amusement', 'score': 0.001746696187183261}, {'label': 'surprise', 'score': 0.0014529851032420993}, {'label': 'gratitude', 'score': 0.0006464761681854725}, {'label': 'pride', 'score': 0.00055424973834306}]
+# [{'label': 'disappointment', 'score': 0.4666951894760132}, {'label': 'sadness', 'score': 0.39849498867988586}......
 ```
 yet another example for summarization
 ```python
@@ -1166,15 +1169,7 @@ trainer.save_model("./lora_finetuned_model")
 
 eval_texts = [
     "An absolutely stunning film! The visuals were breathtaking, and the storyline kept me engaged the entire time.",
-    "I was really disappointed with this film. The plot was weak and the characters were poorly developed.",
-    "A heartwarming story that left me in tears. The performances were phenomenal and truly captured the essence of the characters.",
-    "A boring and predictable movie that dragged on for too long. I wouldn't recommend it to anyone.",
-    "This movie exceeded my expectations! The plot twists were fantastic, and the acting was top-notch. Highly recommend!",
-    "The special effects couldn't save this film. It was a chore to sit through, and I found myself looking at my watch constantly.",
-    "An inspiring tale that resonates on many levels. The direction was exceptional, and the soundtrack was unforgettable.",
-    "An absolute disaster! The acting was cringe-worthy and the story made no sense whatsoever.",
-    "A brilliant blend of action and comedy. I couldn't stop laughing, and the action scenes were exhilarating!",
-    "I expected much more from this film. It felt like a cash grab with no real substance or originality."
+    "I was really disappointed with this film. The plot was weak and the characters were poorly developed."....
 ]
 
 # Get predictions

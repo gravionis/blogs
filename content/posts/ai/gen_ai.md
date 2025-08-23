@@ -1,8 +1,8 @@
 +++
 date = '2025-05-20T12:44:47+10:00'
 draft = false
-title = 'LLM Strategies and Design Patterns'
-tags = ['LLM', 'Design Patterns']
+title = 'Generative AI Strategies and Design Patterns'
+tags = ['LLM', 'AI', 'Design Patterns']
 +++
 
 LLM design patterns are reusable strategies for building robust, efficient, and scalable AI applications. They help developers structure retrieval, reading, rewriting, memory, agent, and orchestration workflows for large language models. These patterns improve performance, maintainability accuracy, cost and security.
@@ -690,13 +690,15 @@ db = PGVector.from_documents(
 retriever = db.as_retriever(search_kwargs={"k": 5})
 
 prompt_rag_fusion = ChatPromptTemplate.from_template(
-    """You are a helpful assistant that generates multiple search queries based on a single input query. \n Generate multiple search queries related to: {question} \n Output (4 queries):""")
+    """You are a helpful assistant that generates multiple search queries based on a single input query. 
+    \n Generate multiple search queries related to: {question} \n Output (4 queries):""")
 
 query_gen = prompt_rag_fusion | llm | parse_queries_output
 generated_queries = query_gen.invoke(query)
 
 def reciprocal_rank_fusion(results: list[list], k=60):
-    """reciprocal rank fusion on multiple lists of ranked documents and an optional parameter k used in the RRF formula"""
+    """reciprocal rank fusion on multiple lists of ranked documents 
+    and an optional parameter k used in the RRF formula"""
     # Initialize a dictionary to hold fused scores for each document
     # Documents will be keyed by their contents to ensure uniqueness
     fused_scores = {}
@@ -769,8 +771,8 @@ Semantic routing directs queries based on **meaning or intent**, often using emb
 
 **Example:**  
 ```python
-physics_template = """You are a very smart physics professor. You are great at     answering questions about physics in a concise and easy-to-understand manner.     When you don't know the answer to a question, you admit that you don't know. Here is a question: {query}"""
-math_template = """You are a very good mathematician. You are great at answering     math questions. You are so good because you are able to break down hard     problems into their component parts, answer the component parts, and then     put them together to answer the broader question. Here is a question: {query}"""
+physics_template = """You are a very smart physics professor. You are great at     answering questions ... {query}"""
+math_template = """You are a very good mathematician. You are great at answering     math questions. You a... {query}"""
 
 # Embed prompts
 embeddings = OpenAIEmbeddings()

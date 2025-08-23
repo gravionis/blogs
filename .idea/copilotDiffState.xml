@@ -39,15 +39,6 @@
             </PendingDiffInfo>
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/themes/gravionis/layouts/_partials/footer.html">
-          <value>
-            <PendingDiffInfo>
-              <option name="filePath" value="$PROJECT_DIR$/themes/gravionis/layouts/_partials/footer.html" />
-              <option name="originalContent" value="&lt;footer class=&quot;site-bar&quot; style=&quot;position: fixed; bottom: 0; left: 0; width: 100vw; height: 48px; display: flex; align-items: center; justify-content: center; padding: 0 2rem; z-index: 200;&quot;&gt;&#10;  &lt;p style=&quot;margin: 0; font-size: 1rem;&quot;&gt;Copyright {{ now.Year }}. All rights reserved.&lt;/p&gt;&#10;&lt;/footer&gt;&#10;&#10;&lt;!-- Modal Structure --&gt;&#10;&lt;div id=&quot;imageModal&quot; style=&quot;display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000; justify-content: center; align-items: center;&quot;&gt;&#10;  &lt;span id=&quot;closeModal&quot; style=&quot;position: absolute; top: 20px; right: 30px; font-size: 30px; color: white; cursor: pointer;&quot;&gt;&amp;times;&lt;/span&gt;&#10;  &lt;img id=&quot;modalImage&quot; src=&quot;&quot; alt=&quot;&quot; style=&quot;max-width: 100%; max-height: 100%;&quot;&gt;&#10;&lt;/div&gt;&#10;&#10;&lt;script&gt;&#10;  document.addEventListener('DOMContentLoaded', function() {&#10;    const modal = document.getElementById('imageModal');&#10;    const modalImage = document.getElementById('modalImage');&#10;    const closeModal = document.getElementById('closeModal');&#10;&#10;    document.querySelectorAll('img').forEach(img =&gt; {&#10;      img.addEventListener('click', () =&gt; {&#10;        modalImage.src = img.src;&#10;        modal.style.display = 'flex';&#10;      });&#10;    });&#10;&#10;    closeModal.addEventListener('click', () =&gt; {&#10;      modal.style.display = 'none';&#10;    });&#10;&#10;    modal.addEventListener('click', (e) =&gt; {&#10;      if (e.target === modal) {&#10;        modal.style.display = 'none';&#10;      }&#10;    });&#10;  });&#10;&lt;/script&gt;&#10;" />
-              <option name="updatedContent" value="&lt;!-- Footer removed as per request --&gt;" />
-            </PendingDiffInfo>
-          </value>
-        </entry>
         <entry key="$PROJECT_DIR$/themes/gravionis/layouts/_partials/header.html">
           <value>
             <PendingDiffInfo>
