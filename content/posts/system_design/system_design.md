@@ -1060,92 +1060,106 @@ public void generatePermutations(String str, String perm) {
 ```
 
 ### Load Balancers
+
+Load balancers distribute incoming network traffic across multiple servers to ensure reliability, scalability, and high availability. They act as a single entry point for clients and help prevent any one server from becoming a bottleneck.
+
+**Types of Load Balancers:**
+- **Layer 4 (Transport Layer):** Operates at TCP/UDP level. Routes traffic based on IP address and port (e.g., Linux IPVS, AWS NLB).
+- **Layer 7 (Application Layer):** Operates at HTTP/HTTPS level. Routes traffic based on content, cookies, headers, or URLs (e.g., NGINX, HAProxy, AWS ALB).
+
+**Strategies:**
+- **Round Robin:** Distributes requests evenly across all servers.
+- **Least Connections:** Sends traffic to the server with the fewest active connections.
+- **IP Hash:** Routes requests based on client IP, useful for session persistence.
+- **Weighted:** Assigns weights to servers based on capacity.
+
+**Benefits:**
+- Improves fault tolerance and uptime.
+- Enables horizontal scaling.
+- Supports health checks and automatic failover.
+- Can provide SSL/TLS termination.
+
+**Example Use Cases:**
+- Web applications with multiple backend servers.
+- Microservices architectures.
+- API gateways.
+
+---
+
 ### Rate Limiting
+
+Rate limiting controls the number of requests a client can make to a service within a given time window. It protects systems from abuse, ensures fair usage, and helps maintain performance under load.
+
+**Common Algorithms:**
+- **Token Bucket:** Each request consumes a token; tokens are refilled at a fixed rate.
+- **Leaky Bucket:** Requests are processed at a steady rate; excess requests are queued or dropped.
+- **Fixed Window Counter:** Counts requests in a fixed time window (e.g., per minute).
+- **Sliding Window Log:** Tracks timestamps of requests for more accurate limiting.
+
+**Implementation Strategies:**
+- Per user, per IP, per API key, or globally.
+- Distributed rate limiting using Redis, Memcached, or cloud-native solutions.
+
+**Benefits:**
+- Prevents denial-of-service (DoS) attacks.
+- Protects backend resources.
+- Ensures fair usage among clients.
+
+**Example Use Cases:**
+- Public APIs (e.g., 1000 requests per hour per user).
+- Login endpoints to prevent brute-force attacks.
+- Payment or transaction services.
+
+---
+
 ### Content Delivery Optimization
+
+Content Delivery Optimization ensures that static and dynamic content is delivered to users quickly and efficiently, regardless of their geographic location.
+
+**Key Techniques:**
+- **Content Delivery Network (CDN):** Distributes content across global edge servers, reducing latency and offloading traffic from origin servers (e.g., CloudFront, Akamai, Cloudflare).
+- **Caching:** Stores frequently accessed data closer to users (browser cache, edge cache, reverse proxy cache).
+- **Compression:** Reduces payload size using algorithms like gzip, Brotli.
+- **Image Optimization:** Serves appropriately sized and formatted images (WebP, lazy loading).
+- **Minification:** Removes unnecessary characters from CSS, JS, and HTML files.
+
+**Benefits:**
+- Reduces latency and improves load times.
+- Handles traffic spikes efficiently.
+- Improves user experience and SEO.
+- Reduces bandwidth costs.
+
+**Example Use Cases:**
+- Serving static assets (images, videos, scripts).
+- Accelerating API responses.
+- Global web applications.
+
+---
+
 ### Zero Downtime Deployment
----
-## Common Design Patterns and Architecture
-### Event-Driven Architecture
-### Data Partitioning Strategies
-### Eventual Consistency
-### Leader Election
-### Circuit Breaker Pattern
-### Throttling and Backpressure
-### Service Discovery
-### Microservices
-### Message Queues
----
-## Monitoring, Resiliency, and Security
-### Monitoring and Observability
-### Data Compression
-### Authentication and Authorization
-### Data Backup and Recovery
-### Chaos Engineering
----
-## Development and Deployment
-### Concurrency Control
-### Immutable Infrastructure
-### Blue-Green Deployment
----
-## Theoretical Concepts
-### Search Systems
----
-## Data Processing
-### Data Streaming
----
-## Miscellaneous
-### Rate Shaping
----
-## Laws
-### General Engineering & Design Principles
-* Murphy’s Law – “Anything that can go wrong will go wrong.” → Build for resilience and failure recovery.
 
-* Gall’s Law – Complex systems that work evolve from simple systems that work.
+Zero downtime deployment is the process of releasing new versions of software without interrupting service availability. This is crucial for high-availability systems and user-facing applications.
 
-* Occam’s Razor – Prefer the simplest solution that meets the requirements.
+**Strategies:**
+- **Blue-Green Deployment:** Maintain two environments (blue and green). Route traffic to one while updating the other, then switch over.
+- **Canary Deployment:** Gradually roll out changes to a small subset of users before full deployment.
+- **Rolling Deployment:** Incrementally update servers one at a time, keeping the service available.
+- **Feature Flags:** Toggle new features on/off without redeploying code.
 
-* KISS Principle – “Keep It Simple, Stupid.” Avoid unnecessary complexity.
+**Best Practices:**
+- Automate deployments and rollbacks.
+- Use health checks and monitoring.
+- Ensure backward compatibility in APIs and databases.
+- Test thoroughly in staging environments.
 
-* YAGNI – “You Aren’t Gonna Need It.” Don’t implement features until they are actually needed.
+**Benefits:**
+- Minimizes risk and service interruptions.
+- Enables rapid iteration and continuous delivery.
+- Improves user trust and experience.
 
-* DRY Principle – “Don’t Repeat Yourself.” Centralize logic to avoid duplication.
+**Example Use Cases:**
+- SaaS platforms with global users.
+- Mission-critical APIs.
+- E-commerce sites during peak traffic.
 
-* Robustness Principle (Postel’s Law) – Be conservative in what you send, liberal in what you accept.
-
-### Time, Effort, and Estimation
-* Hofstadter’s Law – “It always takes longer than you expect, even when you take into account Hofstadter’s Law.”
-
-* Parkinson’s Law – “Work expands to fill the time available for its completion.”
-
-* Brooks’s Law – “Adding manpower to a late software project makes it later.” (From The Mythical Man-Month)
-
-* Ninety-Ninety Rule – The first 90% of the code accounts for the first 90% of the development time; the remaining 10% of the code accounts for the other 90% of the development time.
-
-* Pareto Principle (80/20 Rule) – 80% of the effects come from 20% of the causes; focus on the critical 20%.
-
-### People, Teams, and Communication
-* Conway’s Law – System design mirrors the communication structure of the organization.
-
-* Peter Principle – People rise to their level of incompetence.
-
-* Linus’s Law – “Given enough eyeballs, all bugs are shallow.” (Open-source development insight)
-
-* Law of Triviality (Parkinson’s Law of Triviality) – People spend disproportionate time on trivial issues (bike-shedding).
-
-### Code Quality & Maintainability
-* Law of Demeter – Talk only to your immediate collaborators; avoid unnecessary coupling.
-
-* Boyle’s Law of Code – Code will expand to fill all available complexity.
-
-* Hyrum’s Law – With enough users, all observable behaviors of your system will be relied upon, intentional or not.
-
-* LeBlanc’s Law – “Later equals never.” If you say you’ll fix it later, you probably won’t.
-
-* Zawinski’s Law – Every program attempts to expand until it can read mail; those that cannot are replaced by ones that can.
-
-### Reliability & Risk
-* Finagle’s Law – Anything that can go wrong, will—at the worst possible time.
-
-* Sod’s Law – Similar to Murphy’s Law, but with more emphasis on timing and bad luck.
-
-* Schneier’s Law – Anyone can create an encryption algorithm they themselves cannot break; that doesn’t mean it’s secure.
+# ...existing code...
