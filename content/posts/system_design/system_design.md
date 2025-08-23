@@ -1243,6 +1243,9 @@ Zero downtime deployment is the process of releasing new versions of software wi
 
 * Zawinski’s Law – Every program attempts to expand until it can read mail; those that cannot are replaced by ones that can.
 
+* Cipolla’s laws of stupidity 
+  <img width="1024" height="707" alt="image" src="https://github.com/user-attachments/assets/f1d49bd8-5d25-44b1-b201-4b318822135d" />
+
 ### Reliability & Risk
 * Finagle’s Law – Anything that can go wrong, will—at the worst possible time.
 
