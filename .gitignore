@@ -17,4 +17,4 @@ Thumbs.db
 *.bak
 *.old
 *.orig
-.idea
+.idea/*
