@@ -10,7 +10,6 @@ This collection serves as a reference for understanding the human and technical 
 ---
 
 ## Laws
-
 ### General Engineering & Design Principles
 * **Murphy's Law** – "Anything that can go wrong will go wrong." → Build for resilience and failure recovery.
 * **Finagle's Law** – Anything that can go wrong, will—at the worst possible time.
