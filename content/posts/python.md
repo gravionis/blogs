@@ -308,6 +308,12 @@ class Vector:
     
     def __call__(self):
         return f"Vector magnitude: {len(self)}"
+
+# Sample usage:
+v1 = Vector(1, 2)
+v2 = Vector(3, 4)
+v3 = v1 + v2  # Calls __add__
+print(v3)     # Output: Vector(4, 6)
 ```
 
 ### Encapsulation and Properties
@@ -1266,12 +1272,48 @@ def merge_intervals(intervals):
 - Specify a metaclass with `class Foo(metaclass=Meta): ...`
 - Prefer class decorators for most use cases; use metaclasses only for advanced class customization.
 
+```python
+# Example: Enforcing all classes have a 'speak' method
+class RequireSpeak(type):
+    def __init__(cls, name, bases, dct):
+        if 'speak' not in dct:
+            raise TypeError("Class must define 'speak' method")
+        super().__init__(name, bases, dct)
+
+class Animal(metaclass=RequireSpeak):
+    def speak(self):
+        return "Sound"
+
+a = Animal()
+print(a.speak())  # Output: Sound
+```
+
 ## 24. Descriptors
 
 - A descriptor is any object that defines at least one of `__get__`, `__set__`, or `__delete__` methods and is used as a class attribute.
 - **Data descriptor**: defines both `__get__` and `__set__` (e.g., property with setter); **non-data descriptor**: only `__get__`.
 - The `property` built-in is implemented using descriptors; allows custom logic for attribute access.
 - Use descriptors for validation, computed properties, or managing access to attributes.
+
+```python
+# Example: Descriptor for positive values
+class Positive:
+    def __get__(self, instance, owner):
+        return instance._value
+    def __set__(self, instance, value):
+        if value < 0:
+            raise ValueError("Value must be positive")
+        instance._value = value
+
+class Account:
+    balance = Positive()
+    def __init__(self, balance):
+        self.balance = balance
+
+a = Account(100)
+a.balance = 50
+# a.balance = -10  # Raises ValueError
+```
 
 ## 25. Advanced String Operations
 
@@ -1280,12 +1322,34 @@ def merge_intervals(intervals):
 - String interning: Python may reuse immutable string objects for efficiency; use `sys.intern()` for large sets of repeated strings.
 - Strings are immutable; all string operations create new objects.
 
+```python
+# Example: String formatting and interning
+name = "Alice"
+print(f"Hello, {name}!")  # f-string
+print("Hello, {}!".format(name))  # .format()
+print("Hello, %s!" % name)  # % formatting
+
+import sys
+a = sys.intern("hello")
+b = sys.intern("hello")
+print(a is b)  # True
+```
+
 ## 26. Python Internals
 
 - The GIL (Global Interpreter Lock) allows only one thread to execute Python bytecode at a time; affects multi-threaded CPU-bound code.
 - Python source code is compiled to bytecode (`.pyc` files), which is then interpreted by the CPython VM.
 - Use the `dis` module to inspect Python bytecode: `import dis; dis.dis(func)`.
 - Know how the GIL impacts concurrency and when to use multiprocessing instead of threading.
+
+```python
+# Example: Inspecting bytecode
+def add(x, y):
+    return x + y
+
+import dis
+dis.dis(add)
+```
 
 ## 27. Design Patterns
 
@@ -1295,12 +1359,37 @@ def merge_intervals(intervals):
 - Pythonic alternatives: use modules as singletons, or leverage first-class functions for factories.
 - Be able to recognize and implement these patterns in Python.
 
+```python
+# Example: Singleton pattern
+class Singleton:
+    _instance = None
+    def __new__(cls, *args, **kwargs):
+        if not cls._instance:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+s1 = Singleton()
+s2 = Singleton()
+print(s1 is s2)  # True
+```
+
 ## 28. Database Integration
 
 - Connect to SQLite with `sqlite3` or to PostgreSQL/MySQL with libraries like `psycopg2` or `mysql-connector-python`.
 - ORM basics: define models as classes, use sessions to query and persist data (SQLAlchemy).
 - Always use context managers (`with` statement) for database connections to ensure cleanup.
 - Prevent SQL injection by using parameterized queries, never string formatting for SQL.
+
+```python
+# Example: SQLite connection and query
+import sqlite3
+with sqlite3.connect(":memory:") as conn:
+    c = conn.cursor()
+    c.execute("CREATE TABLE users (id INTEGER, name TEXT)")
+    c.execute("INSERT INTO users VALUES (?, ?)", (1, "Alice"))
+    c.execute("SELECT * FROM users")
+    print(c.fetchall())  # [(1, 'Alice')]
+```
 
 ## 29. Web Frameworks Basics
 
@@ -1309,12 +1398,36 @@ def merge_intervals(intervals):
 - REST API: stateless endpoints using HTTP verbs (GET, POST, PUT, DELETE).
 - Know where to add authentication (middleware/decorators) and input validation.
 
+```python
+# Example: Flask route
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/hello")
+def hello():
+    return "Hello, World!"
+
+# Run with: flask run
+```
+
 ## 30. Data Science Libraries
 
 - NumPy: create arrays, perform vectorized operations, understand broadcasting rules.
 - Pandas: create DataFrames, select/filter data, use `groupby`, handle missing data.
 - Import/export data: `read_csv`, `to_csv`, `read_excel`, `read_json`.
 - Practice common data manipulation: filtering, aggregation, reshaping.
+
+```python
+# Example: NumPy and Pandas basics
+import numpy as np
+import pandas as pd
+
+arr = np.array([1, 2, 3])
+print(arr * 2)  # [2 4 6]
+
+df = pd.DataFrame({"A": [1, 2], "B": [3, 4]})
+print(df["A"].mean())  # 1.5
+```
 
 ## 31. Networking & APIs
 
@@ -1323,6 +1436,14 @@ def merge_intervals(intervals):
 - Basic socket programming: create TCP/UDP clients and servers with the `socket` module.
 - Always handle exceptions and timeouts in network code.
 
+```python
+# Example: HTTP GET request
+import requests
+response = requests.get("https://api.github.com")
+print(response.status_code)
+print(response.json())
+```
+
 ## 32. Security Considerations
 
 - Always validate and sanitize user input to prevent injection attacks.
@@ -1330,9 +1451,39 @@ def merge_intervals(intervals):
 - Use context managers for file/database operations to avoid resource leaks.
 - Be aware of common vulnerabilities: code injection, insecure deserialization, improper permissions.
 
+```python
+# Example: Safe JSON deserialization
+import json
+data = '{"name": "Alice"}'
+obj = json.loads(data)
+print(obj["name"])
+```
+
 ## 33. Python 3 Features
 
 - Type hints: annotate function arguments and return types; use `mypy` for static checking.
 - Use `pathlib.Path` for filesystem paths instead of `os.path`.
 - Prefer f-strings for formatting; know about new syntax features (e.g., assignment expressions `:=`).
 - Pattern matching (`match` statement, Python 3.10+): use for matching on structure, not just values.
+
+```python
+# Example: Type hints and pattern matching
+from pathlib import Path
+
+def greet(name: str) -> str:
+    return f"Hello, {name}"
+
+p = Path("file.txt")
+print(p.exists())
+
+# Pattern matching (Python 3.10+)
+def http_status(status):
+    match status:
+        case 200:
+            return "OK"
+        case 404:
+            return "Not Found"
+        case _:
+            return "Unknown"
+print(http_status(404))  # Not Found
+```
