@@ -3,8 +3,7 @@ title: NLP
 date: '2025-05-10T12:44:47+10:00'
 tags: ["Chatbots", "RASA", "ChatGPT", "BERT", "Transformers", "Prompt Engineering"]
 image : "/img/posts/generative-ai-intro.jpeg"
-Description  : "💬 Generative AI with NLP LLM: 
-"
+Description  : "💬 Generative AI with NLP LLM: "
 ---
 
 Natural Language Processing (NLP) is a foundational field in artificial intelligence that enables computers to understand, interpret, and generate human language. With the rapid evolution of large language models (LLMs) and generative AI, NLP has become central to applications such as chatbots, virtual assistants, sentiment analysis, and automated translation. This document provides a practical overview of NLP concepts, pipelines, and tools, including hands-on examples with libraries like NLTK and spaCy. It also explores the rise of LLMs, prompt engineering, and modern frameworks that are shaping the future of language-based AI systems.
