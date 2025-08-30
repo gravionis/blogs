@@ -1,7 +1,7 @@
 +++
 date = '2024-05-03T12:44:47+10:00'
 draft = false
-title = 'Amazon’s Leadership Principles'
+title = '🎭 Behavioral Interview Questions: Amazon Leadership Principles'
 tags = ['Interview', 'Amazon']
 +++
 
