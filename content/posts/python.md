@@ -5,7 +5,7 @@ title = '🐍 Python'
 tags = ['Python']
 +++
 
-This has all the interview topics in python.
+This guide covers all the essential Python topics you should master for technical interviews, from basic data types and control flow to advanced concepts like metaclasses, descriptors, and Python internals. It includes practical code examples, best practices, common pitfalls, and concise explanations to help you quickly revise and strengthen your understanding before interviews. Use this as a comprehensive checklist and reference to ensure you’re well-prepared for any Python interview scenario, whether for general programming, data science, web development, or system design roles.
 
 ## Table of Contents
 
@@ -301,7 +301,7 @@ class Vector:
         return Vector(self.x + other.x, self.y + other.y)
     
     def __len__(self):
-        return int((self.x**2 + self.y**2)**0.5)
+        return int((self.x**2 + self.y**0.5))
     
     def __getitem__(self, key):
         return [self.x, self.y][key]
@@ -312,8 +312,13 @@ class Vector:
 # Sample usage:
 v1 = Vector(1, 2)
 v2 = Vector(3, 4)
-v3 = v1 + v2  # Calls __add__
-print(v3)     # Output: Vector(4, 6)
+v3 = v1 + v2              # Calls __add__
+print(v3)                 # Calls __str__: Vector(4, 6)
+print(repr(v3))           # Calls __repr__: Vector(x=4, y=6)
+print(v1 == Vector(1, 2)) # Calls __eq__: True
+print(len(v3))            # Calls __len__: 7
+print(v3[0], v3[1])       # Calls __getitem__: 4 6
+print(v3())               # Calls __call__: Vector magnitude: 7
 ```
 
 ### Encapsulation and Properties
