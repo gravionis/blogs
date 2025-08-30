@@ -86,6 +86,49 @@ This collection serves as a reference for understanding the human and technical 
 
 ---
 
+### Physics & Natural Science Laws Applied to Software
+* **Second Law of Thermodynamics (Entropy)** – In isolated systems, entropy always increases over time; software systems naturally tend toward disorder and complexity without deliberate maintenance.
+* **First Law of Thermodynamics (Conservation of Energy)** – Energy cannot be created or destroyed, only transformed; computational resources are finite and must be allocated efficiently.
+* **Newton's First Law (Inertia)** – Objects at rest stay at rest; established codebases resist change, and changing systems require sustained effort.
+* **Newton's Third Law** – For every action, there is an equal and opposite reaction; every feature addition has consequences elsewhere in the system.
+* **Conservation of Mass** – Matter cannot be created or destroyed; technical debt accumulates and must eventually be addressed somewhere in the system.
+* **Chaos Theory/Butterfly Effect** – Small changes in initial conditions can lead to vastly different outcomes; minor code changes can have unexpected system-wide effects.
+* **Le Chatelier's Principle** – Systems under stress will shift to counteract that stress; software systems develop workarounds and compensating mechanisms when under load.
+* **Ohm's Law (V = IR)** – Voltage equals current times resistance; system performance equals throughput divided by bottlenecks.
+* **Heisenberg's Uncertainty Principle** – You cannot precisely measure both position and momentum simultaneously; observing a system changes its behavior (monitoring overhead, debugging effects).
+* **Law of Conservation of Complexity** – Complexity cannot be destroyed, only moved; simplifying one part of a system often increases complexity elsewhere.
+
+---
+
+### Biological & Evolutionary Principles
+* **Natural Selection** – Systems that adapt to their environment survive; software that doesn't evolve becomes obsolete.
+* **Survival of the Fittest** – The most adaptable solutions, not necessarily the strongest, survive in changing environments.
+* **Symbiosis** – Different components can benefit from working together; microservices and APIs create mutual dependencies.
+* **Genetic Drift** – Random changes accumulate over time; codebases diverge from original design through incremental changes.
+* **Punctuated Equilibrium** – Evolution occurs in bursts separated by stable periods; software development cycles between rapid change and stability.
+* **Homeostasis** – Living systems maintain stable internal conditions despite external changes; robust software maintains consistent behavior despite varying loads.
+* **Sexual Selection** – Features evolve not for survival but for attractiveness; software features are sometimes added for marketing appeal rather than utility.
+
+---
+
+### Information Theory & Communication
+* **Shannon's Theorem** – There is a fundamental limit to lossless data compression; information has inherent complexity that cannot be reduced indefinitely.
+* **Nyquist-Shannon Sampling Theorem** – To accurately represent a signal, you must sample at twice the highest frequency; monitoring systems need sufficient granularity.
+* **Channel Capacity** – Every communication channel has a maximum data rate; network and API throughput have theoretical limits.
+* **Error Correction Principles** – Redundancy is necessary to detect and correct errors; fault-tolerant systems require overhead.
+* **Signal-to-Noise Ratio** – Useful information must exceed background interference; code signal must be stronger than complexity noise.
+
+---
+
+### Mathematical & Logical Principles
+* **Gödel's Incompleteness Theorems** – In any sufficiently complex formal system, there are true statements that cannot be proven within the system; complete specification of complex software is impossible.
+* **Halting Problem** – You cannot determine if an arbitrary program will halt; perfect static analysis tools are theoretically impossible.
+* **No Free Lunch Theorem** – No optimization algorithm performs better than random search across all possible problems; there is no universally best solution.
+* **Pigeonhole Principle** – If you have more items than containers, at least one container must contain more than one item; system constraints create inevitable conflicts.
+* **Central Limit Theorem** – Large samples tend toward normal distribution; aggregate system behaviors become predictable even when individual components are chaotic.
+
+---
+
 ### Testing & Quality Assurance
 * **Pesticide Paradox** – Repeated testing with the same methods stops finding new bugs.
 * **Heisenbug** – A bug that disappears or alters behavior when observed.
@@ -143,3 +186,4 @@ This collection serves as a reference for understanding the human and technical 
 * **Fallacies of Distributed Computing** – Assumptions that networks are reliable, latency is zero, bandwidth is infinite, etc.  
 * **Law of Leaky Abstractions (Spolsky’s Law)** – All non-trivial abstractions, to some degree, leak details.  
 * **Robustness-Resilience Tradeoff** – Overly robust systems can become brittle if they don’t evolve; resilience means graceful degradation.
+
