@@ -2,7 +2,7 @@
 date = '2024-01-01T12:44:47+10:00'
 draft = false
 title = '23 Core Design Patterns'
-tags = ['Core Design Patterns', 'Interview']
+tags = ['🧩 Core Design Patterns', 'Interview']
 +++
 
 Core design patterns are proven solutions to common software engineering problems. They help structure code for flexibility, scalability, and maintainability. Mastering these patterns is essential for interviews and for building robust, reusable, and understandable software systems.

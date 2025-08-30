@@ -1,7 +1,7 @@
 +++
 date = '2024-01-01T12:44:47+10:00'
 draft = false
-title = 'Laws and Principles in Software Engineering'
+title = '📜 Laws and Principles in Software Engineering'
 tags = ['Event Driven Architecture', 'Microservices', 'Interview']
 +++
 This collection serves as a reference for understanding the diverse human and technical factors that shape software development and system design. It highlights how natural laws, engineering principles, organizational dynamics, and cognitive limits influence outcomes, reminding us that building effective systems requires balancing complexity, resilience, people, and technology.
