@@ -1,7 +1,7 @@
 +++
 date = '2022-05-03T12:44:47+10:00'
 draft = false
-title = 'Python 🐍'
+title = '🐍 Python'
 tags = ['Python']
 +++
 

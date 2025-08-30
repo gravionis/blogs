@@ -1,6 +1,6 @@
 +++
 date = '2024-01-01T12:44:47+10:00'
-draft = false
+draft = true
 title = 'System Design in AWS'
 tags = ['Cloud', 'AWS', 'System Design']
 +++
