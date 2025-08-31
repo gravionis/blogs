@@ -930,7 +930,7 @@ Big O notation is used to describe the efficiency of an algorithm in terms of ti
 - **O(n^2):** Quadratic time. Example: Nested loops.
 
 ## 2️⃣ Distributed Scaling — The Scale Cube
-(*You already know these, so just the headings for completeness*)
+<img width="732" height="426" alt="image" src="https://github.com/user-attachments/assets/cba30e4e-716c-41d1-bd38-66cc564c06b8" />
 
 - **X-axis:** Horizontal duplication
 - **Y-axis:** Functional decomposition
