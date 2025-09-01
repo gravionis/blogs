@@ -223,7 +223,6 @@ This collection serves as a reference for understanding the diverse human and te
 **Meaning:** Discretion is essential for personal security and strategic advantage. Sharing sensitive information can be used against you later. Keep your plans, weaknesses, and important strategies to yourself or share them only with completely trusted individuals.
 
 ### **Principle 11: "There is some self-interest behind every friendship. There is no friendship without self-interests. This is a bitter truth."**
-
 **Meaning:** Most relationships involve mutual benefit in some form. This doesn't make friendships false, but understanding this reality helps you navigate relationships more wisely and avoid disappointment when people act in their own interests.
 
 ### **Principle 12: "Even if a snake is not poisonous, it should pretend to be venomous."**
@@ -267,3 +266,5 @@ This collection serves as a reference for understanding the diverse human and te
 
 ### **Principle 25: "Whoever imposes severe punishment becomes repulsive to the people; whoever awards mild punishment becomes contemptible. But whoever imposes punishment as deserved ecomes respectable."**
 **Meaning:** Balance and fairness in consequences create respect and order. Being too harsh creates fear and resentment, while being too lenient creates contempt and chaos. Proportionate responses maintain authority and justice.
+
+---
