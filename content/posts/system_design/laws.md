@@ -1,8 +1,8 @@
 +++
 date = '2024-01-01T12:44:47+10:00'
 draft = false
-title = '📜 Laws and Principles in Software Engineering'
-tags = ['Event Driven Architecture', 'Microservices', 'Interview']
+title = '📜 Laws and Principles'
+tags = ['Laws']
 +++
 This collection serves as a reference for understanding the diverse human and technical factors that shape software development and system design. It highlights how natural laws, engineering principles, organizational dynamics, and cognitive limits influence outcomes, reminding us that building effective systems requires balancing complexity, resilience, people, and technology.
 
@@ -189,7 +189,8 @@ This collection serves as a reference for understanding the diverse human and te
 
 ---
 ## Chanakya Neeti - Principles with Meanings
-* "The world is the home of the strong, the weak have no place in it. Therefore, become strong and make your own place in this world."* - Chanakya
+
+"The world is the home of the strong, the weak have no place in it. Therefore, become strong and make your own place in this world."* - Chanakya
   
 ### **Principle 1: "A person should not be too honest. Straight trees are cut first and honest people are screwed first."**
 **Meaning:** While honesty is a virtue, being overly naive or transparent in a world full of cunning people can make you vulnerable. Learn to be wise and strategic in your honesty. Share information judiciously and protect yourself from those who might exploit your straightforwardness.
