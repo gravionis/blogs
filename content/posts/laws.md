@@ -192,79 +192,54 @@ This collection serves as a reference for understanding the diverse human and te
 
 "The world is the home of the strong, the weak have no place in it. Therefore, become strong and make your own place in this world."* - Chanakya
   
-### **Principle 1: "A person should not be too honest. Straight trees are cut first and honest people are screwed first."**
-**Meaning:** While honesty is a virtue, being overly naive or transparent in a world full of cunning people can make you vulnerable. Learn to be wise and strategic in your honesty. Share information judiciously and protect yourself from those who might exploit your straightforwardness.
+* **Principle 1: "A person should not be too honest. Straight trees are cut first and honest people are screwed first."** **Meaning:** While honesty is a virtue, being overly naive or transparent in a world full of cunning people can make you vulnerable. Learn to be wise and strategic in your honesty. Share information judiciously and protect yourself from those who might exploit your straightforwardness.
 
-### **Principle 2: "Before you start some work, always ask yourself three questions - Why am I doing it, What the results might be and Will I be successful. Only when you think deeply and find satisfactory answers to these questions, go ahead."**
-**Meaning:** Planning and preparation are crucial for success. Every action should have clear purpose, anticipated outcomes, and realistic chances of success. This prevents wasted effort and increases the likelihood of achieving your goals.
+* **Principle 2: "Before you start some work, always ask yourself three questions - Why am I doing it, What the results might be and Will I be successful. Only when you think deeply and find satisfactory answers to these questions, go ahead."** **Meaning:** Planning and preparation are crucial for success. Every action should have clear purpose, anticipated outcomes, and realistic chances of success. This prevents wasted effort and increases the likelihood of achieving your goals.
 
-### **Principle 3: "As soon as the fear approaches near, attack and destroy it."**
-**Meaning:** Address problems and challenges when they are small and manageable. Procrastination allows difficulties to grow larger and more complex. Face your fears and obstacles head-on while you still have the advantage.
+* **Principle 3: "As soon as the fear approaches near, attack and destroy it."** **Meaning:** Address problems and challenges when they are small and manageable. Procrastination allows difficulties to grow larger and more complex. Face your fears and obstacles head-on while you still have the advantage.
 
-### **Principle 4: "The world's biggest power is the youth and beauty of a woman."**
-**Meaning:** Chanakya recognized the influence and power that comes with charm and attractiveness. This principle teaches us to understand and respect different forms of power in society, while also being aware of how these can be used strategically.
+* **Principle 4: "The world's biggest power is the youth and beauty of a woman."** **Meaning:** Chanakya recognized the influence and power that comes with charm and attractiveness. This principle teaches us to understand and respect different forms of power in society, while also being aware of how these can be used strategically.
 
-### **Principle 5: "Learn from the mistakes of others... you can't live long enough to make them all yourselves."**
-**Meaning:** Wisdom comes from learning without experiencing every hardship personally. Observe others' failures and successes to gain knowledge efficiently. This saves time, resources, and prevents unnecessary suffering.
+* **Principle 5: "Learn from the mistakes of others... you can't live long enough to make them all yourselves."** **Meaning:** Wisdom comes from learning without experiencing every hardship personally. Observe others' failures and successes to gain knowledge efficiently. This saves time, resources, and prevents unnecessary suffering.
 
-### **Principle 6: "A person's test is done at the time of money, crisis, woman, and power."**
-**Meaning:** True character is revealed during challenging situations. How someone behaves when they have wealth, face difficulties, deal with relationships, or hold authority shows their real nature. These are the moments that test integrity and values.
+* **Principle 6: "A person's test is done at the time of money, crisis, woman, and power."** **Meaning:** True character is revealed during challenging situations. How someone behaves when they have wealth, face difficulties, deal with relationships, or hold authority shows their real nature. These are the moments that test integrity and values.
 
-### **Principle 7: "Education is the best friend. An educated person is respected everywhere. Education beats the beauty and the youth."**
-**Meaning:** Knowledge and skills are the most reliable assets you can possess. Unlike physical attributes that fade or wealth that can be lost, education stays with you forever and opens doors throughout life. It provides lasting respect and opportunities.
+* **Principle 7: "Education is the best friend. An educated person is respected everywhere. Education beats the beauty and the youth."** **Meaning:** Knowledge and skills are the most reliable assets you can possess. Unlike physical attributes that fade or wealth that can be lost, education stays with you forever and opens doors throughout life. It provides lasting respect and opportunities.
 
-### **Principle 8: "Books are as useful to a stupid person as a mirror is useful to a blind person."**
-**Meaning:** Knowledge only benefits those who can understand and apply it. Simply having access to information without the wisdom or ability to use it effectively is worthless. The capacity to learn and implement is as important as the knowledge itself.
+* **Principle 8: "Books are as useful to a stupid person as a mirror is useful to a blind person."** **Meaning:** Knowledge only benefits those who can understand and apply it. Simply having access to information without the wisdom or ability to use it effectively is worthless. The capacity to learn and implement is as important as the knowledge itself.
 
-### **Principle 9: "Treat your kid like a darling for the first five years. For the next five years, scold them. By the time they turn sixteen, treat them like a friend. Your grown up children are your best friends."**
-**Meaning:** Child-rearing should evolve with the child's development. Early years need love and security, middle years require discipline and structure, and later years need friendship and respect. This approach builds strong character and lasting relationships.
+* **Principle 9: "Treat your kid like a darling for the first five years. For the next five years, scold them. By the time they turn sixteen, treat them like a friend. Your grown up children are your best friends."** **Meaning:** Child-rearing should evolve with the child's development. Early years need love and security, middle years require discipline and structure, and later years need friendship and respect. This approach builds strong character and lasting relationships.
 
-### **Principle 10: "The biggest guru-mantra is: never share your secrets with anybody. It will destroy you."**
-**Meaning:** Discretion is essential for personal security and strategic advantage. Sharing sensitive information can be used against you later. Keep your plans, weaknesses, and important strategies to yourself or share them only with completely trusted individuals.
+* **Principle 10: "The biggest guru-mantra is: never share your secrets with anybody. It will destroy you."** **Meaning:** Discretion is essential for personal security and strategic advantage. Sharing sensitive information can be used against you later. Keep your plans, weaknesses, and important strategies to yourself or share them only with completely trusted individuals.
 
-### **Principle 11: "There is some self-interest behind every friendship. There is no friendship without self-interests. This is a bitter truth."**
-**Meaning:** Most relationships involve mutual benefit in some form. This doesn't make friendships false, but understanding this reality helps you navigate relationships more wisely and avoid disappointment when people act in their own interests.
+* **Principle 11: "There is some self-interest behind every friendship. There is no friendship without self-interests. This is a bitter truth."** **Meaning:** Most relationships involve mutual benefit in some form. This doesn't make friendships false, but understanding this reality helps you navigate relationships more wisely and avoid disappointment when people act in their own interests.
 
-### **Principle 12: "Even if a snake is not poisonous, it should pretend to be venomous."**
-**Meaning:** Sometimes appearing strong or dangerous when you're vulnerable can protect you from those who might take advantage. Reputation and perception can be as powerful as actual strength in deterring threats.
+* **Principle 12: "Even if a snake is not poisonous, it should pretend to be venomous."** **Meaning:** Sometimes appearing strong or dangerous when you're vulnerable can protect you from those who might take advantage. Reputation and perception can be as powerful as actual strength in deterring threats.
 
-### **Principle 13: "The king who is situated anywhere immediately on the circumference of the conqueror's territory is termed the enemy."**
-**Meaning:** In any competitive environment, your immediate neighbors or competitors are most likely to be your adversaries because you compete for the same resources or territory. Always be prepared for competition from those closest to your position.
+* **Principle 13: "The king who is situated anywhere immediately on the circumference of the conqueror's territory is termed the enemy."** **Meaning:** In any competitive environment, your immediate neighbors or competitors are most likely to be your adversaries because you compete for the same resources or territory. Always be prepared for competition from those closest to your position.
 
-### **Principle 14: "Once you start working on something, don't be afraid of failure and don't abandon it. People who work sincerely are the happiest."**
-**Meaning:** Commitment and persistence are more important than talent for achieving satisfaction and success. Half-hearted efforts lead to disappointment, while sincere work brings fulfillment regardless of the outcome.
+* **Principle 14: "Once you start working on something, don't be afraid of failure and don't abandon it. People who work sincerely are the happiest."** **Meaning:** Commitment and persistence are more important than talent for achieving satisfaction and success. Half-hearted efforts lead to disappointment, while sincere work brings fulfillment regardless of the outcome.
 
-### **Principle 15: "The fragrance of flowers spreads only in the direction of the wind. But the goodness of a person spreads in all directions."**
-**Meaning:** Good character and actions have unlimited reach and impact. Unlike physical phenomena that are limited by natural laws, kindness, integrity, and positive behavior influence everyone they touch, creating ripple effects in all directions.
+* **Principle 15: "The fragrance of flowers spreads only in the direction of the wind. But the goodness of a person spreads in all directions."** **Meaning:** Good character and actions have unlimited reach and impact. Unlike physical phenomena that are limited by natural laws, kindness, integrity, and positive behavior influence everyone they touch, creating ripple effects in all directions.
 
-### **Principle 16: "God is not present in idols. Your feelings are your god. The soul is your temple."**
-**Meaning:** True spirituality comes from within. External symbols and rituals are less important than inner purity, good intentions, and moral conduct. Develop your character and consciousness rather than focusing solely on external religious practices.
+* **Principle 16: "God is not present in idols. Your feelings are your god. The soul is your temple."** **Meaning:** True spirituality comes from within. External symbols and rituals are less important than inner purity, good intentions, and moral conduct. Develop your character and consciousness rather than focusing solely on external religious practices.
 
-### **Principle 17: "A man is great by deeds, not by birth."**
-**Meaning:** Social status or family background doesn't determine a person's worth. Actions, character, and contributions to society are what make someone truly great. Merit and behavior matter more than inherited privilege.
+* **Principle 17: "A man is great by deeds, not by birth."** **Meaning:** Social status or family background doesn't determine a person's worth. Actions, character, and contributions to society are what make someone truly great. Merit and behavior matter more than inherited privilege.
 
-### **Principle 18: "Never make friends with people who are above or below you in status. Such friendships will never give you any happiness."**
-**Meaning:** Relationships work best between equals because they involve mutual respect and balanced exchange. Large differences in status create imbalances that can lead to exploitation, jealousy, or discomfort for both parties.
+* **Principle 18: "Never make friends with people who are above or below you in status. Such friendships will never give you any happiness."** **Meaning:** Relationships work best between equals because they involve mutual respect and balanced exchange. Large differences in status create imbalances that can lead to exploitation, jealousy, or discomfort for both parties.
 
-### **Principle 19: "Treat your kid like a darling for the first five years. For the next five years, scold them. By the time they turn sixteen, treat them like a friend."**
-**Meaning:** Parenting should adapt to the child's developmental needs. Early years require nurturing for security, middle years need discipline for character building, and teenage years require friendship for guidance. This creates well-rounded, confident adults.
+* **Principle 19: "Treat your kid like a darling for the first five years. For the next five years, scold them. By the time they turn sixteen, treat them like a friend."** **Meaning:** Parenting should adapt to the child's developmental needs. Early years require nurturing for security, middle years need discipline for character building, and teenage years require friendship for guidance. This creates well-rounded, confident adults.
 
-### **Principle 20: "Time perfects all living beings as well as kills them; it alone is awake when all others are asleep. Time is insurmountable."**
-**Meaning:** Time is the ultimate force that shapes everything. It can heal wounds, develop skills, and create opportunities, but it also brings decay and endings. Respect time's power and use it wisely rather than fighting against it.
+* **Principle 20: "Time perfects all living beings as well as kills them; it alone is awake when all others are asleep. Time is insurmountable."** **Meaning:** Time is the ultimate force that shapes everything. It can heal wounds, develop skills, and create opportunities, but it also brings decay and endings. Respect time's power and use it wisely rather than fighting against it.
 
-### **Principle 21: "The life of an uneducated man is as useless as the tail of a dog which neither covers its rear end, nor protects it from the bites of insects."**
-**Meaning:** Without education and knowledge, a person cannot protect themselves from life's challenges or contribute meaningfully to society. Education provides both defensive and offensive capabilities for navigating life successfully.
+* **Principle 21: "The life of an uneducated man is as useless as the tail of a dog which neither covers its rear end, nor protects it from the bites of insects."** **Meaning:** Without education and knowledge, a person cannot protect themselves from life's challenges or contribute meaningfully to society. Education provides both defensive and offensive capabilities for navigating life successfully.
 
-### **Principle 22: "Skills are called hidden treasure as they save like a mother in foreign country, give fame like a king and happiness like a wife."**
-**Meaning:** Your abilities and expertise are the most reliable assets. They provide security anywhere you go, bring recognition and respect, and give personal satisfaction. Unlike external possessions, skills cannot be taken away from you.
+* **Principle 22: "Skills are called hidden treasure as they save like a mother in foreign country, give fame like a king and happiness like a wife."** **Meaning:** Your abilities and expertise are the most reliable assets. They provide security anywhere you go, bring recognition and respect, and give personal satisfaction. Unlike external possessions, skills cannot be taken away from you.
 
-### **Principle 23: "There are three gems upon this earth; food, water, and pleasing words. Fools consider pieces of rocks as gems."**
-**Meaning:** True value lies in essential needs and human kindness, not in material possessions. Focus on what actually sustains and improves life rather than chasing symbols of wealth that provide no real benefit.
+* **Principle 23: "There are three gems upon this earth; food, water, and pleasing words. Fools consider pieces of rocks as gems."** **Meaning:** True value lies in essential needs and human kindness, not in material possessions. Focus on what actually sustains and improves life rather than chasing symbols of wealth that provide no real benefit.
 
-### **Principle 24: "Do not be very upright in your dealings as you would see by going to the forest that straight trees are cut down while crooked ones are left standing."**
-**Meaning:** Pure idealism without practical wisdom can make you a target. Learn to be flexible and strategic in your approach while maintaining your core values. Sometimes indirect methods achieve better results than direct confrontation.
+* **Principle 24: "Do not be very upright in your dealings as you would see by going to the forest that straight trees are cut down while crooked ones are left standing."** **Meaning:** Pure idealism without practical wisdom can make you a target. Learn to be flexible and strategic in your approach while maintaining your core values. Sometimes indirect methods achieve better results than direct confrontation.
 
-### **Principle 25: "Whoever imposes severe punishment becomes repulsive to the people; whoever awards mild punishment becomes contemptible. But whoever imposes punishment as deserved ecomes respectable."**
-**Meaning:** Balance and fairness in consequences create respect and order. Being too harsh creates fear and resentment, while being too lenient creates contempt and chaos. Proportionate responses maintain authority and justice.
+* **Principle 25: "Whoever imposes severe punishment becomes repulsive to the people; whoever awards mild punishment becomes contemptible. But whoever imposes punishment as deserved ecomes respectable."** **Meaning:** Balance and fairness in consequences create respect and order. Being too harsh creates fear and resentment, while being too lenient creates contempt and chaos. Proportionate responses maintain authority and justice.
 
 ---
