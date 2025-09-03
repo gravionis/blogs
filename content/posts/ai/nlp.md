@@ -1,5 +1,5 @@
 ---
-title:  "💬 NLP"
+title:  "🔮 NLP"
 date: '2025-05-10T12:44:47+10:00'
 tags: ["Chatbots", "RASA", "ChatGPT", "BERT", "Transformers", "Prompt Engineering"]
 image : "/img/posts/generative-ai-intro.jpeg"
