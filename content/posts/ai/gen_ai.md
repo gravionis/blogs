@@ -124,6 +124,12 @@ LLM an AI model trained on massive amounts of text. It is kind of able to unders
 
 ---
 
+### Compare Models
+- https://artificialanalysis.ai/
+- https://www.vellum.ai/llm-leaderboard?utm_source=direct&utm_medium=none#compare
+
+---
+
 ### Model Paramaters
 | Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
 |----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|
