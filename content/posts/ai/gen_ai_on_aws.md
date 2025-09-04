@@ -2,7 +2,7 @@
 date = '2025-08-04T12:44:47+10:00'
 draft = false
 title = '🔮 AWS Services for Generative AI'
-tags = ['LLM', 'AI', 'Design Patterns']
+tags = ['AI', 'AWS']
 +++
 
 LLM design patterns are reusable strategies for building robust, efficient, and scalable AI applications. They help developers structure retrieval, reading, rewriting, memory, agent, and orchestration workflows for large language models. These patterns improve performance, maintainability accuracy, cost and security.
