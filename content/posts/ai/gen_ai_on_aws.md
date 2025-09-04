@@ -23,7 +23,8 @@ Here we explore how to leverage Gen AI on AWS. We cover key concepts, model type
   - Provides unified API, model evaluation, orchestration, and guardrails for responsible AI.
 
 - **Amazon SageMaker JumpStart**
-  - Catalog of pre-trained models (including generative AI) and end-to-end solutions.
+  - SageMaker JumpStart provides a catalog of pre-trained models, including foundation models (FMs) and end-to-end machine learning solutions, enabling rapid experimentation, deployment, and fine-tuning.
+  - It integrates seamlessly with SageMaker Studio, allowing for easy workflow management and accelerated ML development.
   - Enables rapid experimentation, deployment, and fine-tuning of FMs.
   - Integrates with SageMaker Studio for easy workflow management.
 
