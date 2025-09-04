@@ -32,6 +32,7 @@ Here we explore how to leverage Gen AI on AWS. We cover key concepts, model type
   - Amazon’s own family of foundation models for text, embeddings, and image generation.
   - Available via Amazon Bedrock.
   - Designed for enterprise security, privacy, and responsible AI.
+  - small token size compared to Mistral Large. Titan Text Premier 32,000 tokens & Titan Express 8,000
 
 ### Application-Specific AI
 
