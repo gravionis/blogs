@@ -7,14 +7,12 @@ tags = ['LLM', 'AI', 'Design Patterns']
 
 LLM design patterns are reusable strategies for building robust, efficient, and scalable AI applications. They help developers structure retrieval, reading, rewriting, memory, agent, and orchestration workflows for large language models. These patterns improve performance, maintainability accuracy, cost and security.
 
-## Table of Contents
-
 ## Introduction
+
 Here we explore how to leverage Gen AI on AWS. We cover key concepts, model types, prompt engineering, embeddings, RAG, vector stores, and design patterns for building effective AI solutions.
+
 ---
 
-Before we proceed setting the stage.
-## Concepts 
 ## AWS Services list
 
 ### Foundation Models & Model Access
