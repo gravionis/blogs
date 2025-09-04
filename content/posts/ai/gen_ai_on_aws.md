@@ -19,7 +19,8 @@ Here we explore how to leverage Gen AI on AWS. We cover key concepts, model type
 
 - **Amazon Bedrock**
   - Fully managed service for accessing foundation models (FMs) by Amazon and leading third-party providers e.g. Titan (AWS), Claude (Anthropic), Command R (Cohere), LLaMA 2 (Meta), Jurassic (AI21), Mistral, Stable Diffusion (Stability AI)
-  - Supports various model modalities - including text, image generation, embeddings, and agents.
+  - Bedrock does support text, image generation, embeddings, and more—video, audio (through Data Automation), and multimodal embeddings.
+  - Agents are supported.
   - Provides unified API, model evaluation, orchestration and guardrails for responsible AI.
 
 - **Amazon SageMaker JumpStart**
