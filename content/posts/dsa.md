@@ -1,11 +1,11 @@
 +++
 date = '2024-01-01T12:44:47+10:00'
 draft = false
-title = '🎲 Data Structure Algoritms'
+title = '🎲 Complete Data Structure Algorithms List'
 tags = ['Data Structures', 'Algorithms', 'DSA', 'Coding Interview']
 +++
 
-A curated list of classic and frequently asked DSA problems from top tech companies (Google, Amazon, Microsoft, Facebook, Apple, etc.), organized by topic. Each question includes a brief description and the company/companies where it was asked.
+A comprehensive curated list of classic and frequently asked DSA problems from top tech companies (Google, Amazon, Microsoft, Facebook, Apple, etc.), organized by topic. Each question includes a brief description and the company/companies where it was asked.
 
 ---
 
@@ -23,6 +23,25 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Spiral Matrix** (Return all elements of a matrix in spiral order. [Amazon])
 - **Trapping Rain Water** (Given an elevation map, compute how much water it can trap after raining. [Amazon])
 - **Container With Most Water** (Find two lines that together with the x-axis form a container, such that the container contains the most water. [Google, Amazon])
+- **3Sum** (Find all unique triplets in the array that give the sum of zero. [Facebook, Amazon])
+- **4Sum** (Find all unique quadruplets that give the sum of a target value. [Google])
+- **Remove Duplicates from Sorted Array** (Remove duplicates in-place from a sorted array. [Microsoft])
+- **Find First and Last Position of Element in Sorted Array** (Find the starting and ending position of a given target value. [Google])
+- **Search a 2D Matrix** (Search for a value in an m x n matrix with sorted rows and columns. [Amazon])
+- **Longest Palindromic Substring** (Find the longest palindromic substring in a string. [Amazon, Microsoft])
+- **Valid Anagram** (Determine if two strings are anagrams of each other. [Facebook])
+- **Minimum Window Substring** (Find the minimum window substring that contains all characters of another string. [Facebook])
+- **Group Anagrams** (Group strings that are anagrams of each other. [Apple])
+- **String to Integer (atoi)** (Implement the myAtoi(string s) function which converts a string to a 32-bit signed integer. [Amazon])
+- **ZigZag Conversion** (Convert string into a zigzag pattern on a given number of rows. [Google])
+- **Reverse Words in a String** (Reverse the order of words in a string. [Microsoft])
+- **Implement strStr()** (Return the index of the first occurrence of needle in haystack. [Facebook])
+- **Count and Say** (Generate the nth term of the count-and-say sequence. [Amazon])
+- **Majority Element** (Find the majority element that appears more than n/2 times. [Google])
+- **Pascal's Triangle** (Generate the first numRows of Pascal's triangle. [Apple])
+- **Plus One** (Add one to a number represented as an array of digits. [Google])
+- **Remove Element** (Remove all instances of a value from an array in-place. [Facebook])
+- **Find Peak Element** (Find a peak element in an array (where arr[i] > arr[i-1] and arr[i] > arr[i+1]). [Microsoft])
 
 ## Linked Lists
 
@@ -34,6 +53,15 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Intersection of Two Linked Lists** (Find the node at which two singly linked lists intersect, if any. [Amazon])
 - **Copy List with Random Pointer** (Deep copy a linked list where each node has a random pointer. [Facebook])
 - **LRU Cache** (Design and implement a data structure for Least Recently Used (LRU) cache. [Amazon])
+- **Remove Duplicates from Sorted List** (Remove all duplicates from a sorted linked list. [Facebook])
+- **Palindrome Linked List** (Check if a linked list is a palindrome. [Amazon])
+- **Reverse Nodes in k-Group** (Reverse nodes of a linked list k at a time. [Facebook])
+- **Rotate List** (Rotate the list to the right by k places. [Google])
+- **Partition List** (Partition a linked list around a value x. [Microsoft])
+- **Sort List** (Sort a linked list using constant space complexity. [Amazon])
+- **Flatten a Multilevel Doubly Linked List** (Flatten a multilevel doubly linked list. [Amazon])
+- **Delete Node in a Linked List** (Delete a node in a linked list given only access to that node. [Apple])
+- **Odd Even Linked List** (Group all odd nodes together followed by the even nodes. [Amazon])
 
 ## Stacks & Queues
 
@@ -44,6 +72,15 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Implement Queue using Stacks** (Implement a queue using two stacks. [Microsoft])
 - **Sliding Window Maximum** (Find the maximum value in each sliding window of size k in an array. [Amazon])
 - **Next Greater Element** (For each element in an array, find the next greater element to its right. [Google])
+- **Largest Rectangle in Histogram** (Find the area of the largest rectangle in a histogram. [Amazon])
+- **Maximal Rectangle** (Find the maximal rectangle containing only 1s in a binary matrix. [Google])
+- **Remove K Digits** (Remove k digits from a number to make it smallest. [Google])
+- **Asteroid Collision** (Simulate the collision of asteroids in a row. [Facebook])
+- **Basic Calculator** (Implement a basic calculator to evaluate a simple expression string. [Google])
+- **Simplify Path** (Simplify an absolute path for a file in a Unix-style file system. [Facebook])
+- **Decode String** (Decode a string encoded with a specific pattern. [Amazon])
+- **Implement Stack using Queues** (Implement a stack using two queues. [Microsoft])
+- **Moving Average from Data Stream** (Calculate the moving average of all integers in a sliding window. [Google])
 
 ## Trees & Graphs
 
@@ -58,6 +95,25 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Word Ladder** (Find the shortest transformation sequence from beginWord to endWord, changing one letter at a time. [Google])
 - **Course Schedule (Topological Sort)** (Determine if you can finish all courses given prerequisites. [Google])
 - **Diameter of Binary Tree** (Find the length of the longest path between any two nodes in a binary tree. [Amazon])
+- **Same Tree** (Check if two binary trees are the same. [Google])
+- **Symmetric Tree** (Check whether a binary tree is a mirror of itself. [Microsoft])
+- **Path Sum** (Check if there is a path from root to leaf with a given sum. [Amazon])
+- **Minimum Depth of Binary Tree** (Find the minimum depth of a binary tree. [Facebook])
+- **Flatten Binary Tree to Linked List** (Flatten a binary tree to a linked list in-place. [Microsoft])
+- **Populating Next Right Pointers** (Connect each node to its next right node in the same level. [Facebook])
+- **Binary Tree Maximum Path Sum** (Find the maximum path sum in a binary tree. [Amazon])
+- **Construct Binary Tree from Preorder and Inorder** (Construct binary tree from preorder and inorder traversal. [Google])
+- **Kth Smallest Element in BST** (Find the kth smallest element in a BST. [Google])
+- **Binary Search Tree Iterator** (Implement an iterator over a BST in sorted order. [Facebook])
+- **Recover Binary Search Tree** (Recover a BST where exactly two nodes were swapped by mistake. [Amazon])
+- **Word Search II** (Find all words in a board using a trie. [Google])
+- **Alien Dictionary** (Find the order of characters in an alien language. [Google])
+- **Graph Valid Tree** (Check if a graph forms a valid tree. [Facebook])
+- **Number of Connected Components** (Find the number of connected components in an undirected graph. [Google])
+- **Pacific Atlantic Water Flow** (Find cells from which water can flow to both Pacific and Atlantic oceans. [Google])
+- **Cheapest Flights Within K Stops** (Find the cheapest price to travel with at most k stops. [Amazon])
+- **Network Delay Time** (Find the time for all nodes to receive signal from a source. [Google])
+- **Reconstruct Itinerary** (Reconstruct the itinerary from a list of airline tickets. [Google])
 
 ## Heaps & Priority Queues
 
@@ -65,6 +121,15 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Find Median from Data Stream** (Continuously find the median as numbers are added to a stream. [Google])
 - **Top K Frequent Elements** (Return the k most frequent elements in an array. [Amazon])
 - **Kth Largest Element in an Array** (Find the kth largest element in an unsorted array. [Amazon])
+- **Sliding Window Median** (Find the median of each sliding window of size k. [Google])
+- **Find K Pairs with Smallest Sums** (Find k pairs with smallest sums from two arrays. [Google])
+- **Ugly Number II** (Find the nth ugly number (only factors of 2, 3, 5). [Amazon])
+- **Super Ugly Number** (Find the nth super ugly number given a list of prime factors. [Google])
+- **Meeting Rooms II** (Find the minimum number of conference rooms required. [Facebook])
+- **Task Scheduler** (Find the minimum time needed to execute all tasks with cooldown. [Facebook])
+- **Reorganize String** (Reorganize string so that no two same characters are adjacent. [Google])
+- **K Closest Points to Origin** (Find the k closest points to the origin. [Amazon])
+- **Kth Smallest Element in a Sorted Matrix** (Find the kth smallest element in a sorted matrix. [Google])
 
 ## Hashing
 
@@ -72,6 +137,17 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Longest Consecutive Sequence** (Find the length of the longest consecutive elements sequence in an unsorted array. [Facebook])
 - **Subarray Sum Equals K** (Count the number of subarrays whose sum equals k. [Amazon])
 - **Isomorphic Strings** (Determine if two strings are isomorphic (characters can be replaced to get the other). [Microsoft])
+- **Word Pattern** (Check if a string follows the same pattern as a pattern string. [Google])
+- **Contains Duplicate** (Check if array contains any duplicates. [Amazon])
+- **Contains Duplicate II** (Check if there are duplicates within k distance. [Google])
+- **Happy Number** (Determine if a number is happy. [Facebook])
+- **First Unique Character in String** (Find the first non-repeating character in a string. [Amazon])
+- **Find All Anagrams in String** (Find all start indices of anagrams of p in s. [Facebook])
+- **Minimum Window Substring** (Find minimum window that contains all characters of another string. [Facebook])
+- **Longest Substring with At Most K Distinct Characters** (Find longest substring with at most k distinct characters. [Google])
+- **Frequency of Most Frequent Element** (Find frequency of the most frequent element after k operations. [Google])
+- **Design HashMap** (Design a HashMap without using built-in libraries. [Amazon])
+- **Design HashSet** (Design a HashSet without using built-in libraries. [Facebook])
 
 ## Recursion & Backtracking
 
@@ -81,6 +157,16 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Word Search** (Given a 2D board and a word, check if the word exists in the board. [Facebook])
 - **Sudoku Solver** (Solve a Sudoku puzzle by filling the empty cells. [Google])
 - **N-Queens** (Place n queens on an n×n chessboard so that no two queens threaten each other. [Amazon])
+- **Combination Sum II** (Find all unique combinations that sum to target, each number used once. [Google])
+- **Combinations** (Return all possible combinations of k numbers out of 1...n. [Microsoft])
+- **Letter Combinations of Phone Number** (Return all possible letter combinations from a phone number. [Amazon])
+- **Palindrome Partitioning** (Partition a string such that every substring is a palindrome. [Google])
+- **Restore IP Addresses** (Restore valid IP addresses from a string of digits. [Facebook])
+- **Word Break II** (Add spaces to segment string into words from dictionary. [Google])
+- **Unique Paths III** (Count unique paths visiting every empty square exactly once. [Google])
+- **Expression Add Operators** (Add binary operators to get target value. [Google])
+- **Remove Invalid Parentheses** (Remove minimum invalid parentheses to make valid. [Facebook])
+- **Generalized Abbreviation** (Generate all possible abbreviations of a word. [Google])
 
 ## Dynamic Programming
 
@@ -95,6 +181,23 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Unique Paths** (Count the number of unique paths from top-left to bottom-right in a grid. [Google])
 - **Palindromic Substrings** (Count how many substrings in a string are palindromes. [Amazon])
 - **Partition Equal Subset Sum** (Determine if an array can be partitioned into two subsets with equal sum. [Facebook])
+- **House Robber II** (Rob houses arranged in a circle. [Google])
+- **Best Time to Buy and Sell Stock with Cooldown** (Buy and sell stock with cooldown period. [Google])
+- **Word Break** (Check if string can be segmented into words from dictionary. [Amazon])
+- **Coin Change 2** (Find number of ways to make amount with given coins. [Facebook])
+- **Target Sum** (Find number of ways to assign +/- to reach target sum. [Google])
+- **Delete Operation for Two Strings** (Find minimum steps to make two strings the same by deleting characters. [Google])
+- **Minimum Path Sum** (Find path with minimum sum from top-left to bottom-right. [Amazon])
+- **Triangle** (Find minimum path sum from top to bottom of triangle. [Amazon])
+- **Maximum Length of Repeated Subarray** (Find maximum length of subarray that appears in both arrays. [Google])
+- **Russian Doll Envelopes** (Find maximum number of envelopes you can put inside each other. [Google])
+- **Burst Balloons** (Find maximum coins you can collect by bursting balloons. [Google])
+- **Stone Game** (Determine if first player can win the stone game. [Amazon])
+- **Regular Expression Matching** (Implement regex matching with '.' and '*'. [Google])
+- **Wildcard Matching** (Implement wildcard pattern matching with '?' and '*'. [Google])
+- **Interleaving String** (Check if s3 is formed by interleaving s1 and s2. [Facebook])
+- **Distinct Subsequences** (Count distinct subsequences of s in t. [Google])
+- **Scramble String** (Check if one string is a scrambled string of another. [Google])
 
 ## Greedy Algorithms
 
@@ -103,6 +206,16 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Candy Distribution** (Distribute candies to children such that each child has at least one and those with higher ratings get more. [Amazon])
 - **Interval Scheduling (Meeting Rooms)** (Find the minimum number of meeting rooms required for all meetings. [Google])
 - **Minimum Number of Platforms** (Find the minimum number of platforms needed for trains so that no train waits. [Amazon])
+- **Jump Game II** (Find minimum number of jumps to reach the end. [Amazon])
+- **Non-overlapping Intervals** (Find minimum number of intervals to remove to make rest non-overlapping. [Facebook])
+- **Partition Labels** (Partition string into as many parts as possible. [Amazon])
+- **Queue Reconstruction by Height** (Reconstruct queue based on height and number of taller people. [Google])
+- **Minimum Cost to Connect Sticks** (Find minimum cost to connect all sticks. [Amazon])
+- **Task Scheduler** (Find minimum time to execute all tasks with cooldown. [Facebook])
+- **Remove Duplicate Letters** (Remove duplicate letters so result is smallest in lexicographical order. [Google])
+- **Monotone Increasing Digits** (Find largest number smaller than N with monotone increasing digits. [Google])
+- **Lemonade Change** (Check if you can provide correct change to all customers. [Amazon])
+- **Assign Cookies** (Assign cookies to children to maximize number of content children. [Google])
 
 ## Bit Manipulation
 
@@ -111,6 +224,16 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Reverse Bits** (Reverse the bits of a given 32 bits unsigned integer. [Microsoft])
 - **Missing Number** (Find the missing number in an array containing n distinct numbers from 0 to n. [Amazon])
 - **Sum of Two Integers (without + or -)** (Calculate the sum of two integers without using + or -. [Facebook])
+- **Power of Two** (Check if a number is a power of two. [Google])
+- **Power of Four** (Check if a number is a power of four. [Google])
+- **Number of 1 Bits** (Count the number of 1 bits in an integer. [Amazon])
+- **Bitwise AND of Numbers Range** (Find bitwise AND of all numbers in a range. [Google])
+- **Single Number III** (Find two numbers that appear only once in an array. [Facebook])
+- **Maximum XOR of Two Numbers** (Find maximum XOR of any two numbers in array. [Google])
+- **Repeated DNA Sequences** (Find repeated DNA sequences of length 10. [Amazon])
+- **Gray Code** (Generate Gray code sequence. [Google])
+- **Minimum XOR Sum of Two Arrays** (Find minimum XOR sum after rearranging one array. [Google])
+- **Find the Duplicate Number** (Find duplicate in array with numbers 1 to n. [Microsoft])
 
 ## Math & Miscellaneous
 
@@ -119,7 +242,109 @@ A curated list of classic and frequently asked DSA problems from top tech compan
 - **Excel Sheet Column Number** (Convert an Excel column title (e.g., "AB") to its corresponding column number. [Microsoft])
 - **Roman to Integer** (Convert a Roman numeral to an integer. [Amazon])
 - **Integer to English Words** (Convert a non-negative integer to its English words representation. [Google])
+- **Sqrt(x)** (Compute and return the square root of x. [Facebook])
+- **Valid Number** (Check if a string is a valid number. [Google])
+- **Multiply Strings** (Multiply two non-negative integers represented as strings. [Facebook])
+- **Add Binary** (Add two binary strings and return their sum. [Facebook])
+- **Factorial Trailing Zeroes** (Count trailing zeroes in n!. [Amazon])
+- **Count Primes** (Count number of prime numbers less than n. [Amazon])
+- **Happy Number** (Determine if a number is happy. [Google])
+- **Ugly Number** (Check if a number is ugly (only factors 2, 3, 5). [Facebook])
+- **Perfect Squares** (Find least number of perfect squares that sum to n. [Google])
+- **Integer Break** (Break integer n into sum of positive integers to maximize product. [Google])
+- **Water and Jug Problem** (Determine if you can measure exactly z liters using jugs of capacity x and y. [Microsoft])
+- **Nth Digit** (Find the nth digit in the sequence 1,2,3,4,5,6,7,8,9,10,11... [Google])
+- **Palindrome Number** (Check if an integer is a palindrome. [Amazon])
+- **Reverse Integer** (Reverse digits of a 32-bit signed integer. [Apple])
+- **Plus One** (Add one to a number represented as array of digits. [Google])
+- **Excel Sheet Column Title** (Convert a positive integer to its Excel column title. [Microsoft])
+- **Fractions to Recurring Decimal** (Convert fraction to decimal, handle recurring decimals. [Google])
+
+## Two Pointers
+
+- **Two Sum II - Input array is sorted** (Find two numbers in sorted array that add up to target. [Amazon])
+- **3Sum Closest** (Find three integers whose sum is closest to target. [Facebook])
+- **Remove Duplicates from Sorted Array** (Remove duplicates from sorted array in-place. [Microsoft])
+- **Container With Most Water** (Find container that can store most water. [Amazon])
+- **Trapping Rain Water** (Calculate trapped rainwater. [Amazon])
+- **Valid Palindrome** (Check if string is a palindrome considering only alphanumeric characters. [Facebook])
+- **Palindrome Number** (Check if integer is palindrome without converting to string. [Amazon])
+- **Minimum Window Substring** (Find minimum window containing all characters of another string. [Facebook])
+- **Longest Palindromic Substring** (Find longest palindromic substring. [Amazon])
+- **Sort Colors** (Sort array with values 0, 1, 2 in-place. [Microsoft])
+- **Merge Sorted Array** (Merge two sorted arrays in-place. [Facebook])
+- **Move Zeroes** (Move all zeros to end while maintaining relative order. [Facebook])
+- **Remove Element** (Remove all instances of val in-place. [Amazon])
+- **Squares of a Sorted Array** (Return squares of sorted array in sorted order. [Facebook])
+- **Backspace String Compare** (Compare two strings considering backspaces. [Google])
+
+## Sliding Window
+
+- **Longest Substring Without Repeating Characters** (Find length of longest substring without repeating characters. [Amazon])
+- **Minimum Window Substring** (Find minimum window containing all characters. [Facebook])
+- **Sliding Window Maximum** (Find maximum in each sliding window. [Amazon])
+- **Longest Substring with At Most Two Distinct Characters** (Find longest substring with at most 2 distinct characters. [Google])
+- **Longest Substring with At Most K Distinct Characters** (Find longest substring with at most k distinct characters. [Google])
+- **Permutation in String** (Check if one string contains permutation of another. [Microsoft])
+- **Find All Anagrams in a String** (Find all anagram start indices. [Facebook])
+- **Longest Repeating Character Replacement** (Longest substring with same character after k replacements. [Google])
+- **Max Consecutive Ones III** (Longest subarray with at most k zeros flipped. [Google])
+- **Fruit Into Baskets** (Pick maximum fruits with at most 2 types. [Google])
+- **Subarrays with K Different Integers** (Count subarrays with exactly k distinct integers. [Google])
+- **Minimum Size Subarray Sum** (Find minimum length subarray with sum >= target. [Facebook])
+
+## Binary Search
+
+- **Binary Search** (Search for target in sorted array. [Microsoft])
+- **Search Insert Position** (Find position where target should be inserted. [Amazon])
+- **First Bad Version** (Find first bad version using API calls. [Facebook])
+- **Search in Rotated Sorted Array** (Search in rotated sorted array. [Google])
+- **Find Minimum in Rotated Sorted Array** (Find minimum element in rotated sorted array. [Amazon])
+- **Search a 2D Matrix** (Search in matrix with sorted rows and columns. [Microsoft])
+- **Kth Smallest Element in a Sorted Matrix** (Find kth smallest in sorted matrix. [Google])
+- **Find Peak Element** (Find peak element in array. [Facebook])
+- **Split Array Largest Sum** (Split array into m subarrays to minimize largest sum. [Google])
+- **Capacity To Ship Packages Within D Days** (Find minimum capacity to ship within D days. [Google])
+- **Koko Eating Bananas** (Find minimum eating speed to finish bananas in H hours. [Google])
+- **Time Based Key-Value Store** (Design time-based key-value store. [Google])
+- **Online Election** (Design system to find leader at any time. [Google])
+- **Random Pick with Weight** (Pick index based on weights. [Facebook])
+
+## Union Find
+
+- **Number of Islands** (Count islands in 2D grid. [Facebook])
+- **Friend Circles** (Find number of friend circles. [Google])
+- **Redundant Connection** (Find edge that creates cycle in tree. [Google])
+- **Accounts Merge** (Merge accounts belonging to same person. [Facebook])
+- **Most Stones Removed with Same Row or Column** (Remove maximum stones. [Google])
+- **Satisfiability of Equality Equations** (Check if equality equations are satisfiable. [Google])
+- **Number of Operations to Make Network Connected** (Find operations to connect network. [Microsoft])
+- **Smallest String With Swaps** (Find lexicographically smallest string after swaps. [Amazon])
+- **Graph Valid Tree** (Check if edges form a valid tree. [Facebook])
+- **Number of Connected Components in Undirected Graph** (Count connected components. [Google])
+
+## Design Problems
+
+- **LRU Cache** (Design Least Recently Used cache. [Amazon, Google])
+- **Design HashMap** (Design HashMap without built-in libraries. [Amazon])
+- **Design HashSet** (Design HashSet without built-in libraries. [Facebook])
+- **Min Stack** (Design stack supporting min operation in O(1). [Amazon])
+- **Implement Queue using Stacks** (Design queue using stacks. [Microsoft])
+- **Implement Stack using Queues** (Design stack using queues. [Microsoft])
+- **Design Twitter** (Design simplified Twitter. [Amazon])
+- **Design Search Autocomplete System** (Design autocomplete system. [Google])
+- **Design Hit Counter** (Design hit counter for past 5 minutes. [Google])
+- **Design Log Storage System** (Design log storage and retrieval system. [Google])
+- **Design In-Memory File System** (Design in-memory file system. [Amazon])
+- **Design Add and Search Words Data Structure** (Design data structure supporting add and search. [Facebook])
+- **Design Word Dictionary** (Design dictionary supporting add and search with wildcards. [Facebook])
+- **LFU Cache** (Design Least Frequently Used cache. [Amazon])
+- **All O(1) Data Structure** (Design data structure with all operations in O(1). [Google])
+- **Insert Delete GetRandom O(1)** (Design data structure supporting insert, delete, getRandom in O(1). [Facebook])
+- **Design Phone Directory** (Design phone directory system. [Google])
+- **Design Tic-Tac-Toe** (Design Tic-Tac-Toe game. [Amazon])
+- **Design Snake Game** (Design Snake game. [Amazon])
+- **Design Chat System** (Design basic chat system. [Facebook])
+- **Design URL Shortener** (Design URL shortening service like bit.ly. [Google])
 
 ---
-
-> **Tip:** Practice these problems on platforms like LeetCode, HackerRank, and GeeksforGeeks. Focus on understanding patterns and optimizing solutions.
