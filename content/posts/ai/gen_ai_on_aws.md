@@ -94,6 +94,8 @@ Before we proceed setting the stage.
   - Managed search and analytics engine with vector database capabilities.
   - Supports similarity search for retrieval-augmented generation (RAG) use cases.
   - Scalable, integrates with Bedrock and SageMaker.
+  - **OpenSearch Serverless**: Provides a fully managed, serverless deployment option for OpenSearch, allowing you to run search and vector workloads without managing clusters or infrastructure. Ideal for unpredictable or spiky workloads, with automatic scaling and pay-per-use pricing.
+  - **k-NN Plugin**: The k-Nearest Neighbor (k-NN) plugin is available in Amazon OpenSearch Service, enabling efficient vector similarity search at scale. It supports storing and querying high-dimensional embeddings, making it suitable for RAG, semantic search, and recommendation use cases. The k-NN plugin is supported on both provisioned and serverless OpenSearch domains (with some feature differences; check AWS documentation for the latest support matrix).
 
 - **Amazon Kendra**
   - Intelligent enterprise search powered by machine learning.
@@ -160,6 +162,8 @@ Before we proceed setting the stage.
   - Generative AI-powered medical transcription and clinical note generation.
   - Converts doctor-patient conversations into structured clinical documentation.
   - Supports compliance, privacy, and integration with healthcare systems.
+
+## Large Language Models
 
 ## Key Concepts
 - Foundation Models (FMs): Pre-trained models like GPT, BERT, and DALL-E that consists of billions of parameters (aka weights) trained on vast datasets.

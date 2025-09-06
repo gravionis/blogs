@@ -75,20 +75,38 @@ Before we proceed setting the stage.
 ### LLMs
 LLM an AI model trained on massive amounts of text. It is kind of able to understand, generate, and reason with natural language.
 - GPT-3: 175B Parameters, ~350B tokens. GPT-4:is 6x bigger. GPT-5 was supposed to be 20x bigger but is counter intuitive 300B Parameters.
-- Chinchilla's Law: model performance optimal when number of training tokens ≈ 20 × model parameters.
-    - Example: 70B parameters → ~1.4T tokens needed.
-    - hundreds of billions/trillions of parameters requires enormous data more than available high-quality text.
+- Pre-trained on massive text corpora to learn language patterns.
+- parametric memory: knowledge stored in model weights.
+- Model hub: Repositories of pre-trained models for easy access and deployment e.g. Hugging Face, TensorFlow Hub, PyTorch Hub, Amazon SageMaker JumpStart, etc.
+- Model Card: documentation that provides details about a model's architecture, training data, performance metrics, intended use cases, and ethical considerations. Model cards help users understand the capabilities and limitations of a model before deploying it in real-world applications.
+
+---
+
+### Chinchilla scaling laws
+* Earlier large language models (like GPT-3) were trained with too many parameters and too little data, making them under-trained. 
+* Researchers trained a family of models (called Chinchilla) and discovered a scaling law that balances model size (parameters, 𝑁) and  with dataset size (tokens, 𝐷) for compute-optimal performance.
+  - 𝐷 = number of training tokens  
+  - 𝑁 = number of parameters
+  - 𝐶 = total training compute (in FLOPs)
+  
+If you have a fixed compute budget, the best performance is achieved when the number of training tokens scales linearly with the number of parameters. Older practice (like GPT-3) trained much larger models on fewer tokens → under-trained. Chinchilla showed that smaller models trained on more data perform better at the same compute cost.
+```𝐷 ∝ 𝑁```
+
+**Chinchilla Scaling Formula**
+From the paper, the compute-optimal relation between parameters and tokens is:
+```𝐷 ≈ 20 × 𝑁```
+(So a model with 70B parameters should be trained on about 1.4 trillion tokens.)
+hundreds of billions/trillions of parameters requires enormous data more than available high-quality text.
+
+**Training Compute**
+Total training FLOPs scale approximately as:
+𝐶 ≈ 6 × 𝑁 × 𝐷
+(where the constant 6 comes from forward + backward passes and optimizer overheads).
+
   - GPT-5 leverages on many architectural innovations like:
     - Unified Intelligence System: integrates multiple reasoning and perception modules for more general intelligence.
     - Mixture-of-Experts: routes inputs to specialized sub-models for improved efficiency and accuracy.
     - Multimodal Integration: processes and understands text, images, and other data types together.
-
----
-
-### Transformer Architecture: 
-  - LLMs use the transformer neural network architecture.
-  - Transformers understand relationships between words, regardless of their position in the text.
-  - The architecture enables us to **predict the next word** in a sequence - they should **not be expected** to perform **accurate mathematical computation**; lot of our AI usecases some have some math oprations involved.
 
 ---
 
@@ -98,9 +116,17 @@ LLM an AI model trained on massive amounts of text. It is kind of able to unders
   - why important? - for us to estimate monthly cost: (tokens used per month) × (API cost per token).
 
 ---
+- 
+### Tokenizers: 
+  - convert text into tokens (subwords, words, or characters) for model input. Common types include Byte Pair Encoding (BPE), WordPiece, and SentencePiece. 
+  - vector id: unique identifier for each token in the tokenizer's vocabulary.
+---
 
-### LLM Model Variants and Techniques:
-  - Two main techniques:
+### Transformer Architecture: 
+  - LLM's use the transformer neural network architecture.
+  - Transformers understand relationships between words, regardless of their position in the text.
+  - The architecture enables us to **predict the next word** in a sequence - they should **not be expected** to perform **accurate mathematical computation**; lot of our AI usecases some have some math oprations involved.
+  - Three main techniques:
     - Predict next word (causal language modeling): Used by models like GPT; generates text by predicting the next token in a sequence.
     - Predict masked word: Used by models like BERT; predicts masked tokens within a sentence for better understanding of context.
   - **GPT models - Decoder Focused : Focus on text generation, conversation, and completion tasks.**
