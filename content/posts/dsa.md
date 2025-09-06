@@ -2,10 +2,8 @@
 date = '2024-01-01T12:44:47+10:00'
 draft = false
 title = '🎲 Data Structure Algoritms'
-tags = ['Laws']
+tags = ['Data Structures', 'Algorithms', 'DSA', 'Coding Interview']
 +++
-
-# Data Structure & Algorithm Interview Questions
 
 A curated list of classic and frequently asked DSA problems from top tech companies (Google, Amazon, Microsoft, Facebook, Apple, etc.), organized by topic. Each question includes a brief description and the company/companies where it was asked.
 
