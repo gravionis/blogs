@@ -150,6 +150,12 @@ Total training FLOPs scale approximately as:
 
 ---
 
+### Compare Models
+- https://artificialanalysis.ai/
+- https://www.vellum.ai/llm-leaderboard?utm_source=direct&utm_medium=none#compare
+
+---
+
 ### Model Paramaters
 | Parameter            | Description                                                                                     | Typical Range        | Impact                                                                 |
 |----------------------|-------------------------------------------------------------------------------------------------|----------------------|------------------------------------------------------------------------|

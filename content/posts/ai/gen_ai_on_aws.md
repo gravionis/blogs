@@ -2,30 +2,29 @@
 date = '2025-08-04T12:44:47+10:00'
 draft = false
 title = '🔮 AWS Services for Generative AI'
-tags = ['LLM', 'AI', 'Design Patterns']
+tags = ['AI', 'AWS']
 +++
 
 LLM design patterns are reusable strategies for building robust, efficient, and scalable AI applications. They help developers structure retrieval, reading, rewriting, memory, agent, and orchestration workflows for large language models. These patterns improve performance, maintainability accuracy, cost and security.
 
-## Table of Contents
-
 ## Introduction
+
 Here we explore how to leverage Gen AI on AWS. We cover key concepts, model types, prompt engineering, embeddings, RAG, vector stores, and design patterns for building effective AI solutions.
+
 ---
 
-Before we proceed setting the stage.
-## Concepts 
 ## AWS Services list
 
 ### Foundation Models & Model Access
 
 - **Amazon Bedrock**
-  - Fully managed service for accessing foundation models (FMs) from Amazon and leading third-party providers (Anthropic, Cohere, Meta, etc.).
-  - Supports text, image, and embedding models.
-  - Provides unified API, model evaluation, orchestration, and guardrails for responsible AI.
+  - Fully managed service for accessing foundation models (FMs) by Amazon and leading third-party providers e.g. Titan (AWS), Claude (Anthropic), Command R (Cohere), LLaMA 2 (Meta), Jurassic (AI21), Mistral, Stable Diffusion (Stability AI)
+  - Bedrock does support text, image generation, embeddings, and more—video, audio (through Data Automation) and multimodal embeddings.
+  - Agents are supported.
+  - Provides unified API, model evaluation, orchestration and guardrails for responsible AI.
 
 - **Amazon SageMaker JumpStart**
-  - Catalog of pre-trained models (including generative AI) and end-to-end solutions.
+  - SageMaker JumpStart provides a catalog of pre-trained models, including foundation models (FMs) and end-to-end machine learning solutions, enabling rapid experimentation, deployment, and fine-tuning.
   - Enables rapid experimentation, deployment, and fine-tuning of FMs.
   - Integrates with SageMaker Studio for easy workflow management.
 
@@ -33,6 +32,7 @@ Before we proceed setting the stage.
   - Amazon’s own family of foundation models for text, embeddings, and image generation.
   - Available via Amazon Bedrock.
   - Designed for enterprise security, privacy, and responsible AI.
+  - small token size compared to Mistral Large. Titan Text Premier 32,000 tokens & Titan Express 8,000
 
 ### Application-Specific AI
 
