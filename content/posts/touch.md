@@ -2,7 +2,7 @@
 date = '2024-05-03T12:44:47+10:00'
 draft = false
 title = '💥 Senior's Interview Questions'
-tags = ['Interview', 'Senior']
+tags = ['Interview']
 +++
 
 Each question targets specific competencies: architectural decision-making, operational resilience, performance optimization, security implementation, team coordination and behavioural. The questions are designed to reveal whether you've actually solved these problems in production, not just read about them. The best answers demonstrate practical wisdom gained from building systems that handle millions of requests, managing teams across multiple services, and making architectural decisions under real-world constraints.
