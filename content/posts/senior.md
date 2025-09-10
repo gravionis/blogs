@@ -424,7 +424,7 @@ Each question targets specific competencies: architectural decision-making, oper
 
 ## Attitude questions
 
-This collection features challenging interview questions designed to create no-win scenarios. These questions test your ability to think under pressure, defend difficult decisions, and demonstrate self-awareness while handling criticism gracefully.
+This collection features interview questions designed for truthful candidates. These questions test your ability to think swiftly, defend difficult decisions and demonstrate self-awareness while handling criticism gracefully.
 
 ## **LEADERSHIP & MANAGEMENT**
 
