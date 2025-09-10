@@ -5,7 +5,7 @@ title = 'Senior Developer Interview Questions'
 tags = ['Interview', 'Senior']
 +++
 
-Each question targets specific competencies: architectural decision-making, operational resilience, performance optimization, security implementation, and team coordination. The questions are designed to reveal whether you've actually solved these problems in production, not just read about them. The best answers demonstrate practical wisdom gained from building systems that handle millions of requests, managing teams across multiple services, and making architectural decisions under real-world constraints.
+Each question targets specific competencies: architectural decision-making, operational resilience, performance optimization, security implementation, team coordination and behavioural. The questions are designed to reveal whether you've actually solved these problems in production, not just read about them. The best answers demonstrate practical wisdom gained from building systems that handle millions of requests, managing teams across multiple services, and making architectural decisions under real-world constraints.
 
 ## Architecture & Design Patterns (1-20)
 
