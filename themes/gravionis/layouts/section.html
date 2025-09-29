@@ -2,41 +2,61 @@
   <h1>{{ .Title }}</h1>
   {{ .Content }}
   <style>
+    .post-card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
     .post-card-link {
       text-decoration: none;
       color: inherit;
       display: block;
+      height: 100%;
     }
     .post-card {
       border: 1px solid #ccc;
-      padding: 15px;
-      margin: 10px 0;
       border-radius: 12px;
       box-shadow: 0 4px 8px 2px #0078ff22, 0 0 8px 2px #fff2;
       transition: box-shadow 0.3s, border-color 0.3s;
       background: #fff;
       cursor: pointer;
+      width: 180px;
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      margin: 0;
+      padding: 0 10px;
     }
     .post-card:hover {
       box-shadow: 0 0 24px 6px #0078ff88, 0 0 12px 4px #fff;
       border-color: #0078ff;
       background: #f0f8ff;
     }
+    .post-card h2 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
     .post-card h2 a {
       text-decoration: none;
       color: #0078ff;
       transition: color 0.2s;
+      word-break: break-word;
     }
     .post-card:hover h2 a {
       color: #0050bb;
     }
   </style>
-  {{ range .Pages }}
-    <a class="post-card-link" href="{{ .RelPermalink }}">
-      <div class="post-card">
-        <h2>{{ .LinkTitle }}</h2>
-        {{ .Summary | truncate 230 }}
-      </div>
-    </a>
-  {{ end }}
+  <div class="post-card-grid">
+    {{ range .Pages }}
+      <a class="post-card-link" href="{{ .RelPermalink }}">
+        <div class="post-card">
+          <h2>{{ .LinkTitle }}</h2>
+        </div>
+      </a>
+    {{ end }}
+  </div>
 {{ end }}
