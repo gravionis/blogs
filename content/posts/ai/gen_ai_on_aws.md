@@ -1,7 +1,7 @@
 +++
 date = '2025-08-04T12:44:47+10:00'
 draft = false
-title = '🔮 AWS Services for Generative AI'
+title = '🔮 Gen AI on AWS'
 tags = ['AI', 'AWS']
 +++
 

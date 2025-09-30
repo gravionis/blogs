@@ -1,7 +1,7 @@
 +++
 date = '2024-01-01T12:44:47+10:00'
 draft = false
-title = '🎲 Complete Data Structure Algorithms List'
+title = '🎲 Data Structure Algorithms'
 tags = ['Data Structures', 'Algorithms', 'DSA', 'Coding Interview']
 +++
 
