@@ -1,7 +1,7 @@
 +++
 date = '2025-05-03T12:44:47+10:00'
 draft = false
-title = '☸ Kubernetes'
+title = 'Kubernetes'
 tags = ['Python']
 +++
 Kubernetes (K8s) is an open-source container orchestration platform that automates the deployment, scaling, and management of containerized applications. It was originally developed by Google and is now maintained by the Cloud Native Computing Foundation (CNCF). Kubernetes provides a robust framework for running distributed systems resiliently, with features such as service discovery, load balancing, storage orchestration, automated rollouts and rollbacks, self-healing, and secret and configuration management.

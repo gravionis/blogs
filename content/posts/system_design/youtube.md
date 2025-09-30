@@ -1,7 +1,7 @@
 +++
 date = '2024-01-01T12:44:47+10:00'
 draft = false
-title = '🧩 Youtube System Design'
+title = 'Youtube System Design'
 tags = ['Youtube', 'Interview']
 +++
 

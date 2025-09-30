@@ -1,7 +1,7 @@
 +++
 date = '2024-01-01T12:44:47+10:00'
 draft = false
-title = '🧩 23 Core Design Patterns'
+title = '23 Core Design Patterns'
 tags = ['Core Design Patterns', 'Interview']
 +++
 

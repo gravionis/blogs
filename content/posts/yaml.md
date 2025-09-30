@@ -1,7 +1,7 @@
 +++
 date = '2025-01-30T10:00:00+00:00'
 draft = false
-title = '🔧 YAML Guide'
+title = 'YAML Guide'
 tags = ['YAML', 'Configuration', 'Data Serialization', 'DevOps', 'Tutorial']
 +++
 

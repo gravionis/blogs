@@ -1,7 +1,7 @@
 +++
 date = '2024-05-03T12:44:47+10:00'
 draft = false
-title = '😇 Behavioral Interview'
+title = 'Behavioral Interview'
 tags = ['Interview', 'Amazon']
 +++
 

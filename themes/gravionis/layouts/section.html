@@ -43,6 +43,7 @@
       color: #0078ff;
       transition: color 0.2s;
       word-break: break-word;
+      text-shadow: none;
     }
     .post-card:hover h2 a {
       color: #0050bb;
@@ -52,7 +53,7 @@
     {{ range .Pages }}
       <a class="post-card-link" href="{{ .RelPermalink }}">
         <div class="post-card">
-          <h2>{{ .LinkTitle }}</h2>
+          <h2><span class="glow-char">{{ substr .LinkTitle 0 1 }}</span>{{ substr .LinkTitle 1 }}</h2>
         </div>
       </a>
     {{ end }}
