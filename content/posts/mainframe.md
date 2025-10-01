@@ -1,7 +1,7 @@
 +++
 date = '2025-01-01T12:44:47+10:00'
 draft = false
-title = 'Mainframe Retirement using Gen-AI'
+title = '🦥 Mainframe Retirement using Gen-AI'
 tags = ['Mainframe', 'COBOL', 'Java', 'AI Migration', 'Bedrock Claude', 'Knowledge Graph']
 +++
 
