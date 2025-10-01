@@ -8,24 +8,7 @@ tags = ['Operational Research', 'Optimization', 'OR', 'Learning Path', 'Roadmap'
 A comprehensive, step-by-step roadmap to mastering Operational Research (OR) and Optimization, from foundational mathematics to expert-level systems and research. This guide is designed for self-learners, students, and professionals aiming to become top 1% in the field, with a focus on practical skills, coding, and real-world applications.
 
 ---
-
-## Plan
-
-### Complete Optimization & OR Learning Path: Zero to Expert
-
-#### Master Roadmap Table
-
-| Phase | Duration | Topics Covered | Skills Gained | Daily Activity (1hr) |
-|-------|----------|---------------|---------------|---------------------|
-| Phase 0: Prerequisites | Week 1-2 | Linear algebra review, calculus basics, problem-solving mindset | Mathematical foundations | 30min review, 30min exercises |
-| Phase 1: Foundations | Week 3-6 | Linear programming, formulation, graphical method, simplex intuition | Can formulate and solve basic LP problems | 20min concepts, 40min practice |
-| Phase 2: Core Techniques | Week 7-12 | Integer programming, binary variables, network flows, dynamic programming | Solve discrete optimization problems | 15min theory, 45min coding |
-| Phase 3: Practical Mastery | Week 13-20 | Constraint programming, MIP, heuristics, real-world modeling | Build production systems | 10min reading, 50min building |
-| Phase 4: Advanced Methods | Week 21-32 | Stochastic optimization, non-linear, multi-objective, column generation | Handle complex uncertainty | 15min advanced concepts, 45min implementation |
-| Phase 5: Specialization | Week 33-52 | Deep dive into chosen domain (logistics/finance/scheduling/ML) | Domain expert | 5min review, 55min projects |
-| Phase 6: Expert Territory | Year 2-3 | Research papers, custom algorithms, large-scale systems | Thought leader | Self-directed learning |
-
----
+## Phases
 
 ### Phase 0: Prerequisites (Week 1-2)
 
@@ -39,7 +22,6 @@ A comprehensive, step-by-step roadmap to mastering Operational Research (OR) and
 | 4 | Functions | What is a function, domain/range, linear functions | Identify objective functions in problems | Write 5 objective functions |
 | 5 | Feasible regions | Understanding solution spaces, vertices | Draw feasible regions for 2-variable problems | Hand-draw 3 feasible region problems |
 | 6 | Optimization intuition | Max vs min, constraints, trade-offs | Toy problems with 2 variables | Solve graphically by hand |
-| 7 | Review & setup | Install Python, PuLP, Jupyter | Get environment working | Run "hello world" optimization |
 
 **Learning Resources:**
 - Khan Academy: Linear Algebra (select topics)
@@ -422,20 +404,5 @@ Choose ONE specialization area and go deep:
 - Electric vehicle charging
 - Carbon footprint optimization
 - Capstone: Smart grid system
-
-**Phase 5 Goal:** Become top 1% in your chosen domain.
-
 ---
 
-### Phase 6: Expert Territory (Year 2-3)
-
-| Quarter | Activities | Outputs | Recognition |
-|---------|------------|---------|-------------|
-| Q5-Q6 | Read research papers, implement novel algorithms | Paper implementations, blog posts | Known in community |
-| Q7-Q8 | Contribute to open-source OR projects | Significant contributions | Project maintainer |
-| Q9-Q10 | Solve competition problems, publish solutions | Kaggle medals, write-ups | Top competitor |
-| Q11-Q12 | Develop novel techniques, write papers | Conference submissions | Thought leader |
-
----
-
-This roadmap is designed to be actionable, modular, and adaptable to your pace. Each phase builds on the previous, ensuring a strong foundation and practical expertise in Operational Research and Optimization.
