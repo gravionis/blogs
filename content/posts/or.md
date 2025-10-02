@@ -406,3 +406,303 @@ Choose ONE specialization area and go deep:
 - Capstone: Smart grid system
 ---
 
+
+
+## Week 1: Mathematical Foundations
+
+---
+
+## Day 1: What is Optimization?
+
+### Introduction
+
+Optimization is the process of finding the **best solution** from all feasible solutions. It's about making the most effective use of limited resources to achieve your goals.
+
+### Core Concepts
+
+**Definition**: Optimization is the mathematical discipline of finding the maximum or minimum value of a function subject to constraints.
+
+**Key Components:**
+1. **Objective Function** - What you want to maximize or minimize
+2. **Decision Variables** - What you can control or change
+3. **Constraints** - Limitations or requirements you must satisfy
+4. **Feasible Region** - All solutions that satisfy the constraints
+5. **Optimal Solution** - The best feasible solution
+
+### Types of Optimization Problems
+
+| Type | Description | Example |
+|------|-------------|---------|
+| **Linear Programming** | Objective and constraints are all linear | Production planning, resource allocation |
+| **Integer Programming** | Some/all variables must be integers | Scheduling, yes/no decisions |
+| **Nonlinear Programming** | Objective or constraints are nonlinear | Portfolio optimization, engineering design |
+| **Combinatorial Optimization** | Selecting from discrete options | Traveling salesman, graph problems |
+| **Stochastic Optimization** | Involves uncertainty/randomness | Inventory under demand uncertainty |
+| **Multi-objective Optimization** | Multiple competing objectives | Cost vs quality vs time trade-offs |
+
+### Real-World Examples
+
+#### Example 1: Manufacturing (Profit Maximization)
+Problem: A factory makes chairs and tables
+
+Chairs sell for $50, tables for $80
+Limited wood, labor, and machine time
+Question: How many of each to make to maximize profit?
+
+Components:
+
+Decision Variables: Number of chairs, number of tables
+Objective: Maximize total profit
+Constraints: Wood availability, labor hours, machine capacity
+
+#### Example 2: Diet Planning (Cost Minimization)
+Problem: Create a meal plan that meets nutritional needs
+
+Different foods have different costs and nutrients
+Must meet minimum daily requirements for protein, vitamins, etc.
+Question: What to eat to minimize cost while staying healthy?
+
+Components:
+
+Decision Variables: Amount of each food to consume
+Objective: Minimize total cost
+Constraints: Minimum nutrition requirements
+
+#### Example 3: Route Planning (Distance Minimization)
+Problem: Deliver packages to 20 locations
+
+Must visit each location exactly once
+Return to starting point
+Question: What order minimizes total distance?
+
+Components:
+
+Decision Variables: Order of visiting locations
+Objective: Minimize total distance traveled
+Constraints: Visit each location once, return to start
+
+### Optimization vs Other Problem-Solving
+
+| Approach | Goal | Example |
+|----------|------|---------|
+| **Simulation** | Understand what happens | "If we make 100 chairs, what's our profit?" |
+| **Optimization** | Find the best option | "How many chairs maximize profit?" |
+| **Machine Learning** | Learn patterns from data | "Predict tomorrow's demand" |
+| **Optimization + ML** | Best decision using predictions | "Optimal inventory given demand forecast" |
+
+### Why Optimization Matters
+
+**Business Impact:**
+- Walmart saves **$12 billion annually** through supply chain optimization
+- Airlines save **millions in fuel costs** through route optimization
+- Hospitals reduce **waiting times by 30-50%** through scheduling optimization
+
+**Everyday Impact:**
+- Google Maps finds your fastest route (optimization)
+- Netflix recommends shows (optimization + ML)
+- Your phone's battery lasts longer (power optimization)
+- Online prices adjust based on demand (revenue optimization)
+
+### Mathematical Notation Preview
+
+Don't worry if this looks intimidating - we'll build up to it:
+Maximize:   f(x₁, x₂, ..., xₙ)           ← Objective function
+Subject to: g₁(x₁, x₂, ..., xₙ) ≤ b₁     ← Constraint 1
+g₂(x₁, x₂, ..., xₙ) ≤ b₂     ← Constraint 2
+...
+xᵢ ≥ 0                        ← Non-negativity
+
+
+## Day 2: Linear Algebra Basics
+
+### Why Linear Algebra for Optimization?
+
+Optimization problems are fundamentally about:
+- Multiple variables interacting together
+- Systems of equations and inequalities
+- Geometric spaces and directions
+
+Linear algebra gives us the language and tools to work with these efficiently.
+
+### Vectors
+
+**Definition**: A vector is an ordered list of numbers.
+
+**Notation**:
+- Column vector: **x** = [x₁, x₂, x₃]ᵀ
+- Row vector: **x** = [x₁, x₂, x₃]
+
+**Examples:**
+Production quantities: x = [chairs=10, tables=5]
+Location coordinates: p = [latitude=40.7, longitude=-74.0]
+Resource usage: r = [wood=50, labor=30, money=1000]
+
+**Vector Operations:**
+
+1. **Addition**: Add corresponding components
+[2]   [5]   [7]
+[3] + [1] = [4]
+
+2. **Scalar Multiplication**: Multiply each component by a number
+   [2]   [6]
+3 × [4] = [12]
+[1]   [3]
+
+3. **Dot Product**: Multiply corresponding components and sum
+[2, 3, 1] · [4, 1, 2] = 2×4 + 3×1 + 1×2 = 8 + 3 + 2 = 13
+
+**Geometric Interpretation:**
+- Vector = arrow in space
+- Addition = placing arrows tip-to-tail
+- Dot product = measures "alignment" between vectors
+
+### Matrices
+
+**Definition**: A rectangular array of numbers arranged in rows and columns.
+
+**Notation**:
+ [a₁₁  a₁₂  a₁₃]
+A =  [a₂₁  a₂₂  a₂₃]
+
+**Dimensions**: m × n (m rows, n columns)
+
+**Examples in Optimization:**
+
+**Resource Usage Matrix:**
+    Wood  Labor  Cost
+Chair  [ 2     3      20 ]
+Table  [ 4     2      35 ]
+Desk   [ 5     4      50 ]
+
+**Constraint Coefficients:**
+2x₁ + 4x₂ + 5x₃ ≤ 100  (wood constraint)
+3x₁ + 2x₂ + 4x₃ ≤ 80   (labor constraint)
+Can be written as: Ax ≤ b
+ [2  4  5]       [100]
+A =  [3  2  4],  b = [80]
+
+### Matrix Operations
+
+**1. Matrix-Vector Multiplication:**
+[2  3] [x₁]   [2x₁ + 3x₂]
+[1  4] [x₂] = [1x₁ + 4x₂]
+
+**Interpretation**: Applying constraints
+- Each row represents one constraint
+- Multiply coefficients by variable values
+
+**Example:**
+If we make x₁=10 chairs and x₂=5 tables:
+[2  4] [10]   [2(10) + 4(5)]   [40]   ← Total wood used
+[3  2] [5]  = [3(10) + 2(5)] = [40]   ← Total labor used
+
+**2. Matrix Addition**: Add corresponding elements
+[1  2]   [5  6]   [6   8]
+[3  4] + [7  8] = [10  12]
+
+**3. Matrix Multiplication**: More complex, less commonly needed initially
+[a  b] [e  f]   [ae+bg  af+bh]
+[c  d] [g  h] = [ce+dg  cf+dh]
+
+### Linear Combinations
+
+**Definition**: A sum of vectors, each multiplied by a scalar.
+Result = c₁v₁ + c₂v₂ + ... + cₙvₙ
+
+**Example:**
+Make 3 chairs and 2 tables
+Resources needed = 3 × [chair resources] + 2 × [table resources]
+                [2]       [4]       [14]
+            = 3 [3]  + 2  [2]   =   [13]  ← Total resources
+                [20]      [35]      [130]
+
+**This is the foundation of optimization!**
+- Variables (x₁, x₂, ...) are the scalars
+- Resource vectors are combined
+- We want the best combination
+
+### Systems of Linear Equations
+
+**Standard Form:**
+a₁₁x₁ + a₁₂x₂ = b₁
+a₂₁x₁ + a₂₂x₂ = b₂
+
+**Matrix Form:**
+Ax = b
+
+**Example:**
+2x₁ + 3x₂ = 13
+1x₁ + 4x₂ = 14
+Solution: x₁ = 2, x₂ = 3 (verify by substituting!)
+
+**Types of Solutions:**
+1. **Unique solution**: Exactly one answer (most common)
+2. **Infinite solutions**: Many possible answers
+3. **No solution**: Inconsistent system
+
+### Inequalities in Optimization
+
+**Most constraints are inequalities, not equations:**
+2x₁ + 3x₂ ≤ 100   (can't use more than 100 units)
+x₁ ≥ 0            (can't make negative chairs)
+
+**Key difference from equations:**
+- Equation: Must be exactly equal
+- Inequality: Can be less than (or greater than) the limit
+
+### Practical Tips
+
+**Don't memorize, understand:**
+- Vectors = lists of related numbers
+- Matrix multiplication = applying transformations
+- Systems of equations = finding where things balance
+
+**Optimization connection:**
+- Variables = what we decide
+- Matrix = how variables use resources
+- Vector = resource limits
+- Find variable values that work best
+
+### Day 2 Practice Exercises
+
+**Exercise 1: Vector Operations**
+Given: a = [3, 5, 2] and b = [1, 4, 6]
+Calculate:
+
+a + b = ?
+2a = ?
+a · b = ?
+
+**Exercise 2: Matrix-Vector Multiplication**
+A chair uses 2 hours of labor and 3 units of wood
+A table uses 4 hours of labor and 2 units of wood
+If we make 5 chairs and 3 tables, how much labor and wood do we use?
+[2  4] [5]
+[3  2] [3] = ?
+
+**Exercise 3: System of Equations**
+Solve:
+x + 2y = 10
+3x + y = 15
+Try substitution or elimination method
+
+**Exercise 4: Interpret This Matrix**
+    Product1  Product2  Product3
+Labor   [   2        3         4    ]
+Wood    [   5        2         3    ]
+Cost    [  10       15        20    ]
+What does this tell you about each product?
+
+**Exercise 5: Resource Constraint**
+You have 100 units of wood.
+Product A uses 5 units per item.
+Product B uses 8 units per item.
+Write this as an inequality using variables xₐ and xᵦ
+
+### Key Takeaways
+
+✅ Vectors represent quantities with multiple components
+✅ Matrices organize relationships between variables
+✅ Matrix-vector multiplication applies constraints
+✅ Linear combinations are the core of optimization
+✅ Most optimization uses inequalities, not just equations
