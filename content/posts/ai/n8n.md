@@ -1,7 +1,7 @@
 +++
 date = '2025-08-04T12:44:47+10:00'
 draft = false
-title = 'AI Orchestration with n8n'
+title = 'n8n workflow automation'
 tags = ['AI', 'n8n']
 +++
 
