@@ -94,10 +94,7 @@ n8n's UI is organized into three main sections:
 These triggers allow n8n workflows to respond to a wide range of events, making automation flexible and responsive to business needs.
 
 ### Tip: Connecting to Ollama on Localhost from Docker
-- **Ollama:** To connect n8n (running in Docker) to Ollama running on your local machine, set the base URL in your Ollama API credentials to:
-    ```
-    http://host.docker.internal:11434/
-    ```
+- **Ollama:** To connect n8n (running in Docker) to Ollama running on your local machine, set the base URL in your Ollama API credentials to: **http://host.docker.internal:11434/**
 
 These triggers allow n8n workflows to respond to a wide range of events, making automation flexible and responsive to business needs.
 
