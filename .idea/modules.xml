@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/blogs.iml" filepath="$PROJECT_DIR$/.idea/blogs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../work/misc-data-loader/.idea/misc-data-loader.iml" filepath="$PROJECT_DIR$/../../work/misc-data-loader/.idea/misc-data-loader.iml" />
-    </modules>
-  </component>
-</project>
