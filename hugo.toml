@@ -1,4 +1,4 @@
-baseURL = 'https://gravionis.github.io/'
+baseURL = 'https://gravionis.github.io/blogs/'
 languageCode = 'en-us'
 title = 'GRAVIONIS'
 theme = 'gravionis'
