@@ -64,6 +64,7 @@ docker run -it --rm \
  -p 5678:5678 \
  -e N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true \
  -e N8N_RUNNERS_ENABLED=true \
+ -e NODE_TLS_REJECT_UNAUTHORIZED=0 \
  -v n8n_data:/home/node/.n8n \
  docker.n8n.io/n8nio/n8n
 ```
