@@ -17,11 +17,12 @@
       width: 100%;
     }
     .post-card {
-      border: 1.5px solid #ccc;
+      /* slightly darker background */
+      background: #f3f6ff; /* darker than pure white */
+      border: 1.5px solid #bdbfc3; /* a touch darker than before */
       border-radius: 10px;
       box-shadow: 0 4px 8px 2px #0078ff22, 0 0 8px 2px #fff2;
-      transition: box-shadow 0.3s, border-color 0.3s;
-      background: #fff;
+      transition: box-shadow 0.3s, border-color 0.3s, background 0.2s;
       cursor: pointer;
       width: 100%; /* let the grid column determine card width */
       min-height: 100px;
@@ -36,7 +37,7 @@
     .post-card:hover {
       box-shadow: 0 0 24px 6px #0078ff88, 0 0 12px 4px #fff;
       border-color: #0078ff;
-      background: #f0f8ff;
+      background: #e6f3ff; /* subtle blue-tinted hover that's slightly darker than normal */
     }
     .post-card h2 {
       margin: 0;
