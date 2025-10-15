@@ -13,10 +13,16 @@ COBOL (Common Business-Oriented Language) is a high-level programming language c
 - [COBOL vs Java](#cobol-vs-java)
 - [Mainframe Context & File Types](#mainframe-context--file-types)
 - [Basic Structure of a COBOL Program](#basic-structure-of-a-cobol-program)
-  - [IDENTIFICATION DIVISION](#1-identification-division)
-  - [ENVIRONMENT DIVISION](#2-environment-division)
-  - [DATA DIVISION](#3-data-division)
-  - [PROCEDURE DIVISION](#4-procedure-division)
+  - [IDENTIFICATION DIVISION](#identification-division)
+  - [ENVIRONMENT DIVISION](#environment-division)
+    - [CONFIGURATION SECTION](#configuration-section)
+    - [INPUT-OUTPUT SECTION](#input-output-section)
+  - [DATA DIVISION](#data-division)
+    - [FILE SECTION](#file-section)
+    - [WORKING-STORAGE SECTION](#working-storage-section)
+    - [LOCAL-STORAGE SECTION](#local-storage-section)
+    - [LINKAGE SECTION](#linkage-section)
+  - [PROCEDURE DIVISION](#procedure-division)
 - [Key Concepts & Terminology](#key-concepts--terminology)
 - [COBOL Data Types & Variables](#cobol-data-types--variables)
 - [File I/O in COBOL](#file-io-in-cobol)
@@ -49,85 +55,108 @@ COBOL (Common Business-Oriented Language) is a high-level programming language d
 
 ## Mainframe Context & File Types
 
-- **COBOL Programs**: Source files (`.cob`, `.cbl`) containing business logic.
-- **Copybooks**: Reusable code/data snippets (`.cpy`), included via `COPY`.
-- **JCL Scripts**: Job Control Language files (`.jcl`) to run/schedule COBOL jobs.
-- **Datasets**: Mainframe files (sequential, indexed/VSAM, DB2 tables).
-- **Utilities**: System tools for file copy, sort, data conversion (e.g., `SORT`, `IEBGENER`).
+- **COBOL Programs**:
+  - Source code files (`.cob`, `.cbl`) written in COBOL containing business logic and data processing. Comparable to `.java` or `.py` files. 
+- **Copybooks**:
+  - Reusable code or data structure snippets (`.cpy`), included in COBOL programs using the `COPY` statement. Analogous to Java imports or Python modules, often used for shared data definitions (e.g., record layouts).
+- **JCL Scripts**:
+  - Job Control Language files (`.jcl`) are Scripts used to run and schedule COBOL programs on mainframes. JCL is similar to shell scripts or Windows batch files, controlling program execution, input/output files, and job sequencing.
+- **Datasets**: 
+  - Files or databases on the mainframe, used to store input/output data. Datasets can be sequential files (like CSVs), VSAM files (indexed), or DB2 tables (relational). Analogous to files or SQL tables in Java applications.
+- **Utilities**: 
+  - System tools or programs for common tasks such as file copying, sorting, or data conversion. Examples include `IEBGENER` (copy files), `SORT` (sort data), and `IDCAMS` (manage VSAM datasets). These are similar to Unix command-line utilities like `cp`, `sort`, or `awk`.
 
 ---
 
 ## Basic Structure of a COBOL Program
 
-A COBOL program is divided into four main divisions:
-1. **IDENTIFICATION DIVISION:** Program metadata.
-2. **ENVIRONMENT DIVISION:** System-specific settings.
-3. **DATA DIVISION:** Variable and data structure definitions.
-4. **PROCEDURE DIVISION:** Program logic and instructions.
+A COBOL program is divided into four main divisions, each with specific sections or subsections:
 
-### Examples of Each Division
+- **IDENTIFICATION DIVISION**
+  - Contains program metadata (name, author, etc.).
+  - (no sections) Program metadata (name, author, etc.)
+- **ENVIRONMENT DIVISION**
+  - Specifies system/environment settings, such as file assignments.
+  - Types of sections:
+    - CONFIGURATION SECTION: System-dependent settings (SOURCE-COMPUTER, SPECIAL-NAMES)
+    - INPUT-OUTPUT SECTION: File assignments and control (FILE-CONTROL, I-O-CONTROL)
+- **DATA DIVISION**
+  - Defines data structures and files used in the program.
+  - Types of sections:
+    - FILE SECTION: File record layouts
+    - WORKING-STORAGE SECTION: Program variables (persistent for program duration)
+    - LOCAL-STORAGE SECTION: Variables with local scope (reset on each call)
+    - LINKAGE SECTION: Data passed from other programs or calling routines
+- **PROCEDURE DIVISION**
+  - Contains the executable logic (similar to Java methods/main).
+  - (no sections) Executable program logic
 
-#### 1. IDENTIFICATION DIVISION
+### Example: PAYROLL-REPORT COBOL Program
+
 ```cobol
-IDENTIFICATION DIVISION.
-PROGRAM-ID. SAMPLE-PROGRAM.
-AUTHOR. Your Name.
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. PAYROLL-REPORT.
+       AUTHOR. Jane Doe.
+
+       ENVIRONMENT DIVISION.
+       CONFIGURATION SECTION.
+           SOURCE-COMPUTER. IBM-370.
+           OBJECT-COMPUTER. IBM-370.
+           SPECIAL-NAMES. CONSOLE IS SYSIN.
+       INPUT-OUTPUT SECTION.
+           FILE-CONTROL.
+               SELECT EMP-IN ASSIGN TO 'employee_input.txt'.
+               SELECT EMP-OUT ASSIGN TO 'employee_output.txt'.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  EMP-IN.
+       01  EMP-IN-REC.
+           05 EMP-ID         PIC 9(5).
+           05 EMP-NAME       PIC X(20).
+           05 EMP-SALARY     PIC 9(6)V99.
+           05 EMP-TAX        PIC 9(4)V99.
+       FD  EMP-OUT.
+       01  EMP-OUT-REC.
+           05 EMP-ID-OUT     PIC 9(5).
+           05 EMP-NAME-OUT   PIC X(20).
+           05 NET-PAY        PIC 9(6)V99.
+
+       WORKING-STORAGE SECTION.
+       01  EMP-COUNT         PIC 9(4) VALUE 0.
+       01  EOF-FLAG          PIC X VALUE 'N'.
+
+       LOCAL-STORAGE SECTION.
+       01  TEMP-NET-PAY      PIC 9(6)V99.
+
+       LINKAGE SECTION.
+       01  COMPANY-NAME      PIC X(30).
+
+       PROCEDURE DIVISION USING COMPANY-NAME.
+           DISPLAY 'Payroll Report for ' COMPANY-NAME
+           OPEN INPUT EMP-IN
+           OPEN OUTPUT EMP-OUT
+           PERFORM UNTIL EOF-FLAG = 'Y'
+               READ EMP-IN INTO EMP-IN-REC
+                   AT END
+                       MOVE 'Y' TO EOF-FLAG
+                   NOT AT END
+                       ADD 1 TO EMP-COUNT
+                       COMPUTE TEMP-NET-PAY = EMP-SALARY - EMP-TAX
+                       MOVE EMP-ID TO EMP-ID-OUT
+                       MOVE EMP-NAME TO EMP-NAME-OUT
+                       MOVE TEMP-NET-PAY TO NET-PAY
+                       WRITE EMP-OUT-REC
+               END-READ
+           END-PERFORM
+           CLOSE EMP-IN
+           CLOSE EMP-OUT
+           DISPLAY 'Processed ' EMP-COUNT ' employees.'
+           STOP RUN.
 ```
-
-#### 2. ENVIRONMENT DIVISION
-```cobol
-ENVIRONMENT DIVISION.
-INPUT-OUTPUT SECTION.
-FILE-CONTROL.
-    SELECT INPUT-FILE ASSIGN TO 'input.txt'.
-```
-
-#### 3. DATA DIVISION
-```cobol
-DATA DIVISION.
-FILE SECTION.
-FD  INPUT-FILE.
-01  INPUT-RECORD    PIC X(100).
-
-WORKING-STORAGE SECTION.
-01  COUNTER         PIC 9(4) VALUE 0.
-```
-
-#### 4. PROCEDURE DIVISION
-```cobol
-PROCEDURE DIVISION.
-    OPEN INPUT INPUT-FILE
-    READ INPUT-FILE INTO INPUT-RECORD
-        AT END
-            DISPLAY "End of file reached."
-        NOT AT END
-            ADD 1 TO COUNTER
-    CLOSE INPUT-FILE
-    STOP RUN.
-```
-
 ---
 
 ## Key Concepts & Terminology
-
-- **Divisions**: COBOL programs are organized into four main sections:
-  - **IDENTIFICATION DIVISION**: Contains program metadata (name, author, etc.).
-  - **ENVIRONMENT DIVISION**: Specifies system/environment settings, such as file assignments.
-  - **DATA DIVISION**: Defines variables, data structures, and file layouts.
-  - **PROCEDURE DIVISION**: Contains the executable logic (similar to Java methods/main).
-
-- **Copybooks**: Reusable code or data structure snippets, included in COBOL programs using the `COPY` statement. Analogous to Java imports or Python modules, often used for shared data definitions (e.g., record layouts).
-
-- **JCL (Job Control Language)**: Scripts used to run and schedule COBOL programs on mainframes. JCL is similar to shell scripts or Windows batch files, controlling program execution, input/output files, and job sequencing.
-
-- **COBOL Programs**: Source code files written in COBOL (e.g., `.cob`, `.cbl`), containing business logic and data processing. Comparable to `.java` or `.py` files.
-
-- **JCL Scripts**: Job Control Language files (e.g., `.jcl`), used to execute COBOL programs, manage datasets, and define job steps on the mainframe.
-
-- **Datasets**: Files or databases on the mainframe, used to store input/output data. Datasets can be sequential files (like CSVs), VSAM files (indexed), or DB2 tables (relational). Analogous to files or SQL tables in Java applications.
-
-- **Utilities**: System tools or programs for common tasks such as file copying, sorting, or data conversion. Examples include `IEBGENER` (copy files), `SORT` (sort data), and `IDCAMS` (manage VSAM datasets). These are similar to Unix command-line utilities like `cp`, `sort`, or `awk`.
-
 - **Mainframe Terms vs Java Terms**:
   | Mainframe/COBOL      | Java Equivalent                |
   |----------------------|-------------------------------|
@@ -140,6 +169,11 @@ PROCEDURE DIVISION.
 - **Other Concepts**:
   - **Batch Processing**: COBOL is often used for batch jobs—processing large volumes of data in scheduled runs, similar to Java batch frameworks (e.g., Spring Batch).
   - **CICS**: Customer Information Control System, a transaction processing system for online COBOL programs (not covered in detail here).
+  - **EJECT Directive**: A compiler directive used to start a new page in the source code listing for improved readability and organization. It does not affect program execution. Example usage:
+  ```cobol
+  EJECT
+  * This section starts on a new page in the listing
+  ```
 
 ---
 
@@ -254,3 +288,82 @@ PROCEDURE DIVISION.
 - [GnuCOBOL Documentation](https://open-cobol.sourceforge.io/)
 - [Java Migration Guides](https://www.oracle.com/java/technologies/migration.html)
 - [Mainframe Modernization Patterns](https://cloud.google.com/architecture/mainframe-modernization)
+
+## Sample Code: Employee Payroll Processing
+
+This sample COBOL program demonstrates key constructs: all divisions, file I/O, group items, arrays, copybook usage, EJECT directive, and comments. The program reads employee data, calculates net pay, and writes results to an output file.
+
+```cobol
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. PAYROLL-PROCESSOR.
+       AUTHOR. GitHub Copilot.
+       * Sample COBOL program for payroll processing
+
+       ENVIRONMENT DIVISION.
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT EMP-IN ASSIGN TO 'employee_input.txt'.
+           SELECT EMP-OUT ASSIGN TO 'employee_output.txt'.
+
+       DATA DIVISION.
+       FILE SECTION.
+       FD  EMP-IN.
+       01  EMP-IN-REC.
+           05 EMP-ID         PIC 9(5).
+           05 EMP-NAME       PIC X(20).
+           05 EMP-SALARY     PIC 9(6)V99.
+           05 EMP-TAX        PIC 9(4)V99.
+
+       FD  EMP-OUT.
+       01  EMP-OUT-REC.
+           05 EMP-ID-OUT     PIC 9(5).
+           05 EMP-NAME-OUT   PIC X(20).
+           05 NET-PAY        PIC 9(6)V99.
+
+       WORKING-STORAGE SECTION.
+       01  EMP-COUNT         PIC 9(4) VALUE 0.
+       01  EOF-FLAG          PIC X VALUE 'N'.
+       01  EMP-TABLE.
+           05 EMP-ENTRY OCCURS 10 TIMES.
+               10 EMP-ID-TBL     PIC 9(5).
+               10 EMP-NAME-TBL   PIC X(20).
+               10 EMP-SALARY-TBL PIC 9(6)V99.
+               10 EMP-TAX-TBL    PIC 9(4)V99.
+               10 NET-PAY-TBL    PIC 9(6)V99.
+
+       * Simulated copybook usage
+       COPY EMPLOYEE-REC REPLACING ==EMPLOYEE-REC== BY ==EMP-IN-REC==.
+
+       PROCEDURE DIVISION.
+           OPEN INPUT EMP-IN
+           OPEN OUTPUT EMP-OUT
+           PERFORM UNTIL EOF-FLAG = 'Y'
+               READ EMP-IN INTO EMP-IN-REC
+                   AT END
+                       MOVE 'Y' TO EOF-FLAG
+                   NOT AT END
+                       ADD 1 TO EMP-COUNT
+                       COMPUTE NET-PAY = EMP-SALARY - EMP-TAX
+                       MOVE EMP-ID TO EMP-ID-OUT
+                       MOVE EMP-NAME TO EMP-NAME-OUT
+                       MOVE NET-PAY TO NET-PAY
+                       WRITE EMP-OUT-REC
+                       * Store in array for summary
+                       MOVE EMP-ID TO EMP-ID-TBL(EMP-COUNT)
+                       MOVE EMP-NAME TO EMP-NAME-TBL(EMP-COUNT)
+                       MOVE EMP-SALARY TO EMP-SALARY-TBL(EMP-COUNT)
+                       MOVE EMP-TAX TO EMP-TAX-TBL(EMP-COUNT)
+                       MOVE NET-PAY TO NET-PAY-TBL(EMP-COUNT)
+               END-READ
+           END-PERFORM
+           CLOSE EMP-IN
+           CLOSE EMP-OUT
+
+           EJECT
+           * Print summary of processed employees
+           DISPLAY 'Payroll Summary:'
+           PERFORM VARYING IDX FROM 1 BY 1 UNTIL IDX > EMP-COUNT
+               DISPLAY 'ID: ' EMP-ID-TBL(IDX) ' Name: ' EMP-NAME-TBL(IDX) ' Net Pay: ' NET-PAY-TBL(IDX)
+           END-PERFORM
+           STOP RUN.
+```
