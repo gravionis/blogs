@@ -250,6 +250,7 @@ In COBOL, keywords (reserved words) are predefined words that have special meani
 | KEY IS       | Defines key field for indexed files.                         |
 | ACCESS MODE  | Defines how file is accessed (SEQUENTIAL, RANDOM, etc.).     |
 | ORGANIZATION | Defines file organization (e.g., LINE SEQUENTIAL, INDEXED).  |
+| STATUS       | Captures file operation status codes.                        |
 
 ### 7. Conditions and Logical Keywords
 | Keyword      | Purpose                                                      |
@@ -259,6 +260,7 @@ In COBOL, keywords (reserved words) are predefined words that have special meani
 | IS           | Used in condition checks (IS EQUAL TO).                      |
 | EQUAL, GREATER, LESS | Comparison operators.                                |
 | ZERO, SPACES, HIGH-VALUES, LOW-VALUES | Predefined literals.                |
+| TRUE, FALSE  | Boolean literals (not standard in all COBOL versions).       |
 
 ### 8. Declarative and Special Purpose Keywords
 | Keyword      | Purpose                                                      |
@@ -269,8 +271,12 @@ In COBOL, keywords (reserved words) are predefined words that have special meani
 | COPY         | Includes external source code copybooks.                     |
 | CALL         | Invokes another program.                                     |
 | CANCEL       | Unloads a called program.                                    |
-
----
+| EJECT        | Starts a new page in the source code listing.                |
+| COMMENT      | Denotes a comment line (often with an asterisk `*` in column 7). |
+| REMARK       | Another way to denote comments.                              |
+| CONTINUE     | No operation; used in condition handling.                    |
+| INITIALIZE   | Sets variables to default values.                            |
+| RETURN       | Returns from a called program.                               |
 
 ## COBOL Data Types & Variables
 
