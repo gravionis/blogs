@@ -5,7 +5,8 @@
     .post-card-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 15px;
+      gap: 10px; /* ensure 10px between cards */
+      padding: 10px; /* ensure 10px between cards and container edges */
       margin-top: 15px;
     }
     .post-card-link {
@@ -13,6 +14,7 @@
       color: inherit;
       display: block;
       height: 100%;
+      width: 100%;
     }
     .post-card {
       border: 1.5px solid #ccc;
@@ -21,14 +23,15 @@
       transition: box-shadow 0.3s, border-color 0.3s;
       background: #fff;
       cursor: pointer;
-      width: 180px;
-      height: 100px;
+      width: 100%; /* let the grid column determine card width */
+      min-height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       margin: 0;
-      padding: 0 10px;
+      padding: 10px; /* internal spacing inside the card */
+      box-sizing: border-box; /* include padding/border in width calculations */
     }
     .post-card:hover {
       box-shadow: 0 0 24px 6px #0078ff88, 0 0 12px 4px #fff;

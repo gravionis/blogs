@@ -18,3 +18,4 @@ Thumbs.db
 *.old
 *.orig
 .idea/*
+.hugo_build.lock
