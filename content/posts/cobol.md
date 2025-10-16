@@ -89,52 +89,101 @@ A COBOL program is divided into four main divisions, each with specific sections
   - Contains the executable logic (similar to Java methods/main).
   - (no sections) Executable program logic
 
-### Example: PAYROLL-REPORT COBOL Program
+### Example: Comprehensive PAYROLL-REPORT COBOL Program (with all major constructs)
 
 ```cobol
-       IDENTIFICATION DIVISION.
-       PROGRAM-ID. PAYROLL-REPORT.
-       AUTHOR. Jane Doe.
+       IDENTIFICATION DIVISION.          * Program metadata section
+       PROGRAM-ID. PAYROLL-REPORT.       * Program name
+       AUTHOR. Jane Doe.                 * Author information
+       INSTALLATION. ExampleCorp.        * Installation info
+       DATE-WRITTEN. 2025-10-16.         * Date
+       DATE-COMPILED. 2025-10-16.        * Compilation date
 
-       ENVIRONMENT DIVISION.
-       CONFIGURATION SECTION.
-           SOURCE-COMPUTER. IBM-370.
-           OBJECT-COMPUTER. IBM-370.
-           SPECIAL-NAMES. CONSOLE IS SYSIN.
-       INPUT-OUTPUT SECTION.
+       ENVIRONMENT DIVISION.             * System and file environment settings
+       CONFIGURATION SECTION.            * Optional: system-specific settings
+           SOURCE-COMPUTER. IBM-370.     * Source computer type
+           OBJECT-COMPUTER. IBM-370.     * Target computer type
+           SPECIAL-NAMES. CONSOLE IS SYSIN, DECIMAL-POINT IS COMMA.
+       INPUT-OUTPUT SECTION.             * File assignment and control
            FILE-CONTROL.
-               SELECT EMP-IN ASSIGN TO 'employee_input.txt'.
-               SELECT EMP-OUT ASSIGN TO 'employee_output.txt'.
+               SELECT EMP-IN ASSIGN TO 'employee_input.txt'
+                   ORGANIZATION IS LINE SEQUENTIAL
+                   ACCESS MODE IS SEQUENTIAL
+                   FILE STATUS IS WS-EMP-IN-STATUS.
+               SELECT EMP-OUT ASSIGN TO 'employee_output.txt'
+                   ORGANIZATION IS LINE SEQUENTIAL
+                   ACCESS MODE IS SEQUENTIAL
+                   FILE STATUS IS WS-EMP-OUT-STATUS.
+           I-O-CONTROL.
+               APPLY WRITE-ONLY-LOCK ON EMP-OUT.
 
-       DATA DIVISION.
-       FILE SECTION.
-       FD  EMP-IN.
-       01  EMP-IN-REC.
-           05 EMP-ID         PIC 9(5).
-           05 EMP-NAME       PIC X(20).
-           05 EMP-SALARY     PIC 9(6)V99.
-           05 EMP-TAX        PIC 9(4)V99.
-       FD  EMP-OUT.
-       01  EMP-OUT-REC.
-           05 EMP-ID-OUT     PIC 9(5).
-           05 EMP-NAME-OUT   PIC X(20).
-           05 NET-PAY        PIC 9(6)V99.
+       DATA DIVISION.                    * Data definitions and structures
+       FILE SECTION.                     * File record layouts
+       FD  EMP-IN.                       * FD: File Description for input file
+       01  EMP-IN-REC.                   * 01: Top-level record structure
+           05 EMP-ID         PIC 9(5).   * 05: Field, PIC 9(5): 5-digit number
+           05 EMP-NAME       PIC X(20).  * 05: Field, PIC X(20): 20-character string
+           05 EMP-SALARY     PIC 9(6)V99.* 05: Field, PIC 9(6)V99: 6 digits + 2 decimals
+           05 EMP-TAX        PIC 9(4)V99.* 05: Field, PIC 9(4)V99: 4 digits + 2 decimals
+           05 FILLER         PIC X(10).  * Unused/padding field
+       FD  EMP-OUT.                      * FD: File Description for output file
+       01  EMP-OUT-REC.                  * 01: Top-level record structure
+           05 EMP-ID-OUT     PIC 9(5).   * 05: Field, PIC 9(5): 5-digit number
+           05 EMP-NAME-OUT   PIC X(20).  * 05: Field, PIC X(20): 20-character string
+           05 NET-PAY        PIC 9(6)V99.* 05: Field, PIC 9(6)V99: 6 digits + 2 decimals
+           05 COMMENT-LINE   PIC X(30).  * Comment field
 
-       WORKING-STORAGE SECTION.
-       01  EMP-COUNT         PIC 9(4) VALUE 0.
-       01  EOF-FLAG          PIC X VALUE 'N'.
+       WORKING-STORAGE SECTION.          * Program variables (persistent)
+       01  WS-EMP-IN-STATUS  PIC XX.     * File status code
+       01  WS-EMP-OUT-STATUS PIC XX.     * File status code
+       01  EMP-COUNT         PIC 9(4) VALUE 0. * Counter variable, 4 digits
+       01  EOF-FLAG          PIC X VALUE 'N'. * End-of-file flag, single character
+       01  WS-DATE           PIC 9(8).   * System date
+       01  WS-TIME           PIC 9(6).   * System time
+       01  EMP-TABLE.
+           05 EMP-ENTRY OCCURS 10 TIMES DEPENDING ON EMP-COUNT.
+               10 EMP-ID-TBL     PIC 9(5).
+               10 EMP-NAME-TBL   PIC X(20).
+               10 EMP-SALARY-TBL PIC 9(6)V99.
+               10 EMP-TAX-TBL    PIC 9(4)V99.
+               10 NET-PAY-TBL    PIC 9(6)V99.
+       01  WS-STRING-VAR     PIC X(50).  * String variable
+       01  WS-REDEF-EXAMPLE.
+           05 WS-NUMBER      PIC 9(6).
+           05 WS-ALPHA       REDEFINES WS-NUMBER PIC X(6).
+       01  WS-INDEX          PIC S9(4) COMP VALUE 1.
+       01  WS-DECIMAL        PIC S9(6)V99 COMP-3 VALUE 0.
+       01  USER-INPUT        PIC X(20).  * For ACCEPT example
 
-       LOCAL-STORAGE SECTION.
-       01  TEMP-NET-PAY      PIC 9(6)V99.
+       COPY EMPLOYEE-REC REPLACING ==EMPLOYEE-REC== BY ==EMP-IN-REC==.
 
-       LINKAGE SECTION.
-       01  COMPANY-NAME      PIC X(30).
+       LOCAL-STORAGE SECTION.            * Variables local to each program run
+       01  TEMP-NET-PAY      PIC 9(6)V99.* Temporary net pay variable
 
-       PROCEDURE DIVISION USING COMPANY-NAME.
+       LINKAGE SECTION.                  * Data passed from other programs
+       01  COMPANY-NAME      PIC X(30).  * Company name, 30 characters
+
+       PROCEDURE DIVISION USING COMPANY-NAME. * Executable logic, receives COMPANY-NAME
+
+       DECLARATIVES.                         * Error handling routines
+       USE AFTER ERROR ON EMP-IN.
+       ERROR-HANDLER SECTION.
+           DISPLAY 'Error reading EMP-IN file. Status: ' WS-EMP-IN-STATUS.
+           CONTINUE.
+       END DECLARATIVES.
+
+       MAIN-LOGIC SECTION.
+       BEGIN-PROCESS.
+           ACCEPT WS-DATE FROM DATE.          * Get system date
+           ACCEPT WS-TIME FROM TIME.          * Get system time
            DISPLAY 'Payroll Report for ' COMPANY-NAME
-           OPEN INPUT EMP-IN
-           OPEN OUTPUT EMP-OUT
-           PERFORM UNTIL EOF-FLAG = 'Y'
+           DISPLAY 'Date: ' WS-DATE ' Time: ' WS-TIME
+           DISPLAY 'Enter a comment for this run:'
+           ACCEPT USER-INPUT                  * Accept user input
+           OPEN INPUT EMP-IN                  * Open input file
+           OPEN OUTPUT EMP-OUT                * Open output file
+           INITIALIZE EMP-TABLE               * Reset array
+           PERFORM UNTIL EOF-FLAG = 'Y'       * Loop until end of file
                READ EMP-IN INTO EMP-IN-REC
                    AT END
                        MOVE 'Y' TO EOF-FLAG
@@ -144,13 +193,49 @@ A COBOL program is divided into four main divisions, each with specific sections
                        MOVE EMP-ID TO EMP-ID-OUT
                        MOVE EMP-NAME TO EMP-NAME-OUT
                        MOVE TEMP-NET-PAY TO NET-PAY
+                       STRING USER-INPUT DELIMITED BY SPACE
+                              INTO COMMENT-LINE
                        WRITE EMP-OUT-REC
+                       MOVE EMP-ID TO EMP-ID-TBL(EMP-COUNT)
+                       MOVE EMP-NAME TO EMP-NAME-TBL(EMP-COUNT)
+                       MOVE EMP-SALARY TO EMP-SALARY-TBL(EMP-COUNT)
+                       MOVE EMP-TAX TO EMP-TAX-TBL(EMP-COUNT)
+                       MOVE TEMP-NET-PAY TO NET-PAY-TBL(EMP-COUNT)
+                       IF TEMP-NET-PAY > 100000
+                           DISPLAY 'High Net Pay for: ' EMP-NAME
+                       ELSE
+                           CONTINUE
+                       END-IF
+                       IF EMP-COUNT = 5
+                           GO TO SPECIAL-MESSAGE
+                       END-IF
                END-READ
            END-PERFORM
-           CLOSE EMP-IN
-           CLOSE EMP-OUT
-           DISPLAY 'Processed ' EMP-COUNT ' employees.'
-           STOP RUN.
+           CLOSE EMP-IN                       * Close input file
+           CLOSE EMP-OUT                      * Close output file
+           DISPLAY 'Payroll Summary:'
+           PERFORM VARYING WS-INDEX FROM 1 BY 1 UNTIL WS-INDEX > EMP-COUNT
+               EVALUATE TRUE
+                   WHEN NET-PAY-TBL(WS-INDEX) > 100000
+                       DISPLAY 'High Net Pay: ' EMP-NAME-TBL(WS-INDEX)
+                   WHEN NET-PAY-TBL(WS-INDEX) < 10000
+                       DISPLAY 'Low Net Pay: ' EMP-NAME-TBL(WS-INDEX)
+                   WHEN OTHER
+                       DISPLAY 'Normal Net Pay: ' EMP-NAME-TBL(WS-INDEX)
+               END-EVALUATE
+               INSPECT EMP-NAME-TBL(WS-INDEX) TALLYING WS-DECIMAL FOR ALL 'A'
+               IF WS-INDEX = 3
+                   NEXT SENTENCE
+               END-IF
+           END-PERFORM
+           CALL 'SUBPROG' USING COMPANY-NAME
+           EXIT PROGRAM.
+       SPECIAL-MESSAGE.
+           DISPLAY 'Reached 5 employees!'
+           CONTINUE.
+       END MAIN-LOGIC.
+
+       STOP RUN.                             * End program
 ```
 ---
 
@@ -389,82 +474,3 @@ In COBOL, keywords (reserved words) are predefined words that have special meani
 - [GnuCOBOL Documentation](https://open-cobol.sourceforge.io/)
 - [Java Migration Guides](https://www.oracle.com/java/technologies/migration.html)
 - [Mainframe Modernization Patterns](https://cloud.google.com/architecture/mainframe-modernization)
-
-## Sample Code: Employee Payroll Processing
-
-This sample COBOL program demonstrates key constructs: all divisions, file I/O, group items, arrays, copybook usage, EJECT directive, and comments. The program reads employee data, calculates net pay, and writes results to an output file.
-
-```cobol
-       IDENTIFICATION DIVISION.
-       PROGRAM-ID. PAYROLL-PROCESSOR.
-       AUTHOR. GitHub Copilot.
-       * Sample COBOL program for payroll processing
-
-       ENVIRONMENT DIVISION.
-       INPUT-OUTPUT SECTION.
-       FILE-CONTROL.
-           SELECT EMP-IN ASSIGN TO 'employee_input.txt'.
-           SELECT EMP-OUT ASSIGN TO 'employee_output.txt'.
-
-       DATA DIVISION.
-       FILE SECTION.
-       FD  EMP-IN.
-       01  EMP-IN-REC.
-           05 EMP-ID         PIC 9(5).
-           05 EMP-NAME       PIC X(20).
-           05 EMP-SALARY     PIC 9(6)V99.
-           05 EMP-TAX        PIC 9(4)V99.
-
-       FD  EMP-OUT.
-       01  EMP-OUT-REC.
-           05 EMP-ID-OUT     PIC 9(5).
-           05 EMP-NAME-OUT   PIC X(20).
-           05 NET-PAY        PIC 9(6)V99.
-
-       WORKING-STORAGE SECTION.
-       01  EMP-COUNT         PIC 9(4) VALUE 0.
-       01  EOF-FLAG          PIC X VALUE 'N'.
-       01  EMP-TABLE.
-           05 EMP-ENTRY OCCURS 10 TIMES.
-               10 EMP-ID-TBL     PIC 9(5).
-               10 EMP-NAME-TBL   PIC X(20).
-               10 EMP-SALARY-TBL PIC 9(6)V99.
-               10 EMP-TAX-TBL    PIC 9(4)V99.
-               10 NET-PAY-TBL    PIC 9(6)V99.
-
-       * Simulated copybook usage
-       COPY EMPLOYEE-REC REPLACING ==EMPLOYEE-REC== BY ==EMP-IN-REC==.
-
-       PROCEDURE DIVISION.
-           OPEN INPUT EMP-IN
-           OPEN OUTPUT EMP-OUT
-           PERFORM UNTIL EOF-FLAG = 'Y'
-               READ EMP-IN INTO EMP-IN-REC
-                   AT END
-                       MOVE 'Y' TO EOF-FLAG
-                   NOT AT END
-                       ADD 1 TO EMP-COUNT
-                       COMPUTE NET-PAY = EMP-SALARY - EMP-TAX
-                       MOVE EMP-ID TO EMP-ID-OUT
-                       MOVE EMP-NAME TO EMP-NAME-OUT
-                       MOVE NET-PAY TO NET-PAY
-                       WRITE EMP-OUT-REC
-                       * Store in array for summary
-                       MOVE EMP-ID TO EMP-ID-TBL(EMP-COUNT)
-                       MOVE EMP-NAME TO EMP-NAME-TBL(EMP-COUNT)
-                       MOVE EMP-SALARY TO EMP-SALARY-TBL(EMP-COUNT)
-                       MOVE EMP-TAX TO EMP-TAX-TBL(EMP-COUNT)
-                       MOVE NET-PAY TO NET-PAY-TBL(EMP-COUNT)
-               END-READ
-           END-PERFORM
-           CLOSE EMP-IN
-           CLOSE EMP-OUT
-
-           EJECT
-           * Print summary of processed employees
-           DISPLAY 'Payroll Summary:'
-           PERFORM VARYING IDX FROM 1 BY 1 UNTIL IDX > EMP-COUNT
-               DISPLAY 'ID: ' EMP-ID-TBL(IDX) ' Name: ' EMP-NAME-TBL(IDX) ' Net Pay: ' NET-PAY-TBL(IDX)
-           END-PERFORM
-           STOP RUN.
-```
